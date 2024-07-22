@@ -1,19 +1,19 @@
 import { ImageBackground, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react';
 import BestTransFer from '@/assets/svg/CreateAcc/Best_TransFer.svg'
-import { styles } from './styles';
 import { ColorSheet } from '@/utils/ColorSheet';
 import { AuthStackScreenProps } from '@/navigations/navigation_types/auth_stack';
 import TextInputField from '@/components/input/TextInput';
 import PrimaryButton from '@/components/buttons/primaryButton';
+import { styles } from './styles';
 import { Constants } from './constants';
 
-const CreateAnAccount = ({navigation}: AuthStackScreenProps<'CreateAnAccountScreen'>) => {
+const Business = ({navigation}: AuthStackScreenProps<'BusinessScreen'>) => {
 
-    const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal')
+    const [displayVisibleWindow, setDisplayVisibleWindow] = useState('business')
 
     const onPressPersonal = () => {
-        setDisplayVisibleWindow('personal')
+        navigation.navigate('PersonalScreen')
     }
 
     const onPressBusiness = () => {
@@ -73,7 +73,7 @@ const CreateAnAccount = ({navigation}: AuthStackScreenProps<'CreateAnAccountScre
                             ]
                         }
                     >   
-                      {'Personal'} 
+                      {Constants.PERSONAL_TXT} 
                     </Text>
                 </TouchableOpacity>
 
@@ -99,46 +99,46 @@ const CreateAnAccount = ({navigation}: AuthStackScreenProps<'CreateAnAccountScre
                         ]
                       }
                     > 
-                       {'Business'} 
+                       {Constants.BUSINESS_TXT} 
                     </Text>
                  </TouchableOpacity>
               </View>
 
-              {/* DropDown */}
+            {/* DropDown */}
+      {/* <PhoneNumberInput
+      /> */}
 
-              {/* TextInput Filed */}
-              {/* Enter your email id * */}
-              <TextInputField
-                style = {styles.textInput_Field}
-                containerStyle = {styles.textInput_container}
-                placeholder = {Constants.Email_Id}
-                keyboardType = {'email-address'}
-              />
+      {/* TextInput Filed */}
+      {/* Enter your email id * */}
+      <TextInputField
+        style={styles.textInput_Field}
+        containerStyle={styles.textInput_container}
+        placeholder={Constants.Email_Id}
+        keyboardType={'email-address'}
+      />
 
-              {/* Enter Your 6-Digit Pin */}
-              <TextInputField
-                style = {styles.textInput_Field}
-                containerStyle = {styles.textInput_container}
-                placeholder = {Constants.DIGIT_PIN}
-                secureTextEntry
-              />
+      {/* Enter Your 6-Digit Pin */}
+      <TextInputField
+        style={styles.textInput_Field}
+        containerStyle={styles.textInput_container}
+        placeholder={Constants.DIGIT_PIN}
+        secureTextEntry
+      />
 
-              {/* Re-enter Your 6-Digit Pin */}
-              <TextInputField
-                style = {styles.textInput_Field}
-                containerStyle = {styles.textInput_container}
-                placeholder = {Constants.DIGIT_PIN_02}
-                secureTextEntry
-              />
+      {/* Re-enter Your 6-Digit Pin */}
+      <TextInputField
+        style={styles.textInput_Field}
+        containerStyle={styles.textInput_container}
+        placeholder={Constants.DIGIT_PIN_02}
+        secureTextEntry
+      />
 
-
-              {/* Sign Up Button */}
-              <PrimaryButton
-                style = {styles.buttonStyle}
-                title = {'Sign Up'}
-              />
-
-            </View>
+      {/* Sign Up Button */}
+      <PrimaryButton 
+        style={styles.buttonStyle} 
+        title={'Sign Up'} 
+      />
+    </View>
 
         </SafeAreaView>
 
@@ -146,4 +146,4 @@ const CreateAnAccount = ({navigation}: AuthStackScreenProps<'CreateAnAccountScre
   )
 }
 
-export default CreateAnAccount;
+export default Business;

@@ -7,6 +7,7 @@ export const ColorSheet = {
   Secondary: "#FFFFFF",
   SuccessTxt: `#3ABC5E`,
   TextInputFieldColor: '#EAEAEA',
+  ActiveInputBorder: '#303030',
 
   White: "#FFFFFF",
   Error: "#FF0000",

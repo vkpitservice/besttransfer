@@ -1,6 +1,5 @@
 import { ColorSheet } from '@/utils/ColorSheet';
-import { normalize } from '@/utils/scaling';
-import { Dimensions, Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
     heightPercentageToDP as hp,
@@ -19,7 +18,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     main_container: {
-        marginTop: hp(10),
+        marginTop: hp(8),
         alignItems: 'center',
         // backgroundColor: 'red',
     },
@@ -31,7 +30,7 @@ export const styles = StyleSheet.create({
     row_bg_container: {
         width: wp(90),
         marginTop: hp(3),
-        marginBottom: hp(5),
+        marginBottom: hp(3),
         borderRadius: hp(1),
         padding: hp(0.5),
         flexDirection: 'row',
@@ -39,7 +38,7 @@ export const styles = StyleSheet.create({
         backgroundColor: ColorSheet.PrimaryButton,
     },
     common_container: {
-        width: wp(39),
+        width: wp(43),
         height: hp(5),
         borderRadius: hp(1),
         // borderWidth: 1,
@@ -61,7 +60,7 @@ export const styles = StyleSheet.create({
     buttonStyle: {
         width: wp(90),
         height: hp(6),
-        marginTop: hp(3),
+        marginTop: hp(2),
         borderRadius: hp(1),
     },
     
