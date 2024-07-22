@@ -1,36 +1,31 @@
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 import React from 'react';
-import AnimatedLottieView from "lottie-react-native";
+import AnimatedLottieView from 'lottie-react-native';
 import { styles } from './styles';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { Constants } from './Constants';
 
 const RegisterSuccessFull = () => {
   return (
-    <SafeAreaView style = {styles.root}>
-
-      {/* Animation And  SuccessFull Text*/}
-      <View style = {styles.lottie_txt_container}>
+    <SafeAreaView style={styles.root}>
+      <StatusBar barStyle='dark-content' />
+      <View style={styles.lottie_txt_container}>
         <AnimatedLottieView
-            style = {styles.lottieStyle}
-            source = {require('@/assets/animations/Animation_Success.json')}
-            autoPlay
-            speed = {0.5}
-            loop = {true}
+          style={styles.lottieStyle}
+          source={require('@/assets/animations/Animation_Success.json')}
+          autoPlay
+          speed={0.5}
+          loop={true}
         />
 
-        <Text style = {styles.success_txt} > {Constants.SUCCESS_TXT} </Text>
+        <Text style={styles.success_txt}> {Constants.SUCCESS_TXT} </Text>
       </View>
 
       {/* Continue DashBoard Button */}
-      <View style = {styles.btnContainer}>
-        <PrimaryButton
-          style = {styles.buttonStyle}
-          title = {Constants.CONTINUE_TXT}
-        />
-      </View>
+
+      <PrimaryButton style={styles.buttonStyle} title={Constants.CONTINUE_TXT} />
     </SafeAreaView>
-  )
-}
+  );
+};
 
 export default RegisterSuccessFull;
