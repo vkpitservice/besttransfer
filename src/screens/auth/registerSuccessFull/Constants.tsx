@@ -1,5 +1,5 @@
 export const Constants =  {
-    SUCCESS_TXT: 'Register SuccessFull',
+    SUCCESS_TXT: 'Register SuccessFully',
     
     CONTINUE_TXT: 'Continue to dashboard',
 }
