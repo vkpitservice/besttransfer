@@ -4,7 +4,6 @@ export const ColorSheet = {
   PrimaryButtonTxt: '#6FCEE1',
   Secondary: '#FFFFFF',
   SuccessTxt: `#3ABC5E`,
-
   White: '#FFFFFF',
   Error: '#FF0000',
   Success: '#169D04',
