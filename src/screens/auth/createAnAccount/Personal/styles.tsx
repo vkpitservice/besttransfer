@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     row_bg_container: {
         width: wp(90),
         marginTop: hp(3),
-        marginBottom: hp(3),
+        marginBottom: hp(4),
         borderRadius: hp(1),
         padding: hp(0.5),
         flexDirection: 'row',

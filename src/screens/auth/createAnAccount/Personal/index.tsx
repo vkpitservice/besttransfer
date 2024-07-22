@@ -113,7 +113,7 @@ const Personal = ({navigation}: AuthStackScreenProps<'PersonalScreen'>) => {
               </View>
 
             {/* DropDown */}
-      <PhoneNumberInput
+      {/* <PhoneNumberInput
         textInputStyle = {styles.textInput_Field}
         placeholder = {Constants.PHONE_NUM}
         onChangeCode = {(item) => {
@@ -124,7 +124,7 @@ const Personal = ({navigation}: AuthStackScreenProps<'PersonalScreen'>) => {
         onChangeText = {(text) => {
           setMobileNumber(text)
         }}
-      />
+      /> */}
 
       {/* TextInput Filed */}
       {/* Enter your email id * */}
