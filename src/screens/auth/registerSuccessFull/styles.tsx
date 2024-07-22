@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     lottie_txt_container: {
-        width: wp(50),
+        width: wp(55),
         marginTop: hp(20),
         alignItems: 'center',
         // backgroundColor: 'pink',
@@ -27,9 +27,9 @@ export const styles = StyleSheet.create({
         // backgroundColor: 'red',
     },
     success_txt: {
-        fontSize: RFValue(16),
-        fontWeight: '600',
-        color: ColorSheet.Success,
+        fontSize: RFValue(15),
+        fontWeight: '800',
+        color: ColorSheet.SuccessTxt,
     },
     btnContainer: {
         marginTop: hp(10),

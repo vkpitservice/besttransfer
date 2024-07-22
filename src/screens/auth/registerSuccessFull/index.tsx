@@ -3,6 +3,7 @@ import React from 'react';
 import AnimatedLottieView from "lottie-react-native";
 import { styles } from './styles';
 import PrimaryButton from '@/components/buttons/primaryButton';
+import { Constants } from './Constants';
 
 const RegisterSuccessFull = () => {
   return (
@@ -12,20 +13,20 @@ const RegisterSuccessFull = () => {
       <View style = {styles.lottie_txt_container}>
         <AnimatedLottieView
             style = {styles.lottieStyle}
-            source = {require('@/assets/animations/Animation-success.json')}
+            source = {require('@/assets/animations/Animation_Success.json')}
             autoPlay
             speed = {0.5}
             loop = {true}
         />
 
-        <Text style = {styles.success_txt} > {'Register SuccessFull'} </Text>
+        <Text style = {styles.success_txt} > {Constants.SUCCESS_TXT} </Text>
       </View>
 
       {/* Continue DashBoard Button */}
       <View style = {styles.btnContainer}>
         <PrimaryButton
           style = {styles.buttonStyle}
-          title = {'Continue to dashboard'}
+          title = {Constants.CONTINUE_TXT}
         />
       </View>
     </SafeAreaView>
