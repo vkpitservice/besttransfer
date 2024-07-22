@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
   lottieStyle: {
     width: wp(40),
     height: hp(18),
-    marginBottom: hp(3),
   },
   success_txt: {
     fontSize: RFValue(15),
@@ -33,6 +32,6 @@ export const styles = StyleSheet.create({
   buttonStyle: {
     width: wp(80),
     height: hp(6),
-    marginTop: hp(10),
+    marginTop: hp(17),
   },
 });
