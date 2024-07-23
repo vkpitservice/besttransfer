@@ -21,8 +21,7 @@ export const styles = StyleSheet.create({
     paddingVertical: hp(1),
     backgroundColor: ColorSheet.TextInputFieldColor,
     borderRadius: hp(1),
-    borderWidth: 1,
-    borderColor: ColorSheet.White,
+    fontWeight: '500',
   },
   errorText: {
     fontSize: RFValue(14),

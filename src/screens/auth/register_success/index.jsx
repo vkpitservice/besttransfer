@@ -6,21 +6,20 @@ import PrimaryButton from '@/components/buttons/primaryButton';
 import { Constants } from './Constants';
 import { ColorSheet } from '@/utils/ColorSheet';
 
-const RegisterSuccessFull = () => {
+const RegisterSuccess = () => {
   return (
-    <SafeAreaView style = {styles.root}>
-
+    <SafeAreaView style={styles.root}>
       <StatusBar
-        barStyle = 'dark-content'
-        translucent = {false}
-        backgroundColor = {ColorSheet.StatusColor}
+        barStyle='dark-content'
+        translucent={false}
+        backgroundColor={ColorSheet.StatusColor}
       />
 
       {/* Animation And  SuccessFull Text*/}
-      <View style = {styles.lottie_txt_container}>
+      <View style={styles.lottie_txt_container}>
         <AnimatedLottieView
           style={styles.lottieStyle}
-          source={require('@/assets/animations/Animation_Success.json')}
+          source={require('../../../assets/animations/Animation_Success.json')}
           autoPlay
           speed={0.5}
           loop={true}
@@ -35,4 +34,4 @@ const RegisterSuccessFull = () => {
   );
 };
 
-export default RegisterSuccessFull;
+export default RegisterSuccess;

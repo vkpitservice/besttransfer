@@ -1,10 +1,4 @@
-import {
-  ImageBackground,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ImageBackground, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import BestTransFer from '@/assets/svg/CreateAcc/Best_TransFer.svg';
 import { ColorSheet } from '@/utils/ColorSheet';
@@ -13,7 +7,7 @@ import PrimaryButton from '@/components/buttons/primaryButton';
 import { styles } from './styles';
 import { Constants } from './constants';
 
-const CreateAnnAccount = ({ navigation }) => {
+const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
   const [mobileNumber, setMobileNumber] = useState('');
@@ -147,7 +141,7 @@ const CreateAnnAccount = ({ navigation }) => {
   );
 };
 
-export default CreateAnnAccount;
+export default CreateAccount;
 
 const numberData = [
   {
