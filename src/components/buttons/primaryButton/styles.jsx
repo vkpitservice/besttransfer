@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   button_root: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: hp(3),
+    borderRadius: 50,
     backgroundColor: ColorSheet.PrimaryButton,
     paddingHorizontal: wp(2),
     paddingVertical: hp(1),
