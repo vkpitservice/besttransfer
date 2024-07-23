@@ -4,12 +4,20 @@ import AnimatedLottieView from 'lottie-react-native';
 import { styles } from './styles';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { Constants } from './Constants';
+import { ColorSheet } from '@/utils/ColorSheet';
 
 const RegisterSuccessFull = () => {
   return (
-    <SafeAreaView style={styles.root}>
-      <StatusBar barStyle='dark-content' />
-      <View style={styles.lottie_txt_container}>
+    <SafeAreaView style = {styles.root}>
+
+      <StatusBar
+        barStyle = 'dark-content'
+        translucent = {false}
+        backgroundColor = {ColorSheet.StatusColor}
+      />
+
+      {/* Animation And  SuccessFull Text*/}
+      <View style = {styles.lottie_txt_container}>
         <AnimatedLottieView
           style={styles.lottieStyle}
           source={require('@/assets/animations/Animation_Success.json')}
@@ -17,7 +25,6 @@ const RegisterSuccessFull = () => {
           speed={0.5}
           loop={true}
         />
-
         <Text style={styles.success_txt}> {Constants.SUCCESS_TXT} </Text>
       </View>
 
