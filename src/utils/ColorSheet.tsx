@@ -1,5 +1,5 @@
 export const ColorSheet = {
-  Primary: "#000000",
+  Primary: '#000000',
   PrimaryButton: '#013461',
   PrimaryTxt: '#013461',
   buttonChose: `#4FE0FF`,
@@ -8,9 +8,9 @@ export const ColorSheet = {
   SuccessTxt: `#3ABC5E`,
   TextInputFieldColor: '#EAEAEA',
   ActiveInputBorder: '#303030',
-
   White: "#FFFFFF",
   Error: "#FF0000",
   Success: "#169D04",
   Warning: "#FFA500",
+  PrimaryButtonTxt: '#6FCEE1',
 };

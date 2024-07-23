@@ -3,24 +3,24 @@ import { normalize } from '@/utils/scaling';
 import { Dimensions, Platform, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
-    heightPercentageToDP as hp,
-    widthPercentageToDP as wp,
-  } from 'react-native-responsive-screen';
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-    button_root: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: hp(3),
-        backgroundColor: ColorSheet.PrimaryButton,
-        paddingHorizontal: wp(2),
-        paddingVertical: hp(1),
-    },
-    title_txt: {
-        fontSize: RFValue(16),
-        color: ColorSheet.White,
-        fontWeight: '400',
-    },
+  button_root: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: hp(3),
+    backgroundColor: ColorSheet.PrimaryButton,
+    paddingHorizontal: wp(2),
+    paddingVertical: hp(1),
+  },
+  title_txt: {
+    fontSize: RFValue(16),
+    color: ColorSheet.PrimaryButtonTxt,
+    fontWeight: '500',
+  },
 });
