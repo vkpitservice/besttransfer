@@ -1,8 +1,6 @@
 import {
   ImageBackground,
   SafeAreaView,
-  StatusBar,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -14,9 +12,8 @@ import TextInputField from '@/components/input/TextInput';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { styles } from './styles';
 import { Constants } from './constants';
-import PhoneNumberInput from '@/components/input/PhoneNumberInput';
 
-const Personal = ({ navigation }) => {
+const CreateAnnAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
   const [mobileNumber, setMobileNumber] = useState('');
@@ -31,7 +28,7 @@ const Personal = ({ navigation }) => {
   };
 
   const onPressBusiness = () => {
-    navigation.navigate('BusinessScreen');
+    setDisplayVisibleWindow('business');
   };
 
   return (
@@ -76,7 +73,7 @@ const Personal = ({ navigation }) => {
                     : { color: ColorSheet.buttonChose },
                 ]}
               >
-                {'Personal'}
+                {Constants.PERSONAL_TXT}
               </Text>
             </TouchableOpacity>
 
@@ -98,7 +95,7 @@ const Personal = ({ navigation }) => {
                     : { color: ColorSheet.buttonChose },
                 ]}
               >
-                {'Business'}
+                {Constants.BUSINESS_TXT}
               </Text>
             </TouchableOpacity>
           </View>
@@ -150,7 +147,7 @@ const Personal = ({ navigation }) => {
   );
 };
 
-export default Personal;
+export default CreateAnnAccount;
 
 const numberData = [
   {

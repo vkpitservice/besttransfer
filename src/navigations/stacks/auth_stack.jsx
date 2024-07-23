@@ -2,18 +2,16 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../../screens/auth/login';
 import RegisterSuccessFull from '../../screens/auth/registerSuccessFull';
-import Personal from '../../screens/auth/createAnAccount/Personal';
-import Business from '../../screens/auth/createAnAccount/Business';
+import CreateAnnAccount from '../../screens/auth/createAnAccount';
 
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName='PersonalScreen' screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName='CreateAnnAccountScreen' screenOptions={{ headerShown: false }}>
       <Stack.Screen name='LoginScreen' component={LoginScreen} />
       <Stack.Screen name='RegisterSuccessFullScreen' component={RegisterSuccessFull} />
-      <Stack.Screen name='PersonalScreen' component={Personal} />
-      <Stack.Screen name='BusinessScreen' component={Business} />
+      <Stack.Screen name='CreateAnnAccountScreen' component={CreateAnnAccount} />
     </Stack.Navigator>
   );
 };
