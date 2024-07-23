@@ -6,15 +6,26 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-// const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
-
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    width: wp(100),
   },
+  backgroundImage: {
+    position: 'absolute',
+    zIndex: -1,
+    resizeMode: 'cover',
+    width: wp(100),
+    height: hp(100),
+  },
+  scroll_container: {
+    width: wp(100),
+    paddingBottom: hp(5),
+  },
+
   logo_container: {
-    marginTop: Platform.OS == 'android' ? hp(6) : hp(3),
+    marginTop: Platform.OS == 'android' ? hp(6) : hp(10),
     alignItems: 'center',
   },
   main_container: {
@@ -26,39 +37,70 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     color: ColorSheet.PrimaryTxt,
   },
-  row_bg_container: {
-    width: wp(90),
-    marginTop: hp(3),
-    marginBottom: hp(4),
-    borderRadius: hp(1),
-    padding: hp(0.5),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: ColorSheet.PrimaryButton,
-  },
-  common_container: {
-    width: wp(43),
-    height: hp(5),
-    borderRadius: hp(1),
-    // borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  common_txt_style: {
+  subTitleText: {
     fontSize: RFValue(12),
     fontWeight: '600',
+    color: ColorSheet.SecondaryText,
+    marginTop: hp(3),
   },
-  textInput_container: {
-    marginBottom: hp(3),
-  },
-  textInput_Field: {
+
+  email_Field: {
     width: wp(90),
-    height: hp(6),
+    marginTop: hp(5),
     // backgroundColor: 'yellow',
+  },
+  password_Field: {
+    width: wp(90),
+    marginTop: hp(2),
+    // backgroundColor: 'red',
+  },
+  rememberView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: wp(90),
+    marginTop: hp(4),
+    alignItems: 'center',
+  },
+  rememberLeftView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rememberLeftText: {
+    fontSize: RFValue(13),
+    color: ColorSheet.Text1,
+    marginLeft: wp(2),
+    fontWeight: '500',
+  },
+  forgetPinButton: {},
+  forgetPinText: {
+    fontSize: RFValue(13),
+    color: ColorSheet.Text1,
+    marginLeft: wp(2),
+    fontWeight: '500',
   },
   buttonStyle: {
     width: wp(90),
     height: hp(6),
-    marginTop: hp(2),
+    marginTop: hp(6),
+  },
+  footerView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: hp(4),
+  },
+  footerText: {
+    fontSize: RFValue(13),
+    color: ColorSheet.PrimaryTxt,
+    fontWeight: '600',
+  },
+  registerButton: {
+    marginLeft: wp(1),
+  },
+  registerButtonText: {
+    fontSize: RFValue(13),
+    color: ColorSheet.PrimaryTxt,
+    fontWeight: '600',
+    textDecorationLine: 'underline',
   },
 });

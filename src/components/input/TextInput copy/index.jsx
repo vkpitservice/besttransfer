@@ -1,9 +1,8 @@
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles';
 import { ColorSheet } from '../../../utils/ColorSheet';
 import PropTypes from 'prop-types';
-import Octicons from 'react-native-vector-icons/Octicons';
 
 const TextInputField = (props) => {
   const {
@@ -21,52 +20,31 @@ const TextInputField = (props) => {
     textError,
     autoCapitalize,
     icon,
-    disableEyeIcon,
   } = props;
 
   const [focused, setFocused] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <View style={[styles.rootContainer, style]}>
-      <View
-        style={[
-          styles.mainView,
-          focused && {
-            borderWidth: 1,
-          },
-        ]}
-      >
-        <TextInput
-          style={[styles.textInput, containerStyle]}
-          placeholder={placeholder}
-          placeholderTextColor={ColorSheet.TextInputPlaceholderColor}
-          value={value}
-          onFocus={(e) => {
-            setFocused(true);
-            onFocus?.(e);
-          }}
-          onEndEditing={() => {
-            setFocused(false);
-          }}
-          keyboardType={keyboardType}
-          onBlur={onBlur}
-          onChangeText={onChangeText}
-          secureTextEntry={secureTextEntry && showPassword}
-          editable={editable}
-          autoCapitalize={autoCapitalize}
-        />
-        {!disableEyeIcon && secureTextEntry && (
-          <TouchableOpacity style={styles.icon} onPress={() => setShowPassword(!showPassword)}>
-            {showPassword ? (
-              <Octicons name='eye' size={20} color={ColorSheet.TextInputPlaceholderColor} />
-            ) : (
-              <Octicons name='eye-closed' size={20} color={ColorSheet.TextInputPlaceholderColor} />
-            )}
-          </TouchableOpacity>
-        )}
-      </View>
-
+      <TextInput
+        style={[styles.textInput, containerStyle]}
+        placeholder={placeholder}
+        placeholderTextColor={ColorSheet.TextInputPlaceholderColor}
+        value={value}
+        onFocus={(e) => {
+          setFocused(true);
+          onFocus?.(e);
+        }}
+        onEndEditing={() => {
+          setFocused(false);
+        }}
+        keyboardType={keyboardType}
+        onBlur={onBlur}
+        onChangeText={onChangeText}
+        secureTextEntry={secureTextEntry}
+        editable={editable}
+        autoCapitalize={autoCapitalize}
+      />
       {textError && <Text style={[styles.errorText, ErrorStyle]}> {textError} </Text>}
     </View>
   );
@@ -88,7 +66,6 @@ TextInputField.propTypes = {
   textError: PropTypes.string,
   autoCapitalize: PropTypes.oneOf(['none', 'sentences', 'words', 'characters']),
   icon: PropTypes.element,
-  disableEyeIcon: PropTypes.bool,
 };
 
 // Define default props
@@ -97,6 +74,7 @@ TextInputField.defaultProps = {
   containerStyle: {},
   ErrorStyle: {},
   placeholder: '',
+  value: '',
   onFocus: null,
   keyboardType: 'default',
   onBlur: null,

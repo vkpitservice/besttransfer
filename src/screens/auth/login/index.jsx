@@ -1,6 +1,10 @@
 import {
+  Image,
   ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   Text,
   TouchableOpacity,
@@ -13,6 +17,7 @@ import TextInputField from '@/components/input/TextInput';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { styles } from './styles';
 import { Constants } from './constants';
+import CustomCheckBox from '@/components/input/CustomCheckBox';
 
 const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
@@ -33,12 +38,22 @@ const CreateAccount = ({ navigation }) => {
   };
 
   return (
-    <ImageBackground
-      source={require('@/assets/images/CreateAccountBG/Create_an_account.png')}
+    <KeyboardAvoidingView
       style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <StatusBar barStyle='light-content' backgroundColor={ColorSheet.PrimaryButton} translucent />
-      <SafeAreaView style={{ flex: 1 }}>
+
+      <ScrollView
+        contentContainerStyle={styles.scroll_container}
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+      >
+        <Image
+          source={require('@/assets/images/CreateAccountBG/Create_an_account.png')}
+          style={styles.backgroundImage}
+        />
+
         {/* Logo */}
         <View style={styles.logo_container}>
           <BestTransFer width={130} height={130} />
@@ -47,22 +62,40 @@ const CreateAccount = ({ navigation }) => {
         {/* Main Container */}
         <View style={styles.main_container}>
           {/* Header Title */}
-          <Text style={styles.titleText}> Create an Account </Text>
+          <Text style={styles.titleText}>{Constants.WELCOME_TEXT}</Text>
 
-          <Text style={styles.subTitleText}> Choose Account Type </Text>
+          <Text style={styles.subTitleText}>{Constants.LOGIN_TEXT}</Text>
 
-          {/* Enter Your 6-Digit Pin */}
+          <TextInputField style={styles.email_Field} placeholder={Constants.ENTER_EMAIL_TEXT} />
+
           <TextInputField
-            style={styles.textInput_Field}
-            containerStyle={styles.textInput_container}
-            placeholder={Constants.DIGIT_PIN}
+            secureTextEntry
+            style={styles.password_Field}
+            placeholder={Constants.ENTER_PIN_TEXT}
           />
 
+          <View style={styles.rememberView}>
+            <View style={styles.rememberLeftView}>
+              <CustomCheckBox />
+              <Text style={styles.rememberLeftText}>{Constants.REMEMBER_ME_TEXT}</Text>
+            </View>
+            <TouchableOpacity style={styles.forgetPinButton}>
+              <Text style={styles.forgetPinText}>{Constants.FORGOT_PIN_TEXT}</Text>
+            </TouchableOpacity>
+          </View>
+
           {/* Sign Up Button */}
-          <PrimaryButton style={styles.buttonStyle} title={'Sign Up'} />
+          <PrimaryButton style={styles.buttonStyle} title={Constants.LOGIN_BUTTON_TEXT} />
+
+          <View style={styles.footerView}>
+            <Text style={styles.footerText}>{Constants.DONT_HAVE_ACCOUNT_TEXT}</Text>
+            <TouchableOpacity style={styles.registerButton}>
+              <Text style={styles.registerButtonText}>{Constants.REGISTER_TEXT}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </SafeAreaView>
-    </ImageBackground>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -6,4 +6,6 @@ export const Constants = {
   REMEMBER_ME_TEXT: 'Remember Me',
   FORGOT_PIN_TEXT: 'Forgot PIN?',
   LOGIN_BUTTON_TEXT: 'Login',
+  DONT_HAVE_ACCOUNT_TEXT: 'Don’t have an account?',
+  REGISTER_TEXT: 'Register',
 };
