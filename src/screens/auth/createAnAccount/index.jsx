@@ -1,8 +1,6 @@
 import {
   ImageBackground,
   SafeAreaView,
-  StatusBar,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -30,7 +28,7 @@ const CreateAnnAccount = ({ navigation }) => {
   };
 
   const onPressBusiness = () => {
-    navigation.navigate('BusinessScreen');
+    setDisplayVisibleWindow('business');
   };
 
   return (
@@ -75,7 +73,7 @@ const CreateAnnAccount = ({ navigation }) => {
                     : { color: ColorSheet.buttonChose },
                 ]}
               >
-                {'Personal'}
+                {Constants.PERSONAL_TXT}
               </Text>
             </TouchableOpacity>
 
@@ -97,7 +95,7 @@ const CreateAnnAccount = ({ navigation }) => {
                     : { color: ColorSheet.buttonChose },
                 ]}
               >
-                {'Business'}
+                {Constants.BUSINESS_TXT}
               </Text>
             </TouchableOpacity>
           </View>
