@@ -7,5 +7,5 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const guidelineBaseWidth = 320;
 
-const scale = (size: number) => (SCREEN_WIDTH / guidelineBaseWidth) * size;
-export const normalize = (size: number, factor = 1) => size + (scale(size) - size) * factor;
+const scale = (size) => (SCREEN_WIDTH / guidelineBaseWidth) * size;
+export const normalize = (size, factor = 1) => size + (scale(size) - size) * factor;

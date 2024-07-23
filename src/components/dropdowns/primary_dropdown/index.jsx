@@ -3,26 +3,10 @@ import { View, Text, TextStyle, StyleProp, Animated } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Entypo from 'react-native-vector-icons/Entypo';
-
-import DropDownIcon from '@/assets/icons/DropDown.svg';
 import { styles } from './styles';
-import { ColorSheet } from '@/utils/ColorSheet';
-interface Props {
-  data: any[];
-  value: string;
-  onChange: (item: { label: string; value: string }) => void;
-  placeholder?: string;
-  style?: any;
-  iconColor?: string | undefined;
-  selectedTextStyle?: StyleProp<TextStyle>;
-  textItemStyle?: any;
-  dropdownPosition?: 'auto' | 'bottom' | 'top' | undefined;
-  placeholderStyle?: StyleProp<TextStyle>;
-  disable?: boolean | undefined;
-  testID?: string | undefined;
-  customRightIcon?: () => JSX.Element;
-}
-const PrimaryDropDown = (props: Props) => {
+import { ColorSheet } from '../../../utils/ColorSheet';
+
+const PrimaryDropDown = (props) => {
   const {
     data,
     value,
@@ -53,7 +37,7 @@ const PrimaryDropDown = (props: Props) => {
     Animated.timing(animationController, config).start();
   };
 
-  const renderItem = (item: { label: string; value: string }) => {
+  const renderItem = (item) => {
     return (
       <View style={styles.item}>
         <Text style={[styles.textItem, textItemStyle]}>{item.label}</Text>

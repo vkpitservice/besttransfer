@@ -1,6 +1,6 @@
 import { DependencyList, EffectCallback, useEffect, useRef } from 'react';
 
-export function useUpdateEffect(effect: EffectCallback, deps?: DependencyList) {
+export function useUpdateEffect(effect, deps) {
   const isFirst = useIsFirstRender();
 
   useEffect(() => {
@@ -10,7 +10,7 @@ export function useUpdateEffect(effect: EffectCallback, deps?: DependencyList) {
   }, deps);
 }
 
-function useIsFirstRender(): boolean {
+function useIsFirstRender() {
   const isFirst = useRef(true);
 
   if (isFirst.current) {

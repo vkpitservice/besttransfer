@@ -4,7 +4,7 @@ import { ColorSheet } from './ColorSheet';
 
 const duration = 3500;
 
-export const ErrorFlash = (description: string) => {
+export const ErrorFlash = (description) => {
   showMessage({
     textStyle: styles.textStyle,
     titleStyle: styles.titleStyle,
@@ -18,7 +18,7 @@ export const ErrorFlash = (description: string) => {
   Vibration.vibrate();
 };
 
-export const SuccessFlash = (description: string) => {
+export const SuccessFlash = (description) => {
   showMessage({
     textStyle: styles.textStyle,
     titleStyle: styles.titleStyle,
@@ -31,7 +31,7 @@ export const SuccessFlash = (description: string) => {
   });
 };
 
-export const WarningFlash = (description: string) => {
+export const WarningFlash = (description) => {
   showMessage({
     textStyle: styles.textStyle,
     titleStyle: styles.titleStyle,

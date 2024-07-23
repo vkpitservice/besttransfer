@@ -1,6 +1,6 @@
 import validator from 'validator';
 
-export function isString(data: string) {
+export function isString(data) {
   if (!data) return false;
   const regexName = /^[a-zA-Z]+$/;
   if (data.match(regexName)) {
@@ -10,7 +10,7 @@ export function isString(data: string) {
   }
 }
 
-export function isEmail(data: string) {
+export function isEmail(data) {
   if (!data) return false;
   if (validator.isEmail(data)) {
     return true;
@@ -19,7 +19,7 @@ export function isEmail(data: string) {
   }
 }
 
-export function isPhoneNumber(data: string) {
+export function isPhoneNumber(data) {
   if (!data) return false;
 
   if (validator.isMobilePhone(data)) {
@@ -29,7 +29,7 @@ export function isPhoneNumber(data: string) {
   }
 }
 
-export function isPassword(data: string) {
+export function isPassword(data) {
   if (!data) return false;
   if (
     validator.isStrongPassword(data, {
@@ -46,7 +46,7 @@ export function isPassword(data: string) {
   }
 }
 
-export function isIFSC(data: string) {
+export function isIFSC(data) {
   if (!data) return false;
   if (
     validator.isStrongPassword(data, {
@@ -63,13 +63,13 @@ export function isIFSC(data: string) {
   }
 }
 
-export const validateEmail = (email: string) => {
+export const validateEmail = (email) => {
   // Basic email validation pattern
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailPattern.test(email);
 };
 
-export const validateAddress = (address: string) => {
+export const validateAddress = (address) => {
   // Regular expression to match special characters
   const specialCharsRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
@@ -81,7 +81,7 @@ export const validateAddress = (address: string) => {
   }
 };
 
-export const validateAccountNumber = (accountNumber: string) => {
+export const validateAccountNumber = (accountNumber) => {
   // Regular expression to match only digits
   const digitsRegex = /^\d+$/;
 
@@ -94,7 +94,7 @@ export const validateAccountNumber = (accountNumber: string) => {
   return true; // Account number is valid
 };
 
-export const validatePhoneNumber = (phoneNumber: any) => {
+export const validatePhoneNumber = (phoneNumber) => {
   // Regular expression to match a typical international phone number format
   const phoneRegex = /^(\+)?\d+$/;
 
@@ -107,7 +107,7 @@ export const validatePhoneNumber = (phoneNumber: any) => {
 };
 
 // Function to validate bank code
-export const validateBankCode = (bankCode: any) => {
+export const validateBankCode = (bankCode) => {
   // Regular expression to match bank code format (example: 4 digits)
   const bankCodeRegex = /^\d{4}$/;
 
@@ -116,7 +116,7 @@ export const validateBankCode = (bankCode: any) => {
 };
 
 // Function to validate SWIFT code
-export const validateSWIFTCode = (swiftCode: any) => {
+export const validateSWIFTCode = (swiftCode) => {
   // Regular expression to match SWIFT code format
   const swiftCodeRegex = /^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$/;
 
@@ -128,7 +128,7 @@ export const validateSWIFTCode = (swiftCode: any) => {
 // const bankCode = "1234"; // Example bank code
 // const swiftCode = "ABCDUS33"; // Example SWIFT code
 
-export const validateCharacters = (address: string) => {
+export const validateCharacters = (address) => {
   // Regular expression to match special characters
   const specialCharsRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
