@@ -72,6 +72,7 @@ const CreateAccount = ({ navigation }) => {
             secureTextEntry
             style={styles.password_Field}
             placeholder={Constants.ENTER_PIN_TEXT}
+            keyboardType={'numeric'}
           />
 
           <View style={styles.rememberView}>
