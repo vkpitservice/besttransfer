@@ -5,35 +5,29 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
   overrides: [
     {
       env: {
         node: true,
       },
-      files: ['.eslintrc.{js,cjs}'],
+      files: ['.eslintrc.js', '.eslintrc.cjs'],
       parserOptions: {
         sourceType: 'script',
       },
     },
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'react', 'unused-imports'],
+  plugins: ['react', 'unused-imports'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     'spaced-comment': 'error',
     quotes: ['error', 'single'],
     'no-duplicate-imports': 'error',
-    'unused-imports/no-unused-imports-ts': 2,
+    'unused-imports/no-unused-imports-ts': 'error',
     'react/prop-types': 'off',
   },
   settings: {
@@ -41,4 +35,4 @@ module.exports = {
       typescript: {},
     },
   },
-}
+};
