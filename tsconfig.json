@@ -1,10 +1,31 @@
 {
-  "compilerOptions": {},
   "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "noImplicitThis": false,
+    "types": [
+      "node"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "allowImportingTsExtensions": false
+  },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
+    "./src/**/*",
+    "./src/@types/**/*",
+    "index.d.ts",
+    "babel.config.js",
+    "index.js",
+    "declarations.d.ts",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
+  ],
+  "typeRoots": [
+    "types"
   ]
 }

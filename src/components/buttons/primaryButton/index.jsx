@@ -1,6 +1,7 @@
 import { Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { styles } from './styles';
+import PropTypes from 'prop-types';
 
 const PrimaryButton = (props) => {
   const { title, onPress, style } = props;
@@ -10,6 +11,18 @@ const PrimaryButton = (props) => {
       <Text style={styles.title_txt}> {title} </Text>
     </TouchableOpacity>
   );
+};
+
+// Define prop types
+PrimaryButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  onPress: PropTypes.func,
+  style: PropTypes.object,
+};
+
+// Define default props
+PrimaryButton.defaultProps = {
+  style: {},
 };
 
 export default PrimaryButton;
