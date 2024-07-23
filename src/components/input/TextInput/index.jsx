@@ -1,6 +1,7 @@
 import { Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles';
+import { ColorSheet } from '../../../utils/ColorSheet';
 
 const TextInputField = (props) => {
   const {
@@ -27,6 +28,7 @@ const TextInputField = (props) => {
       <TextInput
         style={[styles.textInput, style]}
         placeholder={placeholder}
+        placeholderTextColor={ColorSheet.TextInputPlaceholderColor}
         value={value}
         onFocus={(e) => {
           setFocused(true);
