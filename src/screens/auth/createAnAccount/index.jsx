@@ -14,9 +14,8 @@ import TextInputField from '@/components/input/TextInput';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { styles } from './styles';
 import { Constants } from './constants';
-import PhoneNumberInput from '@/components/input/PhoneNumberInput';
 
-const Personal = ({ navigation }) => {
+const CreateAnnAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
   const [mobileNumber, setMobileNumber] = useState('');
@@ -150,7 +149,7 @@ const Personal = ({ navigation }) => {
   );
 };
 
-export default Personal;
+export default CreateAnnAccount;
 
 const numberData = [
   {
