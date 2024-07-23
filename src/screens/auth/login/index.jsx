@@ -1,4 +1,11 @@
-import { ImageBackground, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, { useState } from 'react';
 import BestTransFer from '@/assets/svg/CreateAcc/Best_TransFer.svg';
 import { ColorSheet } from '@/utils/ColorSheet';
@@ -30,15 +37,10 @@ const CreateAccount = ({ navigation }) => {
       source={require('@/assets/images/CreateAccountBG/Create_an_account.png')}
       style={styles.container}
     >
+      <StatusBar barStyle='light-content' backgroundColor={ColorSheet.PrimaryButton} translucent />
       <SafeAreaView style={{ flex: 1 }}>
-        {/* <StatusBar
-              barStyle = 'dark-content'
-              backgroundColor = {ColorSheet.PrimaryButton}
-              translucent
-            /> */}
-
         {/* Logo */}
-        <View style={styles.best_transFer_Svg_container}>
+        <View style={styles.logo_container}>
           <BestTransFer width={130} height={130} />
         </View>
 
@@ -46,6 +48,8 @@ const CreateAccount = ({ navigation }) => {
         <View style={styles.main_container}>
           {/* Header Title */}
           <Text style={styles.titleText}> Create an Account </Text>
+
+          <Text style={styles.subTitleText}> Choose Account Type </Text>
 
           {/* Enter Your 6-Digit Pin */}
           <TextInputField

@@ -3,10 +3,10 @@ import React from 'react';
 import AnimatedLottieView from 'lottie-react-native';
 import { styles } from './styles';
 import PrimaryButton from '@/components/buttons/primaryButton';
-import { Constants } from './Constants';
 import { ColorSheet } from '@/utils/ColorSheet';
+import { Constants } from './constants';
 
-const RegisterSuccess = () => {
+const Success = () => {
   return (
     <SafeAreaView style={styles.root}>
       <StatusBar
@@ -34,4 +34,4 @@ const RegisterSuccess = () => {
   );
 };
 
-export default RegisterSuccess;
+export default Success;

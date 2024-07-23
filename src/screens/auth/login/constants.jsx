@@ -1,11 +1,9 @@
 export const Constants = {
-  PERSONAL_TXT: 'Personal',
-  BUSINESS_TXT: 'Business',
-
-  PHONE_NUM: 'Enter Your Phone Number',
-  Email_Id: 'Enter your email id *',
-  DIGIT_PIN: 'Enter Your 6-Digit Pin',
-  DIGIT_PIN_02: 'Re-enter Your 6-Digit Pin',
-
-  CONTINUE: 'Continue',
+  WELCOME_TEXT: 'Welcome Back',
+  LOGIN_TEXT: 'Login to access your account',
+  ENTER_EMAIL_TEXT: 'Enter Your Email',
+  ENTER_PIN_TEXT: 'Enter 6-digit pin',
+  REMEMBER_ME_TEXT: 'Remember Me',
+  FORGOT_PIN_TEXT: 'Forgot PIN?',
+  LOGIN_BUTTON_TEXT: 'Login',
 };

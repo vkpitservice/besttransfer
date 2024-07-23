@@ -13,14 +13,13 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  best_transFer_Svg_container: {
+  logo_container: {
     marginTop: Platform.OS == 'android' ? hp(6) : hp(3),
     alignItems: 'center',
   },
   main_container: {
     marginTop: hp(8),
     alignItems: 'center',
-    // backgroundColor: 'red',
   },
   titleText: {
     fontSize: RFValue(16),
