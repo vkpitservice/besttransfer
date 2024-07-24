@@ -55,8 +55,9 @@ const CreateAccount = ({ navigation }) => {
       ErrorFlash(Constants.ENTER_DIGIT_CODE);
     } else if (digitCode != confirmDigitCode) {
       ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH);
+    } else {
+      Alert.alert('Success');
     }
-    Alert.alert('Success');
   };
 
   return (
