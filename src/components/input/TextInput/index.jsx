@@ -4,6 +4,7 @@ import { styles } from './styles';
 import { ColorSheet } from '../../../utils/ColorSheet';
 import PropTypes from 'prop-types';
 import Octicons from 'react-native-vector-icons/Octicons';
+import { useUpdateEffect } from '@/utils/useUpdateEffect';
 
 const TextInputField = (props) => {
   const {
@@ -27,6 +28,11 @@ const TextInputField = (props) => {
 
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [secureText, setSecureText] = useState(secureTextEntry);
+
+  useUpdateEffect(() => {
+    setSecureText(!showPassword);
+  }, [showPassword]);
 
   return (
     <View style={[styles.rootContainer, style]}>
@@ -36,7 +42,7 @@ const TextInputField = (props) => {
           focused && {
             borderWidth: 1,
           },
-          containerStyle
+          containerStyle,
         ]}
       >
         <TextInput
@@ -54,16 +60,16 @@ const TextInputField = (props) => {
           keyboardType={keyboardType}
           onBlur={onBlur}
           onChangeText={onChangeText}
-          secureTextEntry={secureTextEntry && showPassword}
+          secureTextEntry={secureText}
           editable={editable}
           autoCapitalize={autoCapitalize}
         />
-        {!disableEyeIcon && secureTextEntry && (
+        {secureTextEntry && !disableEyeIcon && (
           <TouchableOpacity style={styles.icon} onPress={() => setShowPassword(!showPassword)}>
             {showPassword ? (
-              <Octicons name='eye' size={20} color={ColorSheet.TextInputPlaceholderColor} />
-            ) : (
               <Octicons name='eye-closed' size={20} color={ColorSheet.TextInputPlaceholderColor} />
+            ) : (
+              <Octicons name='eye' size={20} color={ColorSheet.TextInputPlaceholderColor} />
             )}
           </TouchableOpacity>
         )}
@@ -78,7 +84,7 @@ const TextInputField = (props) => {
 TextInputField.propTypes = {
   style: PropTypes.object,
   containerStyle: PropTypes.object,
-  textInputField:PropTypes.object,
+  textInputField: PropTypes.object,
   ErrorStyle: PropTypes.object,
   placeholder: PropTypes.string,
   value: PropTypes.string,

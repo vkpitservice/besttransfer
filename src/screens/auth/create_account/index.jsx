@@ -1,4 +1,14 @@
-import { Image,  ScrollView, KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View, Alert } from 'react-native';
+import {
+  Image,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+  Alert,
+} from 'react-native';
 import React, { useState } from 'react';
 import BestTransFer from '@/assets/svg/CreateAcc/Best_TransFer.svg';
 import { ColorSheet } from '@/utils/ColorSheet';
@@ -12,18 +22,17 @@ import { ErrorFlash } from '@/utils/flashMessage';
 const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
-
   const [mobileNumber, setMobileNumber] = useState('');
   const [mobileNumberError, setMobileNumberError] = useState('');
 
-  const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState('')
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
 
-  const [digitCode, setDigitCode] = useState('')
-  const [digitCodeError, setDigitCodeError] = useState('')
+  const [digitCode, setDigitCode] = useState('');
+  const [digitCodeError, setDigitCodeError] = useState('');
 
-  const [confirmDigitCode, setConfirmDigitCode] = useState('')
-  const [confirmDigitCodeError, setConfirmDigitCodeError] = useState('')
+  const [confirmDigitCode, setConfirmDigitCode] = useState('');
+  const [confirmDigitCodeError, setConfirmDigitCodeError] = useState('');
 
   const onPressPersonal = () => {
     setDisplayVisibleWindow('personal');
@@ -35,38 +44,33 @@ const CreateAccount = ({ navigation }) => {
 
   const onPressSignUp = () => {
     if (email == '') {
-      ErrorFlash(Constants.ENTER_EMAIL)
+      ErrorFlash(Constants.ENTER_EMAIL);
     } else if (!validateEmail(email)) {
-      ErrorFlash(Constants.VALID_EMAIL)
+      ErrorFlash(Constants.VALID_EMAIL);
     } else if (digitCode.length == '') {
-      ErrorFlash(Constants.ENTER_DIGIT_CODE)
+      ErrorFlash(Constants.ENTER_DIGIT_CODE);
     } else if (digitCode?.length !== 6) {
-      ErrorFlash(Constants.PIN_REQUIRED)
+      ErrorFlash(Constants.PIN_REQUIRED);
     } else if (confirmDigitCode.length == '') {
-      ErrorFlash(Constants.ENTER_DIGIT_CODE)
+      ErrorFlash(Constants.ENTER_DIGIT_CODE);
     } else if (digitCode != confirmDigitCode) {
-      ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH)
+      ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH);
     }
     Alert.alert('Success');
-  }
+  };
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <StatusBar 
-        barStyle = 'light-content' 
-        backgroundColor = {ColorSheet.PrimaryButton} 
-        translucent 
-      />
+      <StatusBar barStyle='light-content' backgroundColor={ColorSheet.PrimaryButton} translucent />
 
       <ScrollView
         contentContainerStyle={styles.scroll_container}
         bounces={false}
         showsVerticalScrollIndicator={false}
       >
-
         <Image
           source={require('@/assets/images/CreateAccountBG/Create_an_account.png')}
           style={styles.imgBackground}
@@ -146,16 +150,16 @@ const CreateAccount = ({ navigation }) => {
           {/* TextInput Filed */}
           {/* Enter your email id * */}
           <TextInputField
-            style = {styles.textInput_rootContainer}
+            style={styles.textInput_rootContainer}
             placeholder={Constants.Email_Id}
-            keyboardTyp = {'email-address'}
-            value = {email}
-            onChangeText = {(text) => setEmail(text)}
-            textError = {emailError}
-            onBlur = {() => {
+            keyboardTyp={'email-address'}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+            textError={emailError}
+            onBlur={() => {
               if (email == '') {
                 setEmailError(Constants.ENTER_EMAIL);
-              } else if (!validateEmail(email)){
+              } else if (!validateEmail(email)) {
                 setEmailError(Constants.VALID_EMAIL);
               } else {
                 setEmailError('');
@@ -165,15 +169,16 @@ const CreateAccount = ({ navigation }) => {
 
           {/* Enter Your 6-Digit Pin */}
           <TextInputField
-            style = {styles.textInput_rootContainer}
+            style={styles.textInput_rootContainer}
             placeholder={Constants.DIGIT_PIN}
             secureTextEntry
-            keyboardType = {'numeric'}
-            value = {digitCode}
-            onChangeText = {(text) => setDigitCode(text)}
-            textError = {digitCodeError}
-            onBlur = {() => {
-              if (digitCode.length == '' ) {
+            keyboardType={'numeric'}
+            value={digitCode}
+            onChangeText={(text) => setDigitCode(text)}
+            textError={digitCodeError}
+            disableEyeIcon
+            onBlur={() => {
+              if (digitCode.length == '') {
                 setDigitCodeError(Constants.ENTER_DIGIT_CODE);
               } else if (digitCode?.length !== 6) {
                 setDigitCodeError(Constants.PIN_REQUIRED);
@@ -185,15 +190,16 @@ const CreateAccount = ({ navigation }) => {
 
           {/* Re-enter Your 6-Digit Pin */}
           <TextInputField
-            style = {styles.textInput_rootContainer}
+            style={styles.textInput_rootContainer}
             placeholder={Constants.DIGIT_PIN_02}
             secureTextEntry
-            keyboardType = {'numeric'}
-            value = {confirmDigitCode}
-            onChangeText = {(text) => setConfirmDigitCode(text)}
-            textError = {confirmDigitCodeError}
-            onBlur = {() => {
-              if (confirmDigitCode.length == '' ) {
+            keyboardType={'numeric'}
+            value={confirmDigitCode}
+            onChangeText={(text) => setConfirmDigitCode(text)}
+            disableEyeIcon
+            textError={confirmDigitCodeError}
+            onBlur={() => {
+              if (confirmDigitCode.length == '') {
                 setConfirmDigitCodeError(Constants.ENTER_DIGIT_CODE);
               } else if (confirmDigitCode?.length !== 6) {
                 setConfirmDigitCodeError(Constants.PIN_REQUIRED);
@@ -206,15 +212,13 @@ const CreateAccount = ({ navigation }) => {
           />
 
           {/* Sign Up Button */}
-          <PrimaryButton 
-            style={styles.buttonStyle} 
-            title = {Constants.SIGN_UP}
-            onPress = {onPressSignUp}
+          <PrimaryButton
+            style={styles.buttonStyle}
+            title={Constants.SIGN_UP}
+            onPress={onPressSignUp}
           />
         </View>
-
       </ScrollView>
-
     </KeyboardAvoidingView>
   );
 };
