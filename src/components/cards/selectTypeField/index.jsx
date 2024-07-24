@@ -10,8 +10,6 @@ const SelectTypeFieldBox = (props) => {
 
   // const [isHandleChecked, setHandleCheck] = useState(false);
 
-  // Define the image style based on the type prop
-  const imgStyle = type === 'nonUs' ? styles.roundImage : styles.image;
 
   return (
     <View
@@ -24,7 +22,7 @@ const SelectTypeFieldBox = (props) => {
       ]}
     >
       <View style={styles.imgTxtContainer}>
-        {imageSource && <Image source={imageSource} style={imgStyle} />}
+        {imageSource && <Image source={imageSource} style={styles.imgStyle} />}
         <Text style={styles.title}> {title} </Text>
       </View>
 

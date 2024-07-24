@@ -12,7 +12,7 @@ import {
 import React, { useState } from 'react';
 import { styles } from './styles';
 import { ColorSheet } from '@/utils/ColorSheet';
-import BestTransFer from '@/assets/svg/CreateAcc/Best_TransFer.svg';
+import LogoResident from '@/assets/svg/resident/LogoResident.svg';
 import { Constants } from './constants';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import SelectTypeFieldBox from '@/components/cards/selectTypeField';
@@ -30,6 +30,7 @@ const ResidentCountry = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <SafeAreaView style={{ flex: 1 }}>
+
         <StatusBar barStyle='dark-content' translucent backgroundColor={ColorSheet.Secondary} />
 
         <ScrollView
@@ -40,7 +41,7 @@ const ResidentCountry = ({ navigation }) => {
           {/* Logo Image  */}
           <View style={styles.main_container}>
             <View style={styles.logo_image}>
-              <BestTransFer width={130} height={130} />
+              <LogoResident width={130} height={130} />
             </View>
 
             {/*  Main Text */}
@@ -55,9 +56,7 @@ const ResidentCountry = ({ navigation }) => {
             {/* List Check Box */}
             <SelectTypeFieldBox
               style={styles.listContainer}
-              imageSource={{
-                uri: 'https://www.thisiswiltshire.co.uk/resources/images/17668188/?type=responsive-gallery-fullscreen',
-              }}
+              imageSource={require('@/assets/images/resident/NonUs.png')}
               title={Constants.NON_US_RESIDENT}
               type='nonUs'
               isChecked={selectedOption === 'nonUS'}
@@ -66,9 +65,7 @@ const ResidentCountry = ({ navigation }) => {
 
             <SelectTypeFieldBox
               style={styles.listContainer}
-              imageSource={{
-                uri: 'https://www.thisiswiltshire.co.uk/resources/images/17668188/?type=responsive-gallery-fullscreen',
-              }}
+              imageSource = {require('@/assets/images/resident/Us.png')}
               title={Constants.US_RESIDENT}
               type='us'
               isChecked={selectedOption === 'US'}

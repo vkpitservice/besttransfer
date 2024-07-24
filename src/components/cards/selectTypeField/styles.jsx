@@ -24,23 +24,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  roundImage: {
+  imgStyle: {
     width: wp(9),
     height: hp(4),
-    resizeMode: 'cover',
-    borderRadius: hp(5),
-    borderColor: ColorSheet.Primary,
-    borderWidth: 1,
-    marginLeft: hp(2),
-    marginRight: hp(2),
-    backgroundColor: 'red', // Temporarily add a background color
-  },
-  image: {
-    width: wp(9),
-    height: hp(4),
-    resizeMode: 'cover',
-    marginLeft: hp(2),
-    marginRight: hp(2),
+    // resizeMode: 'cover',
+    marginLeft: hp(1),
+    marginRight: hp(1),
   },
   title: {
     fontSize: RFValue(13),
