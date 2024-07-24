@@ -143,7 +143,7 @@ const PrimaryDropDown = (props) => {
       disable={disable}
       renderInputSearch={renderInputSearch}
       containerStyle={styles.containerStyle}
-      minHeight={hp(28)}
+      //  minHeight={hp(28)}
     />
   );
 };

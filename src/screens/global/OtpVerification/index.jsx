@@ -36,7 +36,7 @@ const OtpVerification = () => {
             marginHorizontal: 10,
           }}
           placeholder='Select a reason'
-          value='1'
+          //  value='1'
           onChange={(value) => console.log(value)}
           data={[
             {
