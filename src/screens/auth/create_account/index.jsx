@@ -12,7 +12,6 @@ import { ErrorFlash } from '@/utils/flashMessage';
 const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
-
   const [mobileNumber, setMobileNumber] = useState('');
   const [mobileNumberError, setMobileNumberError] = useState('');
 
