@@ -3,6 +3,8 @@ export const ColorSheet = {
   PrimaryButton: '#013461',
   PrimaryTxt: '#013461',
   Text1: '#201905',
+  Text2: 'rgba(0, 0, 0, 0.5)',
+
   SecondaryText: '#000',
   buttonChose: `#4FE0FF`,
   StatusColor: `#F7F7F7`,
@@ -17,4 +19,5 @@ export const ColorSheet = {
   Warning: '#FFA500',
   PrimaryButtonTxt: '#6FCEE1',
   CheckBox: '#707070',
+  Dropdown: '#012443',
 };
