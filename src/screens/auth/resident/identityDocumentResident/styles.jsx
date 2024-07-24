@@ -1,5 +1,4 @@
 import { ColorSheet } from '@/utils/ColorSheet';
-import { normalize } from '@/utils/scaling';
 import { Dimensions, Platform, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
