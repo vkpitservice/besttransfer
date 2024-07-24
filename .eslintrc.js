@@ -1,5 +1,3 @@
-const { rules } = require('eslint-config-prettier');
-
 module.exports = {
   env: {
     browser: true,
