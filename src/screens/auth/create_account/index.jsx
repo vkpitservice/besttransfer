@@ -1,11 +1,11 @@
-import { ImageBackground, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { Image,  ScrollView, KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import BestTransFer from '@/assets/svg/CreateAcc/Best_TransFer.svg';
 import { ColorSheet } from '@/utils/ColorSheet';
-import TextInputField from '@/components/input/TextInput';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { styles } from './styles';
 import { Constants } from './constants';
+import TextInputField from '@/components/input/TextInput';
 
 const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
@@ -26,11 +26,27 @@ const CreateAccount = ({ navigation }) => {
   };
 
   return (
-    <ImageBackground
-      source={require('@/assets/images/CreateAccountBG/Create_an_account.png')}
+    <KeyboardAvoidingView
       style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar 
+        barStyle = 'light-content' 
+        backgroundColor = {ColorSheet.PrimaryButton} 
+        translucent 
+      />
+
+      <ScrollView
+        contentContainerStyle={styles.scroll_container}
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+      >
+
+        <Image
+          source={require('@/assets/images/CreateAccountBG/Create_an_account.png')}
+          style={styles.imgBackground}
+        />
+      
         {/* <StatusBar
               barStyle = 'dark-content'
               backgroundColor = {ColorSheet.PrimaryButton}
@@ -38,7 +54,7 @@ const CreateAccount = ({ navigation }) => {
             /> */}
 
         {/* Logo */}
-        <View style={styles.best_transFer_Svg_container}>
+        <View style={styles.logo_container}>
           <BestTransFer width={130} height={130} />
         </View>
 
@@ -112,7 +128,6 @@ const CreateAccount = ({ navigation }) => {
           {/* Enter your email id * */}
           <TextInputField
             style={styles.textInput_Field}
-            containerStyle={styles.textInput_container}
             placeholder={Constants.Email_Id}
             keyboardType={'email-address'}
           />
@@ -120,7 +135,6 @@ const CreateAccount = ({ navigation }) => {
           {/* Enter Your 6-Digit Pin */}
           <TextInputField
             style={styles.textInput_Field}
-            containerStyle={styles.textInput_container}
             placeholder={Constants.DIGIT_PIN}
             secureTextEntry
           />
@@ -128,7 +142,6 @@ const CreateAccount = ({ navigation }) => {
           {/* Re-enter Your 6-Digit Pin */}
           <TextInputField
             style={styles.textInput_Field}
-            containerStyle={styles.textInput_container}
             placeholder={Constants.DIGIT_PIN_02}
             secureTextEntry
           />
@@ -136,8 +149,10 @@ const CreateAccount = ({ navigation }) => {
           {/* Sign Up Button */}
           <PrimaryButton style={styles.buttonStyle} title={'Sign Up'} />
         </View>
-      </SafeAreaView>
-    </ImageBackground>
+
+      </ScrollView>
+
+    </KeyboardAvoidingView>
   );
 };
 
