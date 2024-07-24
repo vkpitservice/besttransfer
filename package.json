@@ -11,8 +11,7 @@
     "test": "jest --watchAll",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}' --config ./.prettierrc",
-    "fix": "yarn lint:fix && yarn format"
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}' --config ./.prettierrc"
   },
   "jest": {
     "preset": "jest-expo"
