@@ -10,6 +10,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import PropTypes from 'prop-types';
 
 const PrimaryDropDown = (props) => {
   const {
@@ -145,6 +146,38 @@ const PrimaryDropDown = (props) => {
       minHeight={hp(28)}
     />
   );
+};
+
+// Define prop types
+PrimaryDropDown.propTypes = {
+  data: PropTypes.array.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  style: PropTypes.object,
+  iconColor: PropTypes.string,
+  selectedTextStyle: PropTypes.object,
+  textItemStyle: PropTypes.object,
+  dropdownPosition: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  placeholderStyle: PropTypes.object,
+  disable: PropTypes.bool,
+  testID: PropTypes.string,
+  customRightIcon: PropTypes.element,
+};
+
+// Define default props
+PrimaryDropDown.defaultProps = {
+  value: '',
+  placeholder: '',
+  style: {},
+  iconColor: 'black',
+  selectedTextStyle: {},
+  textItemStyle: {},
+  dropdownPosition: 0,
+  placeholderStyle: {},
+  disable: false,
+  testID: '',
+  customRightIcon: null,
 };
 
 export default PrimaryDropDown;
