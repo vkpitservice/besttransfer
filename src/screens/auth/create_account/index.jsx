@@ -1,4 +1,4 @@
-import { Image,  ScrollView, KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { Image,  ScrollView, KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View, Alert } from 'react-native';
 import React, { useState } from 'react';
 import BestTransFer from '@/assets/svg/CreateAcc/Best_TransFer.svg';
 import { ColorSheet } from '@/utils/ColorSheet';
@@ -7,6 +7,7 @@ import { styles } from './styles';
 import { Constants } from './constants';
 import TextInputField from '@/components/input/TextInput';
 import { validateEmail } from '@/utils/validations';
+import { ErrorFlash } from '@/utils/flashMessage';
 
 const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
@@ -24,11 +25,6 @@ const CreateAccount = ({ navigation }) => {
   const [confirmDigitCode, setConfirmDigitCode] = useState('')
   const [confirmDigitCodeError, setConfirmDigitCodeError] = useState('')
 
-  const [code, setCode] = useState({
-    label: '',
-    value: '',
-  });
-
   const onPressPersonal = () => {
     setDisplayVisibleWindow('personal');
   };
@@ -36,6 +32,23 @@ const CreateAccount = ({ navigation }) => {
   const onPressBusiness = () => {
     setDisplayVisibleWindow('business');
   };
+
+  const onPressSignUp = () => {
+    if (email == '') {
+      ErrorFlash(Constants.ENTER_EMAIL)
+    } else if (!validateEmail(email)) {
+      ErrorFlash(Constants.VALID_EMAIL)
+    } else if (digitCode.length == '') {
+      ErrorFlash(Constants.ENTER_DIGIT_CODE)
+    } else if (digitCode?.length !== 6) {
+      ErrorFlash(Constants.PIN_REQUIRED)
+    } else if (confirmDigitCode.length == '') {
+      ErrorFlash(Constants.ENTER_DIGIT_CODE)
+    } else if (digitCode != confirmDigitCode) {
+      ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH)
+    }
+    Alert.alert('Success');
+  }
 
   return (
     <KeyboardAvoidingView
@@ -134,17 +147,16 @@ const CreateAccount = ({ navigation }) => {
           {/* Enter your email id * */}
           <TextInputField
             style = {styles.textInput_rootContainer}
-            containerStyle={styles.textInput_container}
             placeholder={Constants.Email_Id}
             keyboardTyp = {'email-address'}
             value = {email}
             onChangeText = {(text) => setEmail(text)}
-            errorText = {emailError}
+            textError = {emailError}
             onBlur = {() => {
-              if (!validateEmail(email)) {
-                setEmailError('Please enter valid email id');
-              } else if (email == '') {
-                setEmailError('Please enter email id');
+              if (email == '') {
+                setEmailError(Constants.ENTER_EMAIL);
+              } else if (!validateEmail(email)){
+                setEmailError(Constants.VALID_EMAIL);
               } else {
                 setEmailError('');
               }
@@ -154,27 +166,51 @@ const CreateAccount = ({ navigation }) => {
           {/* Enter Your 6-Digit Pin */}
           <TextInputField
             style = {styles.textInput_rootContainer}
-            containerStyle={styles.textInput_container}
             placeholder={Constants.DIGIT_PIN}
             secureTextEntry
             keyboardType = {'numeric'}
             value = {digitCode}
             onChangeText = {(text) => setDigitCode(text)}
+            textError = {digitCodeError}
+            onBlur = {() => {
+              if (digitCode.length == '' ) {
+                setDigitCodeError(Constants.ENTER_DIGIT_CODE);
+              } else if (digitCode?.length !== 6) {
+                setDigitCodeError(Constants.PIN_REQUIRED);
+              } else {
+                setDigitCodeError('');
+              }
+            }}
           />
 
           {/* Re-enter Your 6-Digit Pin */}
           <TextInputField
             style = {styles.textInput_rootContainer}
-            containerStyle={styles.textInput_container}
             placeholder={Constants.DIGIT_PIN_02}
             secureTextEntry
             keyboardType = {'numeric'}
             value = {confirmDigitCode}
             onChangeText = {(text) => setConfirmDigitCode(text)}
+            textError = {confirmDigitCodeError}
+            onBlur = {() => {
+              if (confirmDigitCode.length == '' ) {
+                setConfirmDigitCodeError(Constants.ENTER_DIGIT_CODE);
+              } else if (confirmDigitCode?.length !== 6) {
+                setConfirmDigitCodeError(Constants.PIN_REQUIRED);
+              } else if (confirmDigitCode !== digitCode) {
+                setConfirmDigitCodeError(Constants.CONFIRM_PIN_MISMATCH);
+              } else {
+                setConfirmDigitCodeError('');
+              }
+            }}
           />
 
           {/* Sign Up Button */}
-          <PrimaryButton style={styles.buttonStyle} title={'Sign Up'} />
+          <PrimaryButton 
+            style={styles.buttonStyle} 
+            title = {Constants.SIGN_UP}
+            onPress = {onPressSignUp}
+          />
         </View>
 
       </ScrollView>

@@ -64,10 +64,8 @@ export const styles = StyleSheet.create({
   },
   textInput_rootContainer: {
     width: wp(90),
+    marginBottom: hp(2.5),
     // backgroundColor: 'yellow',
-  },
-  textInput_container: {
-    marginBottom: hp(2),
   },
   buttonStyle: {
     width: wp(90),
