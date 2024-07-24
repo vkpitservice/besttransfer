@@ -19,7 +19,7 @@ import { styles } from './styles';
 import { Constants } from './constants';
 import CustomCheckBox from '@/components/input/CustomCheckBox';
 
-const CreateAccount = ({ navigation }) => {
+const Login = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
   const [mobileNumber, setMobileNumber] = useState('');
@@ -28,14 +28,6 @@ const CreateAccount = ({ navigation }) => {
     label: '',
     value: '',
   });
-
-  const onPressPersonal = () => {
-    setDisplayVisibleWindow('personal');
-  };
-
-  const onPressBusiness = () => {
-    setDisplayVisibleWindow('business');
-  };
 
   return (
     <KeyboardAvoidingView
@@ -66,7 +58,10 @@ const CreateAccount = ({ navigation }) => {
 
           <Text style={styles.subTitleText}>{Constants.LOGIN_TEXT}</Text>
 
-          <TextInputField style={styles.email_Field} placeholder={Constants.ENTER_EMAIL_TEXT} />
+          <TextInputField 
+            style={styles.email_Field} 
+            placeholder={Constants.ENTER_EMAIL_TEXT} 
+          />
 
           <TextInputField
             secureTextEntry
@@ -100,4 +95,4 @@ const CreateAccount = ({ navigation }) => {
   );
 };
 
-export default CreateAccount;
+export default Login;

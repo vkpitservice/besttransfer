@@ -11,6 +11,7 @@ import { ColorSheet } from '../../../utils/ColorSheet';
 export const styles = StyleSheet.create({
   rootContainer: {
     width: '100%',
+    // backgroundColor: 'red'
   },
   mainView: {
     flexDirection: 'row',

@@ -9,6 +9,7 @@ const TextInputField = (props) => {
   const {
     style,
     containerStyle,
+    textInputField,
     ErrorStyle,
     placeholder,
     value,
@@ -35,10 +36,11 @@ const TextInputField = (props) => {
           focused && {
             borderWidth: 1,
           },
+          containerStyle
         ]}
       >
         <TextInput
-          style={[styles.textInput, containerStyle]}
+          style={[styles.textInput, textInputField]}
           placeholder={placeholder}
           placeholderTextColor={ColorSheet.TextInputPlaceholderColor}
           value={value}
@@ -76,6 +78,7 @@ const TextInputField = (props) => {
 TextInputField.propTypes = {
   style: PropTypes.object,
   containerStyle: PropTypes.object,
+  textInputField:PropTypes.object,
   ErrorStyle: PropTypes.object,
   placeholder: PropTypes.string,
   value: PropTypes.string,
@@ -95,6 +98,7 @@ TextInputField.propTypes = {
 TextInputField.defaultProps = {
   style: {},
   containerStyle: {},
+  textInputField: {},
   ErrorStyle: {},
   placeholder: '',
   onFocus: null,

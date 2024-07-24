@@ -1,21 +1,29 @@
-import { ImageBackground, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { Image,  ScrollView, KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View, Alert } from 'react-native';
 import React, { useState } from 'react';
 import BestTransFer from '@/assets/svg/CreateAcc/Best_TransFer.svg';
 import { ColorSheet } from '@/utils/ColorSheet';
-import TextInputField from '@/components/input/TextInput';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { styles } from './styles';
 import { Constants } from './constants';
+import TextInputField from '@/components/input/TextInput';
+import { validateEmail } from '@/utils/validations';
+import { ErrorFlash } from '@/utils/flashMessage';
 
 const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
-  const [mobileNumber, setMobileNumber] = useState('');
 
-  const [code, setCode] = useState({
-    label: '',
-    value: '',
-  });
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [mobileNumberError, setMobileNumberError] = useState('');
+
+  const [email, setEmail] = useState('')
+  const [emailError, setEmailError] = useState('')
+
+  const [digitCode, setDigitCode] = useState('')
+  const [digitCodeError, setDigitCodeError] = useState('')
+
+  const [confirmDigitCode, setConfirmDigitCode] = useState('')
+  const [confirmDigitCodeError, setConfirmDigitCodeError] = useState('')
 
   const onPressPersonal = () => {
     setDisplayVisibleWindow('personal');
@@ -25,20 +33,47 @@ const CreateAccount = ({ navigation }) => {
     setDisplayVisibleWindow('business');
   };
 
+  const onPressSignUp = () => {
+    if (email == '') {
+      ErrorFlash(Constants.ENTER_EMAIL)
+    } else if (!validateEmail(email)) {
+      ErrorFlash(Constants.VALID_EMAIL)
+    } else if (digitCode.length == '') {
+      ErrorFlash(Constants.ENTER_DIGIT_CODE)
+    } else if (digitCode?.length !== 6) {
+      ErrorFlash(Constants.PIN_REQUIRED)
+    } else if (confirmDigitCode.length == '') {
+      ErrorFlash(Constants.ENTER_DIGIT_CODE)
+    } else if (digitCode != confirmDigitCode) {
+      ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH)
+    }
+    Alert.alert('Success');
+  }
+
   return (
-    <ImageBackground
-      source={require('@/assets/images/CreateAccountBG/Create_an_account.png')}
+    <KeyboardAvoidingView
       style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <SafeAreaView style={{ flex: 1 }}>
-        {/* <StatusBar
-              barStyle = 'dark-content'
-              backgroundColor = {ColorSheet.PrimaryButton}
-              translucent
-            /> */}
+      <StatusBar 
+        barStyle = 'light-content' 
+        backgroundColor = {ColorSheet.PrimaryButton} 
+        translucent 
+      />
+
+      <ScrollView
+        contentContainerStyle={styles.scroll_container}
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+      >
+
+        <Image
+          source={require('@/assets/images/CreateAccountBG/Create_an_account.png')}
+          style={styles.imgBackground}
+        />
 
         {/* Logo */}
-        <View style={styles.best_transFer_Svg_container}>
+        <View style={styles.logo_container}>
           <BestTransFer width={130} height={130} />
         </View>
 
@@ -111,33 +146,76 @@ const CreateAccount = ({ navigation }) => {
           {/* TextInput Filed */}
           {/* Enter your email id * */}
           <TextInputField
-            style={styles.textInput_Field}
-            containerStyle={styles.textInput_container}
+            style = {styles.textInput_rootContainer}
             placeholder={Constants.Email_Id}
-            keyboardType={'email-address'}
+            keyboardTyp = {'email-address'}
+            value = {email}
+            onChangeText = {(text) => setEmail(text)}
+            textError = {emailError}
+            onBlur = {() => {
+              if (email == '') {
+                setEmailError(Constants.ENTER_EMAIL);
+              } else if (!validateEmail(email)){
+                setEmailError(Constants.VALID_EMAIL);
+              } else {
+                setEmailError('');
+              }
+            }}
           />
 
           {/* Enter Your 6-Digit Pin */}
           <TextInputField
-            style={styles.textInput_Field}
-            containerStyle={styles.textInput_container}
+            style = {styles.textInput_rootContainer}
             placeholder={Constants.DIGIT_PIN}
             secureTextEntry
+            keyboardType = {'numeric'}
+            value = {digitCode}
+            onChangeText = {(text) => setDigitCode(text)}
+            textError = {digitCodeError}
+            onBlur = {() => {
+              if (digitCode.length == '' ) {
+                setDigitCodeError(Constants.ENTER_DIGIT_CODE);
+              } else if (digitCode?.length !== 6) {
+                setDigitCodeError(Constants.PIN_REQUIRED);
+              } else {
+                setDigitCodeError('');
+              }
+            }}
           />
 
           {/* Re-enter Your 6-Digit Pin */}
           <TextInputField
-            style={styles.textInput_Field}
-            containerStyle={styles.textInput_container}
+            style = {styles.textInput_rootContainer}
             placeholder={Constants.DIGIT_PIN_02}
             secureTextEntry
+            keyboardType = {'numeric'}
+            value = {confirmDigitCode}
+            onChangeText = {(text) => setConfirmDigitCode(text)}
+            textError = {confirmDigitCodeError}
+            onBlur = {() => {
+              if (confirmDigitCode.length == '' ) {
+                setConfirmDigitCodeError(Constants.ENTER_DIGIT_CODE);
+              } else if (confirmDigitCode?.length !== 6) {
+                setConfirmDigitCodeError(Constants.PIN_REQUIRED);
+              } else if (confirmDigitCode !== digitCode) {
+                setConfirmDigitCodeError(Constants.CONFIRM_PIN_MISMATCH);
+              } else {
+                setConfirmDigitCodeError('');
+              }
+            }}
           />
 
           {/* Sign Up Button */}
-          <PrimaryButton style={styles.buttonStyle} title={'Sign Up'} />
+          <PrimaryButton 
+            style={styles.buttonStyle} 
+            title = {Constants.SIGN_UP}
+            onPress = {onPressSignUp}
+          />
         </View>
-      </SafeAreaView>
-    </ImageBackground>
+
+      </ScrollView>
+
+    </KeyboardAvoidingView>
   );
 };
 

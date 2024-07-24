@@ -4,7 +4,7 @@ import { styles } from './styles';
 import { ColorSheet } from '../../../utils/ColorSheet';
 import PropTypes from 'prop-types';
 
-const TextInputField = (props) => {
+const TextInputFieldCopy = (props) => {
   const {
     style,
     containerStyle,
@@ -86,4 +86,4 @@ TextInputField.defaultProps = {
   icon: null,
 };
 
-export default TextInputField;
+export default TextInputFieldCopy;

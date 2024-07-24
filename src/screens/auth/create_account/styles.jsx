@@ -1,3 +1,4 @@
+
 import { ColorSheet } from '@/utils/ColorSheet';
 import { Platform, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -12,9 +13,21 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    // width: wp(100),
   },
-  best_transFer_Svg_container: {
-    marginTop: Platform.OS == 'android' ? hp(6) : hp(3),
+  scroll_container: {
+    width: wp(100),
+    paddingBottom: hp(5),
+  },
+  imgBackground: {
+    position: 'absolute',
+    zIndex: -1,
+    resizeMode: 'cover',
+    width: wp(100),
+    height: hp(100),
+  },
+  logo_container: {
+    marginTop: Platform.OS == 'android' ? hp(6) : hp(10),
     alignItems: 'center',
   },
   main_container: {
@@ -49,12 +62,9 @@ export const styles = StyleSheet.create({
     fontSize: RFValue(12),
     fontWeight: '600',
   },
-  textInput_container: {
-    marginBottom: hp(3),
-  },
-  textInput_Field: {
+  textInput_rootContainer: {
     width: wp(90),
-    height: hp(6),
+    marginBottom: hp(2.5),
     // backgroundColor: 'yellow',
   },
   buttonStyle: {
