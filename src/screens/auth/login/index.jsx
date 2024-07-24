@@ -58,10 +58,7 @@ const Login = ({ navigation }) => {
 
           <Text style={styles.subTitleText}>{Constants.LOGIN_TEXT}</Text>
 
-          <TextInputField 
-            style={styles.email_Field} 
-            placeholder={Constants.ENTER_EMAIL_TEXT} 
-          />
+          <TextInputField style={styles.email_Field} placeholder={Constants.ENTER_EMAIL_TEXT} />
 
           <TextInputField
             secureTextEntry
@@ -85,7 +82,12 @@ const Login = ({ navigation }) => {
 
           <View style={styles.footerView}>
             <Text style={styles.footerText}>{Constants.DONT_HAVE_ACCOUNT_TEXT}</Text>
-            <TouchableOpacity style={styles.registerButton}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('CreateAccountScreen');
+              }}
+              style={styles.registerButton}
+            >
               <Text style={styles.registerButtonText}>{Constants.REGISTER_TEXT}</Text>
             </TouchableOpacity>
           </View>
