@@ -7,17 +7,16 @@ import OtpVerification from '@/screens/global/OtpVerification';
 import Login from '@/screens/auth/login';
 import CreateAccount from '@/screens/auth/create_account';
 
-
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName = 'LoginScreen' screenOptions = {{ headerShown: false }}>
-      <Stack.Screen name = 'LoginScreen' component = {Login} />
-      <Stack.Screen name = 'RegisterSuccessFullScreen' component = {Success} />
-      <Stack.Screen name = 'CreateAccountScreen' component = {CreateAccount} />
-      <Stack.Screen name = 'ResidentCountryScreen' component = {ResidentCountry} />
-      <Stack.Screen name = 'ResidentIdentityDocumentScreen' component = {ResidentIdentityDocument} />
+    <Stack.Navigator initialRouteName='LoginScreen' screenOptions={{ headerShown: false }}>
+      <Stack.Screen name='LoginScreen' component={Login} />
+      <Stack.Screen name='RegisterSuccessFullScreen' component={Success} />
+      <Stack.Screen name='CreateAccountScreen' component={CreateAccount} />
+      <Stack.Screen name='ResidentCountryScreen' component={ResidentCountry} />
+      <Stack.Screen name='ResidentIdentityDocumentScreen' component={ResidentIdentityDocument} />
       <Stack.Screen name='OtpVerificationScreen' component={OtpVerification} />
     </Stack.Navigator>
   );

@@ -1,36 +1,35 @@
-import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StatusBar, Text, View } from 'react-native'
-import React from 'react'
+import {
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  View,
+} from 'react-native';
+import React from 'react';
 import { styles } from './styles';
 
 const ResidentIdentityDocument = () => {
   return (
     <KeyboardAvoidingView
-       style = {styles.container}
-       behavior = {Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-        <StatusBar
-            barStyle='light-content'
-            translucent
-            backgroundColor={ColorSheet.PrimaryButton}
-        />
+      <StatusBar barStyle='light-content' translucent backgroundColor={ColorSheet.PrimaryButton} />
 
-        <ScrollView
-            contentContainerStyle = {styles.scroll_container}
-            bounces = {false}
-            showsVerticalScrollIndicator = {false}
-        >
-
-            {/* <Image
+      <ScrollView
+        contentContainerStyle={styles.scroll_container}
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* <Image
               style = {styles.imageBackground}
             /> */}
-            <View>
-                
-            </View>
-
-        </ScrollView>
-
+        <View></View>
+      </ScrollView>
     </KeyboardAvoidingView>
-  )
-}
+  );
+};
 
 export default ResidentIdentityDocument;

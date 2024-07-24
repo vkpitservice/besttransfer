@@ -9,78 +9,78 @@ import {
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: ColorSheet.backGroundColor,
-    },
-    scroll_container: {
-        flexGrow: 1,
-        // width: wp(100),
-        paddingBottom: hp(5),
-    },
-    main_container: {
-        width: wp(90),
-        // height: hp(70),
-        marginTop: Platform.OS == 'android' ? hp(18) : hp(9),
-        alignSelf: 'center',
-        // backgroundColor: 'pink',
-    },
-    logo_image: {
-        alignItems: 'center',
-    },
-    textContainer: {
-        width: wp(80),
-        marginTop: hp(3),
-        marginBottom: hp(4),
-        alignItems: 'center',
-        alignSelf: 'center',
-        // backgroundColor: 'red'
-    },
-    firstText: {
-        fontSize: RFValue(13),
-        fontWeight: '700',
-        color: ColorSheet.Primary,
-    },
-    secondText: {
-        paddingTop: hp(1),
-        fontSize: RFValue(12),
-        fontWeight: '700',
-        color: ColorSheet.Primary,
-    },
-    listContainer: {
-        marginBottom: hp(3),
-    },
-    urlTextContainer: {
-        width: wp(70),
-        marginVertical: hp(1), // Vertical spacing around URL text
-        // backgroundColor: 'red',
-    },
-    urlText: {
-        fontSize: RFValue(12),
-        fontWeight: '500',
-        color: ColorSheet.UrlTextColor,
-        textDecorationLine: 'underline',
-    },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: ColorSheet.backGroundColor,
+  },
+  scroll_container: {
+    flexGrow: 1,
+    // width: wp(100),
+    paddingBottom: hp(5),
+  },
+  main_container: {
+    width: wp(90),
+    // height: hp(70),
+    marginTop: Platform.OS == 'android' ? hp(18) : hp(9),
+    alignSelf: 'center',
+    // backgroundColor: 'pink',
+  },
+  logo_image: {
+    alignItems: 'center',
+  },
+  textContainer: {
+    width: wp(80),
+    marginTop: hp(3),
+    marginBottom: hp(4),
+    alignItems: 'center',
+    alignSelf: 'center',
+    // backgroundColor: 'red'
+  },
+  firstText: {
+    fontSize: RFValue(13),
+    fontWeight: '700',
+    color: ColorSheet.Primary,
+  },
+  secondText: {
+    paddingTop: hp(1),
+    fontSize: RFValue(12),
+    fontWeight: '700',
+    color: ColorSheet.Primary,
+  },
+  listContainer: {
+    marginBottom: hp(3),
+  },
+  urlTextContainer: {
+    width: wp(70),
+    marginVertical: hp(1), // Vertical spacing around URL text
+    // backgroundColor: 'red',
+  },
+  urlText: {
+    fontSize: RFValue(12),
+    fontWeight: '500',
+    color: ColorSheet.UrlTextColor,
+    textDecorationLine: 'underline',
+  },
 
-    buttonImgContainer: {
-        position: 'absolute',
-        bottom: 0,
-        width: wp(100),
-        alignItems: 'center',
-        alignSelf: 'center',
-        // backgroundColor: 'red',
-        paddingBottom: hp(2), // Padding for space at the bottom
-    },
-    buttonStyle: {
-        width: wp(90),
-        marginTop: hp(3),
-    },
-    imageStyle: {
-        width: wp(50),
-        height: hp(6),
-        resizeMode: 'contain',
-        marginTop: hp(1),
-        // backgroundColor: 'green'
-    }
+  buttonImgContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: wp(100),
+    alignItems: 'center',
+    alignSelf: 'center',
+    // backgroundColor: 'red',
+    paddingBottom: hp(2), // Padding for space at the bottom
+  },
+  buttonStyle: {
+    width: wp(90),
+    marginTop: hp(3),
+  },
+  imageStyle: {
+    width: wp(50),
+    height: hp(6),
+    resizeMode: 'contain',
+    marginTop: hp(1),
+    // backgroundColor: 'green'
+  },
 });
