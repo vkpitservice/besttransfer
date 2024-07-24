@@ -18,16 +18,27 @@ import PrimaryButton from '@/components/buttons/primaryButton';
 import { styles } from './styles';
 import { Constants } from './constants';
 import CustomCheckBox from '@/components/input/CustomCheckBox';
+import { ErrorFlash } from '@/utils/flashMessage';
 
 const Login = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
-  const [mobileNumber, setMobileNumber] = useState('');
-
-  const [code, setCode] = useState({
-    label: '',
-    value: '',
+  const [formData, setFormData] = useState({
+    email: '',
+    emailError: '',
+    digitCode: '',
+    digitCodeError: '',
   });
+
+  const onPressSubmit = () => {
+    if (formData.email == '') {
+      ErrorFlash(Constants.Email_Id_Required);
+    } else if (formData.digitCode == '') {
+      ErrorFlash(Constants.Pin_Required);
+    } else {
+      navigation.navigate('CreateAccountScreen');
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -58,9 +69,16 @@ const Login = ({ navigation }) => {
 
           <Text style={styles.subTitleText}>{Constants.LOGIN_TEXT}</Text>
 
-          <TextInputField style={styles.email_Field} placeholder={Constants.ENTER_EMAIL_TEXT} />
+          <TextInputField
+            value={formData.email}
+            onChangeText={(text) => setFormData({ ...formData, email: text })}
+            style={styles.email_Field}
+            placeholder={Constants.ENTER_EMAIL_TEXT}
+          />
 
           <TextInputField
+            value={formData.digitCode}
+            onChangeText={(text) => setFormData({ ...formData, digitCode: text })}
             secureTextEntry
             style={styles.password_Field}
             placeholder={Constants.ENTER_PIN_TEXT}
@@ -78,7 +96,11 @@ const Login = ({ navigation }) => {
           </View>
 
           {/* Sign Up Button */}
-          <PrimaryButton style={styles.buttonStyle} title={Constants.LOGIN_BUTTON_TEXT} />
+          <PrimaryButton
+            onPress={onPressSubmit}
+            style={styles.buttonStyle}
+            title={Constants.LOGIN_BUTTON_TEXT}
+          />
 
           <View style={styles.footerView}>
             <Text style={styles.footerText}>{Constants.DONT_HAVE_ACCOUNT_TEXT}</Text>
