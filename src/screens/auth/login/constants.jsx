@@ -8,4 +8,7 @@ export const Constants = {
   LOGIN_BUTTON_TEXT: 'Login',
   DONT_HAVE_ACCOUNT_TEXT: 'Don’t have an account?',
   REGISTER_TEXT: 'Register',
+
+  Email_Id_Required: 'Email Id is required',
+  Pin_Required: 'Pin is required',
 };

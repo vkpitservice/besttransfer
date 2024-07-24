@@ -11,35 +11,61 @@ import { normalize } from '../../../utils/scaling';
 
 export const styles = StyleSheet.create({
   dropdown: {
-    backgroundColor: '',
+    backgroundColor: ColorSheet.TextInputFieldColor,
+    paddingVertical: hp(1.5),
+    borderRadius: 10,
   },
   icon: {
     marginRight: 5,
   },
+  downIcon: {
+    marginRight: wp(1),
+  },
   item: {
-    padding: normalize(17),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingHorizontal: wp(2),
+    paddingVertical: hp(1.5),
   },
   textItem: {
     flex: 1,
     fontSize: RFValue(14),
+    color: ColorSheet.Text2,
+    fontWeight: '500',
   },
   placeholderStyle: {
-    fontSize: RFValue(16),
-    color: ColorSheet.White,
-    marginLeft: normalize(10),
+    fontSize: RFValue(14),
+    color: ColorSheet.Text2,
+    marginLeft: wp(2),
+    fontWeight: '500',
   },
   selectedTextStyle: {
-    color: ColorSheet.White,
-    fontFamily: 'Roboto_400Regular',
-    fontSize: RFValue(16),
-    marginLeft: normalize(10),
+    fontSize: RFValue(14),
+    color: ColorSheet.Text2,
+    marginLeft: wp(2),
+    fontWeight: '500',
   },
   iconStyle: {},
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
+  containerStyle: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    borderBottomEndRadius: 10,
+    borderBottomStartRadius: 10,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: wp(2),
+    borderColor: ColorSheet.CheckBox,
+    borderBottomWidth: 1,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: RFValue(14),
+    color: ColorSheet.Text2,
+    fontWeight: '500',
+    paddingVertical: hp(1),
+    paddingHorizontal: wp(2),
   },
 });
