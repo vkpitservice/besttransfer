@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   },
 
   logo_container: {
-    marginTop: Platform.OS == 'android' ? hp(6) : hp(10),
+    marginTop: Platform.OS == 'android' ? hp(9) : hp(10),
     alignItems: 'center',
   },
   main_container: {
