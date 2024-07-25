@@ -37,8 +37,8 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
   },
   checkContainer: {
-    width: wp(8),
-    height: wp(8),
+    width: wp(7),
+    height: wp(7),
     borderRadius: wp(4),
     marginRight: hp(1),
     alignItems: 'center',

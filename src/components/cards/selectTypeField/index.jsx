@@ -26,7 +26,7 @@ const SelectTypeFieldBox = (props) => {
       </View>
 
       <TouchableOpacity style={[styles.checkContainer]} onPress={onPress}>
-        {isChecked && <FontAwesome5 name='check' size={15} color={ColorSheet.CheckBox} />}
+        {isChecked && <FontAwesome5 name='check' size={14} color={ColorSheet.CheckBox} />}
       </TouchableOpacity>
     </View>
   );

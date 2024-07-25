@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styles } from './styles';
 import { ColorSheet } from '@/utils/ColorSheet';
 import LogoResident from '@/assets/svg/resident/LogoResident.svg';
@@ -17,9 +17,12 @@ import { Constants } from './constants';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import SelectTypeFieldBox from '@/components/cards/selectTypeField';
 import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
+import ProgressStatusBar from '@/screens/global/progressStatusBar';
 
 const ResidentIdentityDocument = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(false);
+
+  const [progress, setProgress] = useState('')
 
   const [selectCountry, setSelectCountry] = useState({
     label: '',
@@ -29,6 +32,18 @@ const ResidentIdentityDocument = ({ navigation }) => {
   const handleSelectOption = (option) => {
     setSelectedOption(option);
   }
+
+  useEffect(() => {
+    if (selectCountry?.value && selectedOption) {
+      setProgress(1.0); // Both country and option selected
+    } else if (selectCountry?.value) {
+      setProgress(0.6); // Only country selected
+    } else if (selectedOption) {
+      setProgress(0.6); // Only option selected
+    } else {
+      setProgress(0.3); // Nothing selected
+    }
+  }, [selectCountry, selectedOption]);
   
   return (
     <KeyboardAvoidingView
@@ -48,6 +63,21 @@ const ResidentIdentityDocument = ({ navigation }) => {
           <View style={styles.main_container}>
             <View style={styles.logo_image}>
               <LogoResident width={90} height={90} />
+            </View>
+
+            {/* Progress Bar */}
+            <View style = {styles.statusStyleContainer}>
+              <ProgressStatusBar
+                progress = {progress}
+              />
+
+              <ProgressStatusBar
+                progress = {'0.0'}
+              />
+
+              <ProgressStatusBar
+                progress = {'0.0'}
+              />
             </View>
 
             {/*  Main Text */}

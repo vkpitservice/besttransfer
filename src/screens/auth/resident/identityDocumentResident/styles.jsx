@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     // height: hp(70),
     marginTop: Platform.OS == 'android' ? hp(18) : hp(2),
     alignSelf: 'center',
-    backgroundColor: 'pink',
+    // backgroundColor: 'pink',
   },
   logo_image: {
     alignItems: 'center',
@@ -36,6 +36,12 @@ export const styles = StyleSheet.create({
   shadowOpacity: 0.22,
   shadowRadius: 2.22,
   elevation: 10, // Ensures shadow effect on Android
+  },
+  statusStyleContainer: {
+    flexDirection: 'row',
+    marginTop: hp(1),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   textContainer: {
     width: wp(80),
@@ -73,7 +79,7 @@ export const styles = StyleSheet.create({
     paddingBottom: hp(1),
   },
   listType: {
-    marginTop: hp(1),
+    marginTop: hp(1.5),
     height: hp(5),
     // marginBottom: hp(1.5),
   },
