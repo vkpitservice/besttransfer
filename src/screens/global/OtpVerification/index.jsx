@@ -6,15 +6,29 @@ import {
   StatusBar,
   ScrollView,
   Image,
+  TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { ColorSheet } from '@/utils/ColorSheet';
 import { styles } from './styles';
 import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
 import NumberInput from '@/components/input/NumberInput';
 import OTPInput from '@/components/input/OTPInput';
+import { Constants } from './constants';
+import PrimaryButton from '@/components/buttons/primaryButton';
+import { useUpdateEffect } from '@/utils/useUpdateEffect';
 
 const OtpVerification = () => {
+  const [isResendSuccessVisible, setResendSuccessVisible] = useState(false);
+
+  useUpdateEffect(() => {
+    if (isResendSuccessVisible) {
+      setTimeout(() => {
+        setResendSuccessVisible(false);
+      }, 3000);
+    }
+  }, [isResendSuccessVisible]);
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -32,13 +46,41 @@ const OtpVerification = () => {
           style={styles.backgroundImage}
         />
 
-        <OTPInput
-          mask={true}
-          cellCount={4}
-          style={{
-            with: '100%',
-          }}
-        />
+        <Text style={styles.title}>{Constants.TITLE}</Text>
+        <Image source={require('@/assets/images/OTP.png')} style={styles.otp_logo} />
+        <Text style={styles.verification}>{Constants.MOBILE_VERIFICATION_TEXT}</Text>
+        <Text style={styles.otpText}>{Constants.ENTER_OTP_TEXT}</Text>
+
+        <View style={styles.numberView}>
+          <Text style={styles.numberText}>+44 789 675 4321</Text>
+          <TouchableOpacity style={styles.changeButton}>
+            <Text style={styles.changeText}>{Constants.CHANGE}</Text>
+          </TouchableOpacity>
+        </View>
+
+        <OTPInput mask={true} cellCount={6} style={styles.otpInput} />
+
+        <View style={styles.resendView}>
+          <Text style={styles.resendText}>{Constants.DIDNT_RECEIVE_OTP_TEXT}</Text>
+          <TouchableOpacity
+            onPress={() => {
+              setResendSuccessVisible(true);
+            }}
+            style={styles.resendButton}
+          >
+            <Text style={styles.resendButtonText}>{Constants.RESEND_OTP_TEXT}</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.resendSuccessView}>
+          {isResendSuccessVisible && (
+            <View style={styles.resendSuccessTextContainer}>
+              <Text style={styles.resendSuccessText}>{Constants.OTP_SUCCESS_TEXT}</Text>
+            </View>
+          )}
+        </View>
+
+        <PrimaryButton title='Submit' style={styles.button} />
       </ScrollView>
     </KeyboardAvoidingView>
   );
