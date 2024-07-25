@@ -68,6 +68,13 @@ const OtpVerification = () => {
           }}
           placeholder='Enter Your Phone Number'
           onChange={(value) => console.log(value)}
+          value={{
+            _index: 0,
+            image:
+              'https://cdn.britannica.com/33/4833-004-828A9A84/Flag-United-States-of-America.jpg',
+            label: 'United States (+1)',
+            value: '+1',
+          }}
           data={[
             {
               label: 'United States (+1)',

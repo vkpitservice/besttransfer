@@ -29,6 +29,7 @@ const NumberInput = (props) => {
     customRightIcon,
     onChangeNumber,
     valueNumber,
+    containerStyle,
   } = props;
   const [focus, setFocus] = useState(false);
   const [valueItem, setValueItem] = useState(value);
@@ -128,7 +129,7 @@ const NumberInput = (props) => {
         disable={disable}
         renderInputSearch={renderInputSearch}
         searchField={'label'}
-        containerStyle={styles.containerStyle}
+        containerStyle={[styles.containerStyle, containerStyle]}
         //  minHeight={hp(28)}
       />
       <TextInput
@@ -146,10 +147,11 @@ const NumberInput = (props) => {
 // Define prop types
 NumberInput.propTypes = {
   data: PropTypes.array.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.string]).isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   style: PropTypes.object,
+  containerStyle: PropTypes.object,
   iconColor: PropTypes.string,
   selectedTextStyle: PropTypes.object,
   textItemStyle: PropTypes.object,
@@ -176,7 +178,6 @@ NumberInput.defaultProps = {
   testID: '',
   customRightIcon: null,
   onChangeNumber: () => {},
-  valueNumber: '',
 };
 
 export default NumberInput;

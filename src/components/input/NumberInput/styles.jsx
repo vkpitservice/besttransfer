@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: hp(1.5),
     borderRadius: 10,
+    width: wp(95),
   },
   countryLogo: {
     width: wp(7),
@@ -64,9 +65,9 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 5,
     borderBottomEndRadius: 10,
     borderBottomStartRadius: 10,
-    marginLeft: -wp(7),
+    marginLeft: -wp(8),
     marginTop: hp(2),
-    width: wp(91),
+    width: wp(93),
   },
   searchContainer: {
     flexDirection: 'row',
