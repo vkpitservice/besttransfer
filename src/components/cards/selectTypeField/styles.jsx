@@ -34,13 +34,13 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: RFValue(13),
     color: ColorSheet.Primary,
-    fontWeight: '700',
+    fontWeight: '400',
   },
   checkContainer: {
-    width: wp(8),
-    height: wp(8),
+    width: wp(7),
+    height: wp(7),
     borderRadius: wp(4),
-    marginRight: hp(1),
+    // marginRight: hp(1),
     alignItems: 'center',
     borderColor: ColorSheet.CheckBox,
     borderWidth: 2,

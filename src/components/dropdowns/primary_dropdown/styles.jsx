@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     marginRight: 5,
   },
   downIcon: {
-    marginRight: wp(1),
+    marginRight: wp(3),
   },
   item: {
     flexDirection: 'row',

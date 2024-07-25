@@ -1,12 +1,18 @@
 export const Constants = {
-  TEXT_01: `Tell us where you’re from`,
-  TEXT_02: `What’s your country of residendence`,
+  FIRST_TXT: `Select type and issuing country of your`,
+  SECOND_TXT: `identity document`,
 
-  NON_US_RESIDENT: `Non-US resident`,
-  US_RESIDENT: `US resident`,
+  ISSUING_COUNTRY_LABEL: `Issuing country`,
+  UNITED_KINGDOM: `United Kingdom`,
 
-  URL_NAME: `Learn more about why we are asking for 
-                this information`,
+  VERIFICATION_TYPE_LABEL: `Verification Type`,
+  
+  VerificationType: [
+      "Driver’s Licences",
+      `Id Card`,
+      `Residence Permit`,
+      `Passport`,
+  ],
 
   CONTINUE: `Continue`,
 };

@@ -22,4 +22,6 @@ export const ColorSheet = {
   UrlTextColor: '#205FFF',
   Dropdown: '#012443',
   OTPBorderColor: '#B9B9B9',
+  StarColor: `#FF4B55`,
+  StatusBarBg: `#DDE1E4`,
 };
