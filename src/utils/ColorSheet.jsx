@@ -23,4 +23,5 @@ export const ColorSheet = {
   Dropdown: '#012443',
   StarColor: `#FF4B55`,
   StatusBarBg: `#DDE1E4`,
+  OTPBorderColor: '#B9B9B9',
 };

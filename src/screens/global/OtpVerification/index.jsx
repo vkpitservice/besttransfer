@@ -11,6 +11,8 @@ import React from 'react';
 import { ColorSheet } from '@/utils/ColorSheet';
 import { styles } from './styles';
 import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
+import NumberInput from '@/components/input/NumberInput';
+import OTPInput from '@/components/input/OTPInput';
 
 const OtpVerification = () => {
   return (
@@ -30,35 +32,12 @@ const OtpVerification = () => {
           style={styles.backgroundImage}
         />
 
-        <PrimaryDropDown
+        <OTPInput
+          mask={true}
+          cellCount={4}
           style={{
-            marginTop: 200,
-            marginHorizontal: 10,
+            with: '100%',
           }}
-          placeholder='Select a reason'
-          onChange={(value) => console.log(value)}
-          data={[
-            {
-              label: 'Savings & Family Support',
-              value: '1',
-            },
-            {
-              label: 'Tax payment',
-              value: '2',
-            },
-            {
-              label: 'Utility bill pauments',
-              value: '3',
-            },
-            {
-              label: 'Local account Payment',
-              value: '4',
-            },
-            {
-              label: 'Educational Institutions ',
-              value: '5',
-            },
-          ]}
         />
       </ScrollView>
     </KeyboardAvoidingView>
