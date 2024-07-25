@@ -21,13 +21,7 @@ export const ColorSheet = {
   CheckBox: '#707070',
   UrlTextColor: '#205FFF',
   Dropdown: '#012443',
-<<<<<<< HEAD
-  StarColor: `#FF4B55`,
-  StatusBarBg: `#DDE1E4`,
-  OTPBorderColor: '#B9B9B9',
-=======
   OTPBorderColor: '#B9B9B9',
   StarColor: `#FF4B55`,
   StatusBarBg: `#DDE1E4`,
->>>>>>> Develop
 };

@@ -19,13 +19,13 @@ import TextInputField from '@/components/input/TextInput';
 import { validateEmail } from '@/utils/validations';
 import { ErrorFlash } from '@/utils/flashMessage';
 import PhoneNumberInput from '@/components/input/PhoneNumberInput';
+import NumberInput from '@/components/input/NumberInput';
 
 const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
   const [formData, setFormData] = useState({
     phoneNumber: '',
-    phoneNumberError: '',
     email: '',
     emailError: '',
     digitCode: '',
@@ -33,6 +33,14 @@ const CreateAccount = ({ navigation }) => {
     confirmDigitCode: '',
     confirmDigitCodeError: '',
   })
+
+  const defaultValue = {
+    label: 'India',
+    image: 'https://cdn.countryflags.com/thumbs/india/flag-square-250.png',
+    value: '+988',
+  }
+
+  const [code, setCode] = useState(defaultValue)
 
   const onPressPersonal = () => {
     setDisplayVisibleWindow('personal');
@@ -135,19 +143,15 @@ const CreateAccount = ({ navigation }) => {
           </View>
 
           {/* DropDown */}
-          {/* <PhoneNumberInput
-            textInputStyle = {styles.textInput_Field}
+          <NumberInput
+            style = {styles.dropDown_rootContainer}
+            data = {numberData}
+            value = {code}
+            onChange = {(value) => setCode(value)}
+            valueNumber = {formData.phoneNumber}
+            onChangeNumber = {(number) => setFormData({...formData, phoneNumber: number})}
             placeholder = {Constants.PHONE_NUM}
-            onChangeCode = {(item) => {
-              setCode(item)
-            }}
-            numberData = {numberData}
-            code = {code.value}
-            inputValue = {formData.phoneNumber}
-            onChangeText = {(text) => {
-              setMobileNumber(text)
-            }}
-          /> */}
+          />
 
           {/* TextInput Filed */}
           {/* Enter your email id * */}
@@ -159,12 +163,12 @@ const CreateAccount = ({ navigation }) => {
             onChangeText={(text) => setFormData({...formData, email: text})}
             textError={formData.emailError}
             onBlur={() => {
-              if (formData.email == '') {
-                setEmailError(Constants.ENTER_EMAIL);
+              if (formData.email === '') {
+                setFormData({ ...formData, emailError: Constants.ENTER_EMAIL });
               } else if (!validateEmail(formData.email)) {
-                setEmailError(Constants.VALID_EMAIL);
+                setFormData({ ...formData, emailError: Constants.VALID_EMAIL });
               } else {
-                setEmailError('');
+                setFormData({ ...formData, emailError: '' });
               }
             }}
           />
@@ -180,12 +184,12 @@ const CreateAccount = ({ navigation }) => {
             textError={formData.digitCodeError}
             disableEyeIcon
             onBlur={() => {
-              if (formData.digitCode.length == '') {
-                setDigitCodeError(Constants.ENTER_DIGIT_CODE);
-              } else if (formData.digitCode?.length !== 6) {
-                setDigitCodeError(Constants.PIN_REQUIRED);
+              if (formData.digitCode === '') {
+                setFormData({ ...formData, digitCodeError: Constants.ENTER_DIGIT_CODE });
+              } else if (formData.digitCode.length !== 6) {
+                setFormData({ ...formData, digitCodeError: Constants.PIN_REQUIRED });
               } else {
-                setDigitCodeError('');
+                setFormData({ ...formData, digitCodeError: '' });
               }
             }}
           />
@@ -201,14 +205,14 @@ const CreateAccount = ({ navigation }) => {
             disableEyeIcon
             textError={formData.confirmDigitCodeError}
             onBlur={() => {
-              if (formData.confirmDigitCode.length == '') {
-                setConfirmDigitCodeError(Constants.ENTER_DIGIT_CODE);
-              } else if (formData.confirmDigitCode?.length !== 6) {
-                setConfirmDigitCodeError(Constants.PIN_REQUIRED);
+              if (formData.confirmDigitCode === '') {
+                setFormData({ ...formData, confirmDigitCodeError: Constants.ENTER_DIGIT_CODE });
+              } else if (formData.confirmDigitCode.length !== 6) {
+                setFormData({ ...formData, confirmDigitCodeError: Constants.PIN_REQUIRED });
               } else if (formData.confirmDigitCode !== formData.digitCode) {
-                setConfirmDigitCodeError(Constants.CONFIRM_PIN_MISMATCH);
+                setFormData({ ...formData, confirmDigitCodeError: Constants.CONFIRM_PIN_MISMATCH });
               } else {
-                setConfirmDigitCodeError('');
+                setFormData({ ...formData, confirmDigitCodeError: '' });
               }
             }}
           />
@@ -229,19 +233,23 @@ export default CreateAccount;
 
 const numberData = [
   {
-    label: 'https://seeklogo.com/images/U/United_Kingdom-logo-C3E4A743BB-seeklogo.com.png',
-    value: '+44',
+    label: 'SriLanka',
+    value: '+94',
+    image: 'https://w7.pngwing.com/pngs/214/565/png-transparent-flag-of-sri-lanka-national-flag-nuwaragam-palatha-central-divisional-secretariat-flag-of-the-maldives-flag-miscellaneous-flag-text.png'
   },
   {
-    label: 'https://cdn.pixabay.com/photo/2016/03/09/19/24/flag-1247218_640.jpg',
+    label: 'Uk',
     value: '+91',
+    image: 'https://cdn.pixabay.com/photo/2016/03/09/19/24/flag-1247218_640.jpg',
   },
   {
-    label: 'https://cdn.countryflags.com/thumbs/india/flag-square-250.png',
+    label: 'India',
+    image: 'https://cdn.countryflags.com/thumbs/india/flag-square-250.png',
     value: '+988',
   },
   {
-    label: 'https://seeklogo.com/images/U/United_Kingdom-logo-C3E4A743BB-seeklogo.com.png',
+    label: 'UAE',
+    image: 'https://seeklogo.com/images/U/United_Kingdom-logo-C3E4A743BB-seeklogo.com.png',
     value: '+44',
   },
 ];

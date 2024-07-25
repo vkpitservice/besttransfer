@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
   },
   dropdown: {
     width: wp(20),
+    // backgroundColor: 'red'
   },
   icon: {
     marginRight: 5,

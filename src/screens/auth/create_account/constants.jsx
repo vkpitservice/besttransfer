@@ -8,6 +8,7 @@ export const Constants = {
   DIGIT_PIN_02: 'Re-enter Your 6-Digit Pin',
 
   // Error messages
+  ENTER_PHONE_NUM: 'Please enter Phone Number',
   ENTER_EMAIL: 'Please enter an email address',
   VALID_EMAIL: 'Please enter a valid email address',
   ENTER_DIGIT_CODE: 'Please enter a digit code',
