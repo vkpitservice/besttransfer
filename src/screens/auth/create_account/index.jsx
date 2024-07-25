@@ -133,7 +133,7 @@ const CreateAccount = ({ navigation }) => {
               </Text>
             </TouchableOpacity>
           </View>
-
+                <Text> {'gi'} </Text>
           {/* DropDown */}
           {/* <PhoneNumberInput
             textInputStyle = {styles.textInput_Field}
