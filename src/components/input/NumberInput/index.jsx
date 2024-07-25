@@ -27,6 +27,8 @@ const NumberInput = (props) => {
     disable,
     testID,
     customRightIcon,
+    onChangeNumber,
+    valueNumber,
   } = props;
   const [focus, setFocus] = useState(false);
   const [valueItem, setValueItem] = useState(value);
@@ -134,6 +136,8 @@ const NumberInput = (props) => {
         placeholderTextColor={ColorSheet.Text2}
         placeholder={placeholder}
         keyboardType='number-pad'
+        value={valueNumber}
+        onChangeText={onChangeNumber}
       />
     </View>
   );
@@ -154,6 +158,8 @@ NumberInput.propTypes = {
   disable: PropTypes.bool,
   testID: PropTypes.string,
   customRightIcon: PropTypes.element,
+  onChangeNumber: PropTypes.func,
+  valueNumber: PropTypes.string,
 };
 
 // Define default props
@@ -169,6 +175,8 @@ NumberInput.defaultProps = {
   disable: false,
   testID: '',
   customRightIcon: null,
+  onChangeNumber: () => {},
+  valueNumber: '',
 };
 
 export default NumberInput;
