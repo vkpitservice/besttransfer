@@ -10,7 +10,6 @@ const SelectTypeFieldBox = (props) => {
 
   // const [isHandleChecked, setHandleCheck] = useState(false);
 
-
   return (
     <View
       style={[
