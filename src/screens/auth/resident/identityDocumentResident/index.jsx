@@ -152,16 +152,46 @@ const ResidentIdentityDocument = ({ navigation }) => {
 export default ResidentIdentityDocument;
 
 const countryLabels = [
-  { label: 'United States of America', value: 'USA' },
-  { label: 'United Kingdom', value: 'UK' },
-  { label: 'Canada', value: 'CA' },
-  { label: 'Australia', value: 'AU' },
-  { label: 'Germany', value: 'DE' },
-  { label: 'France', value: 'FR' },
-  { label: 'Italy', value: 'IT' },
-  { label: 'Spain', value: 'ES' },
-  { label: 'Netherlands', value: 'NL' },
-  { label: 'Japan', value: 'JP' }
+  { 
+    label: 'United States of America', 
+    value: 'USA' 
+  },
+  { 
+    label: 'United Kingdom', 
+    value: 'UK' 
+  },
+  { 
+    label: 'Canada', 
+    value: 'CA' 
+  },
+  { 
+    label: 'Australia', 
+    value: 'AU' 
+  },
+  { 
+    label: 'Germany', 
+    value: 'DE' 
+  },
+  { 
+    label: 'France', 
+    value: 'FR' 
+  },
+  { 
+    label: 'Italy', 
+    value: 'IT' 
+  },
+  { 
+    label: 'Spain', 
+    value: 'ES' 
+  },
+  { 
+    label: 'Netherlands', 
+    value: 'NL' 
+  },
+  { 
+    label: 'Japan', 
+    value: 'JP' 
+  }
 ];
 
 const countryData = countryLabels.map((item) => {
