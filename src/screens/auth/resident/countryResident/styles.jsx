@@ -16,11 +16,10 @@ export const styles = StyleSheet.create({
   },
   scroll_container: {
     flexGrow: 1,
-    // width: wp(100),
     paddingBottom: hp(5),
   },
   main_container: {
-    width: wp(90),
+    width: wp(95),
     // height: hp(70),
     marginTop: Platform.OS == 'android' ? hp(18) : hp(9),
     alignSelf: 'center',
@@ -28,6 +27,14 @@ export const styles = StyleSheet.create({
   },
   logo_image: {
     alignItems: 'center',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+  },
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
+  elevation: 10, // Ensures shadow effect on Android
   },
   textContainer: {
     width: wp(80),
@@ -71,6 +78,16 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     // backgroundColor: 'red',
     paddingBottom: hp(2), // Padding for space at the bottom
+    backgroundColor: ColorSheet.Secondary,
+    shadowColor: "#000",
+    shadowOffset: {
+	    width: 0,
+	    height: 1,
+    },
+    shadowOpacity: 0.30,
+    shadowRadius: 1.40,
+
+    elevation: 2,
   },
   buttonStyle: {
     width: wp(90),
