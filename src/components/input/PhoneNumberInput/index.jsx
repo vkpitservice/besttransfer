@@ -126,7 +126,7 @@ const PhoneNumberInput = (props) => {
           placeholder={placeholder}
           placeholderTextColor={ColorSheet.TextInputFieldColor}
           value={inputValue}
-          onFocus={(e: any) => {
+          onFocus={(e) => {
             setFocused(true);
             onFocus?.(e);
           }}

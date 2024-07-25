@@ -18,11 +18,14 @@ import { Constants } from './constants';
 import TextInputField from '@/components/input/TextInput';
 import { validateEmail } from '@/utils/validations';
 import { ErrorFlash } from '@/utils/flashMessage';
+import PhoneNumberInput from '@/components/input/PhoneNumberInput';
 
 const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
   const [formData, setFormData] = useState({
+    phoneNumber: '',
+    phoneNumberError: '',
     email: '',
     emailError: '',
     digitCode: '',
@@ -133,17 +136,18 @@ const CreateAccount = ({ navigation }) => {
 
           {/* DropDown */}
           {/* <PhoneNumberInput
-        textInputStyle = {styles.textInput_Field}
-        placeholder = {Constants.PHONE_NUM}
-        onChangeCode = {(item) => {
-          setCode(item)
-        }}
-        numberData = {numberData}
-        code = {code.value}
-        onChangeText = {(text) => {
-          setMobileNumber(text)
-        }}
-      /> */}
+            textInputStyle = {styles.textInput_Field}
+            placeholder = {Constants.PHONE_NUM}
+            onChangeCode = {(item) => {
+              setCode(item)
+            }}
+            numberData = {numberData}
+            code = {code.value}
+            inputValue = {formData.phoneNumber}
+            onChangeText = {(text) => {
+              setMobileNumber(text)
+            }}
+          /> */}
 
           {/* TextInput Filed */}
           {/* Enter your email id * */}
