@@ -61,6 +61,11 @@ export const styles = StyleSheet.create({
     fontSize: RFValue(12),
     fontWeight: '600',
   },
+  dropDown_rootContainer: {
+    width: wp(90),
+    height: hp(6),
+    marginBottom: hp(2.5),
+  },
   textInput_rootContainer: {
     width: wp(90),
     marginBottom: hp(2.5),

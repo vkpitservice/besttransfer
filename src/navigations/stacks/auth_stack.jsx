@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName='OtpVerificationScreen'
+      initialRouteName='LoginScreen'
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name='LoginScreen' component={Login} />
