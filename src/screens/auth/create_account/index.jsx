@@ -22,17 +22,14 @@ import { ErrorFlash } from '@/utils/flashMessage';
 const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
 
-  const [mobileNumber, setMobileNumber] = useState('');
-  const [mobileNumberError, setMobileNumberError] = useState('');
-
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-
-  const [digitCode, setDigitCode] = useState('');
-  const [digitCodeError, setDigitCodeError] = useState('');
-
-  const [confirmDigitCode, setConfirmDigitCode] = useState('');
-  const [confirmDigitCodeError, setConfirmDigitCodeError] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    emailError: '',
+    digitCode: '',
+    digitCodeError: '',
+    confirmDigitCode: '',
+    confirmDigitCodeError: '',
+  })
 
   const onPressPersonal = () => {
     setDisplayVisibleWindow('personal');
@@ -43,17 +40,17 @@ const CreateAccount = ({ navigation }) => {
   };
 
   const onPressSignUp = () => {
-    if (email == '') {
+    if (formData.email == '') {
       ErrorFlash(Constants.ENTER_EMAIL);
-    } else if (!validateEmail(email)) {
+    } else if (!validateEmail(formData.email)) {
       ErrorFlash(Constants.VALID_EMAIL);
-    } else if (digitCode.length == '') {
+    } else if (formData.digitCode.length == '') {
       ErrorFlash(Constants.ENTER_DIGIT_CODE);
-    } else if (digitCode?.length !== 6) {
+    } else if (formData.digitCode?.length !== 6) {
       ErrorFlash(Constants.PIN_REQUIRED);
-    } else if (confirmDigitCode.length == '') {
+    } else if (formData.confirmDigitCode.length == '') {
       ErrorFlash(Constants.ENTER_DIGIT_CODE);
-    } else if (digitCode != confirmDigitCode) {
+    } else if (formData.digitCode != formData.confirmDigitCode) {
       ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH);
     } else {
       Alert.alert('Success');
@@ -154,13 +151,13 @@ const CreateAccount = ({ navigation }) => {
             style={styles.textInput_rootContainer}
             placeholder={Constants.Email_Id}
             keyboardTyp={'email-address'}
-            value={email}
-            onChangeText={(text) => setEmail(text)}
-            textError={emailError}
+            value={formData.email}
+            onChangeText={(text) => setFormData({...formData, email: text})}
+            textError={formData.emailError}
             onBlur={() => {
-              if (email == '') {
+              if (formData.email == '') {
                 setEmailError(Constants.ENTER_EMAIL);
-              } else if (!validateEmail(email)) {
+              } else if (!validateEmail(formData.email)) {
                 setEmailError(Constants.VALID_EMAIL);
               } else {
                 setEmailError('');
@@ -174,14 +171,14 @@ const CreateAccount = ({ navigation }) => {
             placeholder={Constants.DIGIT_PIN}
             secureTextEntry
             keyboardType={'numeric'}
-            value={digitCode}
-            onChangeText={(text) => setDigitCode(text)}
-            textError={digitCodeError}
+            value={formData.digitCode}
+            onChangeText={(text) => setFormData({...formData, digitCode: text})}
+            textError={formData.digitCodeError}
             disableEyeIcon
             onBlur={() => {
-              if (digitCode.length == '') {
+              if (formData.digitCode.length == '') {
                 setDigitCodeError(Constants.ENTER_DIGIT_CODE);
-              } else if (digitCode?.length !== 6) {
+              } else if (formData.digitCode?.length !== 6) {
                 setDigitCodeError(Constants.PIN_REQUIRED);
               } else {
                 setDigitCodeError('');
@@ -195,16 +192,16 @@ const CreateAccount = ({ navigation }) => {
             placeholder={Constants.DIGIT_PIN_02}
             secureTextEntry
             keyboardType={'numeric'}
-            value={confirmDigitCode}
-            onChangeText={(text) => setConfirmDigitCode(text)}
+            value={formData.confirmDigitCode}
+            onChangeText={(text) => setConfirmDigitCode({...formData, confirmDigitCode: text})}
             disableEyeIcon
-            textError={confirmDigitCodeError}
+            textError={formData.confirmDigitCodeError}
             onBlur={() => {
-              if (confirmDigitCode.length == '') {
+              if (formData.confirmDigitCode.length == '') {
                 setConfirmDigitCodeError(Constants.ENTER_DIGIT_CODE);
-              } else if (confirmDigitCode?.length !== 6) {
+              } else if (formData.confirmDigitCode?.length !== 6) {
                 setConfirmDigitCodeError(Constants.PIN_REQUIRED);
-              } else if (confirmDigitCode !== digitCode) {
+              } else if (formData.confirmDigitCode !== formData.digitCode) {
                 setConfirmDigitCodeError(Constants.CONFIRM_PIN_MISMATCH);
               } else {
                 setConfirmDigitCodeError('');

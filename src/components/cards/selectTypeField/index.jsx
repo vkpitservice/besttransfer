@@ -10,13 +10,12 @@ const SelectTypeFieldBox = (props) => {
 
   // const [isHandleChecked, setHandleCheck] = useState(false);
 
-
   return (
     <View
       style={[
         styles.rootContainer,
         isChecked && {
-          borderWidth: 1,
+          borderWidth: 0.5,
         },
         style,
       ]}

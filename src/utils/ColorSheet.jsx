@@ -21,4 +21,5 @@ export const ColorSheet = {
   CheckBox: '#707070',
   UrlTextColor: '#205FFF',
   Dropdown: '#012443',
+  StarColor: `#FF4B55`
 };

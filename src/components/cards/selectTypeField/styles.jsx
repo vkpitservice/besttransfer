@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: RFValue(13),
     color: ColorSheet.Primary,
-    fontWeight: '700',
+    fontWeight: '400',
   },
   checkContainer: {
     width: wp(8),
