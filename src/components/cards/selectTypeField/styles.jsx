@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     width: wp(7),
     height: wp(7),
     borderRadius: wp(4),
-    marginRight: hp(1),
+    // marginRight: hp(1),
     alignItems: 'center',
     borderColor: ColorSheet.CheckBox,
     borderWidth: 2,
