@@ -13,7 +13,6 @@ import {
 import React, { useEffect, useState } from 'react';
 import LogoResident from '@/assets/svg/resident/LogoResident.svg';
 import { styles } from './styles';
-import ProgressStatusBar from '@/screens/global/progressStatusBar';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { Constants } from './constants';
 import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
@@ -25,6 +24,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { ErrorFlash } from '@/utils/flashMessage';
 import ShowImage from './showImage';
 import AvoidImageFormat from './AvoidImageFromat';
+import ProgressStatusBar from '@/components/progressStatusBar';
 
 const UploadDocumentResident = ({navigation}) => {
   const [progress, setProgress] = useState('');

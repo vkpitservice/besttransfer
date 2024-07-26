@@ -17,8 +17,8 @@ import { Constants } from './constants';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import SelectTypeFieldBox from '@/components/cards/selectTypeField';
 import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
-import ProgressStatusBar from '@/screens/global/progressStatusBar';
 import { ErrorFlash } from '@/utils/flashMessage';
+import ProgressStatusBar from '@/components/progressStatusBar';
 
 const ResidentIdentityDocument = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(false);

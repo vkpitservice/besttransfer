@@ -4,12 +4,11 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { ColorSheet } from '@/utils/ColorSheet';
 
-const ProgressStatusBar = (props: any) => {
+const ProgressStatusBar = (props) => {
   const {
     progress1,
     progress2,
     progress3,
-    icon
   } = props;
 
   return (
