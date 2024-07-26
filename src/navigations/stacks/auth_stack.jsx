@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName='UploadDocumentResidentScreen'
+      initialRouteName='ResidentIdentityDocumentScreen'
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name='LoginScreen' component={Login} />

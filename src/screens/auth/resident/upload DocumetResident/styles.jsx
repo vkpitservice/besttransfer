@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   main_view_Container: {
     // width: '100%',
     margin: hp(2),
-    marginTop: Platform.OS == 'android' ? hp(18) : hp(2),
+    marginTop: Platform.OS == 'android' ? hp(10) : hp(2),
     alignSelf: 'center',
     // justifyContent: 'center',
     // backgroundColor: 'pink',
@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     // justifyContent: 'center',
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
   },
   subTitleContainer: {
     marginTop: hp(1),
@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
   },
   selectImgContainer: {
     width: wp(90),
-    height: hp(16),
+    height: Platform.OS == 'android' ? hp(20) : hp(16),
     marginTop: hp(3),
     // marginBottom: hp(4),
     padding: hp(1),
@@ -74,9 +74,25 @@ export const styles = StyleSheet.create({
     borderStyle: 'dashed',
     borderWidth: 1,
   },
+  selectBorder_Close_Container: {
+    width: wp(36),
+    height: hp(13),
+    borderRadius: hp(1),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: ColorSheet.PrimaryButton,
+    borderWidth: 0.5
+  },
+  closeIcon: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    zIndex: -1,
+    // backgroundColor: ColorSheet.Error,
+  },
   imgStyle: {
-    width: wp(40),
-    height: hp(10),
+    width: wp(30),
+    height: hp(8),
     resizeMode: 'contain',
   },
   we_donot_accpet: {

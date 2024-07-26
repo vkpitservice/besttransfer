@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     // width: '100%',
     margin: hp(2),
     // height: hp(70),
-    marginTop: Platform.OS == 'android' ? hp(18) : hp(2),
+    marginTop: Platform.OS == 'android' ? hp(10) : hp(2),
     alignSelf: 'center',
     // backgroundColor: 'pink',
   },

@@ -21,11 +21,13 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import * as ImagePicker from 'expo-image-picker';
 import AvoidImageFormat from '@/components/AvoidImageFromat';
 import { ColorSheet } from '@/utils/ColorSheet';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { ErrorFlash } from '@/utils/flashMessage';
+import ShowImage from './showImage';
 
-const UploadDocumentResident = () => {
-
-  const [progress, setProgress] = useState('')
+const UploadDocumentResident = ({navigation}) => {
+  const [progress, setProgress] = useState('');
 
   const [selectImgFormat, setSelectImgFormat] = useState({
     label: '',
@@ -33,6 +35,7 @@ const UploadDocumentResident = () => {
   });
 
   const [image, setImage] = useState(null);
+  const [imageName, setImageName] = useState('');
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -46,7 +49,10 @@ const UploadDocumentResident = () => {
     console.log(result);
 
     if (!result.canceled) {
+      const imageName = result.assets[0].uri.split('/').pop();
       setImage(result.assets[0].uri);
+      setImageName(imageName);
+      console.log('imageName', imageName);
     } else {
       Alert.alert('Error", "Image picking was canceled.');
       console.log('User cancelled image picker');
@@ -54,16 +60,27 @@ const UploadDocumentResident = () => {
   };
 
   useEffect(() => {
-    if (setSelectImgFormat?.value && setImage) {
-      setProgress(1.0)
-    } else if (setSelectImgFormat?.value) {
-      setProgress(0.6)
-    } else if (setImage) {
-      setProgress(0.6)
+    if (selectImgFormat?.value && image) {
+      setProgress(1.0);
+    } else if (selectImgFormat?.value) {
+      setProgress(0.6);
+    } else if (image) {
+      setProgress(0.6);
     } else {
-      setProgress(0.3)
+      setProgress(0.3);
     }
-  }, [setSelectImgFormat, setImage])
+  }, [selectImgFormat, image]);
+
+  const handleSubmit = () => {
+    if (selectImgFormat?.value == '') {
+      ErrorFlash(Constants.SELECT_TYPE_REQUIRE);
+    } else if (image == null) {
+      ErrorFlash(Constants.IMAGE_REQUIRE);
+    } else {
+      // navigation.navigate('ResidentIdentityDocument');
+      Alert.alert('Success')
+    }
+  }
 
   return (
     <KeyboardAvoidingView
@@ -87,81 +104,76 @@ const UploadDocumentResident = () => {
             </View>
 
             {/* Back And Progress Bar */}
-            {/* <View style={styles.backProgress_row}> */}
+            <View style={styles.progressBarContainer}>
               {/* Back Icon */}
-              
-              {/* Progress Bar */}
-              <View style={styles.progressBarContainer}>
-                  <MaterialIcons 
-                    name = {'arrow-back-ios'} 
-                    size = {30} 
-                    color = {ColorSheet.PrimaryButton} 
-                  />
-
-                <ProgressStatusBar 
-                  progress1 = {1.0} 
-                  progress2 = {progress}
-                  progress3 = {0.0}
-                />
-              </View>
-
-              {/* SubTitle */}
-              <View style = {styles.subTitleContainer}>
-                <Text style={styles.subTitleTxtStyle}> {Constants.SUB_TITLE_01} </Text>
-                <Text style={styles.subTitleTxtStyle}> {Constants.SUB_TITLE_02} </Text>
-              </View>
-
-              {/* DropDown */}
-              <PrimaryDropDown
-                style = {styles.dropDownStyle}
-                data = {ListData}
-                placeholder = {Constants.SELECT_TYPE}
-                valueItem = {selectImgFormat.value}
-                onChangeValue = {item => setSelectImgFormat(item)}
+              <TouchableOpacity
+                style = {styles.backIcon}
+                activeOpacity = {0.5}
+                onPress={() => {
+                  navigation.goBack()
+                }}
+              >
+                <MaterialIcons 
+                name={'arrow-back-ios'} 
+                size={30} 
+                color={ColorSheet.PrimaryButton} 
               />
+              </TouchableOpacity>
+ 
+              {/* Progress Bar */}
+              <ProgressStatusBar 
+                progress1={1.0} 
+                progress2={progress} 
+                progress3={0.0} 
+              />
+            </View>
 
-              {/* Import Image like JPG PNG  */}
-              <View style={styles.selectImgContainer}>
-                {image ? (
-                  <Image 
-                    style={styles.imgStyle} 
-                    source={{ uri: image }} 
-                  />
-                ) : (
-                  <>
-                    <Entypo
-                      name='upload-to-cloud'
-                      color = {ColorSheet.UploadIcon}
-                      size={35}
-                    />
+            {/* SubTitle */}
+            <View style={styles.subTitleContainer}>
+              <Text style={styles.subTitleTxtStyle}> {Constants.SUB_TITLE_01} </Text>
+              <Text style={styles.subTitleTxtStyle}> {Constants.SUB_TITLE_02} </Text>
+            </View>
 
-                    <TouchableOpacity 
-                      onPress={pickImage}
-                      activeOpacity = {0.5}
-                    >
-                      <Text style={styles.clickToUpload}> {Constants.CLICK_UPLOAD} </Text>
-                    </TouchableOpacity>
+            {/* DropDown */}
+            <PrimaryDropDown
+              style={styles.dropDownStyle}
+              data={ListData}
+              placeholder={Constants.SELECT_TYPE}
+              value={selectImgFormat.value}
+              onChange={setSelectImgFormat}
+            />
 
-                    <Text style={styles.jpg_pdf_txt}> {Constants.JPG_PDF} </Text>
-                  </>
-                )}
-              </View>
+            {/* Import Image like JPG PNG  */}
+            <View style={styles.selectImgContainer}>
+              {image ? (
+                <ShowImage
+                  imageSource={{ uri: image }}
+                  onPress = {() => {
+                    setImage('')
+                  }}
+                />
+              ) : (
+                <>
+                  <Entypo name='upload-to-cloud' color={ColorSheet.UploadIcon} size={35} />
 
-              {/* WE Don't Accept */}
-              <View style={styles.we_donot_accpet}>
-                <Text style = {styles.acceptTxt}> {Constants.WE_DO_NOT_ACCEPT} </Text>
+                  <TouchableOpacity onPress={pickImage} activeOpacity={0.5}>
+                    <Text style={styles.clickToUpload}> {Constants.CLICK_UPLOAD} </Text>
+                  </TouchableOpacity>
 
-                {/* Screenshots & Reciept for purchases & Medical Bills*/}
-                {Constants.Header.map((item, index) => {
-                  return (
-                    <AvoidImageFormat 
-                      key={index} 
-                      title={item} 
-                    />
-                  )
-                })}
-              </View>
-            
+                  <Text style={styles.jpg_pdf_txt}> {Constants.JPG_PDF} </Text>
+                </>
+              )}
+            </View>
+
+            {/* WE Don't Accept */}
+            <View style={styles.we_donot_accpet}>
+              <Text style={styles.acceptTxt}> {Constants.WE_DO_NOT_ACCEPT} </Text>
+
+              {/* Screenshots & Reciept for purchases & Medical Bills*/}
+              {Constants.Header.map((item, index) => {
+                return <AvoidImageFormat key={index} title={item} />;
+              })}
+            </View>
           </View>
 
           {/* Continue Button Image View */}
@@ -170,7 +182,7 @@ const UploadDocumentResident = () => {
             <PrimaryButton
               style={styles.buttonStyle}
               title={Constants.CONTINUE}
-              onPress={() => navigation.navigate('ResidentIdentityDocumentScreen')}
+              onPress={handleSubmit}
             />
             {/* Image View */}
             <Image

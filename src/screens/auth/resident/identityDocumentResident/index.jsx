@@ -18,6 +18,7 @@ import PrimaryButton from '@/components/buttons/primaryButton';
 import SelectTypeFieldBox from '@/components/cards/selectTypeField';
 import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
 import ProgressStatusBar from '@/screens/global/progressStatusBar';
+import { ErrorFlash } from '@/utils/flashMessage';
 
 const ResidentIdentityDocument = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(false);
@@ -44,6 +45,16 @@ const ResidentIdentityDocument = ({ navigation }) => {
       setProgress(0.3); // Nothing selected
     }
   }, [selectCountry, selectedOption]);
+
+  const handleContinue = () => {
+    if (selectCountry?.value == '') {
+      ErrorFlash(Constants.COUNTRY_REQUIRE);
+    } else if (selectedOption == false) {
+      ErrorFlash(Constants.SELECT_REQUIRE);
+    } else {
+      navigation.navigate('UploadDocumentResidentScreen');
+    }
+  }
   
   return (
     <KeyboardAvoidingView
@@ -67,16 +78,10 @@ const ResidentIdentityDocument = ({ navigation }) => {
 
             {/* Progress Bar */}
             <View style = {styles.statusStyleContainer}>
-              <ProgressStatusBar
-                progress = {progress}
-              />
-
-              <ProgressStatusBar
-                progress = {'0.0'}
-              />
-
-              <ProgressStatusBar
-                progress = {'0.0'}
+              <ProgressStatusBar 
+                progress1={progress} 
+                progress2={0.0} 
+                progress3={0.0} 
               />
             </View>
 
@@ -135,7 +140,7 @@ const ResidentIdentityDocument = ({ navigation }) => {
             <PrimaryButton
               style={styles.buttonStyle}
               title={Constants.CONTINUE}
-              onPress={() => navigation.navigate('ResidentIdentityDocumentScreen')}
+              onPress={handleContinue}
             />
             {/* Image View */}
             <Image

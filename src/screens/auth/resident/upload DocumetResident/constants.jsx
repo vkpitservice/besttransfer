@@ -6,6 +6,11 @@ export const Constants = {
     CLICK_UPLOAD: `click To upload`,
     JPG_PDF: 'Jpg, pdf or Png (max. 50mb)',
 
+    SELECT_TYPE_REQUIRE: 'Please select document type',
+
+    IMAGE_REQUIRE: `Please Upload Image`,
+
+
     WE_DO_NOT_ACCEPT: `We don’t accept`,
 
     Header: [
