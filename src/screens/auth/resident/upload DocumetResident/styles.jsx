@@ -9,102 +9,97 @@ import {
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-  container: {
+    root_container: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: ColorSheet.backGroundColor,
   },
-  scroll_container: {
+  scrollViewStyle: {
     flexGrow: 1,
     paddingBottom: hp(5),
   },
-  main_container: {
+  main_view_Container: {
     // width: '100%',
     margin: hp(2),
-    // height: hp(70),
     marginTop: Platform.OS == 'android' ? hp(18) : hp(2),
     alignSelf: 'center',
+    // justifyContent: 'center',
     // backgroundColor: 'pink',
   },
-  logo_image: {
+  logoContainer: {
     paddingTop: hp(2),
     alignItems: 'center',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 5,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 10, // Ensures shadow effect on Android
   },
-  statusStyleContainer: {
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
+  elevation: 10, // Ensures shadow effect on Android
+  },
+  backProgress_row: {
+    // flexDirection: 'row',
+  },
+  progressBarContainer: {
     flexDirection: 'row',
+    alignSelf: 'center',
+    alignItems: 'center',
+    // justifyContent: 'center',
+    backgroundColor: 'red',
+  },
+  subTitleContainer: {
     marginTop: hp(1),
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
-  textContainer: {
-    width: wp(80),
+  subTitleTxtStyle: {
+    fontSize: RFValue(14),
+    lineHeight: hp(3),
+    fontWeight: '600',
+    color: ColorSheet.Primary,
+  },
+  dropDownStyle: {
+    width: wp(90),
+    marginTop: hp(2),
+  },
+  selectImgContainer: {
+    width: wp(90),
+    height: hp(16),
     marginTop: hp(3),
-    marginBottom: hp(4),
+    // marginBottom: hp(4),
+    padding: hp(1),
+    justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center',
-    // backgroundColor: 'red'
+    borderStyle: 'dashed',
+    borderWidth: 1,
   },
-  firstText: {
-    fontSize: RFValue(13),
-    fontWeight: '700',
-    color: ColorSheet.Primary,
+  imgStyle: {
+    width: wp(40),
+    height: hp(10),
+    resizeMode: 'contain',
   },
-  secondText: {
-    paddingTop: hp(1),
-    fontSize: RFValue(12),
-    fontWeight: '700',
-    color: ColorSheet.Primary,
+  we_donot_accpet: {
+    marginTop: hp(3),
   },
-  dropdownTitle: {
-    fontSize: RFValue(13),
-    fontWeight: '500',
-    color: ColorSheet.Primary,
-  },
-  start:{
-    fontSize: RFValue(12),
-    fontWeight: '700',
-    color: ColorSheet.StarColor,
-  },
-  verificationTitle: {
-    fontSize: RFValue(13),
-    fontWeight: '500',
-    color: ColorSheet.Primary,
+  acceptTxt: {
     paddingBottom: hp(1),
+    fontSize: RFValue(13),
+    fontWeight: '600',
+    color: ColorSheet.Primary,
   },
-  listType: {
-    marginTop: hp(1.5),
-    height: hp(5),
-    // marginBottom: hp(1.5),
-  },
-  dropdownStyle: {
-    // width: wp(100),
-    height: hp(6),
-    marginTop: hp(1.5),
-    marginBottom: hp(3),
-  },
-  listContainer: {
-    marginBottom: hp(3),
-  },
-  urlTextContainer: {
-    width: wp(70),
-    marginVertical: hp(1), // Vertical spacing around URL text
-    // backgroundColor: 'red',
-  },
-  urlText: {
-    fontSize: RFValue(12),
-    fontWeight: '500',
+  clickToUpload: {
+    paddingTop: hp(0.5),
+    fontSize: RFValue(13),
+    fontWeight: '600',
     color: ColorSheet.UrlTextColor,
-    textDecorationLine: 'underline',
   },
-
+  jpg_pdf_txt: {
+    paddingTop: hp(0.5),
+    fontSize: RFValue(13),
+    fontWeight: '600',
+    color: ColorSheet.ImageJPG,
+  },
   buttonImgContainer: {
     position: 'absolute',
     bottom: 0,
@@ -112,7 +107,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     // backgroundColor: 'red',
-    paddingBottom: hp(0.5), // Padding for space at the bottom
+    // paddingBottom: hp(0.5), // Padding for space at the bottom
     backgroundColor: ColorSheet.Secondary,
     shadowColor: "#000",
     shadowOffset: {

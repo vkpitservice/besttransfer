@@ -28,4 +28,6 @@ export const ColorSheet = {
   OTPBorderColor: '#B9B9B9',
   StarColor: '#FF4B55',
   StatusBarBg: '#DDE1E4',
+  ImageJPG: `#87888A`,
+  UploadIcon: `#626F86`,
 };
