@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
     borderBottomStartRadius: 10,
     marginLeft: -wp(8),
     marginTop: hp(2),
-    width: wp(93),
+    width: wp(88),
   },
   searchContainer: {
     flexDirection: 'row',
