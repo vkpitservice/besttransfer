@@ -19,12 +19,12 @@ import { Constants } from './constants';
 import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
 import Entypo from 'react-native-vector-icons/Entypo';
 import * as ImagePicker from 'expo-image-picker';
-import AvoidImageFormat from '@/components/AvoidImageFromat';
 import { ColorSheet } from '@/utils/ColorSheet';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { ErrorFlash } from '@/utils/flashMessage';
 import ShowImage from './showImage';
+import AvoidImageFormat from './AvoidImageFromat';
 
 const UploadDocumentResident = ({navigation}) => {
   const [progress, setProgress] = useState('');
@@ -39,23 +39,28 @@ const UploadDocumentResident = ({navigation}) => {
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    console.log(result);
-
-    if (!result.canceled) {
-      const imageName = result.assets[0].uri.split('/').pop();
-      setImage(result.assets[0].uri);
-      setImageName(imageName);
-      console.log('imageName', imageName);
-    } else {
-      Alert.alert('Error", "Image picking was canceled.');
-      console.log('User cancelled image picker');
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+  
+      console.log(result);
+  
+      if (!result.canceled) {
+        const imageName = result.assets[0].uri.split('/').pop();
+        setImage(result.assets[0].uri);
+        setImageName(imageName);
+        console.log('imageName', imageName);
+      } else {
+        Alert.alert('Error", "Image picking was canceled.');
+        console.log('User cancelled image picker');
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert('Error', 'Failed to pick an image.');
     }
   };
 
@@ -170,9 +175,9 @@ const UploadDocumentResident = ({navigation}) => {
               <Text style={styles.acceptTxt}> {Constants.WE_DO_NOT_ACCEPT} </Text>
 
               {/* Screenshots & Reciept for purchases & Medical Bills*/}
-              {Constants.Header.map((item, index) => {
-                return <AvoidImageFormat key={index} title={item} />;
-              })}
+              {Constants.Header.map((item, index) => (
+                 <AvoidImageFormat key={index} title={item} />
+              ))}
             </View>
           </View>
 
