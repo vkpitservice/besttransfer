@@ -22,20 +22,21 @@ export const styles = StyleSheet.create({
     // width: '100%',
     margin: hp(2),
     // height: hp(70),
-    marginTop: Platform.OS == 'android' ? hp(18) : hp(2),
+    marginTop: Platform.OS == 'android' ? hp(10) : hp(2),
     alignSelf: 'center',
     // backgroundColor: 'pink',
   },
   logo_image: {
+    paddingTop: hp(2),
     alignItems: 'center',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 5,
-  },
-  shadowOpacity: 0.22,
-  shadowRadius: 2.22,
-  elevation: 10, // Ensures shadow effect on Android
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 10, // Ensures shadow effect on Android
   },
   statusStyleContainer: {
     flexDirection: 'row',

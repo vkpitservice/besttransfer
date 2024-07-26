@@ -6,13 +6,14 @@ import ResidentIdentityDocument from '@/screens/auth/resident/identityDocumentRe
 import OtpVerification from '@/screens/global/OtpVerification';
 import Login from '@/screens/auth/login';
 import CreateAccount from '@/screens/auth/create_account';
+import UploadDocumentResident from '@/screens/auth/resident/upload DocumetResident';
 
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName='LoginScreen'
+      initialRouteName='ResidentIdentityDocumentScreen'
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name='LoginScreen' component={Login} />
@@ -21,6 +22,7 @@ const AuthStack = () => {
       <Stack.Screen name='ResidentCountryScreen' component={ResidentCountry} />
       <Stack.Screen name='ResidentIdentityDocumentScreen' component={ResidentIdentityDocument} />
       <Stack.Screen name='OtpVerificationScreen' component={OtpVerification} />
+      <Stack.Screen name='UploadDocumentResidentScreen' component={UploadDocumentResident} />
     </Stack.Navigator>
   );
 };
