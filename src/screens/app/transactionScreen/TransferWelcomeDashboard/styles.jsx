@@ -72,8 +72,8 @@ export const styles = StyleSheet.create({
   },
   feesTotalPaymentContainer: {
     marginTop: hp(4),
-    borderTopWidth: 2,
-    borderStyle: 'dotted',
+    borderTopWidth: 1,
+    borderStyle: 'dashed',
     borderBottomColor: ColorSheet.Primary,
     // backgroundColor: 'red'
   },
@@ -82,8 +82,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomWidth: 2,
-    borderStyle: 'dotted',
+    borderBottomWidth: 1,
+    borderStyle: 'dashed',
     borderBottomColor: ColorSheet.Primary,
   },
   text01: {
