@@ -29,12 +29,14 @@ const TransactionListShowData = (props) => {
 
             {/* SVG Success or Fail */}
             <View style = {styles.svgContainer}>
+              {/* SVG Success */}
                 { type == 'success' && 
                     (
                        <RequestSuccess/>
                     )
                 }
 
+                {/* SVG Fail */}
                 { type == 'fail' && 
                     (
                        <RequestFail/>
@@ -50,7 +52,17 @@ const TransactionListShowData = (props) => {
       </View>
 
       {/* 2nd Row */}
-        <Text style = {styles.amountTxt}> {amount} </Text>
+        {type == 'success' &&
+          (
+            <Text style = {styles.amountTxt}> +{amount} </Text>
+          )
+        }
+
+        {type == 'fail' &&
+          (
+            <Text style = {styles.amountTxt}> -{amount} </Text>
+          )
+        } 
       
     </View>
   )

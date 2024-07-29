@@ -8,6 +8,7 @@ export const ColorSheet = {
   Text3: '#5B5B5B',
   Text4: '#3A3A3A',
   Text5: '#1D3BFF',
+  Text6: '#3C3C3C',
   SecondaryText: '#000',
   buttonChose: '#4FE0FF',
   StatusColor: '#F7F7F7',
@@ -30,4 +31,5 @@ export const ColorSheet = {
   StatusBarBg: '#DDE1E4',
   ImageJPG: `#87888A`,
   UploadIcon: `#626F86`,
+  HorizontalLineColor: '#DCDCDC',
 };

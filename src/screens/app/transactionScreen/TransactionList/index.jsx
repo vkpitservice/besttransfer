@@ -15,7 +15,7 @@ import BackTitleAddComponent from '@/components/BackTitleAdd';
 import { Constants } from './constants';
 import TransactionListShowData from '@/components/transaction/transactionListShowData';
 
-const TransactionList = () => {
+const TransactionList = ({navigation}) => {
     const [data, setData] = useState(transactionData.slice(0, 6));
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
@@ -59,7 +59,7 @@ const TransactionList = () => {
             <BackTitleAddComponent
                 title={Constants.HEADER_TITLE}
                 onPressBack={() => {
-                    console.log('Back');
+                   navigation.goBack()
                 }}
             />
 
@@ -106,7 +106,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Yara Khalil',
         date: 'Oct 14, 10:24 AM',
-        amount: '+£15.00',
+        amount: '£15.00',
         type: 'success',
     },
     {
@@ -114,7 +114,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Sara Ibrahim',
         date: 'Oct 12, 02:13 PM',
-        amount: '-£15.00',
+        amount: '£15.00',
         type: 'fail',
     },
     {
@@ -122,7 +122,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Sara Ibrahim',
         date: 'Oct 11, 01:19 AM',
-        amount: '-£15.00',
+        amount: '£15.00',
         type: 'fail',
     },
     {
@@ -130,7 +130,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Reem Khaled',
         date: 'Oct 11, 01:19 AM',
-        amount: '+£15.00',
+        amount: '£15.00',
         type: 'success',
     }, 
     {
@@ -138,7 +138,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Hiba Saleh',
         date: 'Oct 04, 05:45 AM',
-        amount: '-£15.00',
+        amount: '£15.00',
         type: 'fail',
     },
     {
@@ -146,7 +146,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Yara Khalil',
         date: 'Oct 14, 10:24 AM',
-        amount: '+£15.00',
+        amount: '£15.00',
         type: 'success',
     }, 
     {
@@ -154,7 +154,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Reem Khaled',
         date: 'Oct 07, 09:10 PM',
-        amount: '+£15.00',
+        amount: '£15.00',
         type: 'success',
     },
     {
@@ -162,7 +162,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Ali Mahmoud',
         date: 'Oct 15, 11:00 AM',
-        amount: '-£10.00',
+        amount: '£10.00',
         type: 'fail',
     },
     {
@@ -170,7 +170,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Nadia Nasser',
         date: 'Oct 16, 01:45 PM',
-        amount: '+£20.00',
+        amount: '£20.00',
         type: 'success',
     },
     {
@@ -178,7 +178,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Omar Ali',
         date: 'Oct 17, 02:10 PM',
-        amount: '-£8.00',
+        amount: '£8.00',
         type: 'fail',
     },
     {
@@ -186,7 +186,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Layla Ahmed',
         date: 'Oct 18, 10:00 AM',
-        amount: '+£25.00',
+        amount: '£25.00',
         type: 'success',
     },
     {
@@ -194,7 +194,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Zara Hassan',
         date: 'Oct 19, 09:00 AM',
-        amount: '-£12.00',
+        amount: '£12.00',
         type: 'fail',
     },
     {
@@ -202,7 +202,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Mohammed Salah',
         date: 'Oct 20, 11:30 AM',
-        amount: '+£30.00',
+        amount: '£30.00',
         type: 'success',
     },
     {
@@ -210,7 +210,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Aisha Ali',
         date: 'Oct 21, 08:45 AM',
-        amount: '-£5.00',
+        amount: '£5.00',
         type: 'fail',
     },
     {
@@ -218,7 +218,7 @@ const listData = [
         image: require('@/assets/images/Transaction/TransactionProfile.png'),
         name: 'Fatima Yusuf',
         date: 'Oct 22, 12:00 PM',
-        amount: '+£18.00',
+        amount: '£18.00',
         type: 'success',
     }
 ];
