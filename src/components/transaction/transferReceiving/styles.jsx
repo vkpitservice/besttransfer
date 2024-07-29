@@ -9,39 +9,39 @@ import {
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-    recievingContainer: {
-        marginTop: hp(3),
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        // backgroundColor: 'blue',
-    },
-    Text: {
-        fontSize: RFValue(13),
-        fontWeight: '200',
-        color: ColorSheet.Text6,
-    },
-    Amount: {
-        paddingTop: hp(1),
-        fontSize: RFValue(15),
-        fontWeight: '800',
-        color: ColorSheet.Text6,
-    },
-    countryNameImageContainer: {
-        width: wp(24),
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        // backgroundColor: 'green'
-    },
-    countryName: {
-        fontSize: RFValue(14),
-        fontWeight: '500',
-        color: ColorSheet.PrimaryTxt,
-    },
-    image: {
-        width: wp(10),
-        height: wp(10),
-        resizeMode: 'cover',
-        borderRadius: wp(5),
-    },
+  recievingContainer: {
+    marginTop: hp(3),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // backgroundColor: 'blue',
+  },
+  Text: {
+    fontSize: RFValue(13),
+    fontWeight: '200',
+    color: ColorSheet.Text6,
+  },
+  Amount: {
+    paddingTop: hp(1),
+    fontSize: RFValue(15),
+    fontWeight: '800',
+    color: ColorSheet.Text6,
+  },
+  countryNameImageContainer: {
+    width: wp(24),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    // backgroundColor: 'green'
+  },
+  countryName: {
+    fontSize: RFValue(14),
+    fontWeight: '500',
+    color: ColorSheet.PrimaryTxt,
+  },
+  image: {
+    width: wp(10),
+    height: wp(10),
+    resizeMode: 'cover',
+    borderRadius: wp(5),
+  },
 });

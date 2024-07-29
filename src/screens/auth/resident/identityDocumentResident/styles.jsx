@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   logo_image: {
     paddingTop: hp(2),
     alignItems: 'center',
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 5,
@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     color: ColorSheet.Primary,
   },
-  start:{
+  start: {
     fontSize: RFValue(12),
     fontWeight: '700',
     color: ColorSheet.StarColor,
@@ -114,13 +114,13 @@ export const styles = StyleSheet.create({
     // backgroundColor: 'red',
     paddingBottom: hp(0.5), // Padding for space at the bottom
     backgroundColor: ColorSheet.Secondary,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
-	    width: 0,
-	    height: 1,
+      width: 0,
+      height: 1,
     },
-    shadowOpacity: 0.30,
-    shadowRadius: 1.40,
+    shadowOpacity: 0.3,
+    shadowRadius: 1.4,
 
     elevation: 2,
   },

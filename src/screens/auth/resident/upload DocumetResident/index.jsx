@@ -26,7 +26,7 @@ import ShowImage from './showImage';
 import AvoidImageFormat from './AvoidImageFromat';
 import ProgressStatusBar from '@/components/progressStatusBar';
 
-const UploadDocumentResident = ({navigation}) => {
+const UploadDocumentResident = ({ navigation }) => {
   const [progress, setProgress] = useState('');
 
   const [selectImgFormat, setSelectImgFormat] = useState({
@@ -46,9 +46,9 @@ const UploadDocumentResident = ({navigation}) => {
         aspect: [4, 3],
         quality: 1,
       });
-  
+
       console.log(result);
-  
+
       if (!result.canceled) {
         const imageName = result.assets[0].uri.split('/').pop();
         setImage(result.assets[0].uri);
@@ -83,9 +83,9 @@ const UploadDocumentResident = ({navigation}) => {
       ErrorFlash(Constants.IMAGE_REQUIRE);
     } else {
       // navigation.navigate('ResidentIdentityDocument');
-      Alert.alert('Success')
+      Alert.alert('Success');
     }
-  }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -112,25 +112,17 @@ const UploadDocumentResident = ({navigation}) => {
             <View style={styles.progressBarContainer}>
               {/* Back Icon */}
               <TouchableOpacity
-                style = {styles.backIcon}
-                activeOpacity = {0.5}
+                style={styles.backIcon}
+                activeOpacity={0.5}
                 onPress={() => {
-                  navigation.goBack()
+                  navigation.goBack();
                 }}
               >
-                <MaterialIcons 
-                name={'arrow-back-ios'} 
-                size={30} 
-                color={ColorSheet.PrimaryButton} 
-              />
+                <MaterialIcons name={'arrow-back-ios'} size={30} color={ColorSheet.PrimaryButton} />
               </TouchableOpacity>
- 
+
               {/* Progress Bar */}
-              <ProgressStatusBar 
-                progress1={1.0} 
-                progress2={progress} 
-                progress3={0.0} 
-              />
+              <ProgressStatusBar progress1={1.0} progress2={progress} progress3={0.0} />
             </View>
 
             {/* SubTitle */}
@@ -153,8 +145,8 @@ const UploadDocumentResident = ({navigation}) => {
               {image ? (
                 <ShowImage
                   imageSource={{ uri: image }}
-                  onPress = {() => {
-                    setImage('')
+                  onPress={() => {
+                    setImage('');
                   }}
                 />
               ) : (
@@ -176,7 +168,7 @@ const UploadDocumentResident = ({navigation}) => {
 
               {/* Screenshots & Reciept for purchases & Medical Bills*/}
               {Constants.Header.map((item, index) => (
-                 <AvoidImageFormat key={index} title={item} />
+                <AvoidImageFormat key={index} title={item} />
               ))}
             </View>
           </View>

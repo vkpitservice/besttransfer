@@ -30,7 +30,6 @@ const ResidentCountry = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <SafeAreaView style={{ flex: 1 }}>
-
         <StatusBar barStyle='dark-content' translucent backgroundColor={ColorSheet.Secondary} />
 
         <ScrollView
@@ -65,7 +64,7 @@ const ResidentCountry = ({ navigation }) => {
 
             <SelectTypeFieldBox
               style={styles.listContainer}
-              imageSource = {require('@/assets/images/resident/Us.png')}
+              imageSource={require('@/assets/images/resident/Us.png')}
               title={Constants.US_RESIDENT}
               type='us'
               isChecked={selectedOption === 'US'}

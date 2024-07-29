@@ -6,63 +6,40 @@ import { styles } from './styles';
 import PropTypes from 'prop-types';
 
 const BackTitleAddComponent = (props) => {
-    const {
-        style,
-        title,
-        onPressBack,
-        onPressAdd,
-    } = props
+  const { style, title, onPressBack, onPressAdd } = props;
 
   return (
-    <View style = {[styles.root ,style]}>
+    <View style={[styles.root, style]}>
       {/* Back Icon */}
-      <TouchableOpacity
-        style = {styles.backIcon}
-        onPress = {onPressBack}
-        activeOpacity = {0.8}
-      >
-        <Ionicons 
-            name = "chevron-back-circle-sharp" 
-            size = {32} 
-            color = {ColorSheet.PrimaryButtonTxt}
-        />
+      <TouchableOpacity style={styles.backIcon} onPress={onPressBack} activeOpacity={0.8}>
+        <Ionicons name='chevron-back-circle-sharp' size={32} color={ColorSheet.PrimaryButtonTxt} />
       </TouchableOpacity>
       {/* Title */}
-      <Text style = {styles.title}> {title} </Text>
+      <Text style={styles.title}> {title} </Text>
       {/* Add Title */}
-      {onPressAdd && 
-        <TouchableOpacity
-           style = {styles.addIcon}
-           onPress = {onPressAdd}
-           activeOpacity = {0.8}
-        >
-          <Ionicons 
-            name = "add-circle-sharp" 
-            size = {32} 
-            color = {ColorSheet.PrimaryButtonTxt} 
-          />
+      {onPressAdd && (
+        <TouchableOpacity style={styles.addIcon} onPress={onPressAdd} activeOpacity={0.8}>
+          <Ionicons name='add-circle-sharp' size={32} color={ColorSheet.PrimaryButtonTxt} />
         </TouchableOpacity>
-      }
+      )}
     </View>
-  )
-}
+  );
+};
 
 // Define prop types
 BackTitleAddComponent.propTypes = {
-    style: PropTypes.object,
-    onPressBack: PropTypes.func,
-    title: PropTypes.string,
-    onPressAdd: PropTypes.func
-  };
-  
-  // Define default props
-  BackTitleAddComponent.defaultProps = {
-    style: {},
-    onPressBack: null,
-    title: '',
-    onPressAdd: null
-  };
+  style: PropTypes.object,
+  onPressBack: PropTypes.func,
+  title: PropTypes.string,
+  onPressAdd: PropTypes.func,
+};
 
+// Define default props
+BackTitleAddComponent.defaultProps = {
+  style: {},
+  onPressBack: null,
+  title: '',
+  onPressAdd: null,
+};
 
 export default BackTitleAddComponent;
-

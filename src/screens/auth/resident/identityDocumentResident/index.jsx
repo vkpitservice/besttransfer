@@ -23,16 +23,16 @@ import ProgressStatusBar from '@/components/progressStatusBar';
 const ResidentIdentityDocument = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(false);
 
-  const [progress, setProgress] = useState('')
+  const [progress, setProgress] = useState('');
 
   const [selectCountry, setSelectCountry] = useState({
     label: '',
     value: '',
-  })
+  });
 
   const handleSelectOption = (option) => {
     setSelectedOption(option);
-  }
+  };
 
   useEffect(() => {
     if (selectCountry?.value && selectedOption) {
@@ -54,15 +54,14 @@ const ResidentIdentityDocument = ({ navigation }) => {
     } else {
       navigation.navigate('UploadDocumentResidentScreen');
     }
-  }
-  
+  };
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <SafeAreaView style={{ flex: 1 }}>
-
         <StatusBar barStyle='dark-content' translucent backgroundColor={ColorSheet.Secondary} />
 
         <ScrollView
@@ -77,12 +76,8 @@ const ResidentIdentityDocument = ({ navigation }) => {
             </View>
 
             {/* Progress Bar */}
-            <View style = {styles.statusStyleContainer}>
-              <ProgressStatusBar 
-                progress1={progress} 
-                progress2={0.0} 
-                progress3={0.0} 
-              />
+            <View style={styles.statusStyleContainer}>
+              <ProgressStatusBar progress1={progress} progress2={0.0} progress3={0.0} />
             </View>
 
             {/*  Main Text */}
@@ -94,9 +89,11 @@ const ResidentIdentityDocument = ({ navigation }) => {
             </View>
 
             {/* DropDown */}
-               {/* DropDown Title */}
-            <Text style={styles.dropdownTitle}> {Constants.ISSUING_COUNTRY_LABEL} 
-               <Text style = {styles.start}> {'*'} </Text>
+            {/* DropDown Title */}
+            <Text style={styles.dropdownTitle}>
+              {' '}
+              {Constants.ISSUING_COUNTRY_LABEL}
+              <Text style={styles.start}> {'*'} </Text>
             </Text>
 
             {/* DropDown List */}
@@ -114,15 +111,14 @@ const ResidentIdentityDocument = ({ navigation }) => {
 
             {/* List Check Box */}
             {Constants?.VerificationType.map((item, index) => (
-                <SelectTypeFieldBox
-                  style = {styles.listType}
-                  key = {index}
-                  title = {item}
-                  onPress = {() => handleSelectOption(item)}
-                  isChecked = {selectedOption === item}
-                />
+              <SelectTypeFieldBox
+                style={styles.listType}
+                key={index}
+                title={item}
+                onPress={() => handleSelectOption(item)}
+                isChecked={selectedOption === item}
+              />
             ))}
-            
 
             {/* URL Text*/}
             <TouchableOpacity
@@ -157,51 +153,51 @@ const ResidentIdentityDocument = ({ navigation }) => {
 export default ResidentIdentityDocument;
 
 const countryLabels = [
-  { 
-    label: 'United States of America', 
-    value: 'USA' 
+  {
+    label: 'United States of America',
+    value: 'USA',
   },
-  { 
-    label: 'United Kingdom', 
-    value: 'UK' 
+  {
+    label: 'United Kingdom',
+    value: 'UK',
   },
-  { 
-    label: 'Canada', 
-    value: 'CA' 
+  {
+    label: 'Canada',
+    value: 'CA',
   },
-  { 
-    label: 'Australia', 
-    value: 'AU' 
+  {
+    label: 'Australia',
+    value: 'AU',
   },
-  { 
-    label: 'Germany', 
-    value: 'DE' 
+  {
+    label: 'Germany',
+    value: 'DE',
   },
-  { 
-    label: 'France', 
-    value: 'FR' 
+  {
+    label: 'France',
+    value: 'FR',
   },
-  { 
-    label: 'Italy', 
-    value: 'IT' 
+  {
+    label: 'Italy',
+    value: 'IT',
   },
-  { 
-    label: 'Spain', 
-    value: 'ES' 
+  {
+    label: 'Spain',
+    value: 'ES',
   },
-  { 
-    label: 'Netherlands', 
-    value: 'NL' 
+  {
+    label: 'Netherlands',
+    value: 'NL',
   },
-  { 
-    label: 'Japan', 
-    value: 'JP' 
-  }
+  {
+    label: 'Japan',
+    value: 'JP',
+  },
 ];
 
 const countryData = countryLabels.map((item) => {
-  return { 
-    label: item.label, 
-    value: item.value 
+  return {
+    label: item.label,
+    value: item.value,
   };
-})
+});

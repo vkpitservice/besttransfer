@@ -9,13 +9,8 @@ export const Constants = {
   SELECT_REQUIRE: `Select document type`,
 
   VERIFICATION_TYPE_LABEL: `Verification Type`,
-  
-  VerificationType: [
-      "Driver’s Licences",
-      `Id Card`,
-      `Residence Permit`,
-      `Passport`,
-  ],
+
+  VerificationType: ['Driver’s Licences', `Id Card`, `Residence Permit`, `Passport`],
 
   CONTINUE: `Continue`,
 };

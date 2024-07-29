@@ -1,12 +1,12 @@
 export const Constants = {
-    WELCOME_BACK: 'Welcome Back',
-    EXCHANGE_RATE: 'Exchange Rate',
+  WELCOME_BACK: 'Welcome Back',
+  EXCHANGE_RATE: 'Exchange Rate',
 
-    SAVING_ACC: 'Sending Amount',
-    RECIEVING_AMOUNT: 'Recieving Amount',
-    
-    FEE: 'Fee',
-    TOTAL_PAYMENT: 'Total Payment',
+  SAVING_ACC: 'Sending Amount',
+  RECIEVING_AMOUNT: 'Recieving Amount',
 
-    SEND: 'Send',
-}
+  FEE: 'Fee',
+  TOTAL_PAYMENT: 'Total Payment',
+
+  SEND: 'Send',
+};

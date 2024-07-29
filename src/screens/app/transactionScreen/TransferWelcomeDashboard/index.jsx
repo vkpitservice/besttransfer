@@ -19,7 +19,7 @@ import TransferSaving from '@/components/transaction/transferSaving';
 import Rotate from '@/assets/svg/transaction/Rotate.svg';
 import TransferRecieving from '@/components/transaction/transferReceiving';
 
-const TransferWelcomeDashboard = ({navigation}) => {
+const TransferWelcomeDashboard = ({ navigation }) => {
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -60,7 +60,7 @@ const TransferWelcomeDashboard = ({navigation}) => {
 
         {/* Tranfer Detalis */}
         <View style={styles.savingRecievingContainer}>
-            {/* saving */}
+          {/* saving */}
           <TransferSaving
             saveTitle={Constants.SAVING_ACC}
             saveAmount={'1000'}
@@ -78,8 +78,8 @@ const TransferWelcomeDashboard = ({navigation}) => {
 
           {/* recieving */}
           <TransferRecieving
-            recieveTitle = {Constants.RECIEVING_AMOUNT}
-            recieveAmount = {'1714'}
+            recieveTitle={Constants.RECIEVING_AMOUNT}
+            recieveAmount={'1714'}
             recieveCountry={'INR'}
             recieveImageSource={require('@/assets/images/Transaction/countryIndia.png')}
           />
@@ -97,16 +97,15 @@ const TransferWelcomeDashboard = ({navigation}) => {
             <Text style={styles.text01}> {Constants.TOTAL_PAYMENT} </Text>
             <Text style={styles.textAmount}> £{'1000'} </Text>
           </View>
-
         </View>
 
         {/* Button */}
-        <TouchableOpacity 
-           style={styles.btnContainer}
-           activeOpacity = {0.7}
-           onPress = {() => {
-            navigation.navigate('TransactionListScreen')
-           }}
+        <TouchableOpacity
+          style={styles.btnContainer}
+          activeOpacity={0.7}
+          onPress={() => {
+            navigation.navigate('TransactionListScreen');
+          }}
         >
           {/* Icon */}
           <FontAwesome name='send' size={20} color={ColorSheet.PrimaryButtonTxt} />
