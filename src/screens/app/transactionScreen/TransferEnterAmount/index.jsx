@@ -11,13 +11,14 @@ import {
 } from 'react-native';
 import React from 'react';
 import { ColorSheet } from '@/utils/ColorSheet';
-import TransferWelcomeDashboardComponent from '@/components/transaction/transferWelcomeDashboard';
 import { Constants } from './constants';
-import { styles } from './styles';
 import { FontAwesome } from '@expo/vector-icons';
 import TransferSavingRecieving from '@/components/transaction/transferSavingReceiving';
+import BackTitleAddComponent from '@/components/BackTitleAdd';
+import BackTitleHomeComponent from '@/components/BackTitleHome';
+import { styles } from './styles';
 
-const TransferWelcomeDashboard = ({ navigation }) => {
+const TransferEnterAmount = ({ navigation }) => {
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -33,29 +34,22 @@ const TransferWelcomeDashboard = ({ navigation }) => {
       {/* Image */}
       <Image
         style={styles.backgroundImage}
-        source={require('@/assets/images/Transaction/BestWelcomeDashboard.png')}
+        source={require('@/assets/images/Transaction/TransferEnterAmount.png')}
       />
 
       {/* Welcome, Name And LogOut */}
-      <TransferWelcomeDashboardComponent
-        imageSource={require('@/assets/images/Transaction/WelcomeProfilePic.png')}
-        title={Constants.WELCOME_BACK}
-        name={'Arianna'}
-        onPress={() => {
-          console.log('logOut');
+      <BackTitleHomeComponent
+        title={Constants.HEADER_TITLE}
+        onPressBack={() => {
+          navigation.goBack();
+        }}
+        onPressHome={() => {
+          console.log('home');
         }}
       />
 
       {/* mainContainer */}
       <View style={styles.mainContainer}>
-        {/* ExChange Rate */}
-        <View style={styles.exchangeContainer}>
-          <Text style={styles.exchangeText}>
-            {' '}
-            {Constants.EXCHANGE_RATE}:<Text style={styles.exchangeAmount}> £{'1=107.34 INR'} </Text>
-          </Text>
-        </View>
-
         {/* Tranfer Detalis */}
         <TransferSavingRecieving
           saveTitle={Constants.SAVING_ACC}
@@ -69,8 +63,14 @@ const TransferWelcomeDashboard = ({ navigation }) => {
         />
 
         <View style={styles.feesTotalPaymentContainer}>
+          {/* Exchange rate */}
+          <View style={styles.row_exchange_fee_Container}>
+            <Text style={styles.text01}> {Constants.EXCHANGE_RATE} </Text>
+            <Text style={styles.textAmount}> £{'1=107.34 INR'} </Text>
+          </View>
+
           {/* Fees */}
-          <View style={styles.rowContainer}>
+          <View style={styles.row_exchange_fee_Container}>
             <Text style={styles.text01}> {Constants.FEE} </Text>
             <Text style={styles.textAmount}> £{'0.00'} </Text>
           </View>
@@ -101,4 +101,4 @@ const TransferWelcomeDashboard = ({ navigation }) => {
   );
 };
 
-export default TransferWelcomeDashboard;
+export default TransferEnterAmount;

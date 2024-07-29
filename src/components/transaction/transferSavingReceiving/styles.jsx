@@ -9,14 +9,20 @@ import {
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-  recievingContainer: {
+  rootBox: {
+    width: '100%',
     marginTop: hp(3),
+    padding: hp(2),
+    borderWidth: 1,
+    borderRadius: hp(2),
+  },
+  savingContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // backgroundColor: 'blue',
+    // backgroundColor: 'red',
   },
   Text: {
-    fontSize: RFValue(13),
+    fontSize: RFValue(12),
     fontWeight: '200',
     color: ColorSheet.Text6,
   },
@@ -43,5 +49,31 @@ export const styles = StyleSheet.create({
     height: wp(10),
     resizeMode: 'cover',
     borderRadius: wp(5),
+  },
+  horizontalContainer: {
+    marginTop: hp(3),
+  },
+  horizontalLine: {
+    width: '100%',
+    borderWidth: 1,
+    borderColor: ColorSheet.HorizontalLineColor,
+  },
+  rotateContainer: {
+    position: 'absolute',
+    zIndex: 1,
+    top: -15,
+    right: '45%',
+    width: wp(9),
+    height: wp(9),
+    borderRadius: wp(4.5),
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: ColorSheet.PrimaryButton,
+  },
+  recievingContainer: {
+    marginTop: hp(3),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // backgroundColor: 'blue',
   },
 });

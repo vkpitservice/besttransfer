@@ -50,14 +50,27 @@ export const styles = StyleSheet.create({
     borderBottomColor: ColorSheet.Primary,
     // backgroundColor: 'red'
   },
-  rowContainer: {
+  exchangeFeeContainer: {
     height: hp(8),
+  },
+  row_exchange_fee_Container: {
+    marginTop: hp(1),
+    marginBottom: hp(1),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  rowContainer: {
+    height: hp(8),
+    marginTop: hp(1),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderTopWidth: 1,
     borderBottomWidth: 1,
     borderStyle: 'dashed',
     borderBottomColor: ColorSheet.Primary,
+    // backgroundColor: 'green'
   },
   text01: {
     fontSize: RFValue(14),
