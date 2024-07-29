@@ -16,9 +16,10 @@ import { Constants } from './constants';
 import TransactionListShowData from '@/components/transaction/transactionListShowData';
 
 const TransactionList = () => {
-    const [data, setData] = useState(transactionData.slice(0, 7));
+    const [data, setData] = useState(transactionData.slice(0, 6));
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true); // Check if there are more items to load
 
     const loadMoreData = () => {
         if (loading) return;
@@ -26,7 +27,10 @@ const TransactionList = () => {
         setLoading(true);
         setTimeout(() => {
             const newPage = page + 1;
-            const newData = transactionData.slice(0, newPage * 7);
+            const newData = transactionData.slice(0, newPage * 6);
+            if (newData.length >= transactionData.length) {
+                setHasMore(false); // No more data to load
+            }
             setData(newData);
             setPage(newPage);
             setLoading(false);
@@ -81,7 +85,7 @@ const TransactionList = () => {
                     maxToRenderPerBatch = {7}
                     onEndReachedThreshold={0.5}
                     ListFooterComponent={() => (
-                        loading && (
+                        loading && hasMore && (
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingVertical: 20 }}>
                                 <ActivityIndicator size="large" />
                                 <Text>Loading...</Text>
