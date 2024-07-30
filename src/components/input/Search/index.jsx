@@ -13,7 +13,6 @@ const Search = (props) => {
         value,
         onFocus,
         keyboardType,
-        onBlur,
         onChangeText,
         onPressClose,
     } = props;
@@ -43,7 +42,7 @@ const Search = (props) => {
         }}
         keyboardType={keyboardType}
       />
-      {value.length > 0 && 
+      {value?.length > 0 && 
         (
           <TouchableOpacity
             activeOpacity = {0.6}
@@ -71,7 +70,6 @@ Search.propTypes = {
   value: PropTypes.string,
   onFocus: PropTypes.func,
   keyboardType: PropTypes.oneOf(['default', 'email-address', 'numeric', 'phone-pad', 'number-pad']),
-  onBlur: PropTypes.func,
   onChangeText: PropTypes.func,
   editable: PropTypes.bool,
   onPressClose: PropTypes.func,

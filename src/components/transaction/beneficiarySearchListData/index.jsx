@@ -1,55 +1,39 @@
-import { Image, Text, View } from 'react-native'
-import React from 'react'
+import { Image, Text, View } from 'react-native';
+import React from 'react';
 import { styles } from './styles';
 import PropTypes from 'prop-types';
 
 const BeneficiarySearchListData = (props) => {
-  const {
-    imgSource,
-    name,
-    idNumber,
-    sBinNumber,
-  } = props;
-
-  const renderImage = () => {
-    if (imgSource) {
-      return (
-        <Image 
-          style={styles.imageStyle} 
-          source={imgSource} 
-        />
-      );
-    } else {
-      return (
-        <View style={styles.placeholderImageStyle}>
-          <Text style={styles.placeholderText}>
-            {name.charAt(0).toUpperCase()}
-          </Text>
-        </View>
-      );
-    }
-  };
+  const { imgSource, name, idNumber, sBinNumber } = props;
 
   return (
-    <View style = {styles.container}>
+    <View style={styles.container}>
       {/* Image */}
-      {renderImage()}
+      {imgSource ? (
+        <Image style={styles.imageStyle} source={imgSource} />
+      ) : (
+        <View style={styles.placeholderImageStyle}>
+          <Text style={styles.placeholderText}>{name.charAt(0).toUpperCase()}</Text>
+        </View>
+      )}
 
-      <View style = {styles.txtRowContainer}>
+      <View style={styles.txtRowContainer}>
         {/* Name */}
-        <Text style = {styles.nameTxt}> {name} </Text>
+        <Text style={styles.nameTxt}> {name} </Text>
 
         {/* Id  */}
-        <Text style = {styles.numberTxt}> {idNumber} 
+        <Text style={styles.numberTxt}>
+          {' '}
+          {idNumber}
           {/* SBIN Number */}
-          <Text style = {styles.numberTxt}> {(sBinNumber)} </Text>
+          <Text style={styles.numberTxt}> {sBinNumber} </Text>
         </Text>
       </View>
-      
     </View>
-  )
-}
+  );
+};
 
+// 
 BeneficiarySearchListData.propTypes = {
   imageSource: PropTypes.object,
   name: PropTypes.string,
