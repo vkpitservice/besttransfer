@@ -71,13 +71,13 @@ const TransferWelcomeDashboard = ({ navigation }) => {
         <View style={styles.feesTotalPaymentContainer}>
           {/* Fees */}
           <View style={styles.rowContainer}>
-            <Text style={styles.text01}> {Constants.FEE} </Text>
+            <Text style={styles.text01}> {Constants.FEE} :</Text>
             <Text style={styles.textAmount}> £{'0.00'} </Text>
           </View>
 
           {/* TotalPayment */}
           <View style={styles.rowContainer}>
-            <Text style={styles.text01}> {Constants.TOTAL_PAYMENT} </Text>
+            <Text style={styles.text01}> {Constants.TOTAL_PAYMENT} :</Text>
             <Text style={styles.textAmount}> £{'1000'} </Text>
           </View>
         </View>
@@ -96,6 +96,12 @@ const TransferWelcomeDashboard = ({ navigation }) => {
           {/* Button Text */}
           <Text style={styles.buttonText}> {Constants.SEND} </Text>
         </TouchableOpacity>
+
+        {/* Image Footer */}
+        <Image
+          style = {styles.imageStyle}
+          source = {require('@/assets/images/Transaction/HomeImage.png')}
+        />
       </View>
     </KeyboardAvoidingView>
   );

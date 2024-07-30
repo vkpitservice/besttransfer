@@ -3,6 +3,7 @@ export const ColorSheet = {
   PrimaryButton: '#013461',
   PrimaryTxt: '#013461',
   backGroundColor: '#F7F7F7',
+  Text0: '#121722',
   Text1: '#201905',
   Text2: 'rgba(0, 0, 0, 0.5)',
   Text3: '#5B5B5B',

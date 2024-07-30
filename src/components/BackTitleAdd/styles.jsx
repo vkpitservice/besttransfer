@@ -10,7 +10,7 @@ import {
 
 export const styles = StyleSheet.create({
   root: {
-    width: '100%',
+    width: '93%',
     marginTop: Platform.OS == 'android' ? hp(4) : hp(8),
     flexDirection: 'row',
     // backgroundColor: 'red',
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   backIcon: {
     position: 'absolute',
     left: 0,
-    paddingLeft: hp(1),
+    // paddingLeft: hp(1),
   },
   title: {
     fontSize: RFValue(15),
@@ -32,6 +32,6 @@ export const styles = StyleSheet.create({
   addIcon: {
     position: 'absolute',
     right: 0,
-    paddingRight: hp(1),
+    // paddingRight: hp(1),
   },
 });

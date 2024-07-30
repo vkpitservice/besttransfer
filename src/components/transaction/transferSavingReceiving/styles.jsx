@@ -11,7 +11,7 @@ import {
 export const styles = StyleSheet.create({
   rootBox: {
     width: '100%',
-    marginTop: hp(3),
+    marginTop: hp(2),
     padding: hp(2),
     borderWidth: 1,
     borderRadius: hp(2),
@@ -51,7 +51,8 @@ export const styles = StyleSheet.create({
     borderRadius: wp(5),
   },
   horizontalContainer: {
-    marginTop: hp(3),
+    marginTop: hp(2),
+    position: 'relative'
   },
   horizontalLine: {
     width: '100%',
@@ -71,7 +72,7 @@ export const styles = StyleSheet.create({
     backgroundColor: ColorSheet.PrimaryButton,
   },
   recievingContainer: {
-    marginTop: hp(3),
+    marginTop: hp(2),
     flexDirection: 'row',
     justifyContent: 'space-between',
     // backgroundColor: 'blue',

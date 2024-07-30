@@ -22,9 +22,9 @@ export const styles = StyleSheet.create({
   mainContainer: {
     width: wp(90),
     paddingBottom: hp(2),
-    marginTop: hp(8),
+    marginTop: Platform.OS == 'android' ? hp(8) : hp(6),
     alignSelf: 'center',
-    // backgroundColor: 'pink',
+    backgroundColor: 'pink',
   },
   exchangeContainer: {
     width: '100%',
@@ -44,35 +44,37 @@ export const styles = StyleSheet.create({
     color: ColorSheet.Secondary,
   },
   feesTotalPaymentContainer: {
-    marginTop: hp(4),
-    borderTopWidth: 1,
-    borderStyle: 'dashed',
-    borderBottomColor: ColorSheet.Primary,
-    // backgroundColor: 'red'
+    height: hp(8),
+    marginTop: hp(2),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    // borderStyle: 'dashed',
+    borderColor: ColorSheet.Primary,
+    backgroundColor: 'red'
   },
   rowContainer: {
-    height: hp(8),
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
+    backgroundColor: 'red',
+    borderWidth: 1,
     borderStyle: 'dashed',
     borderBottomColor: ColorSheet.Primary,
   },
   text01: {
     fontSize: RFValue(14),
     fontWeight: '600',
-    color: ColorSheet.Primary,
+    color: ColorSheet.PrimaryButton,
   },
   textAmount: {
     fontSize: RFValue(14),
     fontWeight: '500',
-    color: ColorSheet.Primary,
+    color: ColorSheet.PrimaryButton,
   },
   btnContainer: {
     width: '100%',
     padding: hp(2),
-    marginTop: hp(5),
+    marginTop: hp(2),
     borderRadius: hp(1),
     flexDirection: 'row',
     alignItems: 'center',
@@ -84,5 +86,12 @@ export const styles = StyleSheet.create({
     fontSize: RFValue(15),
     fontWeight: '700',
     color: ColorSheet.PrimaryButtonTxt,
+  },
+  imageStyle: {
+    width: wp(90),
+    height: hp(25),
+    marginTop: hp(2),
+    resizeMode: 'contain',
+    alignSelf: 'center'
   },
 });

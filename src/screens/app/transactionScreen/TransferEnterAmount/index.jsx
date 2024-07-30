@@ -46,34 +46,35 @@ const TransferEnterAmount = ({ navigation }) => {
         onPressHome={() => {
           console.log('home');
         }}
+
       />
 
       {/* mainContainer */}
       <View style={styles.mainContainer}>
         {/* Tranfer Detalis */}
-        <TransferSavingRecieving
-          saveTitle={Constants.SAVING_ACC}
-          saveAmount={'1000'}
-          saveCountry={'GBP'}
-          saveImageSource={require('@/assets/images/Transaction/CountryUk.png')}
-          recieveTitle={Constants.RECIEVING_AMOUNT}
-          recieveAmount={'1714'}
-          recieveCountry={'INR'}
-          recieveImageSource={require('@/assets/images/Transaction/countryIndia.png')}
-        />
+          <TransferSavingRecieving
+            saveTitle={Constants.SAVING_ACC}
+            saveAmount={'1000'}
+            saveCountry={'GBP'}
+            saveImageSource={require('@/assets/images/Transaction/CountryUk.png')}
+            recieveTitle={Constants.RECIEVING_AMOUNT}
+            recieveAmount={'1714'}
+            recieveCountry={'INR'}
+            recieveImageSource={require('@/assets/images/Transaction/countryIndia.png')}
+          />
 
         <View style={styles.feesTotalPaymentContainer}>
           {/* Exchange rate */}
-          <View style={styles.row_exchange_fee_Container}>
-            <Text style={styles.text01}> {Constants.EXCHANGE_RATE} </Text>
-            <Text style={styles.textAmount}> £{'1=107.34 INR'} </Text>
-          </View>
+            <View style={styles.row_exchange_fee_Container}>
+              <Text style={styles.text01}> {Constants.EXCHANGE_RATE} </Text>
+              <Text style={styles.textAmount}> £{'1=107.34 INR'} </Text>
+            </View>
 
-          {/* Fees */}
-          <View style={styles.row_exchange_fee_Container}>
-            <Text style={styles.text01}> {Constants.FEE} </Text>
-            <Text style={styles.textAmount}> £{'0.00'} </Text>
-          </View>
+            {/* Fees */}
+            <View style={styles.row_exchange_fee_Container}>
+              <Text style={styles.text01}> {Constants.FEE} </Text>
+              <Text style={styles.textAmount}> £{'0.00'} </Text>
+            </View>
 
           {/* TotalPayment */}
           <View style={styles.rowContainer}>
