@@ -26,7 +26,7 @@ const BeneficiarySearchListData = (props) => {
           {' '}
           {idNumber}
           {/* SBIN Number */}
-          <Text style={styles.numberTxt}> {sBinNumber} </Text>
+          <Text style={styles.numberTxt}> ({sBinNumber}) </Text>
         </Text>
       </View>
     </View>
