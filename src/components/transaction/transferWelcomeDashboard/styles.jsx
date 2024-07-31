@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
   },
   NameContainer: {
     marginLeft: wp(3),
+    justifyContent: 'center',
   },
   image: {
     width: wp(14),
@@ -31,14 +32,14 @@ export const styles = StyleSheet.create({
     borderRadius: wp(7),
   },
   welcomeText: {
-    fontSize: RFValue(16),
+    fontSize: RFValue(14),
     fontWeight: '700',
     color: ColorSheet.Secondary,
     // marginLeft: wp(2),
   },
   nameText: {
     paddingTop: hp(0.3),
-    fontSize: RFValue(14),
+    fontSize: RFValue(12),
     fontWeight: '500',
     color: ColorSheet.Secondary,
   },

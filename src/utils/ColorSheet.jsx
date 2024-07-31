@@ -33,4 +33,6 @@ export const ColorSheet = {
   ImageJPG: `#87888A`,
   UploadIcon: `#626F86`,
   HorizontalLineColor: '#DCDCDC',
+  ActiveIcon: '#6FCEE1',
+  InactiveIcon: '#484C52',
 };
