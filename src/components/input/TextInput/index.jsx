@@ -24,6 +24,7 @@ const TextInputField = (props) => {
     autoCapitalize,
     icon,
     disableEyeIcon,
+    maxLength,
   } = props;
 
   const [focused, setFocused] = useState(false);
@@ -63,6 +64,7 @@ const TextInputField = (props) => {
           secureTextEntry={secureText}
           editable={editable}
           autoCapitalize={autoCapitalize}
+          maxLength={maxLength}
         />
         {secureTextEntry && !disableEyeIcon && (
           <TouchableOpacity style={styles.icon} onPress={() => setShowPassword(!showPassword)}>
@@ -98,6 +100,7 @@ TextInputField.propTypes = {
   autoCapitalize: PropTypes.oneOf(['none', 'sentences', 'words', 'characters']),
   icon: PropTypes.element,
   disableEyeIcon: PropTypes.bool,
+  maxLength: PropTypes.number,
 };
 
 // Define default props

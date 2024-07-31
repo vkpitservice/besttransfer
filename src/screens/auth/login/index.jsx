@@ -83,6 +83,7 @@ const Login = ({ navigation }) => {
             style={styles.password_Field}
             placeholder={Constants.ENTER_PIN_TEXT}
             keyboardType={'numeric'}
+            maxLength={6}
           />
 
           <View style={styles.rememberView}>
