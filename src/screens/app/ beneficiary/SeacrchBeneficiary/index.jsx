@@ -107,8 +107,7 @@ const Beneficiary = ({ navigation }) => {
 
       {/* Main View Container */}
       <View style={styles.mainContainer}>
-
-        <ScrollView 
+        <ScrollView
           contentContainerStyle={styles.scroll_container}
           showsVerticalScrollIndicator={false}
           // bounces={false}
@@ -133,7 +132,6 @@ const Beneficiary = ({ navigation }) => {
             }}
           />
         </ScrollView>
-
       </View>
     </KeyboardAvoidingView>
   );

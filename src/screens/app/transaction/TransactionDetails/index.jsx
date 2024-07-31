@@ -1,23 +1,14 @@
-import {
-  ActivityIndicator,
-  FlatList,
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  StatusBar,
-  Text,
-  View,
-} from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, StatusBar, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { ColorSheet } from '@/utils/ColorSheet';
 import { styles } from './styles';
-import BackTitleAddComponent from '@/components/BackTitleAdd';
 import { Constants } from './constants';
-import TransactionListShowData from '@/components/transaction/transactionListShowData';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import BackTitleHomeComponent from '@/components/BackTitleHome';
+import User from '@/assets/svg/transaction/user.svg';
+import DataBox from '@/components/DataBox';
 
 const TransactionDetails = ({ navigation }) => {
-  
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -47,18 +38,137 @@ const TransactionDetails = ({ navigation }) => {
         }}
       />
 
-      {/* List Of Data */}
-      <View style={styles.mainContainer}>
+      {/* Success Icon */}
+      <View style={styles.roundIconContainer}>
+        <AntDesign name='checkcircle' size={22} color={ColorSheet.PrimaryButtonTxt} />
+      </View>
 
-        {/* Image */}
-        <Image
-          style = {styles.imageMain}
-          source={require('@/assets/images/Transaction/TransactionDetailsImg.png')}
-        />
-        
+      {/* Image */}
+      <Image
+        style={styles.imageMain}
+        source={require('@/assets/images/Transaction/TransactionDetailsImg.png')}
+      />
+
+      <View style={styles.boxContainer}>
+        {/* Title */}
+        <Text style={styles.titleStyle}>{Constants.PAYMENT_SUCCESS}</Text>
+
+        {/* Horizontal Line */}
+        <View style={styles.horizontalLine} />
+
+        {/* Total Payment */}
+        <Text style={styles.totalPayment}> {Constants.TOTAL_PAYMENT} </Text>
+        {/* USD */}
+        <Text style={styles.totalAmount}> USD{transactionData?.totalPayment} </Text>
+
+        {/* Details Box */}
+        {/* TO & Payment Time */}
+        <View style={styles.detailsBox}>
+          <View style={styles.rowContainer}>
+            <DataBox
+              style={styles.dataBoxStyle}
+              title={Constants.TO}
+              showData={transactionData?.data[0]?.to}
+            />
+
+            <DataBox
+              style={styles.dataBoxStyle}
+              title={Constants.PAYMENT_TIME}
+              showData={transactionData?.data[0]?.time}
+            />
+          </View>
+
+          {/* FEE & Status */}
+          <View style={styles.rowContainer}>
+            <DataBox
+              style={styles.dataBoxStyle}
+              title={Constants.FEE}
+              showData={transactionData?.data[0]?.fee}
+            />
+
+            <DataBox
+              style={styles.dataBoxStyle}
+              title={Constants.STATUS}
+              showData={transactionData?.data[0]?.status}
+            />
+          </View>
+
+          {/* Transaction Number & Pay with */}
+          <View style={styles.rowContainer}>
+            <DataBox
+              style={styles.dataBoxStyle}
+              title={Constants.TRANSACTION_NUMBER}
+              showData={transactionData?.data[0]?.transactionNumber}
+            />
+
+            <DataBox
+              style={styles.dataBoxStyle}
+              title={Constants.PAY_WITH}
+              showData={transactionData?.data[0]?.pay}
+            />
+          </View>
+        </View>
+
+        {/* Reciepient Details &  Icon */}
+        <View style={styles.reciepientIconContainer}>
+          <View style={styles.roundContainer}>
+            <User />
+          </View>
+
+          {/* Reciepient Details */}
+          <Text style={styles.reciepientTxt}> {Constants.DETAILS} </Text>
+        </View>
+
+        {/* Name & Acc Number */}
+        <View style={styles.detailsBox}>
+          <View style={styles.rowContainer}>
+            <DataBox
+              style={styles.dataBoxStyle}
+              title={Constants.TRANSACTION_NUMBER}
+              showData={transactionData?.recipientDetails[0]?.name}
+            />
+
+            <DataBox
+              style={styles.dataBoxStyle}
+              title={Constants.ACC_NUMBER}
+              showData={transactionData?.recipientDetails[0]?.accNumber}
+            />
+          </View>
+
+          {/* Country */}
+
+          <View style={styles.rowContainer}>
+            <DataBox
+              style={styles.countryContainer}
+              title={Constants.COUNTRY}
+              showData={transactionData?.recipientDetails[0]?.country}
+            />
+          </View>
+        </View>
       </View>
     </KeyboardAvoidingView>
   );
 };
 
 export default TransactionDetails;
+
+const transactionData = {
+  totalPayment: '1,000,000',
+  data: [
+    {
+      to: 'Alexander',
+      time: '25 Feb 2023, 13:22',
+      fee: 'USD 0.00',
+      status: 'Success',
+      transactionNumber: '54730766081',
+      pay: 'Wallet',
+    },
+  ],
+  recipientDetails: [
+    {
+      name: 'Alexander',
+      accNumber: '20052024347578',
+      country: 'USA',
+    },
+  ],
+};

@@ -11,6 +11,7 @@ export const ColorSheet = {
   Text5: '#1D3BFF',
   Text6: '#3C3C3C',
   Text7: '#1A1A1A',
+  Text8: '#474747',
   SecondaryText: '#000',
   buttonChose: '#4FE0FF',
   StatusColor: '#F7F7F7',
