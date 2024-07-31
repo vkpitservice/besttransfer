@@ -60,10 +60,11 @@ const TransactionDetails = ({ navigation }) => {
           </View>
 
           {/* Main Curve  */}
-          <MainCurveBox 
-            width = {Platform.OS == 'android' ? 430 : 450}
-            height = {Platform.OS == 'android' ? 720 : 750}
-            style={styles.imageMain} />
+          <MainCurveBox
+            width={Platform.OS == 'android' ? 430 : 450}
+            height={Platform.OS == 'android' ? 720 : 750}
+            style={styles.imageMain}
+          />
 
           {/* Title */}
           <Text style={styles.titleStyle}>{Constants.PAYMENT_SUCCESS}</Text>
@@ -122,46 +123,44 @@ const TransactionDetails = ({ navigation }) => {
                 showData={transactionData?.data[0]?.pay}
               />
             </View>
-
           </View>
 
           {/* Reciepient Details &  Icon */}
-        <View style={styles.reciepientIconContainer}>
-          <View style={styles.roundContainer}>
-            <User />
+          <View style={styles.reciepientIconContainer}>
+            <View style={styles.roundContainer}>
+              <User />
+            </View>
+
+            {/* Reciepient Details */}
+            <Text style={styles.reciepientTxt}> {Constants.DETAILS} </Text>
           </View>
 
-          {/* Reciepient Details */}
-          <Text style={styles.reciepientTxt}> {Constants.DETAILS} </Text>
-        </View>
+          {/* Name & Acc Number */}
+          <View style={styles.detailsBox}>
+            <View style={styles.rowContainer}>
+              <DataBox
+                style={styles.dataBoxStyle}
+                title={Constants.TRANSACTION_NUMBER}
+                showData={transactionData?.recipientDetails[0]?.name}
+              />
 
-        {/* Name & Acc Number */}
-        <View style={styles.detailsBox}>
-          <View style={styles.rowContainer}>
-            <DataBox
-              style={styles.dataBoxStyle}
-              title={Constants.TRANSACTION_NUMBER}
-              showData={transactionData?.recipientDetails[0]?.name}
-            />
+              <DataBox
+                style={styles.dataBoxStyle}
+                title={Constants.ACC_NUMBER}
+                showData={transactionData?.recipientDetails[0]?.accNumber}
+              />
+            </View>
 
-            <DataBox
-              style={styles.dataBoxStyle}
-              title={Constants.ACC_NUMBER}
-              showData={transactionData?.recipientDetails[0]?.accNumber}
-            />
+            {/* Country */}
+
+            <View style={styles.rowContainer}>
+              <DataBox
+                style={styles.countryContainer}
+                title={Constants.COUNTRY}
+                showData={transactionData?.recipientDetails[0]?.country}
+              />
+            </View>
           </View>
-
-          {/* Country */}
-
-          <View style={styles.rowContainer}>
-            <DataBox
-              style={styles.countryContainer}
-              title={Constants.COUNTRY}
-              showData={transactionData?.recipientDetails[0]?.country}
-            />
-          </View>
-        </View>
-
         </ScrollView>
       </View>
     </KeyboardAvoidingView>

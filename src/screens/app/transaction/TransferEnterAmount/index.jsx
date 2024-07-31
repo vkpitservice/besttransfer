@@ -27,7 +27,7 @@ const TransferEnterAmount = ({ navigation }) => {
     >
       {/* Status Bar */}
       <StatusBar
-        barStyle="light-content"
+        barStyle='light-content'
         backgroundColor={ColorSheet.PrimaryButton}
         translucent={false}
       />
