@@ -33,7 +33,9 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: -1,
     resizeMode: 'cover',
+    // width: wp(100),
     width: '100%',
+    // alignSelf: 'center',
     height: Platform.OS == 'android' ? '88%' : '84%',
   },
   boxContainer: {
