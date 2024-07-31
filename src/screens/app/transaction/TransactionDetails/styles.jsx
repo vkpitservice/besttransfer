@@ -19,30 +19,30 @@ export const styles = StyleSheet.create({
     width: wp(100),
     height: hp(100),
   },
+  mainScreenContainer: {
+    flex: 1,
+    marginTop: hp(8),
+    // backgroundColor: 'red',
+  },
+  scroll_container: {
+    width: wp(100),
+    paddingBottom: hp(5),
+    alignItems: 'center',
+  },
   roundIconContainer: {
-    marginTop: Platform.OS == 'android' ? hp(6) : hp(6),
-    width: wp(10),
-    height: wp(10),
-    borderRadius: wp(5),
+    width: wp(12),
+    height: wp(12),
+    borderRadius: wp(6),
     backgroundColor: ColorSheet.PrimaryButton,
     justifyContent: 'center',
     alignItems: 'center',
   },
   imageMain: {
-    marginTop: Platform.OS == 'android' ? hp(13) : hp(16),
     position: 'absolute',
     zIndex: -1,
-    resizeMode: 'cover',
-    // width: wp(100),
-    width: '100%',
-    // alignSelf: 'center',
-    height: Platform.OS == 'android' ? '88%' : '84%',
-  },
-  boxContainer: {
-    marginTop: Platform.OS == 'android' ? hp(2) : hp(1),
-    alignItems: 'center',
   },
   titleStyle: {
+    paddingTop: hp(1),
     fontSize: Platform.OS == 'android' ? RFValue(16) : RFValue(14),
     fontWeight: 'bold',
     color: ColorSheet.Text0,
@@ -66,27 +66,29 @@ export const styles = StyleSheet.create({
     color: ColorSheet.Text0,
   },
   detailsBox: {
-    width: wp(80),
-    marginTop: hp(1),
+    width: wp(85),
+    marginTop: hp(2),
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    // backgroundColor:'green'
   },
   rowContainer: {
-    width: wp(80),
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'center',
     justifyContent: 'space-between',
     // backgroundColor: 'red'
   },
   dataBoxStyle: {
     width: '48%',
     height: hp(9),
-    marginBottom: hp(1.5),
+    marginBottom: hp(2),
   },
   reciepientIconContainer: {
-    width: wp(80),
-    marginBottom: hp(1),
+    width: wp(85),
+    // marginBottom: hp(1),
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -107,6 +109,6 @@ export const styles = StyleSheet.create({
   countryContainer: {
     width: '100%',
     height: hp(8.5),
-    marginBottom: hp(2),
   },
+
 });
