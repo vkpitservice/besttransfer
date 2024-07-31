@@ -16,6 +16,8 @@ import { Constants } from './constants';
 import { styles } from './styles';
 import { FontAwesome } from '@expo/vector-icons';
 import TransferSavingRecieving from '@/components/transaction/transferSavingReceiving';
+import DashedBorder from '@/assets/svg/transaction/dashedBorder.svg';
+import SecondaryButton from '@/components/buttons/secondaryButton';
 
 const TransferWelcomeDashboard = ({ navigation }) => {
   return (
@@ -68,6 +70,9 @@ const TransferWelcomeDashboard = ({ navigation }) => {
           recieveImageSource={require('@/assets/images/Transaction/countryIndia.png')}
         />
 
+        {/* Dashed Border */}
+        <DashedBorder style={styles.dashedBorder} />
+
         <View style={styles.feesTotalPaymentContainer}>
           {/* Fees */}
           <View style={styles.rowContainer}>
@@ -82,25 +87,22 @@ const TransferWelcomeDashboard = ({ navigation }) => {
           </View>
         </View>
 
+        {/* Dashed Border */}
+        <DashedBorder style={styles.dashedBorder} />
+
         {/* Button */}
-        <TouchableOpacity
+        <SecondaryButton
           style={styles.btnContainer}
-          activeOpacity={0.7}
+          title={Constants.SEND}
           onPress={() => {
             navigation.navigate('TransactionListScreen');
           }}
-        >
-          {/* Icon */}
-          <FontAwesome name='send' size={20} color={ColorSheet.PrimaryButtonTxt} />
-
-          {/* Button Text */}
-          <Text style={styles.buttonText}> {Constants.SEND} </Text>
-        </TouchableOpacity>
+        />
 
         {/* Image Footer */}
         <Image
-          style = {styles.imageStyle}
-          source = {require('@/assets/images/Transaction/HomeImage.png')}
+          style={styles.imageStyle}
+          source={require('@/assets/images/Transaction/HomeImage.png')}
         />
       </View>
     </KeyboardAvoidingView>

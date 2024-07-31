@@ -14,9 +14,10 @@ import { ColorSheet } from '@/utils/ColorSheet';
 import { Constants } from './constants';
 import { FontAwesome } from '@expo/vector-icons';
 import TransferSavingRecieving from '@/components/transaction/transferSavingReceiving';
-import BackTitleAddComponent from '@/components/BackTitleAdd';
 import BackTitleHomeComponent from '@/components/BackTitleHome';
 import { styles } from './styles';
+import DashedBorder from '@/assets/svg/transaction/dashedBorder.svg';
+import SecondaryButton from '@/components/buttons/secondaryButton';
 
 const TransferEnterAmount = ({ navigation }) => {
   return (
@@ -46,57 +47,55 @@ const TransferEnterAmount = ({ navigation }) => {
         onPressHome={() => {
           console.log('home');
         }}
-
       />
 
       {/* mainContainer */}
       <View style={styles.mainContainer}>
         {/* Tranfer Detalis */}
-          <TransferSavingRecieving
-            saveTitle={Constants.SAVING_ACC}
-            saveAmount={'1000'}
-            saveCountry={'GBP'}
-            saveImageSource={require('@/assets/images/Transaction/CountryUk.png')}
-            recieveTitle={Constants.RECIEVING_AMOUNT}
-            recieveAmount={'1714'}
-            recieveCountry={'INR'}
-            recieveImageSource={require('@/assets/images/Transaction/countryIndia.png')}
-          />
+        <TransferSavingRecieving
+          saveTitle={Constants.SAVING_ACC}
+          saveAmount={'1000'}
+          saveCountry={'GBP'}
+          saveImageSource={require('@/assets/images/Transaction/CountryUk.png')}
+          recieveTitle={Constants.RECIEVING_AMOUNT}
+          recieveAmount={'1714'}
+          recieveCountry={'INR'}
+          recieveImageSource={require('@/assets/images/Transaction/countryIndia.png')}
+        />
 
-        <View style={styles.feesTotalPaymentContainer}>
-          {/* Exchange rate */}
-            <View style={styles.row_exchange_fee_Container}>
-              <Text style={styles.text01}> {Constants.EXCHANGE_RATE} </Text>
-              <Text style={styles.textAmount}> £{'1=107.34 INR'} </Text>
-            </View>
+        {/* Dashed Border */}
+        <DashedBorder style={styles.dashedBorder} />
 
-            {/* Fees */}
-            <View style={styles.row_exchange_fee_Container}>
-              <Text style={styles.text01}> {Constants.FEE} </Text>
-              <Text style={styles.textAmount}> £{'0.00'} </Text>
-            </View>
-
-          {/* TotalPayment */}
-          <View style={styles.rowContainer}>
-            <Text style={styles.text01}> {Constants.TOTAL_PAYMENT} </Text>
-            <Text style={styles.textAmount}> £{'1000'} </Text>
-          </View>
+        {/* Exchange rate */}
+        <View style={styles.row_exchange_fee_Container}>
+          <Text style={styles.text01}> {Constants.EXCHANGE_RATE} </Text>
+          <Text style={styles.textAmount}> £{'1=107.34 INR'} </Text>
         </View>
 
-        {/* Button */}
-        <TouchableOpacity
-          style={styles.btnContainer}
-          activeOpacity={0.7}
-          onPress={() => {
-            navigation.navigate('TransactionListScreen');
-          }}
-        >
-          {/* Icon */}
-          <FontAwesome name='send' size={20} color={ColorSheet.PrimaryButtonTxt} />
+        {/* Fees */}
+        <View style={styles.row_exchange_fee_Container}>
+          <Text style={styles.text01}> {Constants.FEE} </Text>
+          <Text style={styles.textAmount}> £{'0.00'} </Text>
+        </View>
 
-          {/* Button Text */}
-          <Text style={styles.buttonText}> {Constants.SEND} </Text>
-        </TouchableOpacity>
+        <DashedBorder style={styles.dashedBorder} />
+
+        {/* TotalPayment */}
+        <View style={styles.rowContainer}>
+          <Text style={styles.text01}> {Constants.TOTAL_PAYMENT} </Text>
+          <Text style={styles.textAmount}> £{'1000'} </Text>
+        </View>
+
+        <DashedBorder style={styles.dashedBorder} />
+
+        {/* Button */}
+        <SecondaryButton
+          style={styles.btnContainer}
+          title={Constants.SEND}
+          onPress={() => {
+            navigation.navigate('BeneficiaryScreen');
+          }}
+        />
       </View>
     </KeyboardAvoidingView>
   );

@@ -33,7 +33,7 @@ const BeneficiarySearchListData = (props) => {
   );
 };
 
-// 
+//
 BeneficiarySearchListData.propTypes = {
   imageSource: PropTypes.object,
   name: PropTypes.string,

@@ -66,10 +66,7 @@ const TransferSavingRecieving = (props) => {
         {/* Horizontal And SVG Rotate */}
         <View style={styles.horizontalContainer}>
           <View style={styles.horizontalLine} />
-          <TouchableOpacity 
-            style={styles.rotateContainer} 
-            onPress={handleRotate}
-          >
+          <TouchableOpacity style={styles.rotateContainer} onPress={handleRotate}>
             <Rotate width={20} height={18} />
           </TouchableOpacity>
         </View>
@@ -92,9 +89,7 @@ const TransferSavingRecieving = (props) => {
               source={isSwitched ? saveImageSource : recieveImageSource}
             />
           </View>
-
         </View>
-        
       </Animated.View>
     </View>
   );

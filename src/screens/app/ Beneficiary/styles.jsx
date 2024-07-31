@@ -35,6 +35,5 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     marginLeft: hp(1),
     marginBottom: hp(1),
-  }
-  
+  },
 });

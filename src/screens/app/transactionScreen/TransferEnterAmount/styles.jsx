@@ -43,26 +43,19 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     color: ColorSheet.Secondary,
   },
-  feesTotalPaymentContainer: {
-    marginTop: hp(4),
-    borderTopWidth: 1,
-    borderStyle: 'dashed',
-    borderBottomColor: ColorSheet.Primary,
-    // backgroundColor: 'red'
-  },
-  exchangeFeeContainer: {
-    height: hp(8),
+  dashedBorder: {
+    marginTop: hp(3),
+    alignSelf: 'center',
+    // marginBottom: hp(2),
   },
   row_exchange_fee_Container: {
-    marginTop: hp(1),
-    marginBottom: hp(1),
+    marginTop: hp(2),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   rowContainer: {
-    height: hp(8),
-    marginTop: hp(1),
+    marginTop: hp(2),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -84,18 +77,7 @@ export const styles = StyleSheet.create({
   },
   btnContainer: {
     width: '100%',
-    padding: hp(2),
-    marginTop: hp(5),
-    borderRadius: hp(1),
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: ColorSheet.PrimaryButton,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    paddingLeft: hp(1),
-    fontSize: RFValue(15),
-    fontWeight: '700',
-    color: ColorSheet.PrimaryButtonTxt,
+    height: hp(6),
+    marginTop: hp(4),
   },
 });

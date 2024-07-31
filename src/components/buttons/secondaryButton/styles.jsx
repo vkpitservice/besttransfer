@@ -9,30 +9,18 @@ import { ColorSheet } from '../../../utils/ColorSheet';
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-  container: {
-    width: '93%',
-    height: hp(5),
-    marginTop: hp(3),
+  button_root: {
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'center',
-    backgroundColor: ColorSheet.PrimaryButtonTxt,
+    justifyContent: 'center',
     borderRadius: 50,
+    backgroundColor: ColorSheet.PrimaryButton,
     paddingHorizontal: wp(2),
+    paddingVertical: hp(1),
   },
-  icon: {
-    marginLeft: hp(1),
-    marginRight: hp(1),
-  },
-  input: {
-    flex: 1,
-    height: hp(3),
-    fontSize: RFValue(12),
-    fontWeight: '800',
-    color: ColorSheet.PrimaryButton,
-    // backgroundColor: 'red'
-  },
-  clearButton: {
-    marginLeft: hp(3),
+  title_txt: {
+    fontSize: RFValue(16),
+    color: ColorSheet.PrimaryButtonTxt,
+    fontWeight: '500',
   },
 });

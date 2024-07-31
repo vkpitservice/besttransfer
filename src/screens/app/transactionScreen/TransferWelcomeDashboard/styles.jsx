@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     paddingBottom: hp(2),
     marginTop: Platform.OS == 'android' ? hp(8) : hp(6),
     alignSelf: 'center',
-    backgroundColor: 'pink',
+    // backgroundColor: 'pink',
   },
   exchangeContainer: {
     width: '100%',
@@ -43,15 +43,16 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     color: ColorSheet.Secondary,
   },
+  dashedBorder: {
+    marginTop: hp(2),
+    alignSelf: 'center',
+  },
   feesTotalPaymentContainer: {
-    height: hp(8),
     marginTop: hp(2),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderWidth: 1,
-    // borderStyle: 'dashed',
     borderColor: ColorSheet.Primary,
-    backgroundColor: 'red'
+    // backgroundColor: 'red'
   },
   rowContainer: {
     flexDirection: 'row',
@@ -73,25 +74,14 @@ export const styles = StyleSheet.create({
   },
   btnContainer: {
     width: '100%',
-    padding: hp(2),
+    height: hp(6),
     marginTop: hp(2),
-    borderRadius: hp(1),
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: ColorSheet.PrimaryButton,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    paddingLeft: hp(1),
-    fontSize: RFValue(15),
-    fontWeight: '700',
-    color: ColorSheet.PrimaryButtonTxt,
   },
   imageStyle: {
     width: wp(90),
     height: hp(25),
     marginTop: hp(2),
     resizeMode: 'contain',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 });

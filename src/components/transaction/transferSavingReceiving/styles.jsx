@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
   },
   horizontalContainer: {
     marginTop: hp(2),
-    position: 'relative'
+    position: 'relative',
   },
   horizontalLine: {
     width: '100%',

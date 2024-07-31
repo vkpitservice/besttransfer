@@ -21,15 +21,17 @@ const Beneficiary = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Map listData to beneficiaryList with appropriate structure
-  const beneficiaryList = useMemo(() => 
-    listData.map((item, index) => ({
-        id: index,  // Ensure 'id' is unique or use a unique identifier from data
+  const beneficiaryList = useMemo(
+    () =>
+      listData.map((item, index) => ({
+        id: index, // Ensure 'id' is unique or use a unique identifier from data
         img: item.image,
         name: item.name,
         idNumber: item.idNumber,
         sBinNumber: item.sBinNumber,
-    })
-  ), []);
+      })),
+    [],
+  );
 
   // Filter beneficiary based on search query
   const filteredBeneficiaryList = useMemo(() => {
@@ -44,7 +46,7 @@ const Beneficiary = ({ navigation }) => {
   // Organize beneficiaries by the first letter of their last name
   const sections = useMemo(() => {
     const sectionsMap = filteredBeneficiaryList.reduce((acc, item) => {
-    //   const [lastName] = item.name.split(' ').reverse();
+      //   const [lastName] = item.name.split(' ').reverse();
       const firstLetter = item.name[0].toUpperCase();
 
       return {
@@ -62,9 +64,9 @@ const Beneficiary = ({ navigation }) => {
   }, [filteredBeneficiaryList]);
 
   return (
-    <KeyboardAvoidingView 
+    <KeyboardAvoidingView
       style={styles.container}
-      behavior = {Platform.OS == 'ios' ? 'padding' : 'height'}
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
     >
       {/* StatusBar */}
       <StatusBar
@@ -91,12 +93,12 @@ const Beneficiary = ({ navigation }) => {
       />
 
       {/* Search */}
-      <Search 
-        placeholder = {Constants.SEARCH} 
-        value = {searchQuery} 
-        onChangeText={setSearchQuery} 
+      <Search
+        placeholder={Constants.SEARCH}
+        value={searchQuery}
+        onChangeText={setSearchQuery}
         onPressClose={() => {
-            setSearchQuery('')
+          setSearchQuery('');
         }}
       />
 
@@ -104,7 +106,7 @@ const Beneficiary = ({ navigation }) => {
       <View style={styles.mainContainer}>
         <FlatList
           contentContainerStyle={styles.scroll_container}
-          showsVerticalScrollIndicator = {false}
+          showsVerticalScrollIndicator={false}
           data={sections}
           keyExtractor={(item) => item.letter}
           renderItem={({ item }) => (
@@ -123,7 +125,6 @@ const Beneficiary = ({ navigation }) => {
           )}
         />
       </View>
-
     </KeyboardAvoidingView>
   );
 };
