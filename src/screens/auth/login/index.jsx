@@ -36,7 +36,7 @@ const Login = ({ navigation }) => {
     } else if (formData.digitCode == '') {
       ErrorFlash(Constants.Pin_Required);
     } else {
-      navigation.navigate('CreateAccountScreen');
+      navigation.navigate('AppBottomTab');
     }
   };
 

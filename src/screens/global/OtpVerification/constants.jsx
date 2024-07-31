@@ -8,4 +8,5 @@ export const Constants = {
   RESEND_OTP_TEXT: 'Resend OTP',
   SUBMIT_BUTTON_TEXT: 'Submit',
   OTP_SUCCESS_TEXT: 'Successfully Sent',
+  ENTER_VALID_OTP: 'Enter valid OTP',
 };

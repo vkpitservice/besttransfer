@@ -6,7 +6,7 @@ import PrimaryButton from '@/components/buttons/primaryButton';
 import { ColorSheet } from '@/utils/ColorSheet';
 import { Constants } from './constants';
 
-const Success = () => {
+const Success = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.root}>
       <StatusBar
@@ -29,7 +29,11 @@ const Success = () => {
 
       {/* Continue DashBoard Button */}
 
-      <PrimaryButton style={styles.buttonStyle} title={Constants.CONTINUE_TXT} />
+      <PrimaryButton
+        onPress={() => navigation.popToTop()}
+        style={styles.buttonStyle}
+        title={Constants.CONTINUE_TXT}
+      />
     </SafeAreaView>
   );
 };

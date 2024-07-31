@@ -17,9 +17,11 @@ import OTPInput from '@/components/input/OTPInput';
 import { Constants } from './constants';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { useUpdateEffect } from '@/utils/useUpdateEffect';
+import { ErrorFlash } from '@/utils/flashMessage';
 
-const OtpVerification = () => {
+const OtpVerification = ({ navigation }) => {
   const [isResendSuccessVisible, setResendSuccessVisible] = useState(false);
+  const [otp, setOtp] = useState();
 
   useUpdateEffect(() => {
     if (isResendSuccessVisible) {
@@ -28,6 +30,14 @@ const OtpVerification = () => {
       }, 3000);
     }
   }, [isResendSuccessVisible]);
+
+  const onPressSubmit = () => {
+    if (otp?.length !== 6) {
+      ErrorFlash(Constants.ENTER_VALID_OTP);
+    } else {
+      navigation.navigate('RegisterSuccessFullScreen');
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -58,7 +68,14 @@ const OtpVerification = () => {
           </TouchableOpacity>
         </View>
 
-        <OTPInput mask={true} cellCount={6} style={styles.otpInput} />
+        <OTPInput
+          mask={true}
+          cellCount={6}
+          style={styles.otpInput}
+          onChangeValue={(otp) => {
+            setOtp(otp);
+          }}
+        />
 
         <View style={styles.resendView}>
           <Text style={styles.resendText}>{Constants.DIDNT_RECEIVE_OTP_TEXT}</Text>
@@ -80,7 +97,7 @@ const OtpVerification = () => {
           )}
         </View>
 
-        <PrimaryButton title='Submit' style={styles.button} />
+        <PrimaryButton title='Submit' onPress={onPressSubmit} style={styles.button} />
       </ScrollView>
     </KeyboardAvoidingView>
   );

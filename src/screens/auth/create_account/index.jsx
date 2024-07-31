@@ -64,7 +64,7 @@ const CreateAccount = ({ navigation }) => {
     } else if (formData.digitCode != formData.confirmDigitCode) {
       ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH);
     } else {
-      Alert.alert('Success');
+      navigation.navigate('OtpVerificationScreen');
     }
   };
 
@@ -201,7 +201,7 @@ const CreateAccount = ({ navigation }) => {
             secureTextEntry
             keyboardType={'numeric'}
             value={formData.confirmDigitCode}
-            onChangeText={(text) => setConfirmDigitCode({ ...formData, confirmDigitCode: text })}
+            onChangeText={(text) => setFormData({ ...formData, confirmDigitCode: text })}
             disableEyeIcon
             textError={formData.confirmDigitCodeError}
             onBlur={() => {

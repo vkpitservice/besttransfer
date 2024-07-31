@@ -7,7 +7,7 @@ import AppBottomTab from './tabs/bottom_tab';
 const Routes = () => {
   return (
     <NavigationContainer>
-      <AppBottomTab />
+      <AuthStack />
     </NavigationContainer>
   );
 };
