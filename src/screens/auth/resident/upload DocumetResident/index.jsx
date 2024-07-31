@@ -83,7 +83,7 @@ const UploadDocumentResident = ({ navigation }) => {
       ErrorFlash(Constants.IMAGE_REQUIRE);
     } else {
       // navigation.navigate('ResidentIdentityDocument');
-      Alert.alert('Success');
+      navigation.navigate('OtpVerificationScreen');
     }
   };
 

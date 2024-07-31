@@ -64,7 +64,7 @@ const CreateAccount = ({ navigation }) => {
     } else if (formData.digitCode != formData.confirmDigitCode) {
       ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH);
     } else {
-      navigation.navigate('OtpVerificationScreen');
+      navigation.navigate('ResidentCountryScreen');
     }
   };
 
