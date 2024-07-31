@@ -61,8 +61,8 @@ const TransactionDetails = ({ navigation }) => {
 
           {/* Main Curve  */}
           <MainCurveBox 
-            width = {450}
-            // height = {750}
+            width = {Platform.OS == 'android' ? 430 : 450}
+            height = {Platform.OS == 'android' ? 720 : 750}
             style={styles.imageMain} />
 
           {/* Title */}

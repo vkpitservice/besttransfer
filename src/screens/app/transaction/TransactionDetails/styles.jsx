@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
   },
   scroll_container: {
     width: wp(100),
-    paddingBottom: hp(5),
+    paddingBottom: Platform.OS == 'android' ? hp(10) : hp(5),
     alignItems: 'center',
   },
   roundIconContainer: {

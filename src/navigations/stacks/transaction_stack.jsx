@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 const TransactionStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName='TransactionDetailsScreen'
+      initialRouteName='TransactionListScreen'
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name='TransferWelcomeDashboardScreen' component={TransferWelcomeDashboard} />
