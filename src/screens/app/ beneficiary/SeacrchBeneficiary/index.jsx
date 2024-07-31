@@ -4,6 +4,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  SectionList,
   StatusBar,
   StyleSheet,
   Text,
@@ -11,44 +12,46 @@ import {
 } from 'react-native';
 import React, { useMemo, useState } from 'react';
 import { ColorSheet } from '@/utils/ColorSheet';
-import { styles } from './styles';
 import BackTitleAddComponent from '@/components/BackTitleAdd';
-import { Constants } from './constants';
 import Search from '@/components/input/Search';
 import BeneficiarySearchListData from '@/components/transaction/beneficiarySearchListData';
+import { styles } from './styles';
+import { Constants } from './constants';
 
 const Beneficiary = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Map listData to beneficiaryList with appropriate structure
-  const beneficiaryList = useMemo(
-    () =>
-      listData.map((item, index) => ({
-        id: index, // Ensure 'id' is unique or use a unique identifier from data
+  const beneficiaryList = useMemo(() => {
+    const result = listData.flatMap(section =>
+      section.data.map(item => ({
+        id: item.id, // Use unique ID
         img: item.image,
         name: item.name,
         idNumber: item.idNumber,
         sBinNumber: item.sBinNumber,
-      })),
-    [],
-  );
-
+      }))
+    );
+    // Log the entire beneficiaryList for debugging
+    console.log('Beneficiary List:', result);
+    return result;
+  }, [listData]);
+  
   // Filter beneficiary based on search query
   const filteredBeneficiaryList = useMemo(() => {
     if (searchQuery === '') {
       return beneficiaryList;
     }
-    return beneficiaryList.filter((item) =>
+    return beneficiaryList?.filter((item) =>
       item.name.toLowerCase().includes(searchQuery.toLowerCase()),
     );
   }, [searchQuery, beneficiaryList]);
 
   // Organize beneficiaries by the first letter of their last name
+  // Organize beneficiaries by the first letter of their name
   const sections = useMemo(() => {
     const sectionsMap = filteredBeneficiaryList.reduce((acc, item) => {
-      //   const [lastName] = item.name.split(' ').reverse();
       const firstLetter = item.name[0].toUpperCase();
-
       return {
         ...acc,
         [firstLetter]: [...(acc[firstLetter] || []), item],
@@ -58,7 +61,7 @@ const Beneficiary = ({ navigation }) => {
     return Object.entries(sectionsMap)
       .map(([letter, items]) => ({
         letter,
-        items,
+        data: items,
       }))
       .sort((a, b) => a.letter.localeCompare(b.letter));
   }, [filteredBeneficiaryList]);
@@ -104,7 +107,28 @@ const Beneficiary = ({ navigation }) => {
 
       {/* Main View Container */}
       <View style={styles.mainContainer}>
-        <FlatList
+        <SectionList
+          contentContainerStyle={styles.scroll_container}
+          showsVerticalScrollIndicator={false}
+          sections={sections}
+          keyExtractor={(item) => item.id.toString()}
+          renderSectionHeader={({ section: { letter } }) => (
+            <Text style={styles.sectionHeader}> {letter} </Text>
+          )}
+          renderItem={({ item }) => {
+            console.log('Beneficiary:', item.img);
+            return (
+              <BeneficiarySearchListData
+                key={item.id}
+                imgSource={item.img}
+                name={item.name}
+                idNumber={item.idNumber}
+                sBinNumber={item.sBinNumber}
+              />
+            )
+          }}
+        />
+        {/* <FlatList
           contentContainerStyle={styles.scroll_container}
           showsVerticalScrollIndicator={false}
           data={sections}
@@ -123,7 +147,7 @@ const Beneficiary = ({ navigation }) => {
               ))}
             </>
           )}
-        />
+        /> */}
       </View>
     </KeyboardAvoidingView>
   );
@@ -133,66 +157,104 @@ export default Beneficiary;
 
 const listData = [
   {
-    id: 1,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Amit Kumar',
-    idNumber: '3025463201',
-    sBinNumber: 'SBIN2001',
+    title: "Amit Kumar",
+    data: [
+      {
+        id: 1,
+        image: require('@/assets/images/Transaction/TransactionProfile.png'),
+        name: "Amit Kumar",
+        idNumber: "3025463201",
+        sBinNumber: "SBIN2001"
+      }
+    ]
   },
   {
-    id: 2,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Alexander',
-    idNumber: '3025463201',
-    sBinNumber: 'SBIN2001',
+    title: "Alexander",
+    data: [
+      {
+        id: 2,
+        image: require('@/assets/images/Transaction/TransactionProfile.png'),
+        name: "Alexander",
+        idNumber: "3025463201",
+        sBinNumber: "SBIN2001"
+      }
+    ]
   },
   {
-    id: 3,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Benjamin',
-    idNumber: '3025463201',
-    sBinNumber: 'SBIN2001',
+    title: "Benjamin",
+    data: [
+      {
+        id: 3,
+        image: require('@/assets/images/Transaction/TransactionProfile.png'),
+        name: "Benjamin",
+        idNumber: "3025463201",
+        sBinNumber: "SBIN2001"
+      }
+    ]
   },
   {
-    id: 4,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Balaji',
-    idNumber: '3025463201',
-    sBinNumber: 'SBIN2001',
+    title: "Balaji",
+    data: [
+      {
+        id: 4,
+        image: '',
+        name: "Balaji",
+        idNumber: "3025463201",
+        sBinNumber: "SBIN2001"
+      }
+    ]
   },
   {
-    id: 5,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Chetan',
-    idNumber: '3025463201',
-    sBinNumber: 'SBIN2001',
+    title: "Chetan",
+    data: [
+      {
+        id: 5,
+        image: require('@/assets/images/Transaction/TransactionProfile.png'),
+        name: "Chetan",
+        idNumber: "3025463201",
+        sBinNumber: "SBIN2001"
+      }
+    ]
   },
   {
-    id: 6,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Dhetan',
-    idNumber: '3025463201',
-    sBinNumber: 'SBIN2001',
+    title: "Dhetan",
+    data: [
+      {
+        id: 6,
+        image: require('@/assets/images/Transaction/TransactionProfile.png'),
+        name: "Dhetan",
+        idNumber: "3025463201",
+        sBinNumber: "SBIN2001"
+      }
+    ]
   },
   {
-    id: 7,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Alex sk',
-    idNumber: '3025463201',
-    sBinNumber: 'SBIN2001',
+    title: "sk",
+    data: [
+      {
+        id: 7,
+        image: require('@/assets/images/Transaction/TransactionProfile.png'),
+        name: "sk",
+        idNumber: "3025463201",
+        sBinNumber: "SBIN2001"
+      }
+    ]
   },
   {
-    id: 8,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Sarujan Amal',
-    idNumber: '3025463201',
-    sBinNumber: 'SBIN2001',
+    title: "Sarujan Amal",
+    data: [
+      {
+        id: 8,
+        image: require('@/assets/images/Transaction/TransactionProfile.png'),
+        name: "Sarujan Amal",
+        idNumber: "3025463201",
+        sBinNumber: "SBIN2001"
+      }
+    ]
   },
-  {
-    id: 9,
-    image: '',
-    name: 'Amal sk',
-    idNumber: '3025463201',
-    sBinNumber: 'SBIN2001',
-  },
-];
+]
+
+
+
+
+      
