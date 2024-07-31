@@ -17,27 +17,23 @@ export const styles = StyleSheet.create({
     // backgroundColor: 'red',
     marginVertical: hp(2),
   },
-  imgContainer: {
-    width: wp(18),
-    // backgroundColor: 'red'
-  },
   imageTextContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   imageStyle: {
-    width: hp(8),
-    height: hp(8),
+    width: wp(12),
+    height: wp(12),
     resizeMode: 'cover',
-    borderRadius: hp(4),
+    borderRadius: hp(6),
   },
   svgContainer: {
-    width: wp(7),
-    height: wp(7),
-    borderRadius: wp(3.5),
+    width: wp(6),
+    height: wp(6),
+    borderRadius: wp(3),
     position: 'absolute',
-    right: 0,
-    bottom: 0,
+    right: -6,
+    bottom: -6,
     backgroundColor: ColorSheet.Secondary,
     justifyContent: 'center',
     alignItems: 'center',
@@ -48,19 +44,19 @@ export const styles = StyleSheet.create({
     // backgroundColor: 'red'
   },
   nameTxt: {
-    fontSize: RFValue(15),
-    fontWeight: '500',
-    color: ColorSheet.Primary,
+    fontSize: RFValue(13),
+    fontWeight: '600',
+    color: ColorSheet.Text7,
   },
   dateTxt: {
     paddingTop: hp(0.5),
-    fontSize: RFValue(13),
+    fontSize: RFValue(12),
     fontWeight: '500',
     color: ColorSheet.Text3,
   },
   amountTxt: {
-    fontSize: RFValue(15),
-    fontWeight: '500',
-    color: ColorSheet.Primary,
+    fontSize: RFValue(13),
+    fontWeight: '600',
+    color: ColorSheet.Text7,
   },
 });

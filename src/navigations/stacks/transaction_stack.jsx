@@ -1,18 +1,18 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import TransactionList from '@/screens/app/transactionScreen/TransactionList';
-import TransactionDetails from '@/screens/app/transactionScreen/TransactionDetails';
-import TransferWelcomeDashboard from '@/screens/app/transactionScreen/TransferWelcomeDashboard';
-import TransferEnterAmount from '@/screens/app/transactionScreen/TransferEnterAmount';
-import Beneficiary from '@/screens/app/ Beneficiary';
+import TransactionList from '@/screens/app/transaction/TransactionList';
+import TransactionDetails from '@/screens/app/transaction/TransactionDetails';
+import TransferWelcomeDashboard from '@/screens/app/transaction/TransferWelcomeDashboard';
+import TransferEnterAmount from '@/screens/app/transaction/TransferEnterAmount';
+import Beneficiary from '@/screens/app/ beneficiary/SeacrchBeneficiary';
 
 const Stack = createStackNavigator();
 
 const TransactionStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName='TransferWelcomeDashboardScreen'
+      initialRouteName='TransactionDetailsScreen'
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name='TransferWelcomeDashboardScreen' component={TransferWelcomeDashboard} />
