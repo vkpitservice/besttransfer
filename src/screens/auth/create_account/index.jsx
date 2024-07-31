@@ -32,15 +32,15 @@ const CreateAccount = ({ navigation }) => {
     digitCodeError: '',
     confirmDigitCode: '',
     confirmDigitCodeError: '',
-  })
+  });
 
   const defaultValue = {
     label: 'India',
     image: 'https://cdn.countryflags.com/thumbs/india/flag-square-250.png',
     value: '+988',
-  }
+  };
 
-  const [code, setCode] = useState(defaultValue)
+  const [code, setCode] = useState(defaultValue);
 
   const onPressPersonal = () => {
     setDisplayVisibleWindow('personal');
@@ -144,13 +144,13 @@ const CreateAccount = ({ navigation }) => {
 
           {/* DropDown */}
           <NumberInput
-            style = {styles.dropDown_rootContainer}
-            data = {numberData}
-            value = {code}
-            onChange = {(value) => setCode(value)}
-            valueNumber = {formData.phoneNumber}
-            onChangeNumber = {(number) => setFormData({...formData, phoneNumber: number})}
-            placeholder = {Constants.PHONE_NUM}
+            style={styles.dropDown_rootContainer}
+            data={numberData}
+            value={code}
+            onChange={(value) => setCode(value)}
+            valueNumber={formData.phoneNumber}
+            onChangeNumber={(number) => setFormData({ ...formData, phoneNumber: number })}
+            placeholder={Constants.PHONE_NUM}
           />
 
           {/* TextInput Filed */}
@@ -160,7 +160,7 @@ const CreateAccount = ({ navigation }) => {
             placeholder={Constants.Email_Id}
             keyboardTyp={'email-address'}
             value={formData.email}
-            onChangeText={(text) => setFormData({...formData, email: text})}
+            onChangeText={(text) => setFormData({ ...formData, email: text })}
             textError={formData.emailError}
             onBlur={() => {
               if (formData.email === '') {
@@ -180,7 +180,7 @@ const CreateAccount = ({ navigation }) => {
             secureTextEntry
             keyboardType={'numeric'}
             value={formData.digitCode}
-            onChangeText={(text) => setFormData({...formData, digitCode: text})}
+            onChangeText={(text) => setFormData({ ...formData, digitCode: text })}
             textError={formData.digitCodeError}
             disableEyeIcon
             onBlur={() => {
@@ -201,7 +201,7 @@ const CreateAccount = ({ navigation }) => {
             secureTextEntry
             keyboardType={'numeric'}
             value={formData.confirmDigitCode}
-            onChangeText={(text) => setConfirmDigitCode({...formData, confirmDigitCode: text})}
+            onChangeText={(text) => setConfirmDigitCode({ ...formData, confirmDigitCode: text })}
             disableEyeIcon
             textError={formData.confirmDigitCodeError}
             onBlur={() => {
@@ -235,7 +235,8 @@ const numberData = [
   {
     label: 'SriLanka',
     value: '+94',
-    image: 'https://w7.pngwing.com/pngs/214/565/png-transparent-flag-of-sri-lanka-national-flag-nuwaragam-palatha-central-divisional-secretariat-flag-of-the-maldives-flag-miscellaneous-flag-text.png'
+    image:
+      'https://w7.pngwing.com/pngs/214/565/png-transparent-flag-of-sri-lanka-national-flag-nuwaragam-palatha-central-divisional-secretariat-flag-of-the-maldives-flag-miscellaneous-flag-text.png',
   },
   {
     label: 'Uk',

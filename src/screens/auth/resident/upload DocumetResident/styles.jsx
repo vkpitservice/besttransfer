@@ -9,7 +9,7 @@ import {
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-    root_container: {
+  root_container: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: ColorSheet.backGroundColor,
@@ -29,14 +29,14 @@ export const styles = StyleSheet.create({
   logoContainer: {
     paddingTop: hp(2),
     alignItems: 'center',
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 5,
-  },
-  shadowOpacity: 0.22,
-  shadowRadius: 2.22,
-  elevation: 10, // Ensures shadow effect on Android
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 10, // Ensures shadow effect on Android
   },
   backProgress_row: {
     // flexDirection: 'row',
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: ColorSheet.PrimaryButton,
-    borderWidth: 0.5
+    borderWidth: 0.5,
   },
   closeIcon: {
     position: 'absolute',
@@ -125,13 +125,13 @@ export const styles = StyleSheet.create({
     // backgroundColor: 'red',
     // paddingBottom: hp(0.5), // Padding for space at the bottom
     backgroundColor: ColorSheet.Secondary,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
-	    width: 0,
-	    height: 1,
+      width: 0,
+      height: 1,
     },
-    shadowOpacity: 0.30,
-    shadowRadius: 1.40,
+    shadowOpacity: 0.3,
+    shadowRadius: 1.4,
 
     elevation: 2,
   },

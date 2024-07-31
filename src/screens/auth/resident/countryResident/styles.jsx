@@ -27,14 +27,14 @@ export const styles = StyleSheet.create({
   },
   logo_image: {
     alignItems: 'center',
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 5,
-  },
-  shadowOpacity: 0.22,
-  shadowRadius: 2.22,
-  elevation: 10, // Ensures shadow effect on Android
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 10, // Ensures shadow effect on Android
   },
   textContainer: {
     width: wp(80),
@@ -79,13 +79,13 @@ export const styles = StyleSheet.create({
     // backgroundColor: 'red',
     paddingBottom: hp(2), // Padding for space at the bottom
     backgroundColor: ColorSheet.Secondary,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
-	    width: 0,
-	    height: 1,
+      width: 0,
+      height: 1,
     },
-    shadowOpacity: 0.30,
-    shadowRadius: 1.40,
+    shadowOpacity: 0.3,
+    shadowRadius: 1.4,
 
     elevation: 2,
   },
