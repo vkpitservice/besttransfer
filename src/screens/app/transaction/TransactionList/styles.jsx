@@ -26,6 +26,6 @@ export const styles = StyleSheet.create({
     // backgroundColor: 'pink',
   },
   flatListContainer: {
-    paddingBottom: Platform.OS == 'android' ? hp(10) : hp(12),
+    paddingBottom: Platform.OS == 'android' ? hp(26) : hp(26),
   },
 });

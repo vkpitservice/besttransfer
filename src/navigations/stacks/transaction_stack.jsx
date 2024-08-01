@@ -19,7 +19,7 @@ const TransactionStack = () => {
       <Stack.Screen name='TransactionListScreen' component={TransactionList} />
       <Stack.Screen name='TransactionDetailsScreen' component={TransactionDetails} />
       <Stack.Screen name='TransferEnterAmountScreen' component={TransferEnterAmount} />
-      <Stack.Screen name='BeneficiaryScreen' component={Beneficiary} />
+      {/* <Stack.Screen name='BeneficiaryScreen' component={Beneficiary} /> */}
     </Stack.Navigator>
   );
 };

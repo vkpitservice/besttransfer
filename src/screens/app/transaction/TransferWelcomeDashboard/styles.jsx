@@ -20,11 +20,23 @@ export const styles = StyleSheet.create({
     height: hp(100),
   },
   mainContainer: {
-    width: wp(90),
+    width: wp(100),
     paddingBottom: hp(2),
     marginTop: Platform.OS == 'android' ? hp(8) : hp(6),
-    alignSelf: 'center',
+    alignItems: 'center',
     // backgroundColor: 'pink',
+  },
+  scroll_container: {
+    width: '100%',
+    paddingBottom: Platform.OS == 'android' ? hp(10) : hp(30),
+    alignSelf: 'center',
+  },
+  boxViewContainer: {
+    width: wp(90),
+    paddingBottom: hp(2),
+    marginTop: Platform.OS == 'android' ? hp(4) : hp(2),
+    alignItems: 'center',
+    // backgroundColor: 'red',
   },
   exchangeContainer: {
     width: '100%',
@@ -48,6 +60,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   feesTotalPaymentContainer: {
+    width: '100%',
     marginTop: hp(2),
     flexDirection: 'row',
     justifyContent: 'space-between',

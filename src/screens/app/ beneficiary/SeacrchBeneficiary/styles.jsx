@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
   },
   scroll_container: {
     width: wp(100),
-    paddingBottom: hp(5),
+    paddingBottom: Platform.OS == 'ios' ? hp(18) : hp(18),
   },
   imageBackground: {
     position: 'absolute',
