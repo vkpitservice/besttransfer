@@ -59,13 +59,15 @@ export const styles = StyleSheet.create({
     marginBottom: hp(3),
   },
   urlTextContainer: {
-    width: wp(70),
+    width: wp(68),
+    justifyContent: 'center',
     marginVertical: hp(1), // Vertical spacing around URL text
     // backgroundColor: 'red',
   },
   urlText: {
     fontSize: RFValue(12),
     fontWeight: '500',
+    textAlign: 'left',
     color: ColorSheet.UrlTextColor,
     textDecorationLine: 'underline',
   },
