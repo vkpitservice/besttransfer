@@ -26,23 +26,6 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     // backgroundColor: 'pink',
   },
-  exchangeContainer: {
-    width: '100%',
-    padding: hp(1),
-    alignItems: 'center',
-    backgroundColor: ColorSheet.PrimaryButton,
-    borderRadius: hp(1),
-  },
-  exchangeText: {
-    fontSize: RFValue(14),
-    fontWeight: '700',
-    color: ColorSheet.PrimaryButtonTxt,
-  },
-  exchangeAmount: {
-    fontSize: RFValue(14),
-    fontWeight: '700',
-    color: ColorSheet.Secondary,
-  },
   dashedBorder: {
     marginTop: hp(3),
     alignSelf: 'center',
@@ -59,10 +42,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderStyle: 'dashed',
-    borderBottomColor: ColorSheet.Primary,
     // backgroundColor: 'green'
   },
   text01: {

@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   mainContainer: {
     width: wp(90),
-    marginTop: Platform.OS == 'android' ? hp(8) : hp(6),
+    marginTop: Platform.OS == 'android' ? hp(9) : hp(8),
     alignSelf: 'center',
     // backgroundColor: 'pink',
   },

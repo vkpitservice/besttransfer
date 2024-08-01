@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -9,7 +10,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
 import { ColorSheet } from '@/utils/ColorSheet';
 import { Constants } from './constants';
 import { FontAwesome } from '@expo/vector-icons';
@@ -23,7 +23,7 @@ const TransferEnterAmount = ({ navigation }) => {
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       {/* Status Bar */}
       <StatusBar
@@ -41,17 +41,13 @@ const TransferEnterAmount = ({ navigation }) => {
       {/* Welcome, Name And LogOut */}
       <BackTitleHomeComponent
         title={Constants.HEADER_TITLE}
-        onPressBack={() => {
-          navigation.goBack();
-        }}
-        onPressHome={() => {
-          console.log('home');
-        }}
+        onPressBack={() => navigation.goBack()}
+        onPressHome={() => console.log('home')}
       />
 
-      {/* mainContainer */}
+      {/* Main Container */}
       <View style={styles.mainContainer}>
-        {/* Tranfer Detalis */}
+        {/* Transfer Details */}
         <TransferSavingRecieving
           saveTitle={Constants.SAVING_ACC}
           saveAmount={'1000'}
@@ -64,37 +60,35 @@ const TransferEnterAmount = ({ navigation }) => {
         />
 
         {/* Dashed Border */}
-        <DashedBorder style={styles.dashedBorder} />
+        <DashedBorder width={Platform.OS === 'ios' ? 380 : 350} style={styles.dashedBorder} />
 
         {/* Exchange rate */}
         <View style={styles.row_exchange_fee_Container}>
-          <Text style={styles.text01}> {Constants.EXCHANGE_RATE} </Text>
-          <Text style={styles.textAmount}> £{'1=107.34 INR'} </Text>
+          <Text style={styles.text01}>{Constants.EXCHANGE_RATE}</Text>
+          <Text style={styles.textAmount}>£{'1=107.34 INR'}</Text>
         </View>
 
         {/* Fees */}
         <View style={styles.row_exchange_fee_Container}>
-          <Text style={styles.text01}> {Constants.FEE} </Text>
-          <Text style={styles.textAmount}> £{'0.00'} </Text>
+          <Text style={styles.text01}>{Constants.FEE}</Text>
+          <Text style={styles.textAmount}>£{'0.00'}</Text>
         </View>
 
-        <DashedBorder style={styles.dashedBorder} />
+        <DashedBorder width={Platform.OS === 'ios' ? 380 : 350} style={styles.dashedBorder} />
 
-        {/* TotalPayment */}
+        {/* Total Payment */}
         <View style={styles.rowContainer}>
-          <Text style={styles.text01}> {Constants.TOTAL_PAYMENT} </Text>
-          <Text style={styles.textAmount}> £{'1000'} </Text>
+          <Text style={styles.text01}>{Constants.TOTAL_PAYMENT}</Text>
+          <Text style={styles.textAmount}>£{'1000'}</Text>
         </View>
 
-        <DashedBorder style={styles.dashedBorder} />
+        <DashedBorder width={Platform.OS === 'ios' ? 380 : 350} style={styles.dashedBorder} />
 
         {/* Button */}
         <SecondaryButton
           style={styles.btnContainer}
           title={Constants.SEND}
-          onPress={() => {
-            navigation.navigate('BeneficiaryScreen');
-          }}
+          onPress={() => navigation.navigate('BeneficiaryScreen')}
         />
       </View>
     </KeyboardAvoidingView>

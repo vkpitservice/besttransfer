@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    marginTop: hp(6),
+    marginTop: Platform.OS == 'ios' ? hp(6) : hp(8),
     // alignItems: 'center',
     // backgroundColor: 'red',
   },

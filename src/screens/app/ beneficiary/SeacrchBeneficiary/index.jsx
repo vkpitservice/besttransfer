@@ -33,7 +33,7 @@ const Beneficiary = ({ navigation }) => {
       })),
     );
     // Log the entire beneficiaryList for debugging
-    console.log('Beneficiary List:', result);
+    // console.log('Beneficiary List:', result);
     return result;
   }, [listData]);
 
@@ -119,7 +119,7 @@ const Beneficiary = ({ navigation }) => {
               <Text style={styles.sectionHeader}> {letter} </Text>
             )}
             renderItem={({ item }) => {
-              console.log('Beneficiary:', item.img);
+              // console.log('Beneficiary:', item.img);
               return (
                 <BeneficiarySearchListData
                   key={item.id}
