@@ -44,24 +44,18 @@ export const styles = StyleSheet.create({
     color: ColorSheet.Secondary,
   },
   dashedBorder: {
-    marginTop: hp(2),
+    marginTop: hp(0),
     alignSelf: 'center',
   },
   feesTotalPaymentContainer: {
-    marginTop: hp(2),
+    marginVertical: hp(2),
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderColor: ColorSheet.Primary,
+    paddingHorizontal: wp(1),
     // backgroundColor: 'red'
   },
-  rowContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'red',
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    borderBottomColor: ColorSheet.Primary,
-  },
+
   text01: {
     fontSize: RFValue(14),
     fontWeight: '600',
@@ -74,8 +68,9 @@ export const styles = StyleSheet.create({
   },
   btnContainer: {
     width: '100%',
-    height: hp(6),
+    height: hp(5.5),
     marginTop: hp(2),
+    borderRadius: 20,
   },
   imageStyle: {
     width: wp(90),
