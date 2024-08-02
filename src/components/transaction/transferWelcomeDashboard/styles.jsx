@@ -44,8 +44,8 @@ export const styles = StyleSheet.create({
     color: ColorSheet.Secondary,
   },
   iconContainer: {
-    width: wp(12),
-    height: wp(12),
+    width: wp(10),
+    height: wp(10),
     borderRadius: wp(6),
     backgroundColor: ColorSheet.PrimaryButtonTxt,
     alignItems: 'center',

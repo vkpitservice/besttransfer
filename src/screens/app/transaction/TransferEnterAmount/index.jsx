@@ -27,11 +27,7 @@ const TransferEnterAmount = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       {/* Status Bar */}
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor = {'transparent'}
-        translucent = {true}
-      />
+      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
       {/* Image */}
       <Image
@@ -48,19 +44,18 @@ const TransferEnterAmount = ({ navigation }) => {
 
       {/* Main Container */}
       <View style={styles.mainContainer}>
-
         {/* Transfer Details */}
         <CurrencyCoveter
-            containerStyle = {styles.CurrencyCoveterContainer}
-            sendingAmountValue={'1000.00'}
-            onChangeSendingAmount={(text) => console.log(text)}
-            sendingCurrency={'GBP'}
-            receivingAmountValue={'1714.00'}
-            onChangeReceivingAmount={(text) => console.log(text)}
-            receivingCurrency={'INR'}
-            sendingCurrencySource={require('@/assets/images/Transaction/CountryUk.png')}
-            receivingCurrencySource={require('@/assets/images/Transaction/countryIndia.png')}
-          />
+          containerStyle={styles.CurrencyCoveterContainer}
+          sendingAmountValue={'1000.00'}
+          onChangeSendingAmount={(text) => console.log(text)}
+          sendingCurrency={'GBP'}
+          receivingAmountValue={'1714.00'}
+          onChangeReceivingAmount={(text) => console.log(text)}
+          receivingCurrency={'INR'}
+          sendingCurrencySource={require('@/assets/images/Transaction/CountryUk.png')}
+          receivingCurrencySource={require('@/assets/images/Transaction/countryIndia.png')}
+        />
 
         {/* Dashed Border */}
         <DashedBorder width={Platform.OS === 'ios' ? 380 : 350} style={styles.dashedBorder} />

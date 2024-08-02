@@ -5,6 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import { ColorSheet } from '@/utils/ColorSheet';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const BackTitleHomeComponent = (props) => {
   const { style, title, onPressBack, onPressHome } = props;
@@ -13,7 +14,11 @@ const BackTitleHomeComponent = (props) => {
     <View style={[styles.root, style]}>
       {/* Back Icon */}
       <TouchableOpacity style={styles.backIcon} onPress={onPressBack} activeOpacity={0.8}>
-        <Ionicons name='chevron-back-circle-sharp' size={34} color={ColorSheet.PrimaryButtonTxt} />
+        <Ionicons
+          name='chevron-back-circle-sharp'
+          size={wp(11)}
+          color={ColorSheet.PrimaryButtonTxt}
+        />
       </TouchableOpacity>
       {/* Title */}
       <Text style={styles.title}> {title} </Text>

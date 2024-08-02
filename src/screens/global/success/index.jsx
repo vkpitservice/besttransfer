@@ -9,11 +9,7 @@ import { Constants } from './constants';
 const Success = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.root}>
-      <StatusBar
-        barStyle='dark-content'
-        translucent={false}
-        backgroundColor={ColorSheet.StatusColor}
-      />
+      <StatusBar barStyle='dark-content' backgroundColor={'transparent'} translucent={true} />
 
       {/* Animation And  SuccessFull Text*/}
       <View style={styles.lottie_txt_container}>

@@ -44,7 +44,7 @@ const OtpVerification = ({ navigation }) => {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <StatusBar barStyle='light-content' backgroundColor={ColorSheet.PrimaryButton} translucent />
+      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
       <ScrollView
         contentContainerStyle={styles.scroll_container}

@@ -17,15 +17,15 @@ export const styles = StyleSheet.create({
     zIndex: -1,
     resizeMode: 'cover',
     width: wp(100),
-    height: hp(100),
+    height: Platform.OS == 'ios' ? hp(100) : hp(105),
   },
   mainContainer: {
     width: wp(90),
-    marginTop: Platform.OS == 'android' ? hp(9) : hp(8),
+    marginTop: hp(8),
     alignSelf: 'center',
     // backgroundColor: 'pink',
   },
   flatListContainer: {
-    paddingBottom: Platform.OS == 'android' ? hp(26) : hp(26),
+    paddingBottom: hp(26),
   },
 });

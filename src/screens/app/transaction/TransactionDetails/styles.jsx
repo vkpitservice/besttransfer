@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     zIndex: -1,
     resizeMode: 'cover',
     width: wp(100),
-    height: hp(100),
+    height: Platform.OS == 'ios' ? hp(100) : hp(105),
   },
   mainScreenContainer: {
     flex: 1,

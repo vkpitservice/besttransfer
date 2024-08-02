@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   },
   lottie_txt_container: {
     width: wp(55),
-    marginTop: hp(20),
+    marginTop: Platform.OS == 'ios' ? hp(20) : hp(30),
     alignItems: 'center',
   },
   lottieStyle: {

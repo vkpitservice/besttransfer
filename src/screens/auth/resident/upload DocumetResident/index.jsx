@@ -94,7 +94,7 @@ const UploadDocumentResident = ({ navigation }) => {
     >
       <SafeAreaView style={{ flex: 1 }}>
         {/* Status Bar */}
-        <StatusBar barStyle='dark-content' translucent backgroundColor='transparent' />
+        <StatusBar barStyle='dark-content' backgroundColor={'transparent'} translucent={true} />
 
         {/* ScrollView */}
         <ScrollView

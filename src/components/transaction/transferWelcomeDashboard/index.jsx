@@ -23,7 +23,7 @@ const TransferWelcomeDashboardComponent = (props) => {
 
       {/* Icon */}
       <TouchableOpacity style={styles.iconContainer} onPress={onPress} activeOpacity={0.6}>
-        <MaterialIcons name='logout' size={26} color='black' />
+        <MaterialIcons name='logout' size={25} color='black' />
       </TouchableOpacity>
     </View>
   );

@@ -62,7 +62,7 @@ const ResidentIdentityDocument = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <SafeAreaView style={{ flex: 1 }}>
-        <StatusBar barStyle='dark-content' translucent backgroundColor={ColorSheet.Secondary} />
+        <StatusBar barStyle='dark-content' backgroundColor={'transparent'} translucent={true} />
 
         <ScrollView
           contentContainerStyle={styles.scroll_container}

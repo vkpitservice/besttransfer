@@ -11,7 +11,7 @@ import {
 export const styles = StyleSheet.create({
   root: {
     width: '100%',
-    marginTop: Platform.OS == 'android' ? hp(6) : hp(8),
+    marginTop: hp(8),
     flexDirection: 'row',
     // backgroundColor: 'red',
     alignItems: 'center',
@@ -35,9 +35,9 @@ export const styles = StyleSheet.create({
     paddingRight: hp(1),
   },
   roundContainer: {
-    width: wp(8),
-    height: wp(8),
-    borderRadius: wp(4),
+    width: wp(9.5),
+    height: wp(9.5),
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: ColorSheet.PrimaryButtonTxt,
