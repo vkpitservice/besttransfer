@@ -39,4 +39,5 @@ export const ColorSheet = {
   InactiveIcon: '#484C52',
   Switch: '#01305A',
   Dot: '#D9D9D9',
+  StatusBar: '#002647',
 };

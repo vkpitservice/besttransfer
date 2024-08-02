@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: ColorSheet.backGroundColor,
     // width: wp(100),
   },
   scroll_container: {
@@ -26,7 +27,7 @@ export const styles = StyleSheet.create({
     height: hp(100),
   },
   logo_container: {
-    marginTop: Platform.OS == 'android' ? hp(6) : hp(10),
+    marginTop: Platform.OS == 'android' ? hp(9) : hp(10),
     alignItems: 'center',
   },
   main_container: {

@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     width: wp(100),
+    backgroundColor: ColorSheet.backGroundColor,
   },
   backgroundImage: {
     position: 'absolute',

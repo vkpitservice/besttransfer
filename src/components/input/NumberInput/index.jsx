@@ -50,7 +50,9 @@ const NumberInput = (props) => {
   const renderItem = (item) => {
     return (
       <View style={styles.item}>
-        <Text style={[styles.textItem, textItemStyle]}>{item.label}</Text>
+        <Text style={[styles.textItem, textItemStyle]}>
+          {item.label} ({item.value})
+        </Text>
         {item.value === valueItem.value && (
           <Octicons style={styles.icon} color='black' name='check' size={20} />
         )}
@@ -147,7 +149,7 @@ const NumberInput = (props) => {
 // Define prop types
 NumberInput.propTypes = {
   data: PropTypes.array.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.string]).isRequired,
+  value: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   style: PropTypes.object,

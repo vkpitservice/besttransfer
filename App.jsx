@@ -9,7 +9,11 @@ const App = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Routes />
-      <FlashMessage position='top' floating statusBarHeight={Platform.OS == 'ios' ? hp(5) : 0} />
+      <FlashMessage
+        position='top'
+        floating
+        statusBarHeight={Platform.OS == 'ios' ? hp(5) : hp(7)}
+      />
     </GestureHandlerRootView>
   );
 };

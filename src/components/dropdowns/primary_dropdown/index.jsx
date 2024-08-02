@@ -165,19 +165,4 @@ PrimaryDropDown.propTypes = {
   customRightIcon: PropTypes.element,
 };
 
-// Define default props
-PrimaryDropDown.defaultProps = {
-  value: '',
-  placeholder: '',
-  style: {},
-  iconColor: 'black',
-  selectedTextStyle: {},
-  textItemStyle: {},
-  dropdownPosition: 0,
-  placeholderStyle: {},
-  disable: false,
-  testID: '',
-  customRightIcon: null,
-};
-
 export default PrimaryDropDown;

@@ -77,7 +77,7 @@ const ResidentCountry = ({ navigation }) => {
               onPress={() => console.log('link')}
               activeOpacity={0.5}
             >
-              <Text style={styles.urlText}> {Constants.URL_NAME} </Text>
+              <Text style={styles.urlText}>{Constants.URL_NAME} </Text>
             </TouchableOpacity>
           </View>
 
