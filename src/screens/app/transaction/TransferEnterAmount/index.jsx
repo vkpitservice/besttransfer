@@ -18,6 +18,7 @@ import BackTitleHomeComponent from '@/components/BackTitleHome';
 import { styles } from './styles';
 import DashedBorder from '@/assets/svg/transaction/dashedBorder.svg';
 import SecondaryButton from '@/components/buttons/secondaryButton';
+import CurrencyCoveter from '@/components/transaction/currency_convater';
 
 const TransferEnterAmount = ({ navigation }) => {
   return (
@@ -28,8 +29,8 @@ const TransferEnterAmount = ({ navigation }) => {
       {/* Status Bar */}
       <StatusBar
         barStyle='light-content'
-        backgroundColor={ColorSheet.PrimaryButton}
-        translucent={false}
+        backgroundColor = {'transparent'}
+        translucent = {true}
       />
 
       {/* Image */}
@@ -47,17 +48,19 @@ const TransferEnterAmount = ({ navigation }) => {
 
       {/* Main Container */}
       <View style={styles.mainContainer}>
+
         {/* Transfer Details */}
-        <TransferSavingRecieving
-          saveTitle={Constants.SAVING_ACC}
-          saveAmount={'1000'}
-          saveCountry={'GBP'}
-          saveImageSource={require('@/assets/images/Transaction/CountryUk.png')}
-          recieveTitle={Constants.RECIEVING_AMOUNT}
-          recieveAmount={'1714'}
-          recieveCountry={'INR'}
-          recieveImageSource={require('@/assets/images/Transaction/countryIndia.png')}
-        />
+        <CurrencyCoveter
+            containerStyle = {styles.CurrencyCoveterContainer}
+            sendingAmountValue={'1000.00'}
+            onChangeSendingAmount={(text) => console.log(text)}
+            sendingCurrency={'GBP'}
+            receivingAmountValue={'1714.00'}
+            onChangeReceivingAmount={(text) => console.log(text)}
+            receivingCurrency={'INR'}
+            sendingCurrencySource={require('@/assets/images/Transaction/CountryUk.png')}
+            receivingCurrencySource={require('@/assets/images/Transaction/countryIndia.png')}
+          />
 
         {/* Dashed Border */}
         <DashedBorder width={Platform.OS === 'ios' ? 380 : 350} style={styles.dashedBorder} />
@@ -88,7 +91,7 @@ const TransferEnterAmount = ({ navigation }) => {
         <SecondaryButton
           style={styles.btnContainer}
           title={Constants.SEND}
-          onPress={() => navigation.navigate('BeneficiaryScreen')}
+          onPress={() => navigation.navigate('TransactionDetailsScreen')}
         />
       </View>
     </KeyboardAvoidingView>

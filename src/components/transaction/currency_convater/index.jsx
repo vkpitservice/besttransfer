@@ -18,6 +18,7 @@ import PropTypes from 'prop-types';
 
 const CurrencyCoveter = (props) => {
   const {
+    containerStyle,
     sendingAmountValue,
     onChangeSendingAmount,
     sendingCurrency,
@@ -50,7 +51,7 @@ const CurrencyCoveter = (props) => {
     };
   });
   return (
-    <View style={styles.topContainer}>
+    <View style={[styles.topContainer, containerStyle]}>
       <Animated.View style={[styles.currencyInputView, animatedStyle1]}>
         <AnimatedTextInput
           onChangeText={onChangeSendingAmount}
@@ -87,6 +88,7 @@ const CurrencyCoveter = (props) => {
 };
 
 CurrencyCoveter.propTypes = {
+  containerStyle: PropTypes.object,
   sendingAmountValue: PropTypes.string,
   onChangeSendingAmount: PropTypes.func,
   sendingCurrency: PropTypes.string,
