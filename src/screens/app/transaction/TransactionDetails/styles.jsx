@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
     color: ColorSheet.Text0,
   },
   detailsBox: {
-    width: wp(85),
+    width: wp(83),
     marginTop: hp(2),
     borderRadius: 10,
     justifyContent: 'center',
@@ -87,7 +87,8 @@ export const styles = StyleSheet.create({
     marginBottom: hp(2),
   },
   reciepientIconContainer: {
-    width: wp(85),
+    // change here
+    width: wp(83), 
     // marginBottom: hp(1),
     flexDirection: 'row',
     alignItems: 'center',
