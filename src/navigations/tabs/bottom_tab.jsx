@@ -13,7 +13,6 @@ import UserGroup from '@/assets/icons/bottom_tab/UserGroup.svg';
 import TransactionStack from '../stacks/transaction_stack';
 import HomeScreen from '@/screens/app/home';
 import Swap90 from '@/assets/icons/bottom_tab/Swap90.svg';
-import AuthStack from '../stacks/auth_stack';
 import Beneficiary from '@/screens/app/ beneficiary/SeacrchBeneficiary';
 
 const Tab = createBottomTabNavigator();

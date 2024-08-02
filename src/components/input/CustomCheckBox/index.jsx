@@ -32,10 +32,4 @@ CustomCheckBox.propTypes = {
   isChecked: PropTypes.bool,
 };
 
-// Define default props
-CustomCheckBox.defaultProps = {
-  onPress: () => {},
-  isChecked: false,
-};
-
 export default CustomCheckBox;

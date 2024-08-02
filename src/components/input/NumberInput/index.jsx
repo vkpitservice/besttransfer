@@ -164,20 +164,4 @@ NumberInput.propTypes = {
   valueNumber: PropTypes.string,
 };
 
-// Define default props
-NumberInput.defaultProps = {
-  value: '',
-  placeholder: '',
-  style: {},
-  iconColor: 'black',
-  selectedTextStyle: {},
-  textItemStyle: {},
-  dropdownPosition: 0,
-  placeholderStyle: {},
-  disable: false,
-  testID: '',
-  customRightIcon: null,
-  onChangeNumber: () => {},
-};
-
 export default NumberInput;

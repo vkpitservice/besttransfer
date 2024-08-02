@@ -103,22 +103,4 @@ TextInputField.propTypes = {
   maxLength: PropTypes.number,
 };
 
-// Define default props
-TextInputField.defaultProps = {
-  style: {},
-  containerStyle: {},
-  textInputField: {},
-  ErrorStyle: {},
-  placeholder: '',
-  onFocus: null,
-  keyboardType: 'default',
-  onBlur: null,
-  onChangeText: null,
-  secureTextEntry: false,
-  editable: true,
-  textError: '',
-  autoCapitalize: 'none',
-  icon: null,
-};
-
 export default TextInputField;

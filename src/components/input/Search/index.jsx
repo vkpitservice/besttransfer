@@ -65,18 +65,4 @@ Search.propTypes = {
   onPressClose: PropTypes.func,
 };
 
-// Define default props
-Search.defaultProps = {
-  style: {},
-  containerStyle: {},
-  textInputField: {},
-  placeholder: '',
-  onFocus: null,
-  keyboardType: 'default',
-  onBlur: null,
-  onChangeText: null,
-  editable: true,
-  onPressClose: null,
-};
-
 export default Search;

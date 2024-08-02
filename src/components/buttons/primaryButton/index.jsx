@@ -20,9 +20,4 @@ PrimaryButton.propTypes = {
   style: PropTypes.object,
 };
 
-// Define default props
-PrimaryButton.defaultProps = {
-  style: {},
-};
-
 export default PrimaryButton;

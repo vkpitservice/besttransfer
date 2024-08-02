@@ -25,9 +25,4 @@ SecondaryButton.propTypes = {
   style: PropTypes.object,
 };
 
-// Define default props
-SecondaryButton.defaultProps = {
-  style: {},
-};
-
 export default SecondaryButton;
