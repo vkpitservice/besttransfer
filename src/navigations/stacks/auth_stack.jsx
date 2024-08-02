@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName='AppBottomTab' screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName='LoginScreen' screenOptions={{ headerShown: false }}>
       <Stack.Screen name='LoginScreen' component={Login} />
       <Stack.Screen name='CreateAccountScreen' component={CreateAccount} />
       <Stack.Screen name='ResidentCountryScreen' component={ResidentCountry} />
