@@ -19,6 +19,9 @@ export const styles = StyleSheet.create({
     width: wp(100),
     height: hp(100),
   },
+  CurrencyCoveterContainer: {
+    marginTop: hp(2),
+  },
   mainContainer: {
     width: wp(90),
     paddingBottom: hp(2),

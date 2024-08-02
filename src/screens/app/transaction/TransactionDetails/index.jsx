@@ -26,8 +26,8 @@ const TransactionDetails = ({ navigation }) => {
       {/* Status Bar */}
       <StatusBar
         barStyle='light-content'
-        backgroundColor={ColorSheet.PrimaryButton}
-        translucent={false}
+        backgroundColor = {'transparent'}
+        translucent = {true}
       />
 
       {/* Image */}

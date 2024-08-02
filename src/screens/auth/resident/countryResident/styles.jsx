@@ -19,8 +19,8 @@ export const styles = StyleSheet.create({
     paddingBottom: hp(5),
   },
   main_container: {
-    width: wp(95),
-    // height: hp(70),
+    // width: wp(95),
+    margin: hp(2),
     marginTop: Platform.OS == 'android' ? hp(18) : hp(9),
     alignSelf: 'center',
     // backgroundColor: 'pink',
@@ -79,7 +79,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     // backgroundColor: 'red',
-    paddingBottom: hp(2), // Padding for space at the bottom
+    paddingBottom: hp(0.5), // Padding for space at the bottom
     backgroundColor: ColorSheet.Secondary,
     shadowColor: '#000',
     shadowOffset: {

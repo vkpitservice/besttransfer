@@ -1,13 +1,10 @@
 import {
-  ActivityIndicator,
-  FlatList,
   Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   StatusBar,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import React, { useState } from 'react';
@@ -22,8 +19,10 @@ import CurrencyCoveter from '@/components/transaction/currency_convater';
 
 import { useSharedValue } from 'react-native-reanimated';
 import ImageSlider from '@/components/image_slider';
+import { useNavigation } from '@react-navigation/native';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
+  const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -83,7 +82,7 @@ const HomeScreen = ({ navigation }) => {
           <SecondaryButton
             title={Constants.SEND}
             onPress={() => {
-              console.log('Send Money');
+              navigation.navigate('TransferEnterAmountScreen')
             }}
             style={styles.btnContainer}
           />

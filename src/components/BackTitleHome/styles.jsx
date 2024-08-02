@@ -11,7 +11,7 @@ import {
 export const styles = StyleSheet.create({
   root: {
     width: '100%',
-    marginTop: Platform.OS == 'android' ? hp(4) : hp(8),
+    marginTop: Platform.OS == 'android' ? hp(6) : hp(8),
     flexDirection: 'row',
     // backgroundColor: 'red',
     alignItems: 'center',
