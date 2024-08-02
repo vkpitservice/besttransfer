@@ -30,11 +30,7 @@ const HomeScreen = ({ navigation }) => {
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
     >
       {/* Status Bar */}
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor={ColorSheet.PrimaryButton}
-        translucent={false}
-      />
+      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
       {/* Image */}
       <Image
