@@ -22,10 +22,12 @@ export const styles = StyleSheet.create({
   mainContainer: {
     width: wp(90),
     paddingBottom: hp(2),
-    marginTop: Platform.OS == 'android' ? hp(8) : hp(6),
+
     alignSelf: 'center',
     // backgroundColor: 'pink',
+    marginBottom: hp(15),
   },
+  scrollView: { marginTop: Platform.OS == 'android' ? hp(8) : hp(6) },
   exchangeContainer: {
     width: '100%',
     padding: hp(1),
@@ -70,7 +72,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: hp(5.5),
     marginTop: hp(2),
-    borderRadius: 20,
+    borderRadius: 15,
   },
   imageStyle: {
     width: wp(90),
