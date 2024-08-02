@@ -68,7 +68,7 @@ const AppBottomTab = () => {
         })}
       />
       <Tab.Screen
-        name='MessageStack'
+        name='TransactionStack'
         component={TransactionStack}
         options={() => ({
           tabBarIcon: ({ color, focused }) => (

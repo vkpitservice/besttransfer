@@ -72,12 +72,14 @@ const TransactionList = ({ navigation }) => {
           data={data}
           renderItem={({ item, index }) => (
             <TransactionListShowData
+              key={index}
               id={index}
               imageSource={require('@/assets/images/Transaction/TransactionProfile.png')}
               name={item.name}
               date={item.date}
               amount={item.amount}
               type={item.type}
+              onPress={() => navigation.navigate('TransferEnterAmountScreen')}
             />
           )}
           keyExtractor={(item) => item.id.toString()} // Use item.id for key

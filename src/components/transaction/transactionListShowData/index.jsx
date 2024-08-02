@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { styles } from './styles';
 import PropTypes from 'prop-types';
@@ -6,10 +6,10 @@ import RequestSuccess from '@/assets/svg/transaction/RequestSuccessIcon.svg';
 import RequestFail from '@/assets/svg/transaction/RequestFail.svg';
 
 const TransactionListShowData = (props) => {
-  const { imageSource, name, date, amount, type } = props;
+  const { imageSource, name, date, amount, type, onPress } = props;
 
   return (
-    <View style={styles.root}>
+    <TouchableOpacity onPress={onPress} style={styles.root}>
       {/* 1st row */}
       <View style={styles.imageTextContainer}>
         {/* Image */}
@@ -36,7 +36,7 @@ const TransactionListShowData = (props) => {
       {type == 'success' && <Text style={styles.amountTxt}> +{amount} </Text>}
 
       {type == 'fail' && <Text style={styles.amountTxt}> -{amount} </Text>}
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -46,15 +46,7 @@ TransactionListShowData.propTypes = {
   date: PropTypes.string,
   amount: PropTypes.string,
   type: PropTypes.string,
-};
-
-// Define default props
-TransactionListShowData.defaultProps = {
-  imageSource: null,
-  name: '',
-  date: '',
-  amount: '',
-  type: '',
+  onPress: PropTypes.func,
 };
 
 export default TransactionListShowData;
