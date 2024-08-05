@@ -51,6 +51,7 @@ const Preview = ({ navigation }) => {
 
       {/* Back And Header And Home */}
       <BackTitleHomeComponent
+        style = {styles.titleHeaderContainer}
         title={Constants.HEADER_TITLE}
         onPressBack={() => {
           console.log('onPressBack');

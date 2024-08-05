@@ -14,6 +14,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     // width: wp(100),
   },
+  titleHeaderContainer: {
+    marginTop: Platform.OS == 'android' ? hp(6) : hp(8)
+  },
   imageBackground: {
     position: 'absolute',
     zIndex: -1,
@@ -33,7 +36,8 @@ export const styles = StyleSheet.create({
   },
   main_Container:{
     margin: hp(2),
-    // backgroundColor: 'green'
+    // backgroundColor: 'green',
+    paddingBottom: Platform.OS == 'ios' ? hp(10) : hp(10),
   },
   transferDetailsContainer: {
     marginBottom: hp(3),

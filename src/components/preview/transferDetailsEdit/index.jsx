@@ -28,7 +28,7 @@ const TransferDetailsEdit = (props) => {
       <View style={styles.rowExchangeContainer}>
         <Text style={styles.TextTitle}> {'They Recieve'} </Text>
         {/* Amount */}
-        <Text style={styles.TextAmount}> {theyRecieve} </Text>
+        <Text style={styles.TextAmount}> ₹{theyRecieve} </Text>
       </View>
 
       {/* You send */}
