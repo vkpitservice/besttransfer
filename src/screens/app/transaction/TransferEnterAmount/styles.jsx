@@ -29,9 +29,15 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     // backgroundColor: 'pink',
   },
+  dashedBorderView: {
+    height: hp(2),
+    width: wp(100),
+    alignItems: 'center',
+  },
   dashedBorder: {
     marginTop: hp(3),
     alignSelf: 'center',
+    marginVertical: hp(2),
     // marginBottom: hp(2),
   },
   row_exchange_fee_Container: {

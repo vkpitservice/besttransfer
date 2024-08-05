@@ -16,6 +16,7 @@ import BackTitleHomeComponent from '@/components/BackTitleHome';
 import User from '@/assets/svg/transaction/user.svg';
 import DataBox from '@/components/DataBox';
 import MainCurveBox from '@/assets/svg/transaction/TransactionDetailsMain.svg';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const TransactionDetails = ({ navigation }) => {
   return (
@@ -24,11 +25,7 @@ const TransactionDetails = ({ navigation }) => {
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
     >
       {/* Status Bar */}
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor = {'transparent'}
-        translucent = {true}
-      />
+      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
       {/* Image */}
       <Image
@@ -60,11 +57,7 @@ const TransactionDetails = ({ navigation }) => {
           </View>
 
           {/* Main Curve  */}
-          <MainCurveBox
-            width={Platform.OS == 'android' ? 430 : 450}
-            height={Platform.OS == 'android' ? 720 : 750}
-            style={styles.imageMain}
-          />
+          <MainCurveBox width={wp(120)} style={styles.imageMain} />
 
           {/* Title */}
           <Text style={styles.titleStyle}>{Constants.PAYMENT_SUCCESS}</Text>

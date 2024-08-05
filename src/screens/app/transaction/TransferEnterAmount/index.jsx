@@ -19,6 +19,7 @@ import { styles } from './styles';
 import DashedBorder from '@/assets/svg/transaction/dashedBorder.svg';
 import SecondaryButton from '@/components/buttons/secondaryButton';
 import CurrencyCoveter from '@/components/transaction/currency_convater';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const TransferEnterAmount = ({ navigation }) => {
   return (
@@ -58,7 +59,7 @@ const TransferEnterAmount = ({ navigation }) => {
         />
 
         {/* Dashed Border */}
-        <DashedBorder width={Platform.OS === 'ios' ? 390 : 340} style={styles.dashedBorder} />
+        <DashedBorder width={wp(90)} height={2} style={styles.dashedBorder} />
 
         {/* Exchange rate */}
         <View style={styles.row_exchange_fee_Container}>
@@ -72,7 +73,7 @@ const TransferEnterAmount = ({ navigation }) => {
           <Text style={styles.textAmount}>£{'0.00'}</Text>
         </View>
 
-        <DashedBorder width={Platform.OS === 'ios' ? 390 : 340} style={styles.dashedBorder} />
+        <DashedBorder width={wp(90)} height={2} style={styles.dashedBorder} />
 
         {/* Total Payment */}
         <View style={styles.rowContainer}>
@@ -80,7 +81,7 @@ const TransferEnterAmount = ({ navigation }) => {
           <Text style={styles.textAmount}>£{'1000'}</Text>
         </View>
 
-        <DashedBorder width={Platform.OS === 'ios' ? 390 : 340} style={styles.dashedBorder} />
+        <DashedBorder width={wp(90)} height={2} style={styles.dashedBorder} />
 
         {/* Button */}
         <SecondaryButton
