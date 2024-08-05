@@ -69,7 +69,7 @@ const HomeScreen = () => {
           />
 
           {/* Dashed Border */}
-          <DashedBorder style={styles.dashedBorder} />
+          <DashedBorder height={2} style={styles.dashedBorder} />
 
           <View style={styles.feesTotalPaymentContainer}>
             <Text style={styles.text01}>Fee : £0.00</Text>
@@ -77,12 +77,12 @@ const HomeScreen = () => {
             <Text style={styles.text01}>Total Pay: £1000 </Text>
           </View>
 
-          <DashedBorder style={styles.dashedBorder} />
+          <DashedBorder height={2} style={styles.dashedBorder} />
 
           <SecondaryButton
             title={Constants.SEND}
             onPress={() => {
-              navigation.navigate('TransferEnterAmountScreen')
+              navigation.navigate('TransferEnterAmountScreen');
             }}
             style={styles.btnContainer}
           />

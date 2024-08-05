@@ -59,7 +59,7 @@ const TransferEnterAmount = ({ navigation }) => {
         />
 
         {/* Dashed Border */}
-        <DashedBorder width={wp(90)} style={styles.dashedBorder} />
+        <DashedBorder width={wp(90)} height={2} style={styles.dashedBorder} />
 
         {/* Exchange rate */}
         <View style={styles.row_exchange_fee_Container}>
@@ -73,7 +73,7 @@ const TransferEnterAmount = ({ navigation }) => {
           <Text style={styles.textAmount}>£{'0.00'}</Text>
         </View>
 
-        <DashedBorder width={wp(90)} style={styles.dashedBorder} />
+        <DashedBorder width={wp(90)} height={2} style={styles.dashedBorder} />
 
         {/* Total Payment */}
         <View style={styles.rowContainer}>
@@ -81,7 +81,7 @@ const TransferEnterAmount = ({ navigation }) => {
           <Text style={styles.textAmount}>£{'1000'}</Text>
         </View>
 
-        <DashedBorder width={wp(90)} style={styles.dashedBorder} />
+        <DashedBorder width={wp(90)} height={2} style={styles.dashedBorder} />
 
         {/* Button */}
         <SecondaryButton
