@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    // width: wp(100),
+    width: wp(100),
   },
   scroll_container: {
     width: wp(100),
@@ -27,8 +27,6 @@ export const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     marginTop: Platform.OS == 'ios' ? hp(6) : hp(8),
-    // alignItems: 'center',
-    // backgroundColor: 'red',
   },
   sectionHeader: {
     fontSize: RFValue(14),
