@@ -1,3 +1,4 @@
+import { ColorSheet } from '@/utils/ColorSheet';
 import { Platform, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
@@ -13,10 +14,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: wp(100),
   },
-  scroll_container: {
-    width: wp(100),
-    paddingBottom: Platform.OS == 'ios' ? hp(18) : hp(18),
-  },
   imageBackground: {
     position: 'absolute',
     zIndex: -1,
@@ -24,14 +21,32 @@ export const styles = StyleSheet.create({
     width: wp(100),
     height: hp(100),
   },
-  mainContainer: {
+  mainViewContainer: {
     flex: 1,
-    marginTop: Platform.OS == 'ios' ? hp(6) : hp(8),
+    // width: wp(100),
+    marginTop: Platform.OS == 'ios' ? hp(8) : hp(8),
+    // backgroundColor: 'red',
   },
-  sectionHeader: {
+  scroll_container: {
+    width: wp(100),
+    paddingBottom: Platform.OS == 'ios' ? hp(3) : hp(3),
+  },
+  main_Container:{
+    margin: hp(2),
+    paddingBottom: Platform.OS == 'ios' ? hp(12) : hp(8),
+    // backgroundColor: 'green'
+  },
+  title: {
     fontSize: RFValue(14),
     fontWeight: '400',
-    marginLeft: hp(1),
-    marginBottom: hp(1),
+    marginBottom: hp(3),
+  },
+  inputContainer: {
+    marginTop: hp(3),
+    backgroundColor: ColorSheet.TextInputFieldColor
+  },
+  btnContainer: {
+    marginTop: hp(3),
+    height: hp(6),
   },
 });
