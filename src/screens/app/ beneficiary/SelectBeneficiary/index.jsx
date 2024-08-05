@@ -48,7 +48,7 @@ const SelectBeneficiary = ({ navigation }) => {
                    style = {styles.iconContainer}
                    activeOpacity = {0.5}
                    onPress = {() => {
-                     navigation.navigate('AddBeneficiaryScreen')
+                     navigation.navigate('PreviewScreen')
                    }}
                 >
                     <AntDesign 
@@ -68,7 +68,7 @@ const SelectBeneficiary = ({ navigation }) => {
                    style = {styles.iconContainer}
                    activeOpacity = {0.5}
                    onPress = {() => {
-                     navigation.navigate('AddBeneficiaryScreen')
+                     navigation.navigate('PreviewScreen')
                    }}
                 >
                     <AntDesign 
