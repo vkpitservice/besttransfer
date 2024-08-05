@@ -22,6 +22,7 @@ const SelectBeneficiary = ({ navigation }) => {
 
         {/* Back And Header And Home */}
         <BackTitleHomeComponent
+           style = {styles.titleHeaderContainer}
            title = {Constants.HEADER_TITLE}
            onPressBack = {() => {
               console.log('onPressBack');
@@ -48,7 +49,7 @@ const SelectBeneficiary = ({ navigation }) => {
                    style = {styles.iconContainer}
                    activeOpacity = {0.5}
                    onPress = {() => {
-                     navigation.navigate('AddBeneficiaryScreen')
+                     navigation.navigate('PreviewScreen')
                    }}
                 >
                     <AntDesign 
@@ -68,7 +69,7 @@ const SelectBeneficiary = ({ navigation }) => {
                    style = {styles.iconContainer}
                    activeOpacity = {0.5}
                    onPress = {() => {
-                     navigation.navigate('AddBeneficiaryScreen')
+                     navigation.navigate('PreviewScreen')
                    }}
                 >
                     <AntDesign 

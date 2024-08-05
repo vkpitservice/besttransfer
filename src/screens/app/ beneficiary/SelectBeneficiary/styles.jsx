@@ -14,6 +14,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     // width: wp(100),
   },
+  titleHeaderContainer: {
+    marginTop: Platform.OS == 'android' ? hp(6) : hp(8)
+  },
   scroll_container: {
     width: wp(100),
     paddingBottom: Platform.OS == 'ios' ? hp(18) : hp(18),
