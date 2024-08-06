@@ -19,6 +19,8 @@ import { styles } from './styles';
 import { Constants } from './constants';
 import CustomCheckBox from '@/components/input/CustomCheckBox';
 import { ErrorFlash } from '@/utils/flashMessage';
+import postRequest from '@/components/NetworkRequest/postRequest';
+import { DefaultConstants } from '@/utils/Constants';
 
 const Login = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
@@ -30,12 +32,30 @@ const Login = ({ navigation }) => {
     digitCodeError: '',
   });
 
-  const onPressSubmit = () => {
+  const onPressSubmit = async() => {
     if (formData.email == '') {
       ErrorFlash(Constants.Email_Id_Required);
     } else if (formData.digitCode == '') {
       ErrorFlash(Constants.Pin_Required);
     } else {
+
+      console.log(DefaultConstants.BASE_URL + 'auth/token');
+      console.log({username:formData.email,password:formData.digitCode});
+      console.log({
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      
+      
+      
+      // var loginresp = await postRequest(DefaultConstants.BASE_URL + 'auth/token',{username:formData.email,password:formData.digitCode},{
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   }
+      // });
+      // console.log(JSON.stringify(loginresp));
+      
       navigation.navigate('AppBottomTab');
     }
   };
@@ -45,7 +65,7 @@ const Login = ({ navigation }) => {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
+      <StatusBar barStyle='light-content' backgroundColor={ColorSheet.PrimaryButton} translucent />
 
       <ScrollView
         contentContainerStyle={styles.scroll_container}
@@ -88,8 +108,8 @@ const Login = ({ navigation }) => {
 
           <View style={styles.rememberView}>
             <View style={styles.rememberLeftView}>
-              <CustomCheckBox />
-              <Text style={styles.rememberLeftText}>{Constants.REMEMBER_ME_TEXT}</Text>
+              {/* <CustomCheckBox />
+              <Text style={styles.rememberLeftText}>{Constants.REMEMBER_ME_TEXT}</Text> */}
             </View>
             <TouchableOpacity style={styles.forgetPinButton}>
               <Text style={styles.forgetPinText}>{Constants.FORGOT_PIN_TEXT}</Text>

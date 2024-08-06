@@ -8,6 +8,7 @@ import Login from '@/screens/auth/login';
 import CreateAccount from '@/screens/auth/create_account';
 import UploadDocumentResident from '@/screens/auth/resident/upload DocumetResident';
 import AppBottomTab from '../tabs/bottom_tab';
+import EmailOtpVerification from '@/screens/global/OtpVerification/email';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ const AuthStack = () => {
       <Stack.Screen name='ResidentCountryScreen' component={ResidentCountry} />
       <Stack.Screen name='ResidentIdentityDocumentScreen' component={ResidentIdentityDocument} />
       <Stack.Screen name='OtpVerificationScreen' component={OtpVerification} />
+      <Stack.Screen name='EmailOtpVerificationScreen' component={EmailOtpVerification} />
       <Stack.Screen name='UploadDocumentResidentScreen' component={UploadDocumentResident} />
       <Stack.Screen name='RegisterSuccessFullScreen' component={Success} />
       <Stack.Screen name='AppBottomTab' component={AppBottomTab} />

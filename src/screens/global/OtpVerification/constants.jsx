@@ -1,12 +1,15 @@
 export const Constants = {
   TITLE: 'Mobile Verification',
+  EMAIL_TITLE: 'Email Verification',
   MOBILE_VERIFICATION_TEXT: 'Mobile Verification',
+  EMAIL_VERIFICATION_TEXT: 'Email Verification',
   OTP_VERIFICATION_TEXT: 'OTP Verification',
   CHANGE: 'Change',
+  UPDATE: 'Update',
   ENTER_OTP_TEXT: 'Enter the OTP sent to',
   DIDNT_RECEIVE_OTP_TEXT: 'Didn’t you receive the OTP?',
   RESEND_OTP_TEXT: 'Resend OTP',
   SUBMIT_BUTTON_TEXT: 'Submit',
-  OTP_SUCCESS_TEXT: 'Successfully Sent',
+  OTP_SUCCESS_TEXT: 'OTP Successfully Sent',
   ENTER_VALID_OTP: 'Enter valid OTP',
 };

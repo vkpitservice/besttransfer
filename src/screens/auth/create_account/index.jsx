@@ -20,13 +20,23 @@ import { validateEmail } from '@/utils/validations';
 import { ErrorFlash } from '@/utils/flashMessage';
 import PhoneNumberInput from '@/components/input/PhoneNumberInput';
 import NumberInput from '@/components/input/NumberInput';
+import { DefaultConstants } from '@/utils/Constants';
+import { StackActions } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import postRequest from '@/components/NetworkRequest/postRequest';
 
 const CreateAccount = ({ navigation }) => {
-  const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
+  const [displayVisibleWindow, setDisplayVisibleWindow] = useState('individual');
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
+    firstname: '',
+    lastname: '',
     phoneNumber: '',
     email: '',
+    firstnameError: '',
+    lastnameError: '',
     emailError: '',
     digitCode: '',
     digitCodeError: '',
@@ -34,24 +44,22 @@ const CreateAccount = ({ navigation }) => {
     confirmDigitCodeError: '',
   });
 
-  const defaultValue = {
-    label: 'India',
-    image: 'https://cdn.countryflags.com/thumbs/india/flag-square-250.png',
-    value: '+988',
-  };
 
   const [code, setCode] = useState(defaultValue);
 
   const onPressPersonal = () => {
-    setDisplayVisibleWindow('personal');
+    setDisplayVisibleWindow('individual');
   };
 
   const onPressBusiness = () => {
     setDisplayVisibleWindow('business');
   };
-
-  const onPressSignUp = () => {
-    if (formData.email == '') {
+  const onPressSignUp = async () => {
+    if (formData.firstname == '') {
+      ErrorFlash(Constants.ENTER_FIRST_NAME);
+    } else if (formData.lastname == '') {
+      ErrorFlash(Constants.ENTER_LAST_NAME);
+    } else if (formData.email == '') {
       ErrorFlash(Constants.ENTER_EMAIL);
     } else if (!validateEmail(formData.email)) {
       ErrorFlash(Constants.VALID_EMAIL);
@@ -64,16 +72,56 @@ const CreateAccount = ({ navigation }) => {
     } else if (formData.digitCode != formData.confirmDigitCode) {
       ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH);
     } else {
-      navigation.navigate('ResidentCountryScreen');
+      setLoading(true)
+      var resp = await postRequest(DefaultConstants.BASE_URL + 'user/signup', { first_name: formData.firstname, last_name: formData.lastname, email: formData.email, password: formData.digitCode, mobile: formData.phoneNumber, country_code: "+44", source: DefaultConstants.SOURCE_NAME, user_type: displayVisibleWindow }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      if (resp[0] != 400) {
+        setAsyncValue('reg_access_token', resp[1].data.access_token);
+        setAsyncValue('reg_first_name', resp[1].data.user.first_name);
+        setAsyncValue('reg_last_name', resp[1].data.user.last_name);
+        setAsyncValue('reg_mobile', resp[1].data.user.mobile);
+        setAsyncValue('reg_email', resp[1].data.user.email);
+        setAsyncValue('reg_pass', formData.digitCode);
+        setAsyncValue('reg_id', JSON.stringify(resp[1].data.user.id));
+        setAsyncValue('reg_user_type', displayVisibleWindow);
+        setLoading(false)
+        console.log(DefaultConstants.BASE_URL + 'otp/validate-mobile');
+        console.log(JSON.stringify({ source: DefaultConstants.SOURCE_NAME }));
+        console.log({
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + resp[1].data.access_token
+          }
+        });
+        
+        
+        var otpresp = await postRequest(DefaultConstants.BASE_URL + 'otp/validate-mobile', { source: DefaultConstants.SOURCE_NAME }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + resp[1].data.access_token
+          }
+        });
+        navigation.dispatch(StackActions.replace('OtpVerificationScreen'));
+      }
+      else {
+        setLoading(false)
+        ErrorFlash(resp[1].response.data.detail);
+      }
+
     }
   };
-
+  const setAsyncValue = async (key, value) => {
+    await AsyncStorage.setItem(key, value);
+  }
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
+      <StatusBar barStyle='light-content' backgroundColor={ColorSheet.PrimaryButton} translucent />
 
       <ScrollView
         contentContainerStyle={styles.scroll_container}
@@ -95,12 +143,12 @@ const CreateAccount = ({ navigation }) => {
           {/* Header Title */}
           <Text style={styles.titleText}> Create an Account </Text>
 
-          {/* User Choose Personal Or Business */}
+          {/* User Choose individual Or Business */}
           <View style={styles.row_bg_container}>
             <TouchableOpacity
               style={[
                 styles.common_container,
-                displayVisibleWindow == 'personal'
+                displayVisibleWindow == 'individual'
                   ? { backgroundColor: ColorSheet.buttonChose }
                   : { backgroundColor: 'transparent' },
               ]}
@@ -110,7 +158,7 @@ const CreateAccount = ({ navigation }) => {
               <Text
                 style={[
                   styles.common_txt_style,
-                  displayVisibleWindow == 'personal'
+                  displayVisibleWindow == 'individual'
                     ? { color: ColorSheet.Primary }
                     : { color: ColorSheet.buttonChose },
                 ]}
@@ -142,6 +190,45 @@ const CreateAccount = ({ navigation }) => {
             </TouchableOpacity>
           </View>
 
+
+          {/* TextInput Filed */}
+          {/* Enter your first name * */}
+          <TextInputField
+            secureTextEntry={false}
+            style={styles.textInput_rootContainer}
+            placeholder={Constants.FIRST_NAME}
+            keyboardTyp={'default'}
+            value={formData.firstname}
+            onChangeText={(text) => setFormData({ ...formData, firstname: text })}
+            textError={formData.firstnameError}
+            onBlur={() => {
+              if (formData.firstname === '') {
+                setFormData({ ...formData, firstnameError: Constants.ENTER_FIRST_NAME });
+              } else {
+                setFormData({ ...formData, firstnameError: '' });
+              }
+            }}
+          />
+
+          {/* Enter your last name * */}
+          <TextInputField
+            secureTextEntry={false}
+            style={styles.textInput_rootContainer}
+            placeholder={Constants.LAST_NAME}
+            keyboardTyp={'default'}
+            value={formData.lastname}
+            onChangeText={(text) => setFormData({ ...formData, lastname: text })}
+            textError={formData.lastnameError}
+            onBlur={() => {
+              if (formData.lastname === '') {
+                setFormData({ ...formData, lastnameError: Constants.ENTER_LAST_NAME });
+              } else {
+                setFormData({ ...formData, lastnameError: '' });
+              }
+            }}
+          />
+
+
           {/* DropDown */}
           <NumberInput
             style={styles.dropDown_rootContainer}
@@ -151,11 +238,13 @@ const CreateAccount = ({ navigation }) => {
             valueNumber={formData.phoneNumber}
             onChangeNumber={(number) => setFormData({ ...formData, phoneNumber: number })}
             placeholder={Constants.PHONE_NUM}
+            disable={true}
           />
 
-          {/* TextInput Filed */}
+
           {/* Enter your email id * */}
           <TextInputField
+            secureTextEntry={false}
             style={styles.textInput_rootContainer}
             placeholder={Constants.Email_Id}
             keyboardTyp={'email-address'}
@@ -179,6 +268,7 @@ const CreateAccount = ({ navigation }) => {
             placeholder={Constants.DIGIT_PIN}
             secureTextEntry
             keyboardType={'numeric'}
+            maxLength={6}
             value={formData.digitCode}
             onChangeText={(text) => setFormData({ ...formData, digitCode: text })}
             textError={formData.digitCodeError}
@@ -200,6 +290,7 @@ const CreateAccount = ({ navigation }) => {
             placeholder={Constants.DIGIT_PIN_02}
             secureTextEntry
             keyboardType={'numeric'}
+            maxLength={6}
             value={formData.confirmDigitCode}
             onChangeText={(text) => setFormData({ ...formData, confirmDigitCode: text })}
             disableEyeIcon
@@ -222,6 +313,7 @@ const CreateAccount = ({ navigation }) => {
             style={styles.buttonStyle}
             title={Constants.SIGN_UP}
             onPress={onPressSignUp}
+            loading={loading}
           />
         </View>
       </ScrollView>
@@ -233,24 +325,14 @@ export default CreateAccount;
 
 const numberData = [
   {
-    label: 'SriLanka',
-    value: '+94',
-    image:
-      'https://w7.pngwing.com/pngs/214/565/png-transparent-flag-of-sri-lanka-national-flag-nuwaragam-palatha-central-divisional-secretariat-flag-of-the-maldives-flag-miscellaneous-flag-text.png',
-  },
-  {
-    label: 'Uk',
-    value: '+91',
-    image: 'https://cdn.pixabay.com/photo/2016/03/09/19/24/flag-1247218_640.jpg',
-  },
-  {
     label: 'India',
-    image: 'https://cdn.countryflags.com/thumbs/india/flag-square-250.png',
-    value: '+988',
-  },
-  {
-    label: 'UAE',
-    image: 'https://seeklogo.com/images/U/United_Kingdom-logo-C3E4A743BB-seeklogo.com.png',
+    image: 'https://cdn.pixabay.com/photo/2016/03/09/19/24/flag-1247218_640.jpg',
     value: '+44',
   },
 ];
+
+const defaultValue = {
+  label: 'UK',
+  image: 'https://cdn.pixabay.com/photo/2016/03/09/19/24/flag-1247218_640.jpg',
+  value: '+44',
+};

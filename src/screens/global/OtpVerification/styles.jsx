@@ -12,6 +12,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: wp(100),
   },
+  textInput_rootContainer: {
+    height: hp(5.5),
+    width:wp(60)
+  },
   backgroundImage: {
     position: 'absolute',
     zIndex: -1,
