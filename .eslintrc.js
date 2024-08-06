@@ -3,14 +3,8 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
-    jest: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
   overrides: [
     {
       env: {
@@ -22,13 +16,8 @@ module.exports = {
       },
     },
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
-  plugins: ['@typescript-eslint', 'react', 'unused-imports'],
   rules: {
+    'no-console': 'error',
     'react/react-in-jsx-scope': 'off',
     'spaced-comment': 'error',
     quotes: ['error', 'single'],
@@ -36,9 +25,17 @@ module.exports = {
     'unused-imports/no-unused-imports-ts': 2,
     'react/prop-types': 'off',
   },
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: ['react', 'unused-imports'],
   settings: {
-    'import/resolver': {
-      typescript: {},
+    react: {
+      version: 'detect',
     },
   },
-}
+};

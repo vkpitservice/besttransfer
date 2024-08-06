@@ -5,9 +5,13 @@
     "strict": true,
     "esModuleInterop": true,
     "noImplicitThis": false,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "allowImportingTsExtensions": false
   },
@@ -18,9 +22,10 @@
     "babel.config.js",
     "index.js",
     "declarations.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
+  ],
+  "typeRoots": [
+    "types"
   ]
 }
