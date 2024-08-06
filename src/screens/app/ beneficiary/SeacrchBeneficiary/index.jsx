@@ -18,7 +18,7 @@ import BeneficiarySearchListData from '@/components/transaction/beneficiarySearc
 import { styles } from './styles';
 import { Constants } from './constants';
 
-const Beneficiary = ({ navigation }) => {
+const SearchBeneficiary = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Map listData to beneficiaryList with appropriate structure
@@ -72,11 +72,7 @@ const Beneficiary = ({ navigation }) => {
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
     >
       {/* StatusBar */}
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor = {'transparent'}
-        translucent = {true}
-      />
+      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
       <Image
         style={styles.imageBackground}
@@ -91,7 +87,7 @@ const Beneficiary = ({ navigation }) => {
           navigation.goBack();
         }}
         onPressAdd={() => {
-          console.log('Add');
+          navigation.navigate('SelectBeneficiaryScreen');
         }}
       />
 
@@ -137,7 +133,7 @@ const Beneficiary = ({ navigation }) => {
   );
 };
 
-export default Beneficiary;
+export default SearchBeneficiary;
 
 const listData = [
   {

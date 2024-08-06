@@ -4,15 +4,10 @@ import PropTypes from 'prop-types';
 import { styles } from './styles';
 
 const RecipientDetails = (props) => {
-    const {
-        name,
-        accNumber,
-        ifscCode,
-    } = props;
+  const { name, accNumber, ifscCode } = props;
 
   return (
-    <View style = {styles.root}>
-
+    <View style={styles.root}>
       {/* Exchange & Rae */}
       <View style={styles.rowExchangeContainer}>
         {/* Save */}
@@ -33,15 +28,14 @@ const RecipientDetails = (props) => {
         {/* Amount */}
         <Text style={styles.TextAmount}> {ifscCode} </Text>
       </View>
-      
     </View>
   );
 };
 
 RecipientDetails.propTypes = {
-    name: PropTypes.string,
-    accNumber: PropTypes.number,
-    ifscCode: PropTypes.string,
-}
+  name: PropTypes.string,
+  accNumber: PropTypes.number,
+  ifscCode: PropTypes.string,
+};
 
 export default RecipientDetails;

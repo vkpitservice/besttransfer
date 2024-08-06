@@ -43,11 +43,7 @@ const TransactionList = ({ navigation }) => {
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
     >
       {/* Status Bar */}
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor = {'transparent'}
-        translucent = {true}
-      />
+      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
       {/* Image */}
       <Image

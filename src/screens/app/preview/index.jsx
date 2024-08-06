@@ -37,9 +37,9 @@ const Preview = ({ navigation }) => {
     } else if (selectReason.value == '') {
       ErrorFlash(Constants.REASON_REQUIRE);
     } else {
-    //   navigation.navigate('BeneficiaryScreen');
+      //   navigation.navigate('BeneficiaryScreen');
     }
-  }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -51,10 +51,10 @@ const Preview = ({ navigation }) => {
 
       {/* Back And Header And Home */}
       <BackTitleHomeComponent
-        style = {styles.titleHeaderContainer}
+        style={styles.titleHeaderContainer}
         title={Constants.HEADER_TITLE}
         onPressBack={() => {
-          console.log('onPressBack');
+          navigation.goBack();
         }}
         onPressHome={() => {
           console.log('onPressHome');
@@ -85,15 +85,14 @@ const Preview = ({ navigation }) => {
                 <Text style={styles.commonTextTitle}> {Constants.EDIT_AMOUNT} </Text>
               </View>
               {/* Exchange rae */}
-              <TransferDetailsEdit 
+              <TransferDetailsEdit
                 send={previewData[0].transferDetails.exchange[0].send}
-                recieve = {previewData[0].transferDetails.exchange[0].receive}
-                theyRecieve = {previewData[0].transferDetails.theyReceive}
-                youSend = {previewData[0].transferDetails.youSend} 
-                fee = {previewData[0].transferDetails.fee} 
-                totalPayment = {previewData[0].transferDetails.totalPayment} 
+                recieve={previewData[0].transferDetails.exchange[0].receive}
+                theyRecieve={previewData[0].transferDetails.theyReceive}
+                youSend={previewData[0].transferDetails.youSend}
+                fee={previewData[0].transferDetails.fee}
+                totalPayment={previewData[0].transferDetails.totalPayment}
               />
-
             </View>
 
             {/* Recipient  Details*/}
@@ -103,12 +102,11 @@ const Preview = ({ navigation }) => {
                 <Text style={styles.commonTextTitle}> {Constants.RECIPIENT_DETAILS} </Text>
               </View>
               {/* Recipient Details List*/}
-              <RecipientDetails 
-                name = {previewData[0].recipientDetails.name} 
-                accNumber = {previewData[0].recipientDetails.accNumber} 
-                ifscCode = {previewData[0].recipientDetails.ifscCode}
+              <RecipientDetails
+                name={previewData[0].recipientDetails.name}
+                accNumber={previewData[0].recipientDetails.accNumber}
+                ifscCode={previewData[0].recipientDetails.ifscCode}
               />
-
             </View>
 
             {/* Reference Input Field */}
@@ -129,7 +127,7 @@ const Preview = ({ navigation }) => {
 
             {/* DropDown */}
             <PrimaryDropDown
-              style = {styles.dropContainer}
+              style={styles.dropContainer}
               data={listReason}
               placeholder={Constants.SELECT_REASON}
               value={selectReason.value}
@@ -138,11 +136,10 @@ const Preview = ({ navigation }) => {
 
             {/* Continue Button */}
             <PrimaryButton
-                style = {styles.btnContainer}
-                title = {Constants.BTN_NAME}
-                onPress = {handleContinue}
-              />
-
+              style={styles.btnContainer}
+              title={Constants.BTN_NAME}
+              onPress={handleContinue}
+            />
           </View>
         </ScrollView>
       </View>
@@ -168,23 +165,23 @@ const listReason = [
 ];
 
 const previewData = [
-    {
-      transferDetails: {
-        exchange: [
-          {
-            send: '1GBP',
-            receive: '105.56INR'
-          }
-        ], 
-        theyReceive: '13,665',
-        youSend: '139.65',
-        fee: '2.00',
-        totalPayment: '1003.99'
-      },
-      recipientDetails: {
-        name: 'Arianna Craigg',
-        accNumber: 88456912,
-        ifscCode: '040004',
-      }
-    }
+  {
+    transferDetails: {
+      exchange: [
+        {
+          send: '1GBP',
+          receive: '105.56INR',
+        },
+      ],
+      theyReceive: '13,665',
+      youSend: '139.65',
+      fee: '2.00',
+      totalPayment: '1003.99',
+    },
+    recipientDetails: {
+      name: 'Arianna Craigg',
+      accNumber: 88456912,
+      ifscCode: '040004',
+    },
+  },
 ];
