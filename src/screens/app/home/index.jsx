@@ -42,6 +42,7 @@ const HomeScreen = () => {
         onPress={() => {
           console.log('logOut');
         }}
+        onPressProfile={() => navigation.navigate('EditProfileScreen')}
       />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* mainContainer */}

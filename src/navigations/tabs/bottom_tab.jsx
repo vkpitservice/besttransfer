@@ -14,6 +14,7 @@ import TransactionStack from '../stacks/transaction_stack';
 import HomeScreen from '@/screens/app/home';
 import Swap90 from '@/assets/icons/bottom_tab/Swap90.svg';
 import BeneficiaryStack from '../stacks/beneficiary_stack';
+import HomeStack from '../stacks/profile_stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -38,8 +39,8 @@ const AppBottomTab = () => {
       }}
     >
       <Tab.Screen
-        name='HomeScreen'
-        component={HomeScreen}
+        name='HomeStack'
+        component={HomeStack}
         options={() => ({
           tabBarIcon: ({ color, focused }) => (
             <View

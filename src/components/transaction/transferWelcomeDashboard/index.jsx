@@ -5,13 +5,15 @@ import PropTypes from 'prop-types';
 import { styles } from './styles';
 
 const TransferWelcomeDashboardComponent = (props) => {
-  const { style, imageSource, title, name, onPress } = props;
+  const { style, imageSource, title, name, onPress, onPressProfile } = props;
 
   return (
     <View style={[styles.root, style]}>
       {/* Image */}
       <View style={styles.imageNameContainer}>
-        <Image source={imageSource} style={styles.image} />
+        <TouchableOpacity onPress={onPressProfile}>
+          <Image source={imageSource} style={styles.image} />
+        </TouchableOpacity>
 
         <View style={styles.NameContainer}>
           {/* Welcome Title */}
