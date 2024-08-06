@@ -9,23 +9,23 @@ import {
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-    root: {
-        flex: 1,
-    },
-    rowExchangeContainer: {
-        padding: hp(1),
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: hp(1),
-    },
-    TextTitle: {
-        fontSize: RFValue(13),
-        fontWeight: '500',
-        color: ColorSheet.Primary,
-    },
-    TextAmount: {
-        fontSize: RFValue(13),
-        fontWeight: '500',
-        color: ColorSheet.Primary,
-    },
+  root: {
+    flex: 1,
+  },
+  rowExchangeContainer: {
+    padding: hp(1),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: hp(1),
+  },
+  TextTitle: {
+    fontSize: RFValue(13),
+    fontWeight: '500',
+    color: ColorSheet.Primary,
+  },
+  TextAmount: {
+    fontSize: RFValue(13),
+    fontWeight: '500',
+    color: ColorSheet.Primary,
+  },
 });

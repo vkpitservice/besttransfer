@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     // width: wp(100),
   },
   titleHeaderContainer: {
-    marginTop: Platform.OS == 'android' ? hp(6) : hp(8)
+    marginTop: Platform.OS == 'android' ? hp(6) : hp(8),
   },
   imageBackground: {
     position: 'absolute',
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     width: wp(100),
     paddingBottom: Platform.OS == 'ios' ? hp(18) : hp(18),
   },
-  main_Container:{
+  main_Container: {
     margin: hp(2),
     // backgroundColor: 'green',
     paddingBottom: Platform.OS == 'ios' ? hp(10) : hp(10),
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: hp(1),
-    backgroundColor: ColorSheet.PrimaryButton
+    backgroundColor: ColorSheet.PrimaryButton,
   },
   commonTextTitle: {
     fontSize: RFValue(13),

@@ -19,8 +19,6 @@ const TransactionStack = () => {
       <Stack.Screen name='TransactionListScreen' component={TransactionList} />
       <Stack.Screen name='TransactionDetailsScreen' component={TransactionDetails} />
       <Stack.Screen name='TransferEnterAmountScreen' component={TransferEnterAmount} />
-      <Stack.Screen name='SelectBeneficiaryScreen' component={SelectBeneficiary} />
-      {/* <Stack.Screen name='AddBeneficiaryScreen' component={AddBeneficiary} /> */}
       <Stack.Screen name='PreviewScreen' component={Preview} />
     </Stack.Navigator>
   );

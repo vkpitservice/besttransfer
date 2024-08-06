@@ -88,7 +88,7 @@ export const styles = StyleSheet.create({
   },
   reciepientIconContainer: {
     // change here
-    width: wp(83), 
+    width: wp(83),
     // marginBottom: hp(1),
     flexDirection: 'row',
     alignItems: 'center',

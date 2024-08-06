@@ -8,6 +8,7 @@ export const ColorSheet = {
   Text2: 'rgba(0, 0, 0, 0.5)',
   Text3: '#5B5B5B',
   Text4: '#3A3A3A',
+  Text41: '#3B3B3B',
   Text5: '#1D3BFF',
   Text6: '#3C3C3C',
   Text7: '#1A1A1A',

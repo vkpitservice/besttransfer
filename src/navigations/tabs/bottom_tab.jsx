@@ -14,6 +14,7 @@ import TransactionStack from '../stacks/transaction_stack';
 import HomeScreen from '@/screens/app/home';
 import Swap90 from '@/assets/icons/bottom_tab/Swap90.svg';
 import Beneficiary from '@/screens/app/ beneficiary/SeacrchBeneficiary';
+import BeneficiaryStack from '../stacks/beneficiary_stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -104,7 +105,7 @@ const AppBottomTab = () => {
       />
       <Tab.Screen
         name='NotificationStack'
-        component={Beneficiary}
+        component={BeneficiaryStack}
         options={() => ({
           tabBarIcon: ({ color, focused }) => (
             <View

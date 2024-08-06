@@ -15,10 +15,11 @@ export const styles = StyleSheet.create({
     // width: wp(100),
   },
   titleHeaderContainer: {
-    marginTop: Platform.OS == 'android' ? hp(6) : hp(8)
+    marginTop: Platform.OS == 'android' ? hp(6) : hp(8),
   },
   scroll_container: {
     width: wp(100),
+    alignItems: 'center',
     paddingBottom: Platform.OS == 'ios' ? hp(18) : hp(18),
   },
   imageBackground: {
@@ -45,10 +46,10 @@ export const styles = StyleSheet.create({
     padding: hp(1),
     borderRadius: 10,
     backgroundColor: ColorSheet.Secondary,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
-	    width: 0,
-	    height: 1,
+      width: 0,
+      height: 1,
     },
     shadowOpacity: 0.25,
     shadowRadius: 0.84,
@@ -56,16 +57,17 @@ export const styles = StyleSheet.create({
     elevation: 1,
   },
   iconContainer: {
-    width: wp(8),
-    height: wp(8),
-    borderRadius: wp(4),
+    width: wp(7),
+    height: wp(7),
+    borderRadius: wp(3.5),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: ColorSheet.PrimaryButtonTxt,
   },
   title: {
     fontSize: RFValue(14),
-    fontWeight: '400',
-    marginBottom: hp(1),
+    fontWeight: '600',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
