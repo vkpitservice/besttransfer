@@ -3,7 +3,6 @@ import React from 'react';
 import AnimatedLottieView from 'lottie-react-native';
 import { styles } from './styles';
 import PrimaryButton from '@/components/buttons/primaryButton';
-import { ColorSheet } from '@/utils/ColorSheet';
 import { Constants } from './constants';
 
 const Success = ({ navigation }) => {

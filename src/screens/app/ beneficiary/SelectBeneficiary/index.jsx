@@ -3,7 +3,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   StatusBar,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,

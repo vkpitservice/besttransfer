@@ -4,17 +4,12 @@ import {
   Platform,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import React, { useState } from 'react';
 import BackTitleHomeComponent from '@/components/BackTitleHome';
 import { Constants } from './constants';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { ColorSheet } from '@/utils/ColorSheet';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { styles } from './styles';
 import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
 import TextInputField from '@/components/input/TextInput';

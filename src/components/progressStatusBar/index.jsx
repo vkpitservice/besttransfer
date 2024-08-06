@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import * as Progress from 'react-native-progress';
 import React from 'react';
 import PropTypes from 'prop-types';

@@ -1,17 +1,14 @@
 import {
-  FlatList,
   Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   SectionList,
   StatusBar,
-  StyleSheet,
   Text,
   View,
 } from 'react-native';
 import React, { useMemo, useState } from 'react';
-import { ColorSheet } from '@/utils/ColorSheet';
 import BackTitleAddComponent from '@/components/BackTitleAdd';
 import Search from '@/components/input/Search';
 import BeneficiarySearchListData from '@/components/transaction/beneficiarySearchListData';

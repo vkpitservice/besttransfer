@@ -1,19 +1,6 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { ColorSheet } from '@/utils/ColorSheet';
+import { Image, KeyboardAvoidingView, Platform, StatusBar, Text, View } from 'react-native';
 import { Constants } from './constants';
-import { FontAwesome } from '@expo/vector-icons';
-import TransferSavingRecieving from '@/components/transaction/transferSavingReceiving';
 import BackTitleHomeComponent from '@/components/BackTitleHome';
 import { styles } from './styles';
 import DashedBorder from '@/assets/svg/transaction/dashedBorder.svg';

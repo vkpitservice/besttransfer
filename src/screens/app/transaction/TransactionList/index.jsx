@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 import React, { useState } from 'react';
-import { ColorSheet } from '@/utils/ColorSheet';
 import { styles } from './styles';
 import BackTitleAddComponent from '@/components/BackTitleAdd';
 import { Constants } from './constants';

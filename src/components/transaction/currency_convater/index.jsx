@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles';
 import Animated, {
@@ -7,12 +7,8 @@ import Animated, {
   withTiming,
   withSpring,
 } from 'react-native-reanimated';
-import { ColorSheet } from '@/utils/ColorSheet';
 import Rotate from '@/assets/svg/transaction/Rotate.svg';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+
 import AnimatedTextInput from '@/components/input/AnimatedTextInput';
 import PropTypes from 'prop-types';
 

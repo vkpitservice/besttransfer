@@ -1,7 +1,6 @@
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Feather from '@expo/vector-icons/Feather';
 import { ColorSheet } from '@/utils/ColorSheet';
 import { styles } from './styles';
 

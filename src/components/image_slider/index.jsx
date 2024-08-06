@@ -1,7 +1,6 @@
-import { View, Text, Image, FlatList } from 'react-native';
+import { View, Image, FlatList } from 'react-native';
 import React, { useCallback, useState } from 'react';
 import Carousel from 'react-native-reanimated-carousel';
-import { FontAwesome } from '@expo/vector-icons';
 import { styles } from './styles';
 import {
   heightPercentageToDP as hp,

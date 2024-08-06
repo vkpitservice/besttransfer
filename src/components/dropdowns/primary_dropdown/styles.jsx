@@ -1,11 +1,10 @@
-import { Dimensions, Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import { ColorSheet } from '../../../utils/ColorSheet';
-import { normalize } from '../../../utils/scaling';
 
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 

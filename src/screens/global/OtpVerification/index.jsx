@@ -9,10 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, { useState } from 'react';
-import { ColorSheet } from '@/utils/ColorSheet';
 import { styles } from './styles';
-import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
-import NumberInput from '@/components/input/NumberInput';
 import OTPInput from '@/components/input/OTPInput';
 import { Constants } from './constants';
 import PrimaryButton from '@/components/buttons/primaryButton';

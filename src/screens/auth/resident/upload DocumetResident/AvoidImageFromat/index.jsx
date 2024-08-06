@@ -4,10 +4,7 @@ import { ColorSheet } from '@/utils/ColorSheet';
 import PropTypes from 'prop-types';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { RFValue } from 'react-native-responsive-fontsize';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const AvoidImageFormat = (props) => {
   const { name, title } = props;

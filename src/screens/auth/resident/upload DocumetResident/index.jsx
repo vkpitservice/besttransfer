@@ -19,7 +19,6 @@ import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
 import Entypo from 'react-native-vector-icons/Entypo';
 import * as ImagePicker from 'expo-image-picker';
 import { ColorSheet } from '@/utils/ColorSheet';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { ErrorFlash } from '@/utils/flashMessage';
 import ShowImage from './showImage';

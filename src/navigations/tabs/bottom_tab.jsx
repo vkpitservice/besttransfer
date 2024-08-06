@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, SafeAreaView, Image } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ColorSheet } from '@/utils/ColorSheet';
@@ -13,7 +13,6 @@ import UserGroup from '@/assets/icons/bottom_tab/UserGroup.svg';
 import TransactionStack from '../stacks/transaction_stack';
 import HomeScreen from '@/screens/app/home';
 import Swap90 from '@/assets/icons/bottom_tab/Swap90.svg';
-import Beneficiary from '@/screens/app/ beneficiary/SeacrchBeneficiary';
 import BeneficiaryStack from '../stacks/beneficiary_stack';
 
 const Tab = createBottomTabNavigator();

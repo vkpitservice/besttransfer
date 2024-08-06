@@ -1,5 +1,5 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ColorSheet } from '@/utils/ColorSheet';
 import PropTypes from 'prop-types';
 import { styles } from './styles';

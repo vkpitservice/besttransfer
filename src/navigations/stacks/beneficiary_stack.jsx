@@ -1,6 +1,5 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import AddBeneficiary from '@/screens/app/ beneficiary/AddBeneficiary';
 import SelectBeneficiary from '@/screens/app/ beneficiary/SelectBeneficiary';
 import SearchBeneficiary from '@/screens/app/ beneficiary/SeacrchBeneficiary';
 import Preview from '@/screens/app/preview';

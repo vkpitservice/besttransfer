@@ -1,5 +1,5 @@
 import { ColorSheet } from '@/utils/ColorSheet';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
   heightPercentageToDP as hp,
