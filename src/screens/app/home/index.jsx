@@ -19,10 +19,15 @@ import CurrencyCoveter from '@/components/transaction/currency_convater';
 
 import { useSharedValue } from 'react-native-reanimated';
 import ImageSlider from '@/components/image_slider';
-import { useNavigation } from '@react-navigation/native';
+import { StackActions, useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const logout =async() =>{
+    await AsyncStorage.clear();
+    navigation.dispatch(StackActions.replace('LoginScreen'));
+  }
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -42,9 +47,7 @@ const HomeScreen = () => {
         imageSource={require('@/assets/images/Transaction/WelcomeProfilePic.png')}
         title={Constants.WELCOME_BACK}
         name={'Arianna'}
-        onPress={() => {
-          console.log('logOut');
-        }}
+        onPress={logout}
       />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* mainContainer */}

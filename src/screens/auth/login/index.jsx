@@ -21,9 +21,10 @@ import CustomCheckBox from '@/components/input/CustomCheckBox';
 import { ErrorFlash } from '@/utils/flashMessage';
 import postRequest from '@/components/NetworkRequest/postRequest';
 import { DefaultConstants } from '@/utils/Constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
-  const [displayVisibleWindow, setDisplayVisibleWindow] = useState('personal');
+  const [loading, setloading] = useState(false);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -38,28 +39,33 @@ const Login = ({ navigation }) => {
     } else if (formData.digitCode == '') {
       ErrorFlash(Constants.Pin_Required);
     } else {
-
-      console.log(DefaultConstants.BASE_URL + 'auth/token');
-      console.log({username:formData.email,password:formData.digitCode});
-      console.log({
+      setloading(true)
+      var loginresp = await postRequest(DefaultConstants.BASE_URL + 'auth/token',{username:formData.email,password:formData.digitCode,grant_type:'password',},{
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'accept':'application/json'
         }
       });
-      
-      
-      
-      // var loginresp = await postRequest(DefaultConstants.BASE_URL + 'auth/token',{username:formData.email,password:formData.digitCode},{
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   }
-      // });
-      // console.log(JSON.stringify(loginresp));
-      
-      navigation.navigate('AppBottomTab');
+      if(loginresp[0]==200)
+      {
+        setAsyncData('login_token',loginresp[1].data.access_token)
+        setAsyncData('login_first_name', loginresp[1].data.user.first_name);
+        setAsyncData('login_last_name', loginresp[1].data.user.last_name);
+        setAsyncData('login_mobile', loginresp[1].data.user.mobile);
+        setAsyncData('login_email', loginresp[1].data.user.email);
+        setAsyncData('reg_id', JSON.stringify(loginresp[1].data.user.id));
+        navigation.navigate('AppBottomTab');
+      }
+      else
+      {
+        ErrorFlash(loginresp[1])
+      }
+      setloading(false)
     }
   };
-
+  const setAsyncData = async(key,value) =>{
+    await AsyncStorage.setItem(key,value)
+  }
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -121,6 +127,7 @@ const Login = ({ navigation }) => {
             onPress={onPressSubmit}
             style={styles.buttonStyle}
             title={Constants.LOGIN_BUTTON_TEXT}
+            loading={loading}
           />
 
           <View style={styles.footerView}>
