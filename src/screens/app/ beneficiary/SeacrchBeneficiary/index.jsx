@@ -74,7 +74,7 @@ const SearchBeneficiary = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.scroll_container}
         showsVerticalScrollIndicator={false}
-        // bounces={false}
+        bounces={false}
       >
         <Image
           style={styles.imageBackground}
