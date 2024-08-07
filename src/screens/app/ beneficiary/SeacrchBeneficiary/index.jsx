@@ -72,43 +72,41 @@ const SearchBeneficiary = ({ navigation }) => {
       <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
       <ScrollView
-          contentContainerStyle={styles.scroll_container}
-          showsVerticalScrollIndicator={false}
-          // bounces={false}
-        >
+        contentContainerStyle={styles.scroll_container}
+        showsVerticalScrollIndicator={false}
+        // bounces={false}
+      >
+        <Image
+          style={styles.imageBackground}
+          source={require('@/assets/images/Transaction/BeneficiaryScreenImg.png')} // Replace with your image source
+        />
 
-      <Image
-        style={styles.imageBackground}
-        source={require('@/assets/images/Transaction/BeneficiaryScreenImg.png')} // Replace with your image source
-      />
+        {/* BACK AND TITLE & ADD  BeneficiarySearchListData*/}
+        <BackTitleAddComponent
+          style={styles.headerStyle}
+          title={Constants.HEADER_TITLE}
+          onPressBack={() => {
+            navigation.goBack();
+          }}
+          onPressAdd={() => {
+            navigation.navigate('SelectBeneficiaryScreen');
+          }}
+        />
 
-      {/* BACK AND TITLE & ADD  BeneficiarySearchListData*/}
-      <BackTitleAddComponent
-        style={styles.headerStyle}
-        title={Constants.HEADER_TITLE}
-        onPressBack={() => {
-          navigation.goBack();
-        }}
-        onPressAdd={() => {
-          navigation.navigate('SelectBeneficiaryScreen');
-        }}
-      />
+        {/* Search */}
+        <Search
+          placeholder={Constants.SEARCH}
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+          onPressClose={() => {
+            setSearchQuery('');
+          }}
+        />
 
-      {/* Search */}
-      <Search
-        placeholder={Constants.SEARCH}
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-        onPressClose={() => {
-          setSearchQuery('');
-        }}
-      />
-
-      {/* Main View Container */}
-      <View style={styles.mainContainer}>
-        
+        {/* Main View Container */}
+        <View style={styles.mainContainer}>
           <SectionList
-            scrollEnabled = {false}
+            scrollEnabled={false}
             sections={sections}
             keyExtractor={(item) => item.id.toString()}
             renderSectionHeader={({ section: { letter } }) => (
@@ -127,9 +125,7 @@ const SearchBeneficiary = ({ navigation }) => {
               );
             }}
           />
-        
-      </View>
-
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );

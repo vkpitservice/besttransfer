@@ -42,11 +42,7 @@ const Login = ({ navigation }) => {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <StatusBar 
-        barStyle='light-content' 
-        backgroundColor={'transparent'} 
-        translucent={true} 
-      />
+      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
       <ScrollView
         contentContainerStyle={styles.scroll_container}

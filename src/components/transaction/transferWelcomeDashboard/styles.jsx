@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     width: '93%',
     marginTop: Platform.OS == 'android' ? hp(8) : hp(9),
     flexDirection: 'row',
-    // backgroundColor: 'red', 
+    // backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
