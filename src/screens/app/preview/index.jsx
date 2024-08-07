@@ -49,97 +49,95 @@ const Preview = ({ navigation }) => {
 
       {/* ScrollView */}
       <ScrollView
-          contentContainerStyle={styles.scroll_container}
-          showsVerticalScrollIndicator={false}
-          bounces={false}
-        >
+        contentContainerStyle={styles.scroll_container}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+      >
+        {/* Back And Header And Home */}
+        <BackTitleHomeComponent
+          style={styles.titleHeaderContainer}
+          title={Constants.HEADER_TITLE}
+          onPressBack={() => {
+            navigation.goBack();
+          }}
+          onPressHome={() => {
+            console.log('onPressHome');
+          }}
+        />
 
-      {/* Back And Header And Home */}
-      <BackTitleHomeComponent
-        style={styles.titleHeaderContainer}
-        title={Constants.HEADER_TITLE}
-        onPressBack={() => {
-          navigation.goBack();
-        }}
-        onPressHome={() => {
-          console.log('onPressHome');
-        }}
-      />
+        {/* Image */}
+        <Image
+          style={styles.imageBackground}
+          source={require('@/assets/images/beneficiary/SelectBeneficiary.png')}
+        />
 
-      {/* Image */}
-      <Image
-        style={styles.imageBackground}
-        source={require('@/assets/images/beneficiary/SelectBeneficiary.png')}
-      />
-
-          {/* Main Container */}
-          <View style={styles.main_Container}>
-            {/* Transfer Details */}
-            <View style={styles.transferDetailsContainer}>
-              {/* Row Container */}
-              <View style={styles.rowContainer}>
-                <Text style={styles.commonTextTitle}> {Constants.TRANSFER_DETAILS} </Text>
-                <Text style={styles.commonTextTitle}> {Constants.EDIT_AMOUNT} </Text>
-              </View>
-              {/* Exchange rae */}
-              <TransferDetailsEdit
-                send={previewData[0].transferDetails.exchange[0].send}
-                recieve={previewData[0].transferDetails.exchange[0].receive}
-                theyRecieve={previewData[0].transferDetails.theyReceive}
-                youSend={previewData[0].transferDetails.youSend}
-                fee={previewData[0].transferDetails.fee}
-                totalPayment={previewData[0].transferDetails.totalPayment}
-              />
+        {/* Main Container */}
+        <View style={styles.main_Container}>
+          {/* Transfer Details */}
+          <View style={styles.transferDetailsContainer}>
+            {/* Row Container */}
+            <View style={styles.rowContainer}>
+              <Text style={styles.commonTextTitle}> {Constants.TRANSFER_DETAILS} </Text>
+              <Text style={styles.commonTextTitle}> {Constants.EDIT_AMOUNT} </Text>
             </View>
-
-            {/* Recipient  Details*/}
-            <View style={styles.transferDetailsContainer}>
-              {/* Row Container */}
-              <View style={styles.rowContainer}>
-                <Text style={styles.commonTextTitle}> {Constants.RECIPIENT_DETAILS} </Text>
-              </View>
-              {/* Recipient Details List*/}
-              <RecipientDetails
-                name={previewData[0].recipientDetails.name}
-                accNumber={previewData[0].recipientDetails.accNumber}
-                ifscCode={previewData[0].recipientDetails.ifscCode}
-              />
-            </View>
-
-            {/* Reference Input Field */}
-            <TextInputField
-              placeholder={Constants.REFERENCE}
-              value={from.reference}
-              onChangeText={(text) => setForm({ ...from, reference: text })}
-              textError={from.referenceError}
-              onFocus={() => setForm({ ...from, reasonError: '' })}
-              onBlur={() => {
-                if (!from.reference) {
-                  setForm({ ...from, referenceError: Constants.REFERENCE_REQUIRED });
-                } else {
-                  setForm({ ...from, referenceError: '' });
-                }
-              }}
-            />
-
-            {/* DropDown */}
-            <PrimaryDropDown
-              style={styles.dropContainer}
-              data={listReason}
-              placeholder={Constants.SELECT_REASON}
-              value={selectReason.value}
-              onChange={setSelectReason}
-            />
-
-            {/* Continue Button */}
-            <PrimaryButton
-              style={styles.btnContainer}
-              title={Constants.BTN_NAME}
-              onPress={handleContinue}
+            {/* Exchange rae */}
+            <TransferDetailsEdit
+              send={previewData[0].transferDetails.exchange[0].send}
+              recieve={previewData[0].transferDetails.exchange[0].receive}
+              theyRecieve={previewData[0].transferDetails.theyReceive}
+              youSend={previewData[0].transferDetails.youSend}
+              fee={previewData[0].transferDetails.fee}
+              totalPayment={previewData[0].transferDetails.totalPayment}
             />
           </View>
-      </ScrollView>
 
+          {/* Recipient  Details*/}
+          <View style={styles.transferDetailsContainer}>
+            {/* Row Container */}
+            <View style={styles.rowContainer}>
+              <Text style={styles.commonTextTitle}> {Constants.RECIPIENT_DETAILS} </Text>
+            </View>
+            {/* Recipient Details List*/}
+            <RecipientDetails
+              name={previewData[0].recipientDetails.name}
+              accNumber={previewData[0].recipientDetails.accNumber}
+              ifscCode={previewData[0].recipientDetails.ifscCode}
+            />
+          </View>
+
+          {/* Reference Input Field */}
+          <TextInputField
+            placeholder={Constants.REFERENCE}
+            value={from.reference}
+            onChangeText={(text) => setForm({ ...from, reference: text })}
+            textError={from.referenceError}
+            onFocus={() => setForm({ ...from, reasonError: '' })}
+            onBlur={() => {
+              if (!from.reference) {
+                setForm({ ...from, referenceError: Constants.REFERENCE_REQUIRED });
+              } else {
+                setForm({ ...from, referenceError: '' });
+              }
+            }}
+          />
+
+          {/* DropDown */}
+          <PrimaryDropDown
+            style={styles.dropContainer}
+            data={listReason}
+            placeholder={Constants.SELECT_REASON}
+            value={selectReason.value}
+            onChange={setSelectReason}
+          />
+
+          {/* Continue Button */}
+          <PrimaryButton
+            style={styles.btnContainer}
+            title={Constants.BTN_NAME}
+            onPress={handleContinue}
+          />
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };

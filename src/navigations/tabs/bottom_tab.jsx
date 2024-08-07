@@ -19,7 +19,6 @@ import HomeStack from '../stacks/profile_stack';
 const Tab = createBottomTabNavigator();
 
 const AppBottomTab = () => {
-
   return (
     <Tab.Navigator
       screenOptions={{

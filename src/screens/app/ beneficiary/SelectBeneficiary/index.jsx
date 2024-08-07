@@ -45,36 +45,36 @@ const SelectBeneficiary = ({ navigation }) => {
       {/* Main View Container */}
       <View style={styles.mainContainer}>
         {/* Card View */}
-        <View style={styles.CardContainer}>
+        <TouchableOpacity
+          style={styles.CardContainer}
+          activeOpacity={0.5}
+          onPress={() => {
+            navigation.navigate('PreviewScreen');
+          }}
+        >
           {/* Bank Account */}
           <Text style={styles.title}> {Constants.BANK_ACC} </Text>
           {/* Icon  */}
-          <TouchableOpacity
-            style={styles.iconContainer}
-            activeOpacity={0.5}
-            onPress={() => {
-              navigation.navigate('PreviewScreen');
-            }}
-          >
+          <View style={styles.iconContainer}>
             <AntDesign name='right' size={wp(5)} color={ColorSheet.PrimaryButton} />
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
 
         {/* Card View */}
-        <View style={styles.CardContainer}>
+        <TouchableOpacity
+          style={styles.CardContainer}
+          activeOpacity={0.5}
+          onPress={() => {
+            navigation.navigate('PreviewScreen');
+          }}
+        >
           {/* Bank Account */}
           <Text style={styles.title}> {Constants.UPI} </Text>
           {/* Icon  */}
-          <TouchableOpacity
-            style={styles.iconContainer}
-            activeOpacity={0.5}
-            onPress={() => {
-              navigation.navigate('PreviewScreen');
-            }}
-          >
+          <View style={styles.iconContainer}>
             <AntDesign name='right' size={wp(5)} color={ColorSheet.PrimaryButton} />
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
   );
