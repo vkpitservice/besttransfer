@@ -7,7 +7,9 @@
     "icon": "./src/assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "assetBundlePatterns": ["**/src/*"],
+    "assetBundlePatterns": [
+      "**/src/*"
+    ],
     "splash": {
       "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
@@ -21,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.codelantic2023.fxmaster"
     },
     "plugins": [],
     "experiments": {
