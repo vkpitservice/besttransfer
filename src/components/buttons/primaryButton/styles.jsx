@@ -17,6 +17,15 @@ export const styles = StyleSheet.create({
     paddingHorizontal: wp(2),
     paddingVertical: hp(1),
   },
+  button_root_disabled: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 50,
+    backgroundColor: ColorSheet.Text3,
+    paddingHorizontal: wp(2),
+    paddingVertical: hp(1),
+    flexDirection:'row'
+  },
   title_txt: {
     fontSize: RFValue(16),
     color: ColorSheet.PrimaryButtonTxt,
