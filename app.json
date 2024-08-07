@@ -16,7 +16,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.codelantic2023.fxmaster"
     },
     "android": {
       "adaptiveIcon": {
@@ -33,6 +34,12 @@
         "projectId": "d3e3e36c-1385-4594-a582-cd6f0840918e"
       }
     },
-    "owner": "codelantic2023"
+    "owner": "codelantic2023",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d3e3e36c-1385-4594-a582-cd6f0840918e"
+    }
   }
 }
