@@ -7,17 +7,14 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
-import { ColorSheet } from '@/utils/ColorSheet';
+import React from 'react';
 import TransferWelcomeDashboardComponent from '@/components/transaction/transferWelcomeDashboard';
 import { Constants } from './constants';
 import { styles } from './styles';
-import TransferSavingRecieving from '@/components/transaction/transferSavingReceiving';
 import DashedBorder from '@/assets/svg/transaction/dashedBorder.svg';
 import SecondaryButton from '@/components/buttons/secondaryButton';
 import CurrencyCoveter from '@/components/transaction/currency_convater';
 
-import { useSharedValue } from 'react-native-reanimated';
 import ImageSlider from '@/components/image_slider';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -47,7 +44,10 @@ const HomeScreen = () => {
         imageSource={require('@/assets/images/Transaction/WelcomeProfilePic.png')}
         title={Constants.WELCOME_BACK}
         name={'Arianna'}
-        onPress={logout}
+        onPress={() => {
+          console.log('logOut');
+        }}
+        onPressProfile={() => navigation.navigate('EditProfileScreen')}
       />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* mainContainer */}

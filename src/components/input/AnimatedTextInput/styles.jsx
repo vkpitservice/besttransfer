@@ -11,7 +11,10 @@ const styles = StyleSheet.create({
     fontSize: RFValue(15),
     color: ColorSheet.Text6,
     fontWeight: '600',
-    paddingLeft: wp(1),
+    alignItems: 'center',
+    paddingTop: wp(4),
+    // backgroundColor: 'pink'
+    // paddingLeft: wp(1),
   },
   placeholder: {
     color: ColorSheet.Text6,

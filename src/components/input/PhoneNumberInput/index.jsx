@@ -1,14 +1,4 @@
-import {
-  Animated,
-  NativeSyntheticEvent,
-  StyleProp,
-  Image,
-  Text,
-  TextInputFocusEventData,
-  View,
-  ViewStyle,
-  TextInput,
-} from 'react-native';
+import { Animated, Image, Text, View, TextInput } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { Dropdown } from 'react-native-element-dropdown';

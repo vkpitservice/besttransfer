@@ -14,30 +14,25 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     // width: wp(100),
   },
+  scroll_container: {
+    width: wp(100),
+    paddingBottom: Platform.OS == 'ios' ? hp(18) : hp(15),
+  },
   titleHeaderContainer: {
-    marginTop: Platform.OS == 'android' ? hp(6) : hp(8)
+    marginTop: Platform.OS == 'android' ? hp(6) : hp(8),
   },
   imageBackground: {
     position: 'absolute',
     zIndex: -1,
-    resizeMode: 'cover',
+    resizeMode: 'stretch',
     width: wp(100),
     height: hp(100),
   },
-  mainViewContainer: {
-    width: wp(100),
-    marginTop: Platform.OS == 'ios' ? hp(8) : hp(8),
-    // backgroundColor: 'red',
-    alignItems: 'center',
-  },
-  scroll_container: {
-    width: wp(100),
-    paddingBottom: Platform.OS == 'ios' ? hp(18) : hp(18),
-  },
-  main_Container:{
+  main_Container: {
     margin: hp(2),
-    // backgroundColor: 'green',
-    paddingBottom: Platform.OS == 'ios' ? hp(10) : hp(10),
+    // width: wp(100),
+    marginTop: Platform.OS == 'ios' ? hp(8) : hp(10),
+    // paddingBottom: Platform.OS == 'ios' ? hp(10) : hp(8),
   },
   transferDetailsContainer: {
     marginBottom: hp(3),
@@ -48,7 +43,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: hp(1),
-    backgroundColor: ColorSheet.PrimaryButton
+    backgroundColor: ColorSheet.PrimaryButton,
   },
   commonTextTitle: {
     fontSize: RFValue(13),

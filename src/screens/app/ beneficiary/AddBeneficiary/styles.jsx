@@ -14,10 +14,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: wp(100),
   },
+  scroll_container: {
+    width: wp(100),
+    paddingBottom: Platform.OS == 'ios' ? hp(3) : hp(3),
+  },
   imageBackground: {
     position: 'absolute',
     zIndex: -1,
-    resizeMode: 'cover',
+    resizeMode: 'stretch',
     width: wp(100),
     height: hp(100),
   },
@@ -27,15 +31,6 @@ export const styles = StyleSheet.create({
     marginTop: Platform.OS == 'ios' ? hp(8) : hp(8),
     // backgroundColor: 'red',
   },
-  scroll_container: {
-    width: wp(100),
-    paddingBottom: Platform.OS == 'ios' ? hp(3) : hp(3),
-  },
-  main_Container:{
-    margin: hp(2),
-    paddingBottom: Platform.OS == 'ios' ? hp(12) : hp(8),
-    // backgroundColor: 'green'
-  },
   title: {
     fontSize: RFValue(14),
     fontWeight: '400',
@@ -43,7 +38,7 @@ export const styles = StyleSheet.create({
   },
   inputContainer: {
     marginTop: hp(3),
-    backgroundColor: ColorSheet.TextInputFieldColor
+    backgroundColor: ColorSheet.TextInputFieldColor,
   },
   btnContainer: {
     marginTop: hp(3),

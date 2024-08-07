@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, SafeAreaView, Image } from 'react-native';
-import React from 'react';
+import { View, Text, StyleSheet, Keyboard } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ColorSheet } from '@/utils/ColorSheet';
 import {
@@ -13,7 +13,8 @@ import UserGroup from '@/assets/icons/bottom_tab/UserGroup.svg';
 import TransactionStack from '../stacks/transaction_stack';
 import HomeScreen from '@/screens/app/home';
 import Swap90 from '@/assets/icons/bottom_tab/Swap90.svg';
-import Beneficiary from '@/screens/app/ beneficiary/SeacrchBeneficiary';
+import BeneficiaryStack from '../stacks/beneficiary_stack';
+import HomeStack from '../stacks/profile_stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +22,8 @@ const AppBottomTab = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        // When open the Keyboard that time Avoid the TabBar
+        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarActiveTintColor: ColorSheet.ActiveIcon,
         tabBarInactiveTintColor: ColorSheet.InactiveIcon,
@@ -38,8 +41,8 @@ const AppBottomTab = () => {
       }}
     >
       <Tab.Screen
-        name='HomeScreen'
-        component={HomeScreen}
+        name='HomeStack'
+        component={HomeStack}
         options={() => ({
           tabBarIcon: ({ color, focused }) => (
             <View
@@ -104,7 +107,7 @@ const AppBottomTab = () => {
       />
       <Tab.Screen
         name='NotificationStack'
-        component={Beneficiary}
+        component={BeneficiaryStack}
         options={() => ({
           tabBarIcon: ({ color, focused }) => (
             <View

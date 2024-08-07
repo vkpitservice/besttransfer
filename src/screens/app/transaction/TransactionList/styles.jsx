@@ -1,6 +1,4 @@
-import { ColorSheet } from '@/utils/ColorSheet';
 import { Platform, StyleSheet } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -15,7 +13,7 @@ export const styles = StyleSheet.create({
   backgroundImage: {
     position: 'absolute',
     zIndex: -1,
-    resizeMode: 'cover',
+    resizeMode: 'stretch',
     width: wp(100),
     height: Platform.OS == 'ios' ? hp(100) : hp(105),
   },

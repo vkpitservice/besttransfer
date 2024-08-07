@@ -7,7 +7,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Alert,
 } from 'react-native';
 import React, { useState } from 'react';
 import BestTransFer from '@/assets/svg/CreateAcc/Best_TransFer.svg';
@@ -18,7 +17,6 @@ import { Constants } from './constants';
 import TextInputField from '@/components/input/TextInput';
 import { validateEmail } from '@/utils/validations';
 import { ErrorFlash } from '@/utils/flashMessage';
-import PhoneNumberInput from '@/components/input/PhoneNumberInput';
 import NumberInput from '@/components/input/NumberInput';
 import { DefaultConstants } from '@/utils/Constants';
 import { StackActions } from '@react-navigation/native';

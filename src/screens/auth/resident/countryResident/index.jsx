@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles';
-import { ColorSheet } from '@/utils/ColorSheet';
 import LogoResident from '@/assets/svg/resident/LogoResident.svg';
 import { Constants } from './constants';
 import PrimaryButton from '@/components/buttons/primaryButton';

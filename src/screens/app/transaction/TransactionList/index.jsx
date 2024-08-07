@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 import React, { useState } from 'react';
-import { ColorSheet } from '@/utils/ColorSheet';
 import { styles } from './styles';
 import BackTitleAddComponent from '@/components/BackTitleAdd';
 import { Constants } from './constants';
@@ -43,11 +42,7 @@ const TransactionList = ({ navigation }) => {
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
     >
       {/* Status Bar */}
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor = {'transparent'}
-        translucent = {true}
-      />
+      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
       {/* Image */}
       <Image

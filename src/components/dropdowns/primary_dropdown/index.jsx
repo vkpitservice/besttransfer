@@ -1,15 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { View, Text, TextStyle, StyleProp, Animated, TextInput } from 'react-native';
+import { View, Text, Animated, TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { styles } from './styles';
 import { ColorSheet } from '../../../utils/ColorSheet';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import PropTypes from 'prop-types';
 
 const PrimaryDropDown = (props) => {

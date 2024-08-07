@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import AnimatedLottieView from 'lottie-react-native';
 import { styles } from './styles';
 import PrimaryButton from '@/components/buttons/primaryButton';
-import { ColorSheet } from '@/utils/ColorSheet';
 import { Constants } from './constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

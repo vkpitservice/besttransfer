@@ -1,24 +1,21 @@
 import {
-  FlatList,
   Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   SectionList,
   StatusBar,
-  StyleSheet,
   Text,
   View,
 } from 'react-native';
 import React, { useMemo, useState } from 'react';
-import { ColorSheet } from '@/utils/ColorSheet';
 import BackTitleAddComponent from '@/components/BackTitleAdd';
 import Search from '@/components/input/Search';
 import BeneficiarySearchListData from '@/components/transaction/beneficiarySearchListData';
 import { styles } from './styles';
 import { Constants } from './constants';
 
-const Beneficiary = ({ navigation }) => {
+const SearchBeneficiary = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Map listData to beneficiaryList with appropriate structure
@@ -72,47 +69,44 @@ const Beneficiary = ({ navigation }) => {
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
     >
       {/* StatusBar */}
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor = {'transparent'}
-        translucent = {true}
-      />
+      <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
-      <Image
-        style={styles.imageBackground}
-        source={require('@/assets/images/Transaction/BeneficiaryScreenImg.png')} // Replace with your image source
-      />
+      <ScrollView
+        contentContainerStyle={styles.scroll_container}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+      >
+        <Image
+          style={styles.imageBackground}
+          source={require('@/assets/images/Transaction/BeneficiaryScreenImg.png')} // Replace with your image source
+        />
 
-      {/* BACK AND TITLE & ADD  BeneficiarySearchListData*/}
-      <BackTitleAddComponent
-        style={styles.headerStyle}
-        title={Constants.HEADER_TITLE}
-        onPressBack={() => {
-          navigation.goBack();
-        }}
-        onPressAdd={() => {
-          console.log('Add');
-        }}
-      />
+        {/* BACK AND TITLE & ADD  BeneficiarySearchListData*/}
+        <BackTitleAddComponent
+          style={styles.headerStyle}
+          title={Constants.HEADER_TITLE}
+          onPressBack={() => {
+            navigation.goBack();
+          }}
+          onPressAdd={() => {
+            navigation.navigate('SelectBeneficiaryScreen');
+          }}
+        />
 
-      {/* Search */}
-      <Search
-        placeholder={Constants.SEARCH}
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-        onPressClose={() => {
-          setSearchQuery('');
-        }}
-      />
+        {/* Search */}
+        <Search
+          placeholder={Constants.SEARCH}
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+          onPressClose={() => {
+            setSearchQuery('');
+          }}
+        />
 
-      {/* Main View Container */}
-      <View style={styles.mainContainer}>
-        <ScrollView
-          contentContainerStyle={styles.scroll_container}
-          showsVerticalScrollIndicator={false}
-          // bounces={false}
-        >
+        {/* Main View Container */}
+        <View style={styles.mainContainer}>
           <SectionList
+            scrollEnabled={false}
             sections={sections}
             keyExtractor={(item) => item.id.toString()}
             renderSectionHeader={({ section: { letter } }) => (
@@ -131,13 +125,13 @@ const Beneficiary = ({ navigation }) => {
               );
             }}
           />
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };
 
-export default Beneficiary;
+export default SearchBeneficiary;
 
 const listData = [
   {

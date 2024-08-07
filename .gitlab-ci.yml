@@ -1,0 +1,35 @@
+image: node:alpine
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - ~/.npm
+
+stages:
+  - build
+  - deploy
+
+variables:
+  PLATFORM: 'all' # Define the platform variable here ios | android | all
+
+before_script:
+  - apk update
+  - apk add git
+  - npm install -g expo-cli
+  - npm install -g eas-cli
+  - yarn install
+
+eas-build:
+  stage: build
+  only:
+    - CI/CD
+  script:
+    - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+    - npx eas build -p $PLATFORM --profile all_publish --non-interactive
+
+eas-submit:
+  stage: deploy
+  only:
+    - CI/CD
+  script:
+    - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+    - npx eas submit -p ios --latest --non-interactive

@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { ColorSheet } from '@/utils/ColorSheet';
 import { styles } from './styles';
 import { Constants } from './constants';

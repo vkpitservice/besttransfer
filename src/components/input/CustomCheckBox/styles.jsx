@@ -1,6 +1,5 @@
 import { ColorSheet } from '@/utils/ColorSheet';
 import { StyleSheet } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({

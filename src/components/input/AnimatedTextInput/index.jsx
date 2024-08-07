@@ -28,7 +28,7 @@ const AnimatedTextInput = (props) => {
 
   const handleFocus = () => {
     setIsFocused(true);
-    placeholderPosition.value = -23; // Move placeholder up
+    placeholderPosition.value = -20; // Move placeholder up
     fontSize.value = RFValue(11);
   };
 

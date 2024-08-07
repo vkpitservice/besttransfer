@@ -1,4 +1,4 @@
-import { DependencyList, EffectCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export function useUpdateEffect(effect, deps) {
   const isFirst = useIsFirstRender();
