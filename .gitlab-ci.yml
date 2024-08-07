@@ -32,4 +32,4 @@ eas-submit:
     - CI/CD
   script:
     - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-    - npx eas submit -p $PLATFORM --latest --non-interactive
+    - npx eas submit -p ios --latest --non-interactive
