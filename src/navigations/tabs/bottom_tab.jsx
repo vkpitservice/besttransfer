@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet } from 'react-native';
-import React from 'react';
+import { View, Text, StyleSheet, Keyboard } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ColorSheet } from '@/utils/ColorSheet';
 import {
@@ -19,9 +19,12 @@ import HomeStack from '../stacks/profile_stack';
 const Tab = createBottomTabNavigator();
 
 const AppBottomTab = () => {
+
   return (
     <Tab.Navigator
       screenOptions={{
+        // When open the Keyboard that time Avoid the TabBar
+        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarActiveTintColor: ColorSheet.ActiveIcon,
         tabBarInactiveTintColor: ColorSheet.InactiveIcon,

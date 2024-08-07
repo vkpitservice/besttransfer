@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    marginTop: Platform.OS == 'ios' ? hp(6) : hp(8),
+    marginTop: Platform.OS == 'ios' ? hp(6) : hp(6),
   },
   sectionHeader: {
     fontSize: RFValue(14),

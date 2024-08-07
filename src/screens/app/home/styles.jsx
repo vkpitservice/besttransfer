@@ -30,7 +30,10 @@ export const styles = StyleSheet.create({
   scrollView: { marginTop: Platform.OS == 'android' ? hp(8) : hp(6) },
   exchangeContainer: {
     width: '100%',
-    padding: hp(1),
+    height: 40,
+    // padding: hp(1),
+    justifyContent: 'center',
+    alignSelf: 'center',
     alignItems: 'center',
     backgroundColor: ColorSheet.PrimaryButton,
     borderRadius: hp(1),
@@ -48,6 +51,7 @@ export const styles = StyleSheet.create({
   dashedBorder: {
     marginTop: hp(0),
     alignSelf: 'center',
+    // backgroundColor: 'red'
   },
   feesTotalPaymentContainer: {
     marginVertical: hp(2),
@@ -70,7 +74,7 @@ export const styles = StyleSheet.create({
   },
   btnContainer: {
     width: '100%',
-    height: hp(5.5),
+    height: Platform.OS == 'ios' ? hp(5.5) : hp(6),
     marginTop: hp(2),
     borderRadius: 15,
   },

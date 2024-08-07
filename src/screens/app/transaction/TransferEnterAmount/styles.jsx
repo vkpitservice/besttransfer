@@ -19,15 +19,20 @@ export const styles = StyleSheet.create({
     width: wp(100),
     height: Platform.OS == 'ios' ? hp(100) : hp(105),
   },
-  CurrencyCoveterContainer: {
-    marginTop: hp(2),
-  },
   mainContainer: {
     width: wp(90),
     paddingBottom: hp(2),
     marginTop: hp(8),
     alignSelf: 'center',
     // backgroundColor: 'pink',
+  },
+  CurrencyCoveterContainer: {
+    marginTop: hp(2),
+  },
+  scroll_container: {
+    width: wp(90),
+    alignSelf: 'center',
+    paddingBottom: Platform.OS == 'ios' ? hp(3) : hp(3),
   },
   dashedBorderView: {
     height: hp(2),
