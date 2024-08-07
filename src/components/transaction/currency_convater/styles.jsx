@@ -1,5 +1,5 @@
 import { ColorSheet } from '@/utils/ColorSheet';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
   heightPercentageToDP as hp,
@@ -12,10 +12,11 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: ColorSheet.Primary,
     borderWidth: 1,
-    marginTop: hp(5),
+    marginTop: hp(4),
     marginBottom: hp(2),
-    height: hp(22),
+    height: Platform.OS == 'ios' ? '28%' : '29%',
     justifyContent: 'center',
+    // backgroundColor: 'yellow'
   },
   currencyInputView: {
     flexDirection: 'row',
@@ -23,13 +24,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     alignSelf: 'center',
-    top: hp(4),
+    top: Platform.OS == 'ios' ? hp(3) : hp(2),
+    // backgroundColor: 'red'
   },
   selectCurrencyView: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: wp(23),
+    // backgroundColor: 'green'
   },
   currencyLabel: {
     color: ColorSheet.Primary,
@@ -53,7 +56,7 @@ export const styles = StyleSheet.create({
   coveterView: {
     borderColor: ColorSheet.HorizontalLineColor,
     borderBottomWidth: 1.5,
-    top: -hp(0.5),
+    top: Platform.OS == 'ios' ? -hp(0.2) : -hp(0.3),
   },
   coveterButton: {
     backgroundColor: ColorSheet.Switch,

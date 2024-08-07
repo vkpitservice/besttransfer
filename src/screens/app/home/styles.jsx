@@ -48,6 +48,7 @@ export const styles = StyleSheet.create({
   dashedBorder: {
     marginTop: hp(0),
     alignSelf: 'center',
+    // backgroundColor: 'red'
   },
   feesTotalPaymentContainer: {
     marginVertical: hp(2),
@@ -70,7 +71,7 @@ export const styles = StyleSheet.create({
   },
   btnContainer: {
     width: '100%',
-    height: hp(5.5),
+    height: Platform.OS == 'ios' ? hp(5.5) : hp(6),
     marginTop: hp(2),
     borderRadius: 15,
   },

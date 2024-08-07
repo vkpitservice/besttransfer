@@ -10,9 +10,9 @@ import { ColorSheet } from '../../../utils/ColorSheet';
 
 export const styles = StyleSheet.create({
   container: {
-    width: '93%',
+    width: '92%',
     height: hp(5),
-    marginTop: hp(3),
+    marginTop: hp(4),
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
