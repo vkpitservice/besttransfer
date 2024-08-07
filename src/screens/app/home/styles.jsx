@@ -30,7 +30,10 @@ export const styles = StyleSheet.create({
   scrollView: { marginTop: Platform.OS == 'android' ? hp(8) : hp(6) },
   exchangeContainer: {
     width: '100%',
-    padding: hp(1),
+    height: 40,
+    // padding: hp(1),
+    justifyContent: 'center',
+    alignSelf: 'center',
     alignItems: 'center',
     backgroundColor: ColorSheet.PrimaryButton,
     borderRadius: hp(1),

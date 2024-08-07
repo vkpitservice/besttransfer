@@ -71,6 +71,12 @@ const SearchBeneficiary = ({ navigation }) => {
       {/* StatusBar */}
       <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
+      <ScrollView
+          contentContainerStyle={styles.scroll_container}
+          showsVerticalScrollIndicator={false}
+          // bounces={false}
+        >
+
       <Image
         style={styles.imageBackground}
         source={require('@/assets/images/Transaction/BeneficiaryScreenImg.png')} // Replace with your image source
@@ -100,12 +106,9 @@ const SearchBeneficiary = ({ navigation }) => {
 
       {/* Main View Container */}
       <View style={styles.mainContainer}>
-        <ScrollView
-          contentContainerStyle={styles.scroll_container}
-          showsVerticalScrollIndicator={false}
-          // bounces={false}
-        >
+        
           <SectionList
+            scrollEnabled = {false}
             sections={sections}
             keyExtractor={(item) => item.id.toString()}
             renderSectionHeader={({ section: { letter } }) => (
@@ -124,8 +127,10 @@ const SearchBeneficiary = ({ navigation }) => {
               );
             }}
           />
-        </ScrollView>
+        
       </View>
+
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };

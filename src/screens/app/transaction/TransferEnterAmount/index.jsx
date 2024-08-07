@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, KeyboardAvoidingView, Platform, StatusBar, Text, View } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, ScrollView, StatusBar, Text, View } from 'react-native';
 import { Constants } from './constants';
 import BackTitleHomeComponent from '@/components/BackTitleHome';
 import { styles } from './styles';
@@ -32,7 +32,13 @@ const TransferEnterAmount = ({ navigation }) => {
 
       {/* Main Container */}
       <View style={styles.mainContainer}>
-        {/* Transfer Details */}
+        {/* Scroll View */}
+        <ScrollView
+          contentContainerStyle={styles.scroll_container}
+          showsVerticalScrollIndicator = {false}
+          bounces = {false}
+        >
+          {/* Transfer Details */}
         <CurrencyCoveter
           containerStyle={styles.CurrencyCoveterContainer}
           sendingAmountValue={'1000.00'}
@@ -76,6 +82,8 @@ const TransferEnterAmount = ({ navigation }) => {
           title={Constants.SEND}
           onPress={() => navigation.navigate('TransactionDetailsScreen')}
         />
+        </ScrollView>
+
       </View>
     </KeyboardAvoidingView>
   );

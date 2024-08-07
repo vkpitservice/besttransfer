@@ -14,7 +14,8 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: hp(4),
     marginBottom: hp(2),
-    height: Platform.OS == 'ios' ? '28%' : '29%',
+    // Change
+    height: Platform.OS == 'ios' ? 180 : 170,
     justifyContent: 'center',
     // backgroundColor: 'yellow'
   },
@@ -24,7 +25,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     alignSelf: 'center',
-    top: Platform.OS == 'ios' ? hp(3) : hp(2),
+    top: Platform.OS == 'ios' ? hp(3) : hp(3),
     // backgroundColor: 'red'
   },
   selectCurrencyView: {

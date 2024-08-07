@@ -47,6 +47,13 @@ const Preview = ({ navigation }) => {
       {/* StatusBar */}
       <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
+      {/* ScrollView */}
+      <ScrollView
+          contentContainerStyle={styles.scroll_container}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+        >
+
       {/* Back And Header And Home */}
       <BackTitleHomeComponent
         style={styles.titleHeaderContainer}
@@ -65,14 +72,6 @@ const Preview = ({ navigation }) => {
         source={require('@/assets/images/beneficiary/SelectBeneficiary.png')}
       />
 
-      {/* Main View Container */}
-      <View style={styles.mainViewContainer}>
-        {/* ScrollView */}
-        <ScrollView
-          contentContainerStyle={styles.scroll_container}
-          showsVerticalScrollIndicator={false}
-          bounces={false}
-        >
           {/* Main Container */}
           <View style={styles.main_Container}>
             {/* Transfer Details */}
@@ -139,8 +138,8 @@ const Preview = ({ navigation }) => {
               onPress={handleContinue}
             />
           </View>
-        </ScrollView>
-      </View>
+      </ScrollView>
+
     </KeyboardAvoidingView>
   );
 };
