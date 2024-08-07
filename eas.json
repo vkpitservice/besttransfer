@@ -1,0 +1,30 @@
+{
+  "cli": {
+    "version": ">= 3.10.0",
+    "requireCommit": true,
+    "appVersionSource": "remote",
+    "promptToConfigurePushNotifications": false
+  },
+  "build": {
+    "all_publish": {
+      "autoIncrement": true,
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
+        "distribution": "store",
+        "image": "latest"
+      },
+      "channel": "preview-a"
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "mohammed@codelantic.com",
+        "ascAppId": "6477393574",
+        "appleTeamId": "PN5DX3LKGH"
+      }
+    }
+  }
+}

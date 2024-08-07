@@ -1,13 +1,15 @@
 {
   "expo": {
     "name": "fxmaster_mobile",
-    "slug": "fxmaster_mobile",
+    "slug": "fx-master",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "assetBundlePatterns": ["**/src/*"],
+    "assetBundlePatterns": [
+      "**/src/*"
+    ],
     "splash": {
       "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
@@ -25,6 +27,12 @@
     "plugins": [],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d3e3e36c-1385-4594-a582-cd6f0840918e"
+      }
+    },
+    "owner": "codelantic2023"
   }
 }
