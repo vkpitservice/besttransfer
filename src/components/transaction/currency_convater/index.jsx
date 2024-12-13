@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { styles } from './styles';
 import Animated, {
   useSharedValue,
@@ -25,7 +25,7 @@ const CurrencyCoveter = (props) => {
     receivingCurrencySource,
   } = props;
   const [swapped, setSwapped] = useState(false);
-
+  const timeout = useRef(null);
   const position1 = useSharedValue(0);
   const position2 = useSharedValue(1);
 
@@ -46,11 +46,23 @@ const CurrencyCoveter = (props) => {
       transform: [{ translateY: withSpring(position2.value * 85) }],
     };
   });
+
+  const getConversionData = async(val) =>{
+    console.log(val);
+    
+  }
+
+  const onChangeHandler = (value) => {
+    clearTimeout(timeout.current);
+    timeout.current = setTimeout(() => {
+      getConversionData(value)
+    }, 2000);
+  }
   return (
     <View style={[styles.topContainer, containerStyle]}>
       <Animated.View style={[styles.currencyInputView, animatedStyle1]}>
         <AnimatedTextInput
-          onChangeText={onChangeSendingAmount}
+          onChangeText={value => { onChangeHandler(value) }}
           value={sendingAmountValue}
           placeholder={'Sending Amount'}
         />
@@ -62,7 +74,7 @@ const CurrencyCoveter = (props) => {
       </Animated.View>
 
       <View style={styles.coveterView}>
-        <TouchableOpacity onPress={swapButtons} style={styles.coveterButton}>
+        <TouchableOpacity style={styles.coveterButton}>
           <Rotate width={20} height={18} />
         </TouchableOpacity>
       </View>

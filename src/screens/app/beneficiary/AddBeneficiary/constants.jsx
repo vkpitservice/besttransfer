@@ -9,7 +9,10 @@ export const Constants = {
     ACC_NAME: 'Enter Account Holder Name', 
     IFSC: 'Enter IFSC Code', 
     ACCOUNT_NUMBER: 'Enter Account Number',
+    UPI_ID: 'Virtual Payment Address(VPA)',
     CITY: 'Enter City',
+    MOBILE_NUMBER: 'Recipient Mobile Number(Optional)',
+    DROPDOWN_TITLE:'Select Country',
 
     COUNTRY_REQUIRED: 'Select Country is required',
     FIRST_NAME_REQUIRED: 'First Name is required',

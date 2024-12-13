@@ -15,19 +15,31 @@ const RecipientDetails = (props) => {
         <Text style={styles.TextAmount}> {name} </Text>
       </View>
 
-      {/* Account Number */}
-      <View style={styles.rowExchangeContainer}>
-        <Text style={styles.TextTitle}> {'Account Number'} </Text>
-        {/* Amount */}
-        <Text style={styles.TextAmount}> {accNumber} </Text>
-      </View>
+      {ifscCode ?
+        <>
+          {/* Account Number */}
+          <View style={styles.rowExchangeContainer}>
+            <Text style={styles.TextTitle}> {'Account Number'} </Text>
+            {/* Amount */}
+            <Text style={styles.TextAmount}> {accNumber} </Text>
+          </View>
 
-      {/* IFSC Code*/}
-      <View style={styles.rowExchangeContainer}>
-        <Text style={styles.TextTitle}> {'IFSC Code'} </Text>
-        {/* Amount */}
-        <Text style={styles.TextAmount}> {ifscCode} </Text>
-      </View>
+          {/* IFSC Code*/}
+          <View style={styles.rowExchangeContainer}>
+            <Text style={styles.TextTitle}> {'IFSC Code'} </Text>
+            {/* Amount */}
+            <Text style={styles.TextAmount}> {ifscCode} </Text>
+          </View>
+        </>
+        :
+        <>
+          <View style={styles.rowExchangeContainer}>
+            <Text style={styles.TextTitle}> {'UPI Id'} </Text>
+            {/* Amount */}
+            <Text style={styles.TextAmount}> {accNumber} </Text>
+          </View>
+        </>
+      }
     </View>
   );
 };

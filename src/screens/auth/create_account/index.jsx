@@ -21,8 +21,8 @@ import NumberInput from '@/components/input/NumberInput';
 import { DefaultConstants } from '@/utils/Constants';
 import { StackActions } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
 import postRequest from '@/components/NetworkRequest/postRequest';
+import DeviceInfo from 'react-native-device-info';
 
 const CreateAccount = ({ navigation }) => {
   const [displayVisibleWindow, setDisplayVisibleWindow] = useState('individual');
@@ -71,7 +71,7 @@ const CreateAccount = ({ navigation }) => {
       ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH);
     } else {
       setLoading(true)
-      var resp = await postRequest(DefaultConstants.BASE_URL + 'user/signup', { first_name: formData.firstname, last_name: formData.lastname, email: formData.email, password: formData.digitCode, mobile: formData.phoneNumber, country_code: "+44", source: DefaultConstants.SOURCE_NAME, user_type: displayVisibleWindow }, {
+      var resp = await postRequest(DefaultConstants.BASE_URL + 'user/signup', { first_name: formData.firstname, last_name: formData.lastname, email: formData.email, password: formData.digitCode, mobile: formData.phoneNumber, country_code: "+44", source: DefaultConstants.SOURCE_NAME, user_type: displayVisibleWindow,contact_address:"NANANANA",device_id:DeviceInfo.getDeviceId(),device_token:"NANANANANANA" }, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -106,7 +106,7 @@ const CreateAccount = ({ navigation }) => {
       }
       else {
         setLoading(false)
-        ErrorFlash(resp[1].response.data.detail);
+        ErrorFlash(resp[1]);
       }
 
     }
@@ -323,14 +323,14 @@ export default CreateAccount;
 
 const numberData = [
   {
-    label: 'India',
-    image: 'https://cdn.pixabay.com/photo/2016/03/09/19/24/flag-1247218_640.jpg',
+    label: 'UK',
+    image: 'https://fxmaster.co.uk/flags/UK.png',
     value: '+44',
   },
 ];
 
 const defaultValue = {
   label: 'UK',
-  image: 'https://cdn.pixabay.com/photo/2016/03/09/19/24/flag-1247218_640.jpg',
+  image: 'https://fxmaster.co.uk/flags/UK.png',
   value: '+44',
 };

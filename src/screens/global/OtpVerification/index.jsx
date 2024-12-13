@@ -73,15 +73,6 @@ const OtpVerification = ({ navigation }) => {
       else
       {
         ErrorFlash(otpvalidateresp[1])
-        
-        var otpresp = await postRequest(DefaultConstants.BASE_URL + 'otp/validate-email', { source: DefaultConstants.SOURCE_NAME }, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-          }
-        });
-        navigation.dispatch(StackActions.replace('EmailOtpVerificationScreen'));
-
       }
       setLoading(false)
     }

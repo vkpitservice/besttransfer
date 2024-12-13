@@ -1,16 +1,16 @@
-import { Image, Text, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { styles } from './styles';
 import PropTypes from 'prop-types';
 
 const BeneficiarySearchListData = (props) => {
-  const { imgSource, name, idNumber, sBinNumber } = props;
+  const { imgSource, name, idNumber, sBinNumber,beneId, onClick } = props;
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={()=>onClick(beneId, name,idNumber,sBinNumber)}>
       {/* Image */}
       {imgSource ? (
-        <Image style={styles.imageStyle} source={imgSource} />
+        <Image style={styles.imageStyle} source={require('@/assets/images/user-profile.jpg')} />
       ) : (
         <View style={styles.placeholderImageStyle}>
           <Text style={styles.placeholderText}>{name.charAt(0).toUpperCase()}</Text>
@@ -26,10 +26,10 @@ const BeneficiarySearchListData = (props) => {
           {' '}
           {idNumber}
           {/* SBIN Number */}
-          <Text style={styles.numberTxt}> ({sBinNumber}) </Text>
+          <Text style={styles.numberTxt}> {sBinNumber ? '('+sBinNumber+')' : ""} </Text>
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -39,6 +39,7 @@ BeneficiarySearchListData.propTypes = {
   name: PropTypes.string,
   idNumber: PropTypes.string,
   sBinNumber: PropTypes.string,
+  onClick: PropTypes.any
 };
 
 // Define default props

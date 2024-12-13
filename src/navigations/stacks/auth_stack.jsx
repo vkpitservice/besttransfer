@@ -9,6 +9,10 @@ import CreateAccount from '@/screens/auth/create_account';
 import UploadDocumentResident from '@/screens/auth/resident/upload DocumetResident';
 import AppBottomTab from '../tabs/bottom_tab';
 import EmailOtpVerification from '@/screens/global/OtpVerification/email';
+import BusinessDetails from '@/screens/business';
+import AboutBusiness from '@/screens/business/about';
+import BusinessAddress from '@/screens/business/address';
+import SelectOfficer from '@/screens/business/selectOfficer';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +27,10 @@ const AuthStack = () => {
       <Stack.Screen name='EmailOtpVerificationScreen' component={EmailOtpVerification} />
       <Stack.Screen name='UploadDocumentResidentScreen' component={UploadDocumentResident} />
       <Stack.Screen name='RegisterSuccessFullScreen' component={Success} />
+      <Stack.Screen name='BusinessDetails' component={BusinessDetails} />
+      <Stack.Screen name='AboutBusiness' component={AboutBusiness} />
+      <Stack.Screen name='BusinessAddress' component={BusinessAddress} />
+      <Stack.Screen name='SelectOfficer' component={SelectOfficer} />
       <Stack.Screen name='AppBottomTab' component={AppBottomTab} />
     </Stack.Navigator>
   );

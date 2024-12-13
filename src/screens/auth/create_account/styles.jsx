@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
   },
   common_container: {
     width: wp(43),
-    height: hp(5),
+    height: hp(3),
     borderRadius: hp(1),
     // borderWidth: 1,
     alignItems: 'center',
@@ -76,6 +76,6 @@ export const styles = StyleSheet.create({
     width: wp(90),
     height: hp(6),
     marginTop: hp(2),
-    borderRadius: hp(1),
+    borderRadius: hp(5),
   },
 });

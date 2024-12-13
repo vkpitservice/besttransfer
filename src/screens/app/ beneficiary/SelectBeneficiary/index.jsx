@@ -14,6 +14,7 @@ import { Constants } from './constants';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { ColorSheet } from '@/utils/ColorSheet';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { StackActions } from '@react-navigation/native';
 
 const SelectBeneficiary = ({ navigation }) => {
   return (
@@ -32,7 +33,7 @@ const SelectBeneficiary = ({ navigation }) => {
           navigation.goBack();
         }}
         onPressHome={() => {
-          console.log('onPressHome');
+          navigation.dispatch(StackActions.replace('AppBottomTab'));
         }}
       />
 
@@ -49,7 +50,7 @@ const SelectBeneficiary = ({ navigation }) => {
           style={styles.CardContainer}
           activeOpacity={0.5}
           onPress={() => {
-            navigation.navigate('PreviewScreen');
+            navigation.navigate('AddBeneficiary');
           }}
         >
           {/* Bank Account */}
@@ -65,7 +66,7 @@ const SelectBeneficiary = ({ navigation }) => {
           style={styles.CardContainer}
           activeOpacity={0.5}
           onPress={() => {
-            navigation.navigate('PreviewScreen');
+            navigation.navigate('AddUPIBeneficiary');
           }}
         >
           {/* Bank Account */}

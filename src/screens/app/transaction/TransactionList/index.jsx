@@ -8,14 +8,18 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styles } from './styles';
 import BackTitleAddComponent from '@/components/BackTitleAdd';
 import { Constants } from './constants';
 import TransactionListShowData from '@/components/transaction/transactionListShowData';
+import getRequest from '@/components/NetworkRequest/getRequest';
+import { DefaultConstants } from '@/utils/Constants';
+import { ErrorFlash } from '@/utils/flashMessage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TransactionList = ({ navigation }) => {
-  const [data, setData] = useState(transactionData.slice(0, 6));
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true); // Check if there are more items to load
@@ -25,17 +29,54 @@ const TransactionList = ({ navigation }) => {
 
     setLoading(true);
     setTimeout(() => {
-      const newPage = page + 1;
-      const newData = transactionData.slice(0, newPage * 6);
-      if (newData.length >= transactionData.length) {
-        setHasMore(false); // No more data to load
+      if (data.length > 0) {
+        const newPage = page + 1;
+        const newData = data.slice(0, newPage * 6);
+        if (newData.length >= data.length) {
+          setHasMore(false); // No more data to load
+        }
+        setData(newData);
+        setPage(newPage);
+        setLoading(false);
       }
-      setData(newData);
-      setPage(newPage);
-      setLoading(false);
     }, 1500); // Simulate network request
   };
+  useEffect(() => {
+    getTransactions()
+  }, [])
 
+  const getTransactions = async () => {
+    let token = await AsyncStorage.getItem('login_token');
+    console.log(DefaultConstants.BASE_URL + 'transaction/all');
+    console.log(token);
+
+    const resp = await getRequest(DefaultConstants.BASE_URL + 'transaction/all', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    });
+    console.log(resp[1].data);
+
+    if (resp[0] != '400') {
+      console.log(resp[1].data);
+
+      const transactionData = (resp[1].data).map((item, index) => ({
+        id: index,
+        name: (item.benificiary.first_name + " " + item.benificiary.last_name).toUpperCase(),
+        date: item.created,
+        amount: item.amount,
+        amount_base: item.amount_base,
+        type: (item.status).toUpperCase(), 
+        account_number: item.benificiary.benificiary_type='upi' ? item.benificiary.upi_id : item.benificiary.account_number,
+        ifsc: item.benificiary.ifsc
+      }));
+      setData(transactionData.slice(0, 6))
+    }
+    else {
+      ErrorFlash(resp[1])
+    }
+  }
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -69,12 +110,14 @@ const TransactionList = ({ navigation }) => {
             <TransactionListShowData
               key={index}
               id={index}
-              imageSource={require('@/assets/images/Transaction/TransactionProfile.png')}
+              // imageSource={require('@/assets/images/Transaction/TransactionProfile.png')}
               name={item.name}
               date={item.date}
               amount={item.amount}
               type={item.type}
-              onPress={() => navigation.navigate('TransferEnterAmountScreen')}
+              onPress={() => navigation.navigate('TransferDetails')}
+              account_number={item.account_number}
+              ifsc={item.ifsc}
             />
           )}
           keyExtractor={(item) => item.id.toString()} // Use item.id for key
@@ -92,8 +135,8 @@ const TransactionList = ({ navigation }) => {
                   paddingVertical: 20,
                 }}
               >
-                <ActivityIndicator size='large' />
-                <Text>Loading...</Text>
+                {/* <ActivityIndicator size='large' />
+                <Text>Loading...</Text> */}
               </View>
             )
           }
@@ -113,126 +156,5 @@ const listData = [
     date: 'Oct 14, 10:24 AM',
     amount: '£15.00',
     type: 'success',
-  },
-  {
-    id: 2,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Sara Ibrahim',
-    date: 'Oct 12, 02:13 PM',
-    amount: '£15.00',
-    type: 'fail',
-  },
-  {
-    id: 3,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Sara Ibrahim',
-    date: 'Oct 11, 01:19 AM',
-    amount: '£15.00',
-    type: 'fail',
-  },
-  {
-    id: 4,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Reem Khaled',
-    date: 'Oct 11, 01:19 AM',
-    amount: '£15.00',
-    type: 'success',
-  },
-  {
-    id: 5,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Hiba Saleh',
-    date: 'Oct 04, 05:45 AM',
-    amount: '£15.00',
-    type: 'fail',
-  },
-  {
-    id: 6,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Yara Khalil',
-    date: 'Oct 14, 10:24 AM',
-    amount: '£15.00',
-    type: 'success',
-  },
-  {
-    id: 7,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Reem Khaled',
-    date: 'Oct 07, 09:10 PM',
-    amount: '£15.00',
-    type: 'success',
-  },
-  {
-    id: 8,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Ali Mahmoud',
-    date: 'Oct 15, 11:00 AM',
-    amount: '£10.00',
-    type: 'fail',
-  },
-  {
-    id: 9,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Nadia Nasser',
-    date: 'Oct 16, 01:45 PM',
-    amount: '£20.00',
-    type: 'success',
-  },
-  {
-    id: 10,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Omar Ali',
-    date: 'Oct 17, 02:10 PM',
-    amount: '£8.00',
-    type: 'fail',
-  },
-  {
-    id: 11,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Layla Ahmed',
-    date: 'Oct 18, 10:00 AM',
-    amount: '£25.00',
-    type: 'success',
-  },
-  {
-    id: 12,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Zara Hassan',
-    date: 'Oct 19, 09:00 AM',
-    amount: '£12.00',
-    type: 'fail',
-  },
-  {
-    id: 13,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Mohammed Salah',
-    date: 'Oct 20, 11:30 AM',
-    amount: '£30.00',
-    type: 'success',
-  },
-  {
-    id: 14,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Aisha Ali',
-    date: 'Oct 21, 08:45 AM',
-    amount: '£5.00',
-    type: 'fail',
-  },
-  {
-    id: 15,
-    image: require('@/assets/images/Transaction/TransactionProfile.png'),
-    name: 'Fatima Yusuf',
-    date: 'Oct 22, 12:00 PM',
-    amount: '£18.00',
-    type: 'success',
-  },
+  }
 ];
-
-const transactionData = listData.map((item, index) => ({
-  id: index,
-  img: item.image,
-  name: item.name,
-  date: item.date,
-  amount: item.amount,
-  type: item.type,
-}));

@@ -8,31 +8,43 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import BackTitleAddComponent from '@/components/BackTitleAdd';
 import Search from '@/components/input/Search';
 import BeneficiarySearchListData from '@/components/transaction/beneficiarySearchListData';
 import { styles } from './styles';
 import { Constants } from './constants';
-
+import getRequest from '@/components/NetworkRequest/getRequest';
+import { DefaultConstants } from '@/utils/Constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+var bene = [];
 const SearchBeneficiary = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [beneficiary, setbeneficiary] = useState([]);
 
   // Map listData to beneficiaryList with appropriate structure
   const beneficiaryList = useMemo(() => {
-    const result = listData.flatMap((section) =>
-      section.data.map((item) => ({
-        id: item.id, // Use unique ID
-        img: item.image,
-        name: item.name,
-        idNumber: item.idNumber,
-        sBinNumber: item.sBinNumber,
-      })),
-    );
-    // Log the entire beneficiaryList for debugging
-    // console.log('Beneficiary List:', result);
-    return result;
-  }, [listData]);
+    if (beneficiary.length > 0) {
+      console.log("responseeee" + JSON.stringify(beneficiary));
+
+      const result = beneficiary.flatMap((section) =>
+        section.data.map((item) => ({
+          id: item.id, // Use unique ID
+          img: item.image,
+          name: item.name,
+          idNumber: item.idNumber,
+          sBinNumber: item.sBinNumber,
+        })),
+      );
+      // Log the entire beneficiaryList for debugging
+      // console.log('Beneficiary List:', result);
+      return result;
+    }
+    else {
+      const result = [];
+      return result;
+    }
+  }, [beneficiary]);
 
   // Filter beneficiary based on search query
   const filteredBeneficiaryList = useMemo(() => {
@@ -63,6 +75,52 @@ const SearchBeneficiary = ({ navigation }) => {
       .sort((a, b) => a.letter.localeCompare(b.letter));
   }, [filteredBeneficiaryList]);
 
+  const getBeneficiaries = async () => {
+    bene = [];
+    let token = await AsyncStorage.getItem('login_token');
+    var beneresp = await getRequest(DefaultConstants.BASE_URL + 'benificiary/get/all', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    });
+    console.log("hihihihihi");
+    for (var i = 0; i < beneresp[1].data.length; i++) {
+      bene.push({
+        title: beneresp[1].data[i].account_name, data: [{
+          id: beneresp[1].data[i].id,
+          image: '@/assets/images/Transaction/TransactionProfile.png',
+          name: beneresp[1].data[i].account_name != null ? beneresp[1].data[i].account_name : beneresp[1].data[i].first_name + " " + beneresp[1].data[i].nickname,
+          idNumber: beneresp[1].data[i].account_number != null ? beneresp[1].data[i].account_number : beneresp[1].data[i].upi_id,
+          sBinNumber: beneresp[1].data[i].ifsc,
+        }]
+      })
+    }
+    console.log(JSON.stringify(beneresp[1].data));
+    setbeneficiary(bene)
+  }
+  useEffect(() => {
+    getBeneficiaries()
+  }, [])
+  const navigateTo = async (beneId, name, accno, ifsc) => {
+    console.log(beneId);
+    console.log(name);
+    console.log(accno);
+    console.log(ifsc);
+    const totalAmount = await AsyncStorage.getItem('totalAmount');
+    const enteredamount = await AsyncStorage.getItem('amount');
+    const fromCurrency = await AsyncStorage.getItem('fromCurrency');
+    const toCurrency = await AsyncStorage.getItem('toCurrency');
+    const fees = await AsyncStorage.getItem('fees');
+    const exchangeRate = await AsyncStorage.getItem('exchangeRate');
+    if(totalAmount=='0.00' || enteredamount=='0.00' || fromCurrency==null || toCurrency==null)
+    {
+      navigation.navigate('PreviewScreen',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,exchangeRate:exchangeRate});
+    }
+    else{
+      navigation.navigate('PreviewScreen',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,exchangeRate:exchangeRate});
+    }
+  }
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -70,7 +128,6 @@ const SearchBeneficiary = ({ navigation }) => {
     >
       {/* StatusBar */}
       <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
-
       <ScrollView
         contentContainerStyle={styles.scroll_container}
         showsVerticalScrollIndicator={false}
@@ -121,6 +178,8 @@ const SearchBeneficiary = ({ navigation }) => {
                   name={item.name}
                   idNumber={item.idNumber}
                   sBinNumber={item.sBinNumber}
+                  beneId={item.id}
+                  onClick={navigateTo}
                 />
               );
             }}
@@ -132,150 +191,3 @@ const SearchBeneficiary = ({ navigation }) => {
 };
 
 export default SearchBeneficiary;
-
-const listData = [
-  {
-    title: 'Amit Kumar',
-    data: [
-      {
-        id: 1,
-        image: require('@/assets/images/Transaction/TransactionProfile.png'),
-        name: 'Amit Kumar',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'Alexander',
-    data: [
-      {
-        id: 2,
-        image: require('@/assets/images/Transaction/TransactionProfile.png'),
-        name: 'Alexander',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'Benjamin',
-    data: [
-      {
-        id: 3,
-        image: require('@/assets/images/Transaction/TransactionProfile.png'),
-        name: 'Benjamin',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'Balaji',
-    data: [
-      {
-        id: 4,
-        image: '',
-        name: 'Balaji',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'Chetan',
-    data: [
-      {
-        id: 5,
-        image: require('@/assets/images/Transaction/TransactionProfile.png'),
-        name: 'Chetan',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'Dhetan',
-    data: [
-      {
-        id: 6,
-        image: require('@/assets/images/Transaction/TransactionProfile.png'),
-        name: 'Dhetan',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'sk',
-    data: [
-      {
-        id: 7,
-        image: require('@/assets/images/Transaction/TransactionProfile.png'),
-        name: 'sk',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'Sarujan Amal',
-    data: [
-      {
-        id: 8,
-        image: require('@/assets/images/Transaction/TransactionProfile.png'),
-        name: 'Sarujan Amal',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'Varu Amal',
-    data: [
-      {
-        id: 9,
-        image: '',
-        name: 'Varu Amal',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'kamal Amal',
-    data: [
-      {
-        id: 10,
-        image: require('@/assets/images/Transaction/TransactionProfile.png'),
-        name: 'kamal Amal',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'Murali Amal',
-    data: [
-      {
-        id: 11,
-        image: '',
-        name: 'Murali Amal',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-  {
-    title: 'Suresh Amal',
-    data: [
-      {
-        id: 12,
-        image: require('@/assets/images/Transaction/TransactionProfile.png'),
-        name: 'Suresh Amal',
-        idNumber: '3025463201',
-        sBinNumber: 'SBIN2001',
-      },
-    ],
-  },
-];

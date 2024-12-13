@@ -39,7 +39,6 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: RFValue(14),
     fontWeight: '400',
-    marginBottom: hp(3),
   },
   inputContainer: {
     marginTop: hp(3),

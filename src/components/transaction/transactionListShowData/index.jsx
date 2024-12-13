@@ -4,31 +4,29 @@ import { styles } from './styles';
 import PropTypes from 'prop-types';
 import RequestSuccess from '@/assets/svg/transaction/RequestSuccessIcon.svg';
 import RequestFail from '@/assets/svg/transaction/RequestFail.svg';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const TransactionListShowData = (props) => {
-  const { imageSource, name, date, amount, type, onPress } = props;
+  const { imageSource, name, date, amount,amount_base, type, onPress,account_number,ifsc } = props;
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.root}>
       {/* 1st row */}
       <View style={styles.imageTextContainer}>
-        {/* Image */}
-        <View style={styles.imgContainer}>
-          <Image style={styles.imageStyle} source={imageSource} />
-
-          {/* SVG Success or Fail */}
-          <View style={styles.svgContainer}>
-            {/* SVG Success */}
-            {type == 'success' && <RequestSuccess />}
-
-            {/* SVG Fail */}
-            {type == 'fail' && <RequestFail />}
-          </View>
+        <View style={{ flexDirection: 'row', borderBottomWidth: 1,padding:5 }}>
+          <MaterialIcons name='assistant-navigation' size={30} />
+          <Text style={{ marginLeft: 10, fontSize: 20 }}>{type}</Text>
         </View>
-        {/* Name And Date */}
-        <View style={styles.nameDateContainer}>
-          <Text style={styles.nameTxt}> {name} </Text>
-          <Text style={styles.dateTxt}> {date} </Text>
+        <View style={{flexDirection:'row',justifyContent:'space-between',padding:5}}>
+          <View style={styles.nameDateContainer}>
+            <Text style={styles.nameTxt}> {name} </Text>
+            <Text style={styles.nameTxt}> {account_number} </Text>
+            <Text style={styles.dateTxt}>  {date} </Text>
+          </View>
+          <View style={styles.nameDateContainer}>
+            <Text style={[styles.nameTxt, { fontSize: 15 }]}> GBP {amount_base} </Text>
+            <Text style={[styles.nameTxt, { fontSize: 20 }]}> INR {amount} </Text>
+          </View>
         </View>
       </View>
 

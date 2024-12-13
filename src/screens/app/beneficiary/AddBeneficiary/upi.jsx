@@ -15,7 +15,7 @@ import postRequest from '@/components/NetworkRequest/postRequest';
 import { DefaultConstants } from '@/utils/Constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const AddBeneficiary = ({ navigation }) => {
+const AddUPIBeneficiary = ({ navigation }) => {
   const [loading,setLoading] = useState(false);
   const [from, setFrom] = useState({
     firstName: '',
@@ -42,14 +42,8 @@ const AddBeneficiary = ({ navigation }) => {
       ErrorFlash(Constants.FIRST_NAME_REQUIRED)
     } else if (!from.lastName) {
       ErrorFlash(Constants.LAST_NAME_REQUIRED)
-    } else if (!from.accountName) {
-      ErrorFlash(Constants.ACC_NAME_REQUIRED)
-    } else if (!from.ifsc) {
-      ErrorFlash(Constants.IFSC_REQUIRED)
     } else if (!from.accountNumber) {
       ErrorFlash(Constants.ACCOUNT_NUMBER_REQUIRED)
-    } else if (!from.city) {
-      ErrorFlash(Constants.CITY_REQUIRED)
     } else {
       setLoading(true)
       let token = await AsyncStorage.getItem('login_token');
@@ -61,7 +55,7 @@ const AddBeneficiary = ({ navigation }) => {
       });
       console.log(otpresp);
       setLoading(false)
-      navigation.navigate('BeneficiaryOtpVerification',{firstname:from.firstName,lastname:from.lastName,accountname:from.accountName,ifsc:from.ifsc,city:from.city,accountnumber:from.accountNumber,beneType:'account',mobile:''});
+      navigation.navigate('BeneficiaryOtpVerification',{firstname:from.firstName,lastname:from.lastName,accountname:from.firstName+" "+from.lastName,ifsc:'',city:'',accountnumber:from.accountNumber,beneType:'upi',mobile:from.city});
     }
   }
 
@@ -163,56 +157,11 @@ const AddBeneficiary = ({ navigation }) => {
               }}
             />
 
-            {/* Account Name */}
-            <TextInputField
-              containerStyle={styles.inputContainer}
-              placeholder={Constants.ACC_NAME}
-              value={from.accountName}
-              onChangeText={(text) => {
-                setFrom({
-                  ...from,
-                  accountName: text
-                })
-              }}
-              onFocus={() => setFrom({ ...from, accountNameError: '' })}
-              keyboardType={'default'}
-              textError={from.accountNameError}
-              onBlur={() => {
-                if (from.accountName === '') {
-                  setFrom({ ...from, accountNameError: Constants.ACC_NAME_REQUIRED })
-                } else {
-                  setFrom({ ...from, accountNameError: '' })
-                }
-              }}
-            />
-
-            {/* IFSC */}
-            <TextInputField
-              containerStyle={styles.inputContainer}
-              placeholder={Constants.IFSC}
-              value={from.ifsc}
-              onChangeText={(text) => {
-                setFrom({
-                  ...from,
-                  ifsc: text
-                })
-              }}
-              onFocus={() => setFrom({ ...from, ifscError: '' })}
-              keyboardType={'default'}
-              textError={from.ifscError}
-              onBlur={() => {
-                if (from.ifsc === '') {
-                  setFrom({ ...from, ifscError: Constants.IFSC_REQUIRED })
-                } else {
-                  setFrom({ ...from, ifscError: '' })
-                }
-              }}
-            />
-
+            
             {/* Account Number */}
             <TextInputField
               containerStyle={styles.inputContainer}
-              placeholder={Constants.ACCOUNT_NUMBER}
+              placeholder={Constants.UPI_ID}
               value={from.accountNumber}
               onChangeText={(text) => {
                 setFrom({
@@ -232,10 +181,11 @@ const AddBeneficiary = ({ navigation }) => {
               }}
             />
 
-            {/* City */}
+
+            {/* MobileNumber */}
             <TextInputField
               containerStyle={styles.inputContainer}
-              placeholder={Constants.CITY}
+              placeholder={Constants.MOBILE_NUMBER}
               value={from.city}
               onChangeText={(text) => {
                 setFrom({
@@ -253,6 +203,7 @@ const AddBeneficiary = ({ navigation }) => {
                   setFrom({ ...from, cityError: '' })
                 }
               }}
+              maxLength={10}
             />
 
             {/* Continue Button */}
@@ -271,7 +222,7 @@ const AddBeneficiary = ({ navigation }) => {
   )
 }
 
-export default AddBeneficiary;
+export default AddUPIBeneficiary;
 
 const listCountry = [
   {

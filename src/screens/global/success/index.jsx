@@ -5,6 +5,8 @@ import { styles } from './styles';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { Constants } from './constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DefaultConstants } from '@/utils/Constants';
+import postRequest from '@/components/NetworkRequest/postRequest';
 
 const Success = ({ navigation }) => {
   const [loading, setloading] = useState(false);

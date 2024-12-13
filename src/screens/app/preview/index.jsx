@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styles } from './styles';
 import BackTitleHomeComponent from '@/components/BackTitleHome';
 import { Constants } from './constants';
@@ -18,7 +18,8 @@ import PrimaryButton from '@/components/buttons/primaryButton';
 import { ErrorFlash } from '@/utils/flashMessage';
 import RecipientDetails from '@/components/preview/recipientDetails';
 
-const Preview = ({ navigation }) => {
+const Preview = ({ navigation,route }) => {
+  const {beneId,name,accno,ifsc,totalAmount,enteredamount,fromCurrency,toCurrency,fees,exchangeRate} = route.params;
   const [from, setForm] = useState({
     reference: '',
     referenceError: '',
@@ -35,10 +36,9 @@ const Preview = ({ navigation }) => {
     } else if (selectReason.value == '') {
       ErrorFlash(Constants.REASON_REQUIRE);
     } else {
-      //   navigation.navigate('BeneficiaryScreen');
+        navigation.navigate('PaymentTypes',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,reference:from.reference,reason:selectReason.value,exchangeRate:exchangeRate});
     }
   };
-
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -84,10 +84,10 @@ const Preview = ({ navigation }) => {
             <TransferDetailsEdit
               send={previewData[0].transferDetails.exchange[0].send}
               recieve={previewData[0].transferDetails.exchange[0].receive}
-              theyRecieve={previewData[0].transferDetails.theyReceive}
-              youSend={previewData[0].transferDetails.youSend}
-              fee={previewData[0].transferDetails.fee}
-              totalPayment={previewData[0].transferDetails.totalPayment}
+              theyRecieve={totalAmount}
+              youSend={enteredamount}
+              fee={fees}
+              totalPayment={parseInt(enteredamount) + parseInt(fees)}
             />
           </View>
 
@@ -99,9 +99,9 @@ const Preview = ({ navigation }) => {
             </View>
             {/* Recipient Details List*/}
             <RecipientDetails
-              name={previewData[0].recipientDetails.name}
-              accNumber={previewData[0].recipientDetails.accNumber}
-              ifscCode={previewData[0].recipientDetails.ifscCode}
+              name={name}
+              accNumber={accno}
+              ifscCode={ifsc}
             />
           </View>
 

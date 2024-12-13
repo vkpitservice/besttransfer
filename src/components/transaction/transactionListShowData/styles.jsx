@@ -9,16 +9,21 @@ import { ColorSheet } from '../../../utils/ColorSheet';
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
+  imgContainer:{
+   
+  },
   root: {
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginVertical: hp(2),
+    borderWidth:1,
+    padding:0,
+    borderRadius:8
   },
   imageTextContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    width:'100%'
   },
   imageStyle: {
     width: wp(12),
@@ -49,7 +54,7 @@ export const styles = StyleSheet.create({
   },
   dateTxt: {
     paddingTop: hp(0.5),
-    fontSize: RFValue(12),
+    fontSize: RFValue(9),
     fontWeight: '500',
     color: ColorSheet.Text3,
   },

@@ -67,7 +67,7 @@ const NumberInput = (props) => {
           },
         ]}
       >
-        {customRightIcon?.() ?? <Entypo name='chevron-down' size={20} color={ColorSheet.Primary} />}
+        {/* {customRightIcon?.() ?? <Entypo name='chevron-down' size={20} color={ColorSheet.Primary} />} */}
       </Animated.View>
     );
   };
@@ -120,7 +120,7 @@ const NumberInput = (props) => {
         }}
         labelField='value'
         valueField='label'
-        placeholder={''}
+        placeholder={'+44'}
         value={valueItem.label}
         onChange={onChangeValue}
         renderItem={renderItem}
@@ -138,6 +138,7 @@ const NumberInput = (props) => {
         keyboardType='number-pad'
         value={valueNumber}
         onChangeText={onChangeNumber}
+        maxLength={10}
       />
     </View>
   );

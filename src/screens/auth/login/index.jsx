@@ -19,6 +19,7 @@ import { ErrorFlash } from '@/utils/flashMessage';
 import postRequest from '@/components/NetworkRequest/postRequest';
 import { DefaultConstants } from '@/utils/Constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ColorSheet } from '@/utils/ColorSheet';
 
 const Login = ({ navigation }) => {
   const [loading, setloading] = useState(false);
@@ -37,12 +38,14 @@ const Login = ({ navigation }) => {
       ErrorFlash(Constants.Pin_Required);
     } else {
       setloading(true)
-      var loginresp = await postRequest(DefaultConstants.BASE_URL + 'auth/token',{username:formData.email,password:formData.digitCode,grant_type:'password',},{
+      var loginresp = await postRequest(DefaultConstants.BASE_URL + 'auth/token',{username:formData.email,password:formData.digitCode,grant_type:'password',device_token:"123456789"},{
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
           'accept':'application/json'
         }
       });
+      console.log(JSON.stringify(loginresp));
+      
       if(loginresp[0]==200)
       {
         setAsyncData('login_token',loginresp[1].data.access_token)

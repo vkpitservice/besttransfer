@@ -9,6 +9,24 @@ import {
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
+  paymentProcessingText:{
+    fontSize: (30),
+    fontWeight:'bold',
+    color:ColorSheet.PrimaryButton
+},
+  successTick: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    marginTop:hp(20)
+  },
+  detailsBlock: { width: '95%', flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 },
+  subTitleText: {
+    fontSize: RFValue(12),
+    fontWeight: '600',
+    color: ColorSheet.Primary,
+    padding: 10,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -19,7 +37,7 @@ export const styles = StyleSheet.create({
     paddingBottom: Platform.OS == 'ios' ? hp(18) : hp(15),
   },
   titleHeaderContainer: {
-    marginTop: Platform.OS == 'android' ? hp(6) : hp(8),
+    marginTop: Platform.OS == 'android' ? hp(8) : hp(10),
   },
   imageBackground: {
     position: 'absolute',
@@ -33,6 +51,15 @@ export const styles = StyleSheet.create({
     // width: wp(100),
     marginTop: Platform.OS == 'ios' ? hp(8) : hp(10),
     // paddingBottom: Platform.OS == 'ios' ? hp(10) : hp(8),
+  },
+  payment_type_block: {
+    padding: 20,
+    borderColor: ColorSheet.PrimaryButton,
+    borderWidth: 1.5,
+    borderRadius: 10,
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   transferDetailsContainer: {
     marginBottom: hp(3),

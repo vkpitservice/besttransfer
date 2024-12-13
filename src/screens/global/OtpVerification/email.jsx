@@ -69,6 +69,8 @@ const EmailOtpVerification = ({ navigation }) => {
         
         if(reg_user_type=='individual')
           navigation.dispatch(StackActions.replace('RegisterSuccessFullScreen'));
+        else
+          navigation.dispatch(StackActions.replace('BusinessDetails'));
       }
       else
       {
