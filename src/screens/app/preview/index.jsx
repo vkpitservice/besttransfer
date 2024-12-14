@@ -85,9 +85,9 @@ const Preview = ({ navigation,route }) => {
               send={previewData[0].transferDetails.exchange[0].send}
               recieve={previewData[0].transferDetails.exchange[0].receive}
               theyRecieve={totalAmount}
-              youSend={enteredamount}
+              youSend={JSON.parse(enteredamount)}
               fee={fees}
-              totalPayment={parseInt(enteredamount) + parseInt(fees)}
+              totalPayment={parseInt(JSON.parse(enteredamount)) + parseInt(JSON.parse(fees))}
             />
           </View>
 

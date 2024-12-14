@@ -62,6 +62,7 @@ const AnimatedTextInput = (props) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         value={textInputValue}
+        defaultValue={`${textInputValue}`}
         onChangeText={handleChangedText}
       />
     </View>

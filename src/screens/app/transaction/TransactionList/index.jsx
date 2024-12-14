@@ -65,8 +65,8 @@ const TransactionList = ({ navigation }) => {
         id: index,
         name: (item.benificiary.first_name + " " + item.benificiary.last_name).toUpperCase(),
         date: item.created,
-        amount: item.amount,
-        amount_base: item.amount_base,
+        amount: (item.amount * item.current_rate)-item.fees,
+        amount_base: item.amount,
         type: (item.status).toUpperCase(), 
         account_number: item.benificiary.benificiary_type='upi' ? item.benificiary.upi_id : item.benificiary.account_number,
         ifsc: item.benificiary.ifsc
@@ -114,6 +114,7 @@ const TransactionList = ({ navigation }) => {
               name={item.name}
               date={item.date}
               amount={item.amount}
+              amount_base={item.amount_base}
               type={item.type}
               onPress={() => navigation.navigate('TransferDetails')}
               account_number={item.account_number}

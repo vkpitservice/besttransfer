@@ -15,9 +15,9 @@ const Success = ({ navigation }) => {
       setloading(true)
       let username = await AsyncStorage.getItem('reg_email');
       let password = await AsyncStorage.getItem('reg_pass');
-      var loginresp = await postRequest(DefaultConstants.BASE_URL + 'auth/token',{username:username,password:password,grant_type:'password',},{
+      var loginresp = await postRequest(DefaultConstants.BASE_URL + 'auth/token',{username:username,password:password,grant_type:'password',device_token:"123456789"},{
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
           'accept':'application/json'
         }
       });

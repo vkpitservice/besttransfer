@@ -90,7 +90,10 @@ const HomeScreen = () => {
     });
     console.log(JSON.stringify(resp));
     if (resp[0] != '400') {
-      console.log(JSON.stringify(resp[1]));
+      // resp[1].data.amount
+      setExchangeRate(resp[1].data.conversion_rate)
+      setTotalAmount(resp[1].data.final_amount)
+      setFees(resp[1].data.fees)
       setLoading(false)
     }
     else {
@@ -100,23 +103,24 @@ const HomeScreen = () => {
   }
 
   const onChangeHandler = (value, from, to) => {
+    setLoading(true)
     clearTimeout(timeout.current);
     timeout.current = setTimeout(() => {
       getConversionData(value, from, to)
     }, 2000);
   }
 
-  const navigateToScreen = async() =>{
-    await setAsyncdata('fees',fee)
-    await setAsyncdata('totalAmount',totalAmount)
-    await setAsyncdata('amount',amount)
-    await setAsyncdata('fromCurrency',fromCurrency)
-    await setAsyncdata('toCurrency',toCurrency)
-    await setAsyncdata('exchangeRate',exchangeRate)
+  const navigateToScreen = async () => {
+    await setAsyncdata('fees', JSON.stringify(fee))
+    await setAsyncdata('totalAmount', JSON.stringify(totalAmount))
+    await setAsyncdata('amount', JSON.stringify(amount))
+    await setAsyncdata('fromCurrency', fromCurrency)
+    await setAsyncdata('toCurrency', toCurrency)
+    await setAsyncdata('exchangeRate', JSON.stringify(exchangeRate))
     navigation.navigate('NotificationStack')
   }
-  const setAsyncdata = async(key,value) =>{
-    await AsyncStorage.setItem(key,value);
+  const setAsyncdata = async (key, value) => {
+    await AsyncStorage.setItem(key, value);
   }
 
   return (
@@ -139,17 +143,17 @@ const HomeScreen = () => {
         title={Constants.WELCOME_BACK}
         name={name}
         onPress={logout}
-        // onPressProfile={() => navigation.navigate('EditProfileScreen')}
+      // onPressProfile={() => navigation.navigate('EditProfileScreen')}
       />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* mainContainer */}
         <View style={styles.mainContainer}>
           {/* ExChange Rate */}
-          {exchangeRate &&
+          {exchangeRate && exchangeRate != '0.00' &&
             <View style={styles.exchangeContainer}>
               <Text style={styles.exchangeText}>
                 {Constants.EXCHANGE_RATE}:
-                <Text style={styles.exchangeAmount}> £{'1='+exchangeRate+' INR'} </Text>
+                <Text style={styles.exchangeAmount}> £{'1=' + exchangeRate + ' INR'} </Text>
               </Text>
             </View>
           }
@@ -179,16 +183,16 @@ const HomeScreen = () => {
               </View>
             </Animated.View>
 
-            <View style={currencyConvertor.coveterView}>
+            {/* <View style={currencyConvertor.coveterView}>
               <TouchableOpacity style={currencyConvertor.coveterButton}>
                 <Rotate width={20} height={18} />
               </TouchableOpacity>
-            </View>
+            </View> */}
 
-            <Animated.View style={[currencyConvertor.currencyInputView, animatedStyle2]}>
+            {/* <Animated.View style={[currencyConvertor.currencyInputView, animatedStyle2]}>
               <AnimatedTextInput
                 onChangeText={value => { onChangeHandler(value, 'INR', 'GBP') }}
-                // value={receivingAmountValue}
+                value={totalAmount}
                 placeholder={'Receiving Amount'}
               />
 
@@ -196,17 +200,23 @@ const HomeScreen = () => {
                 <Text style={currencyConvertor.currencyLabel}>INR</Text>
                 <Image style={currencyConvertor.selectCurrencyLogo} source={require('@/assets/images/Transaction/countryIndia.png')} />
               </View>
-            </Animated.View>
+            </Animated.View> */}
           </View>
 
           {/* Dashed Border */}
           <DashedBorder height={2} style={styles.dashedBorder} />
+          {!loading ?
+            <View style={styles.feesTotalPaymentContainer}>
+              <Text style={styles.text01}>Fee : £{fee}</Text>
 
-          <View style={styles.feesTotalPaymentContainer}>
-            <Text style={styles.text01}>Fee : £{fee}</Text>
+              <Text style={styles.text01}>Total Pay: £{totalAmount} </Text>
+            </View>
+            :
+            <View style={styles.feesTotalPaymentContainer}>
+              <Text style={{justifyContent:'center',alignItems:'center'}}>loading...</Text>
+            </View>
+          }
 
-            <Text style={styles.text01}>Total Pay: £{totalAmount} </Text>
-          </View>
 
           <DashedBorder height={2} style={styles.dashedBorder} />
 

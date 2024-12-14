@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BestTransFer from '@/assets/svg/CreateAcc/Best_TransFer.svg';
 import TextInputField from '@/components/input/TextInput';
 import PrimaryButton from '@/components/buttons/primaryButton';
@@ -66,6 +66,12 @@ const Login = ({ navigation }) => {
   const setAsyncData = async(key,value) =>{
     await AsyncStorage.setItem(key,value)
   }
+  const getData = async() =>{
+    setFormData({...formData,email: await AsyncStorage.getItem('login_email')});
+  }
+  useEffect(()=>{
+    getData()
+  },[])
   return (
     <KeyboardAvoidingView
       style={styles.container}

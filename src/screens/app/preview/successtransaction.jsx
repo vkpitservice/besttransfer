@@ -45,10 +45,10 @@ const SuccessTransaction = ({ navigation, route }) => {
 
 
         const resp = await postRequest(url, {
-            amount: enteredamount,
+            amount: JSON.parse(enteredamount),
             message: reason,
-            fees: fees,
-            current_rate: exchangeRate,
+            fees: JSON.parse(fees),
+            current_rate: JSON.parse(exchangeRate),
             from_currency: fromCurrency,
             to_currency: toCurrency
         }, {

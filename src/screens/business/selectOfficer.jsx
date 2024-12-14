@@ -21,6 +21,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ColorSheet } from '@/utils/ColorSheet';
 import axios from 'axios';
 import { FlatList } from 'react-native-gesture-handler';
+import { StackActions } from '@react-navigation/native';
 
 const SelectOfficer = ({ navigation, route }) => {
     const { companyNumber } = route.params;
@@ -65,10 +66,10 @@ const SelectOfficer = ({ navigation, route }) => {
             const resp = await postRequest(DefaultConstants.BASE_URL + 'business/add-owner', {
                 "first_name": formData.first_name,
                 "last_name": formData.last_name,
-                "mobile": "7777777777",
-                "email": "test@fxamster.com",
-                "dob":"2024-07-10",
-                "date_of_joining":"2024-07-10",
+                "mobile": "7777778777",
+                "email": "test1@fxamster.com",
+                "dob":"2020-07-10",
+                "date_of_joining":"2020-07-10",
                 "role": formData.role,
                 "company_sharing": '1',
                 "country_code": "+44"
@@ -79,7 +80,7 @@ const SelectOfficer = ({ navigation, route }) => {
                 }
             });
 
-            console.log(JSON.stringify(resp));
+            console.log("helooooooooooooooooo"+JSON.stringify(resp));
             if(resp[0]!=400)
             {
                 setButtonloading(false)
