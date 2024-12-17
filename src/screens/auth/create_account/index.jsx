@@ -324,13 +324,13 @@ export default CreateAccount;
 const numberData = [
   {
     label: 'UK',
-    image: 'https://fxmaster.co.uk/flags/UK.png',
+    image: 'https://adminfxmaster.com/flags/UK.png',
     value: '+44',
   },
 ];
 
 const defaultValue = {
   label: 'UK',
-  image: 'https://fxmaster.co.uk/flags/UK.png',
+  image: 'https://adminfxmaster.com/flags/UK.png',
   value: '+44',
 };

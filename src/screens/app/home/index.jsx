@@ -139,7 +139,7 @@ const HomeScreen = () => {
 
       {/* Welcome, Name And LogOut */}
       <TransferWelcomeDashboardComponent
-        imageSource={require('@/assets/images/Transaction/WelcomeProfilePic.png')}
+        imageSource={require('@/assets/images/user-profile.jpg')}
         title={Constants.WELCOME_BACK}
         name={name}
         onPress={logout}

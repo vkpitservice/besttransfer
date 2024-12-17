@@ -17,14 +17,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.codelantic2023.fxmaster"
+      "bundleIdentifier": "com.besttransfer"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.codelantic2023.fxmaster"
+      "package": "com.besttransfer"
     },
     "plugins": [],
     "experiments": {

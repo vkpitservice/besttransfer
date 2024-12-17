@@ -16,13 +16,13 @@ const ImageSlider = () => {
 
   const data = [
     {
-      uri: 'https://www.dev.fxmaster.co.uk/images/money-transfer.jpg',
+      uri: 'https://adminfxmaster.com/images/money-transfer.jpg',
     },
     {
-      uri: 'https://www.dev.fxmaster.co.uk/images/cardswidget.jpg',
+      uri: 'https://adminfxmaster.com/images/cardswidget.jpg',
     },
     {
-      uri: 'https://www.dev.fxmaster.co.uk/images/money-transfer/money-transfer2.png',
+      uri: 'https://adminfxmaster.com/images/money-transfer/money-transfer2.png',
     },
   ];
   return (
