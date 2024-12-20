@@ -52,7 +52,7 @@ const HomeScreen = () => {
   const position2 = useSharedValue(1);
   const [loading, setLoading] = useState(false);
   const [fee, setFees] = useState('0.00');
-  const [totalAmount, setTotalAmount] = useState('0.00');
+  const [totalAmount, setTotalAmount] = useState();
   const [amount, setAmount] = useState();
   const [fromCurrency, setFromCurrency] = useState();
   const [toCurrency, setToCurrency] = useState();
@@ -173,7 +173,7 @@ const HomeScreen = () => {
             <Animated.View style={[currencyConvertor.currencyInputView, animatedStyle1]}>
               <AnimatedTextInput
                 onChangeText={value => { onChangeHandler(value, 'GBP', 'INR') }}
-                // value={}
+                value={amount}
                 placeholder={'Sending Amount'}
               />
 
@@ -183,16 +183,17 @@ const HomeScreen = () => {
               </View>
             </Animated.View>
 
-            {/* <View style={currencyConvertor.coveterView}>
+            <View style={currencyConvertor.coveterView}>
               <TouchableOpacity style={currencyConvertor.coveterButton}>
                 <Rotate width={20} height={18} />
               </TouchableOpacity>
-            </View> */}
+            </View> 
 
-            {/* <Animated.View style={[currencyConvertor.currencyInputView, animatedStyle2]}>
+           <Animated.View style={[currencyConvertor.currencyInputView, animatedStyle2]}>
               <AnimatedTextInput
                 onChangeText={value => { onChangeHandler(value, 'INR', 'GBP') }}
                 value={totalAmount}
+                editable={false} 
                 placeholder={'Receiving Amount'}
               />
 
@@ -200,16 +201,16 @@ const HomeScreen = () => {
                 <Text style={currencyConvertor.currencyLabel}>INR</Text>
                 <Image style={currencyConvertor.selectCurrencyLogo} source={require('@/assets/images/Transaction/countryIndia.png')} />
               </View>
-            </Animated.View> */}
+            </Animated.View>
           </View>
 
           {/* Dashed Border */}
           <DashedBorder height={2} style={styles.dashedBorder} />
           {!loading ?
             <View style={styles.feesTotalPaymentContainer}>
-              <Text style={styles.text01}>Fee : £{fee}</Text>
+              <Text style={styles.text01}>Fee : ₹{fee}</Text>
 
-              <Text style={styles.text01}>Total Pay: £{totalAmount} </Text>
+              <Text style={styles.text01}>Total Pay: ₹{totalAmount} </Text>
             </View>
             :
             <View style={styles.feesTotalPaymentContainer}>

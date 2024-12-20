@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
     marginTop: hp(4),
     marginBottom: hp(2),
     // Change
-    height: Platform.OS == 'ios' ? 110 : 100,
-    // height: Platform.OS == 'ios' ? 180 : 170,
+    // height: Platform.OS == 'ios' ? 110 : 100,
+    height: Platform.OS == 'ios' ? 180 : 170,
     justifyContent: 'center',
     // backgroundColor: 'yellow'
   },

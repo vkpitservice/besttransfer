@@ -6,11 +6,11 @@ import styles from './styles';
 import PropTypes from 'prop-types';
 
 const AnimatedTextInput = (props) => {
-  const { onChangeText, value, placeholder, style, placeholderStyle } = props;
+  const { onChangeText, value, placeholder, style, placeholderStyle,editable } = props;
   const [isFocused, setIsFocused] = useState(false);
   const placeholderPosition = useSharedValue(0);
   const fontSize = useSharedValue(RFValue(13));
-  const [textInputValue, setTextInputValue] = useState(value && value !== '' ? value : '');
+  const [textInputValue, setTextInputValue] = useState(value);
 
   const animatedPlaceholderStyle = useAnimatedStyle(() => {
     return {
@@ -62,6 +62,7 @@ const AnimatedTextInput = (props) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         value={textInputValue}
+        editable={editable}
         defaultValue={`${textInputValue}`}
         onChangeText={handleChangedText}
       />
