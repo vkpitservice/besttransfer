@@ -7,6 +7,7 @@ import NonEditTextInput from '@/components/input/profile/NonEditTextInput';
 import EditTextInput from '@/components/input/profile/EditTextInput';
 import EditPhoneTextInput from '@/components/input/profile/EditPhoneNumber';
 import PrimaryButton from '@/components/buttons/primaryButton';
+import { StackActions } from '@react-navigation/native';
 
 const EditProfile = ({ navigation }) => {
   const [form, setForm] = useState({
@@ -37,12 +38,12 @@ const EditProfile = ({ navigation }) => {
       <BackTitleHomeComponent
         style={styles.titleHeaderContainer}
         title={Constants.HEADER_TITLE}
-        onPressBack={() => {
-          console.log('onPressBack');
-        }}
-        onPressHome={() => {
-          console.log('onPressHome');
-        }}
+        onPressBack = {() => {
+                       navigation.goBack()
+                   }}
+                   onPressHome = {() => {
+                      navigation.dispatch(StackActions.replace('AppBottomTab'))
+                   }}
       />
 
       {/* Image */}

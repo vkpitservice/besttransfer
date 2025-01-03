@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     marginBottom: hp(15),
   },
   scrollView: { marginTop: Platform.OS == 'android' ? hp(8) : hp(6) },
+  scrollViewKyc: { marginTop: Platform.OS == 'android' ? hp(0) : hp(0) },
   exchangeContainer: {
     width: '100%',
     height: 40,

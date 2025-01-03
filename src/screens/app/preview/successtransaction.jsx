@@ -88,12 +88,12 @@ const SuccessTransaction = ({ navigation, route }) => {
                 <BackTitleHomeComponent
                     style={styles.titleHeaderContainer}
                     title={Constants.BANK_DETAILS}
-                    onPressBack={() => {
-                        navigation.goBack();
-                    }}
-                    onPressHome={() => {
-                        console.log('onPressHome');
-                    }}
+                    onPressBack = {() => {
+                                   navigation.goBack()
+                               }}
+                               onPressHome = {() => {
+                                  navigation.dispatch(StackActions.replace('AppBottomTab'))
+                               }}
                 />
 
                 {/* Image */}

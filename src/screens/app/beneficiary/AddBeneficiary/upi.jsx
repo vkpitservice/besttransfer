@@ -170,7 +170,7 @@ const AddUPIBeneficiary = ({ navigation }) => {
                 })
               }}
               onFocus={() => setFrom({ ...from, accountNumberError: '' })}
-              keyboardType={'numeric'}
+              keyboardType={'default'}
               textError={from.accountNumberError}
               onBlur={() => {
                 if (from.accountNumber === '') {

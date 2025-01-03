@@ -11,6 +11,7 @@ export const Constants = {
     ACCOUNT_NUMBER: 'Enter Account Number',
     UPI_ID: 'Virtual Payment Address(VPA)',
     CITY: 'Enter City',
+    ADDRESS: 'Enter Address',
     MOBILE_NUMBER: 'Recipient Mobile Number(Optional)',
     DROPDOWN_TITLE:'Select Country',
 

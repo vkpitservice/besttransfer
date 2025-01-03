@@ -61,9 +61,9 @@ const AnimatedTextInput = (props) => {
         keyboardType='numeric'
         onFocus={handleFocus}
         onBlur={handleBlur}
-        value={textInputValue}
+        value={value}
         editable={editable}
-        defaultValue={`${textInputValue}`}
+        defaultValue={`${value}`}
         onChangeText={handleChangedText}
       />
     </View>

@@ -53,6 +53,9 @@ const Login = ({ navigation }) => {
         setAsyncData('login_last_name', loginresp[1].data.user.last_name);
         setAsyncData('login_mobile', loginresp[1].data.user.mobile);
         setAsyncData('login_email', loginresp[1].data.user.email);
+        setAsyncData('login_kyc', loginresp[1].data.user.kyc_verified);
+        setAsyncData('login_external_id', loginresp[1].data.user.external_id);
+        setAsyncData('user_reference_id', loginresp[1].data.user.user_reference_id);
         setAsyncData('reg_id', JSON.stringify(loginresp[1].data.user.id));
         navigation.navigate('AppBottomTab');
       }

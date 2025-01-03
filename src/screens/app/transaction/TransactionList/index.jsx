@@ -65,11 +65,14 @@ const TransactionList = ({ navigation }) => {
         id: index,
         name: (item.benificiary.first_name + " " + item.benificiary.last_name).toUpperCase(),
         date: item.created,
-        amount: (item.amount * item.current_rate)-item.fees,
+        amount: (item.amount_base * item.current_rate),
         amount_base: item.amount,
         type: (item.status).toUpperCase(), 
-        account_number: item.benificiary.benificiary_type='upi' ? item.benificiary.upi_id : item.benificiary.account_number,
-        ifsc: item.benificiary.ifsc
+        account_number: item.benificiary.benificiary_type=='upi' ? item.benificiary.upi_id : item.benificiary.account_number,
+        ifsc: item.benificiary.ifsc,
+        transaction_type:item.transaction_type,
+        fees:item.fees,
+        transaction_id: item.transaction_id
       }));
       setData(transactionData.slice(0, 6))
     }
@@ -116,9 +119,10 @@ const TransactionList = ({ navigation }) => {
               amount={item.amount}
               amount_base={item.amount_base}
               type={item.type}
-              onPress={() => navigation.navigate('TransferDetails')}
+              onPress={() => navigation.navigate('TransactionDetailsScreen',{item:item})}
               account_number={item.account_number}
               ifsc={item.ifsc}
+              transaction_type={item.transaction_type}
             />
           )}
           keyExtractor={(item) => item.id.toString()} // Use item.id for key

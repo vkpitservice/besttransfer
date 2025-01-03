@@ -6,6 +6,7 @@ import { Constants } from './constants';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { ColorSheet } from '@/utils/ColorSheet';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { StackActions } from '@react-navigation/native';
 
 const SelectBeneficiary = ({ navigation }) => {
   return (
@@ -25,10 +26,10 @@ const SelectBeneficiary = ({ navigation }) => {
            style = {styles.titleHeaderContainer}
            title = {Constants.HEADER_TITLE}
            onPressBack = {() => {
-              console.log('onPressBack');
+               navigation.goBack()
            }}
            onPressHome = {() => {
-              console.log('onPressHome');
+              navigation.dispatch(StackActions.replace('AppBottomTab'))
            }}
         />
 

@@ -15,8 +15,9 @@ import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
 import TextInputField from '@/components/input/TextInput';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { ErrorFlash } from '@/utils/flashMessage';
+import { StackActions } from '@react-navigation/native';
 
-const AddBeneficiary = () => {
+const AddBeneficiary = ({navigation}) => {
   const [from, setFrom] = useState({
     firstName: '',
     lastName: '',
@@ -73,10 +74,10 @@ const AddBeneficiary = () => {
         <BackTitleHomeComponent
           title={Constants.HEADER_TITLE}
           onPressBack={() => {
-            console.log('onPressBack');
+            navigation.goBack()
           }}
           onPressHome={() => {
-            console.log('onPressHome');
+            navigation.dispatch(StackActions.replace('AppBottomTab'))
           }}
         />
 

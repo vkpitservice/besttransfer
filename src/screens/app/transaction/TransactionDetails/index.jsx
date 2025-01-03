@@ -18,7 +18,8 @@ import DataBox from '@/components/DataBox';
 import MainCurveBox from '@/assets/svg/transaction/TransactionDetailsMain.svg';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-const TransactionDetails = ({ navigation }) => {
+const TransactionDetails = ({ navigation, route }) => {
+  const { item } = route.params;
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -40,7 +41,7 @@ const TransactionDetails = ({ navigation }) => {
           navigation.goBack();
         }}
         onPressHome={() => {
-          console.log('home');
+          navigation.dispatch(StackActions.replace('AppBottomTab'));
         }}
       />
 
@@ -53,14 +54,14 @@ const TransactionDetails = ({ navigation }) => {
         >
           {/* Success Icon */}
           <View style={styles.roundIconContainer}>
-            <AntDesign name='checkcircle' size={22} color={ColorSheet.PrimaryButtonTxt} />
+            {/* <AntDesign name='checkcircle' size={22} color={ColorSheet.PrimaryButtonTxt} /> */}
           </View>
 
           {/* Main Curve  */}
           <MainCurveBox width={wp(120)} style={styles.imageMain} />
 
           {/* Title */}
-          <Text style={styles.titleStyle}>{Constants.PAYMENT_SUCCESS}</Text>
+          <Text style={styles.titleStyle}>{(item.type)}</Text>
 
           {/* Horizontal Line */}
           <View style={styles.horizontalLine} />
@@ -68,7 +69,7 @@ const TransactionDetails = ({ navigation }) => {
           {/* Total Payment */}
           <Text style={styles.totalPayment}> {Constants.TOTAL_PAYMENT} </Text>
           {/* USD */}
-          <Text style={styles.totalAmount}> USD{transactionData?.totalPayment} </Text>
+          <Text style={styles.totalAmount}> ₹{item.amount} </Text>
 
           {/* Details Box */}
           {/* TO & Payment Time */}
@@ -77,13 +78,13 @@ const TransactionDetails = ({ navigation }) => {
               <DataBox
                 style={styles.dataBoxStyle}
                 title={Constants.TO}
-                showData={transactionData?.data[0]?.to}
+                showData={item.name}
               />
 
               <DataBox
                 style={styles.dataBoxStyle}
                 title={Constants.PAYMENT_TIME}
-                showData={transactionData?.data[0]?.time}
+                showData={item.date}
               />
             </View>
 
@@ -92,13 +93,13 @@ const TransactionDetails = ({ navigation }) => {
               <DataBox
                 style={styles.dataBoxStyle}
                 title={Constants.FEE}
-                showData={transactionData?.data[0]?.fee}
+                showData={'£ ' + item.fees}
               />
 
               <DataBox
                 style={styles.dataBoxStyle}
                 title={Constants.STATUS}
-                showData={transactionData?.data[0]?.status}
+                showData={item.type}
               />
             </View>
 
@@ -107,30 +108,53 @@ const TransactionDetails = ({ navigation }) => {
               <DataBox
                 style={styles.dataBoxStyle}
                 title={Constants.TRANSACTION_NUMBER}
-                showData={transactionData?.data[0]?.transactionNumber}
+                showData={item.transaction_id}
               />
 
               <DataBox
                 style={styles.dataBoxStyle}
                 title={Constants.PAY_WITH}
-                showData={transactionData?.data[0]?.pay}
+                showData={(item.transaction_type).toUpperCase()}
               />
             </View>
+            {item.ifsc != "" && item.ifsc != null ?
+              <View style={styles.rowContainer}>
+                <DataBox
+                  style={styles.dataBoxStyle}
+                  title={Constants.ACC_NUMBER}
+                  showData={item.account_number}
+                />
+
+                <DataBox
+                  style={styles.dataBoxStyle}
+                  title={Constants.IFSC}
+                  showData={item.ifsc}
+                />
+              </View>
+              :
+              <View style={styles.rowContainer}>
+                <DataBox
+                  style={styles.dataBoxStyle}
+                  title={Constants.UPI}
+                  showData={item.account_number}
+                />
+              </View>
+            }
           </View>
 
           {/* Reciepient Details &  Icon */}
-          <View style={styles.reciepientIconContainer}>
-            <View style={styles.roundContainer}>
+          {/* <View style={styles.reciepientIconContainer}> */}
+          {/* <View style={styles.roundContainer}>
               <User />
-            </View>
+            </View> */}
 
-            {/* Reciepient Details */}
-            <Text style={styles.reciepientTxt}> {Constants.DETAILS} </Text>
-          </View>
+          {/* Reciepient Details */}
+          {/* <Text style={styles.reciepientTxt}> {Constants.DETAILS} </Text> */}
+          {/* </View> */}
 
           {/* Name & Acc Number */}
-          <View style={styles.detailsBox}>
-            <View style={styles.rowContainer}>
+          {/* <View style={styles.detailsBox}> */}
+          {/* <View style={styles.rowContainer}>
               <DataBox
                 style={styles.dataBoxStyle}
                 title={Constants.TRANSACTION_NUMBER}
@@ -142,18 +166,18 @@ const TransactionDetails = ({ navigation }) => {
                 title={Constants.ACC_NUMBER}
                 showData={transactionData?.recipientDetails[0]?.accNumber}
               />
-            </View>
+            </View> */}
 
-            {/* Country */}
+          {/* Country */}
 
-            <View style={styles.rowContainer}>
+          {/* <View style={styles.rowContainer}>
               <DataBox
                 style={styles.countryContainer}
                 title={Constants.COUNTRY}
                 showData={transactionData?.recipientDetails[0]?.country}
               />
-            </View>
-          </View>
+            </View> */}
+          {/* </View> */}
         </ScrollView>
       </View>
     </KeyboardAvoidingView>

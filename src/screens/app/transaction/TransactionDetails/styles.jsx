@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     width: wp(12),
     height: wp(12),
     borderRadius: wp(6),
-    backgroundColor: ColorSheet.PrimaryButton,
+    // backgroundColor: ColorSheet.PrimaryButton,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -79,12 +79,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     justifyContent: 'space-between',
+    padding:10
     // backgroundColor: 'red'
   },
   dataBoxStyle: {
     width: '48%',
     height: hp(9),
-    marginBottom: hp(2),
   },
   reciepientIconContainer: {
     // change here

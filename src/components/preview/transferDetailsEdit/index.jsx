@@ -4,16 +4,16 @@ import { styles } from './styles';
 import PropTypes from 'prop-types';
 
 const TransferDetailsEdit = (props) => {
-  const { send, recieve, theyRecieve, youSend, fee, totalPayment } = props;
+  const { send, theyRecieve, youSend, fee, totalPayment,exchangeRate } = props;
 
   return (
     <View style={styles.root}>
       {/* Exchange & Rae */}
       <View style={styles.rowExchangeContainer}>
         {/* Save */}
-        <Text style={styles.TextTitle}> {'Exchange rae'} </Text>
+        <Text style={styles.TextTitle}> {'Exchange rate'} </Text>
         <Text style={styles.TextAmount}>
-          {send} = {recieve}
+          {send} = ₹{exchangeRate}
         </Text>
       </View>
 
@@ -40,7 +40,7 @@ const TransferDetailsEdit = (props) => {
 
       {/* Total to pay */}
       <View style={styles.rowExchangeContainer}>
-        <Text style={styles.TextTitle}> {'Total to pay'} </Text>
+        <Text style={styles.TextTitle}> {'Total Pay'} </Text>
         {/* Amount */}
         <Text style={styles.TextAmount}> £{totalPayment} </Text>
       </View>
@@ -55,6 +55,7 @@ TransferDetailsEdit.propTypes = {
   youSend: PropTypes.string,
   fee: PropTypes.string,
   totalPayment: PropTypes.string,
+  exchangeRate: PropTypes.any
 };
 
 export default TransferDetailsEdit;

@@ -38,12 +38,12 @@ const VoltHtmlWebsiteView = ({ navigation, route }) => {
                 <BackTitleHomeComponent
                     style={[styles.titleHeaderContainer,{marginBottom:40}]}
                     title={''}
-                    onPressBack={() => {
-                        navigation.goBack();
-                    }}
-                    onPressHome={() => {
-                        console.log('onPressHome');
-                    }}
+                    onPressBack = {() => {
+                                   navigation.goBack()
+                               }}
+                               onPressHome = {() => {
+                                  navigation.dispatch(StackActions.replace('AppBottomTab'))
+                               }}
                 />
 
                 {/* Image */}

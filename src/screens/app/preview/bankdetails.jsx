@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styles } from './styles';
 import { Constants } from './constants';
 import BackTitleHomeComponent from '@/components/BackTitleHome';
@@ -16,29 +16,58 @@ import { Ionicons } from '@expo/vector-icons';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { ErrorFlash, SuccessFlash } from '@/utils/flashMessage';
-import postRequest from '@/components/NetworkRequest/postRequest';
 import { DefaultConstants } from '@/utils/Constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import getRequest from '@/components/NetworkRequest/getRequest';
+import { StackActions } from '@react-navigation/native';
 
 
 const BankDetails = ({ navigation, route }) => {
     const { beneId, name, accno, ifsc, totalAmount, enteredamount, fromCurrency, toCurrency, fees, reference, reason, exchangeRate } = route.params;
     const [loading, setLoading] = useState(false)
+    const [accountName, setaccountName] = useState("")
+    const [sortCode, setsortCode] = useState("")
+    const [accountNumber, setaccountNumber] = useState("")
+    const [refno, setRefno] = useState("")
     const proceedToPay = async () => {
-        if (ifsc == '' || ifsc == null) { 
-            navigation.navigate('SuccessTransaction',{url:DefaultConstants.BASE_URL + 'transaction/upi/' + beneId,enteredamount:enteredamount,reason:reason,fees:fees,exchangeRate:exchangeRate,fromCurrency:fromCurrency,toCurrency:toCurrency})
-            
+        if (ifsc == '' || ifsc == null) {
+            navigation.navigate('SuccessTransaction', { url: DefaultConstants.BASE_URL + 'transaction/upi/' + beneId, enteredamount: enteredamount, reason: reason, fees: fees, exchangeRate: exchangeRate, fromCurrency: fromCurrency, toCurrency: toCurrency })
+
         }
-        else
-        {
-            navigation.navigate('SuccessTransaction',{url:DefaultConstants.BASE_URL + 'transaction/manual/' + beneId,enteredamount:enteredamount,reason:reason,fees:fees,exchangeRate:exchangeRate,fromCurrency:fromCurrency,toCurrency:toCurrency})
+        else {
+            navigation.navigate('SuccessTransaction', { url: DefaultConstants.BASE_URL + 'transaction/manual/' + beneId, enteredamount: enteredamount, reason: reason, fees: fees, exchangeRate: exchangeRate, fromCurrency: fromCurrency, toCurrency: toCurrency })
         }
-        
+
     }
     const copyToClipboard = (val) => {
         Clipboard.setString(val);
         SuccessFlash(val + ' Copied')
     };
+    const getData = async () => {
+        setLoading(true)
+        let token = await AsyncStorage.getItem('login_token');
+        let user_reference_id = await AsyncStorage.getItem('user_reference_id');
+        const response = await getRequest(DefaultConstants.BASE_URL + "transaction/bank/account-details", {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        if (response[0] == 200) {
+            setLoading(false)
+            setaccountName(response[1].data.account_name)
+            setsortCode(response[1].data.sort_code)
+            setaccountNumber(response[1].data.account_number)
+            setRefno(user_reference_id)
+        }
+        else {
+            setLoading(false)
+            ErrorFlash(response[1])
+        }
+    }
+    useEffect(() => {
+        getData();
+    }, [])
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -57,12 +86,12 @@ const BankDetails = ({ navigation, route }) => {
                 <BackTitleHomeComponent
                     style={styles.titleHeaderContainer}
                     title={Constants.BANK_DETAILS}
-                    onPressBack={() => {
-                        navigation.goBack();
-                    }}
-                    onPressHome={() => {
-                        console.log('onPressHome');
-                    }}
+                    onPressBack = {() => {
+                                   navigation.goBack()
+                               }}
+                               onPressHome = {() => {
+                                  navigation.dispatch(StackActions.replace('AppBottomTab'))
+                               }}
                 />
 
                 {/* Image */}
@@ -70,85 +99,85 @@ const BankDetails = ({ navigation, route }) => {
                     style={styles.imageBackground}
                     source={require('@/assets/images/beneficiary/SelectBeneficiary.png')}
                 />
+                {!loading &&
+                    <View style={[styles.main_Container, { justifyContent: 'center', alignItems: 'center' }]}>
+                        <View>
+                            <Text style={styles.subTitleText}>{Constants.BANK_DETAILS_TEXT1} {enteredamount} {Constants.BANK_DETAILS_TEXT2}</Text>
 
-                <View style={[styles.main_Container, { justifyContent: 'center', alignItems: 'center' }]}>
-                    <View>
-                        <Text style={styles.subTitleText}>{Constants.BANK_DETAILS_TEXT1} {enteredamount} {Constants.BANK_DETAILS_TEXT2}</Text>
-
-                        <Text style={styles.subTitleText}>{Constants.BANK_DETAILS_TEXT3}</Text>
-                    </View>
-
-                    <View style={styles.detailsBlock}>
-                        <View style={{}}>
-                            <Text>
-                                To
-                            </Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                                Best Transfer
-                            </Text>
+                            <Text style={styles.subTitleText}>{Constants.BANK_DETAILS_TEXT3}</Text>
                         </View>
-                        <TouchableOpacity onPress={() => copyToClipboard('To: Best Transfer')}>
-                            <Ionicons name='copy-outline' size={30} />
-                        </TouchableOpacity>
-                    </View>
 
-                    <View style={styles.detailsBlock}>
-                        <View style={{}}>
-                            <Text>
-                                Sort Code
-                            </Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                                609242
-                            </Text>
+                        <View style={styles.detailsBlock}>
+                            <View style={{}}>
+                                <Text>
+                                    To
+                                </Text>
+                                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
+                                    {accountName}
+                                </Text>
+                            </View>
+                            <TouchableOpacity onPress={() => copyToClipboard('To: ' + accountName)}>
+                                <Ionicons name='copy-outline' size={30} />
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity onPress={() => copyToClipboard('Sort Code: 609242')}>
-                            <Ionicons name='copy-outline' size={30} />
-                        </TouchableOpacity>
-                    </View>
 
-                    <View style={styles.detailsBlock}>
-                        <View style={{}}>
-                            <Text>
-                                Account Number
-                            </Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                                26225774234
-                            </Text>
+                        <View style={styles.detailsBlock}>
+                            <View style={{}}>
+                                <Text>
+                                    Sort Code
+                                </Text>
+                                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
+                                    {sortCode}
+                                </Text>
+                            </View>
+                            <TouchableOpacity onPress={() => copyToClipboard('Sort Code: ' + sortCode)}>
+                                <Ionicons name='copy-outline' size={30} />
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity onPress={() => copyToClipboard('Account Number: 26225774234')}>
-                            <Ionicons name='copy-outline' size={30} />
-                        </TouchableOpacity>
-                    </View>
 
-                    <View style={styles.detailsBlock}>
-                        <View style={{}}>
-                            <Text>
-                                Bank
-                            </Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                                FX Master
-                            </Text>
+                        <View style={styles.detailsBlock}>
+                            <View style={{}}>
+                                <Text>
+                                    Account Number
+                                </Text>
+                                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
+                                    {accountNumber}
+                                </Text>
+                            </View>
+                            <TouchableOpacity onPress={() => copyToClipboard('Account Number: ' + accountNumber)}>
+                                <Ionicons name='copy-outline' size={30} />
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity onPress={() => copyToClipboard('Bank: FX Master')}>
-                            <Ionicons name='copy-outline' size={30} />
-                        </TouchableOpacity>
-                    </View>
 
-                    <View style={styles.detailsBlock}>
-                        <View style={{}}>
-                            <Text>
-                                Currency
-                            </Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                                GBP
-                            </Text>
+                        <View style={styles.detailsBlock}>
+                            <View style={{}}>
+                                <Text>
+                                    Reference No
+                                </Text>
+                                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
+                                    {refno}
+                                </Text>
+                            </View>
+                            <TouchableOpacity onPress={() => copyToClipboard('Reference No: ' + refno)}>
+                                <Ionicons name='copy-outline' size={30} />
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity onPress={() => copyToClipboard('Currency: GBP')}>
-                            <Ionicons name='copy-outline' size={30} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
 
+                        <View style={styles.detailsBlock}>
+                            <View style={{}}>
+                                <Text>
+                                    Currency
+                                </Text>
+                                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
+                                    GBP
+                                </Text>
+                            </View>
+                            <TouchableOpacity onPress={() => copyToClipboard('Currency: GBP')}>
+                                <Ionicons name='copy-outline' size={30} />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                }
                 <PrimaryButton
                     style={[styles.btnContainer, { position: 'absolute', bottom: 0, width: '100%' }]}
                     title={Constants.BTN_NAME}

@@ -18,12 +18,17 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginVertical: hp(2),
-    borderWidth:1,
     padding:0,
-    borderRadius:8
+    borderRadius:8,
+    shadowColor: '#00000040',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity:  0.1,
+    shadowRadius: 3,
+    elevation: 5,
   },
   imageTextContainer: {
-    width:'100%'
+    width:'100%',
+    borderRadius:10
   },
   imageStyle: {
     width: wp(12),

@@ -22,10 +22,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import postRequest from '@/components/NetworkRequest/postRequest';
 import { ErrorFlash } from '@/utils/flashMessage';
 import DeviceInfo from 'react-native-device-info';
+import { StackActions } from '@react-navigation/native';
 
 const PaymentTypes = ({ navigation, route }) => {
     const { beneId, name, accno, ifsc, totalAmount, enteredamount, fromCurrency, toCurrency, fees, reference, reason, exchangeRate } = route.params;
-    const [selectedOption, setSelectedOption] = useState('bank_transfer')
+    const [selectedOption, setSelectedOption] = useState('manual_transfer')
     const [loading, setLoading] = useState(false)
     const proceedToPay = async () => {
         if (selectedOption == 'bank_transfer') {
@@ -94,12 +95,12 @@ const PaymentTypes = ({ navigation, route }) => {
                 <BackTitleHomeComponent
                     style={styles.titleHeaderContainer}
                     title={Constants.PAYMENT_METHOD}
-                    onPressBack={() => {
-                        navigation.goBack();
-                    }}
-                    onPressHome={() => {
-                        console.log('onPressHome');
-                    }}
+                    onPressBack = {() => {
+                                   navigation.goBack()
+                               }}
+                               onPressHome = {() => {
+                                  navigation.dispatch(StackActions.replace('AppBottomTab'))
+                               }}
                 />
 
                 {/* Image */}
@@ -109,14 +110,14 @@ const PaymentTypes = ({ navigation, route }) => {
                 />
 
                 <View style={styles.main_Container}>
-                    <TouchableOpacity onPress={() => setSelectedOption('bank_transfer')} style={styles.payment_type_block}>
+                    {/* <TouchableOpacity onPress={() => setSelectedOption('bank_transfer')} style={styles.payment_type_block}>
                         <Text style={{ fontSize: 20 }}>Bank Transfer (Free)</Text>
                         {selectedOption == 'bank_transfer' ?
                             <Fontisto name='radio-btn-active' size={30} />
                             :
                             <Fontisto name='radio-btn-passive' size={30} />
                         }
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setSelectedOption('manual_transfer')} style={styles.payment_type_block}>
                         <Text style={{ fontSize: 20 }}>Manual Transfer (Free)</Text>
                         {selectedOption == 'manual_transfer' ?

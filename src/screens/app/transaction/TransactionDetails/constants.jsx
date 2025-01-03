@@ -15,4 +15,6 @@ export const Constants = {
   NAME: 'Name',
   ACC_NUMBER: 'Account Number',
   COUNTRY: 'Country',
+  IFSC: 'IFSC Code',
+  UPI: 'UPI Id'
 };

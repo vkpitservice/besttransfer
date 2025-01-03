@@ -15,6 +15,7 @@ import DashedBorder from '@/assets/svg/transaction/dashedBorder.svg';
 import SecondaryButton from '@/components/buttons/secondaryButton';
 import CurrencyCoveter from '@/components/transaction/currency_convater';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { StackActions } from '@react-navigation/native';
 
 const TransferEnterAmount = ({ navigation }) => {
   return (
@@ -35,7 +36,7 @@ const TransferEnterAmount = ({ navigation }) => {
       <BackTitleHomeComponent
         title={Constants.HEADER_TITLE}
         onPressBack={() => navigation.goBack()}
-        onPressHome={() => console.log('home')}
+        onPressHome={() => navigation.dispatch(StackActions.replace('AppBottomTab'))}
       />
 
       {/* Main Container */}

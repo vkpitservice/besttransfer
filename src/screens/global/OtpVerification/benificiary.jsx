@@ -27,7 +27,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const BeneficiaryOtpVerification = ({ navigation, route }) => {
-    const { firstname, lastname, accountname, ifsc, city, accountnumber, beneType,mobile } = route.params;
+    const { firstname, lastname, accountname, ifsc, city, accountnumber, beneType,mobile,address } = route.params;
     const [isResendSuccessVisible, setResendSuccessVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const [mobileNumber, setMobileNumber] = useState("");
@@ -65,7 +65,8 @@ const BeneficiaryOtpVerification = ({ navigation, route }) => {
                         ifsc: ifsc,
                         account_number: accountnumber,
                         account_type: "saving",
-                        benificiary_type: "account"
+                        benificiary_type: "account",
+                        address:address
                     }, {
                         headers: {
                             'Content-Type': 'application/json',

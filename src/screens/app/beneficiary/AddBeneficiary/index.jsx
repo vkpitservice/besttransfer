@@ -24,12 +24,14 @@ const AddBeneficiary = ({ navigation }) => {
     ifsc: '',
     accountNumber: '',
     city: '',
+    address: '',
     firstNameError: '',
     lastNameError: '',
     accountNameError: '',
     ifscError: '',
     accountNumberError: '',
     cityError: '',
+    addressError: '',
   })
 
   const [selectCountry, setSelectCountry] = useState({
@@ -61,7 +63,7 @@ const AddBeneficiary = ({ navigation }) => {
       });
       console.log(otpresp);
       setLoading(false)
-      navigation.navigate('BeneficiaryOtpVerification',{firstname:from.firstName,lastname:from.lastName,accountname:from.accountName,ifsc:from.ifsc,city:from.city,accountnumber:from.accountNumber,beneType:'account',mobile:''});
+      navigation.navigate('BeneficiaryOtpVerification',{firstname:from.firstName,lastname:from.lastName,accountname:from.accountName,ifsc:from.ifsc,city:from.city,accountnumber:from.accountNumber,beneType:'account',mobile:'',address:from.address});
     }
   }
 
@@ -251,6 +253,29 @@ const AddBeneficiary = ({ navigation }) => {
                   setFrom({ ...from, cityError: Constants.CITY_REQUIRED })
                 } else {
                   setFrom({ ...from, cityError: '' })
+                }
+              }}
+            />
+
+            {/* Address */}
+            <TextInputField
+              containerStyle={styles.inputContainer}
+              placeholder={Constants.ADDRESS}
+              value={from.address}
+              onChangeText={(text) => {
+                setFrom({
+                  ...from,
+                  address: text
+                })
+              }}
+              onFocus={() => setFrom({ ...from, addressError: '' })}
+              keyboardType={'default'}
+              textError={from.addressError}
+              onBlur={() => {
+                if (from.address === '') {
+                  setFrom({ ...from, addressError: Constants.ADDRESS })
+                } else {
+                  setFrom({ ...from, addressError: '' })
                 }
               }}
             />

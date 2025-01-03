@@ -20,6 +20,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     // backgroundColor: 'yellow'
   },
+  topContainerKyc: {
+    padding: wp(5),
+    borderRadius: 20,
+    borderColor: ColorSheet.Primary,
+    borderWidth: 1,
+    marginTop: hp(0),
+    marginBottom: hp(2),
+    height: Platform.OS == 'ios' ? 180 : 170,
+    justifyContent: 'center',
+    // backgroundColor: 'yellow'
+  },
   currencyInputView: {
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -17,6 +17,7 @@ import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { ErrorFlash } from '@/utils/flashMessage';
 import RecipientDetails from '@/components/preview/recipientDetails';
+import { StackActions } from '@react-navigation/native';
 
 const Preview = ({ navigation,route }) => {
   const {beneId,name,accno,ifsc,totalAmount,enteredamount,fromCurrency,toCurrency,fees,exchangeRate} = route.params;
@@ -57,12 +58,12 @@ const Preview = ({ navigation,route }) => {
         <BackTitleHomeComponent
           style={styles.titleHeaderContainer}
           title={Constants.HEADER_TITLE}
-          onPressBack={() => {
-            navigation.goBack();
-          }}
-          onPressHome={() => {
-            console.log('onPressHome');
-          }}
+          onPressBack = {() => {
+                         navigation.goBack()
+                     }}
+                     onPressHome = {() => {
+                        navigation.dispatch(StackActions.replace('AppBottomTab'))
+                     }}
         />
 
         {/* Image */}
@@ -82,12 +83,13 @@ const Preview = ({ navigation,route }) => {
             </View>
             {/* Exchange rae */}
             <TransferDetailsEdit
-              send={previewData[0].transferDetails.exchange[0].send}
+              exchangeRate={exchangeRate}
+              send={'£1'}
               recieve={previewData[0].transferDetails.exchange[0].receive}
               theyRecieve={totalAmount}
               youSend={JSON.parse(enteredamount)}
               fee={fees}
-              totalPayment={parseInt(JSON.parse(enteredamount)) + parseInt(JSON.parse(fees))}
+              totalPayment={parseInt(JSON.parse(enteredamount)) - parseInt(JSON.parse(fees))}
             />
           </View>
 

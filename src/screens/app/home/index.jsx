@@ -1,7 +1,9 @@
 import {
+  Alert,
   Image,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
   ScrollView,
   StatusBar,
   Text,
@@ -31,16 +33,23 @@ import Rotate from '@/assets/svg/transaction/Rotate.svg';
 import postRequest from '@/components/NetworkRequest/postRequest';
 import { DefaultConstants } from '@/utils/Constants';
 import { ErrorFlash } from '@/utils/flashMessage';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [name, setName] = useState();
+  const [kyc, setKyc] = useState(true);
   const logout = async () => {
     await AsyncStorage.clear();
     navigation.dispatch(StackActions.replace('LoginScreen'));
   }
   const getData = async () => {
-    setName(await AsyncStorage.getItem('login_first_name') + ' ' + await AsyncStorage.getItem('login_last_name'))
+    setName(await AsyncStorage.getItem('login_first_name') + ' ' + await AsyncStorage.getItem('login_last_name'));
+    setKyc(await AsyncStorage.getItem('login_kyc'))
   }
   useEffect(() => {
     getData()
@@ -52,10 +61,11 @@ const HomeScreen = () => {
   const position2 = useSharedValue(1);
   const [loading, setLoading] = useState(false);
   const [fee, setFees] = useState('0.00');
-  const [totalAmount, setTotalAmount] = useState();
-  const [amount, setAmount] = useState();
+  const [totalAmount, setTotalAmount] = useState("");
+  const [amount, setAmount] = useState("");
   const [fromCurrency, setFromCurrency] = useState();
   const [toCurrency, setToCurrency] = useState();
+  const [overlay, setoverlay] = useState(false);
 
   const animatedStyle1 = useAnimatedStyle(() => {
     return {
@@ -122,12 +132,45 @@ const HomeScreen = () => {
   const setAsyncdata = async (key, value) => {
     await AsyncStorage.setItem(key, value);
   }
+  const handleInputChange = async (value) => {
 
+    const validated = value.match(/^\d*\.?\d{0,2}$/);
+    if (validated) {
+      setAmount(value);
+      onChangeHandler(value, 'GBP', 'INR')
+    }
+  }
+  const handleKyc = async () => {
+    setoverlay(true)
+    const login_mobile = await AsyncStorage.getItem('login_mobile');
+    const response = await postRequest(DefaultConstants.FX_BASE_URL + 'API-FX-187-SUMSUB-URL', {
+      "user_id": login_mobile
+    }, {
+      headers: {
+        fx_key: DefaultConstants.FX_SUBSCRIPTION_KEY
+      }
+    });
+    if(response[0]==200)
+    {
+      setoverlay(false)
+      navigation.navigate('SumSub',{sumsuburl:response[1].data.url})
+    }
+    else
+    {
+      setoverlay(false)
+      Alert.alert("Error",response[1]);
+    }
+  }
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
     >
+      <Spinner
+          visible={overlay}
+          textContent={'Loading...'}
+          textStyle={{color: '#FFF'}}
+        />
       {/* Status Bar */}
       <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
@@ -145,7 +188,8 @@ const HomeScreen = () => {
         onPress={logout}
       // onPressProfile={() => navigation.navigate('EditProfileScreen')}
       />
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+      <Pressable onPress={handleKyc} style={{ width: '90%', marginTop: hp(2) }} ><Image source={require('@/assets/images/kyc.png')} resizeMode='contain' style={{ width: '100%', marginTop: hp(2) }} /></Pressable> 
+      <ScrollView style={!kyc ? styles.scrollViewKyc : styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* mainContainer */}
         <View style={styles.mainContainer}>
           {/* ExChange Rate */}
@@ -169,10 +213,10 @@ const HomeScreen = () => {
           /> */}
 
 
-          <View style={[currencyConvertor.topContainer]}>
+          <View style={[!kyc ? currencyConvertor.topContainerKyc : currencyConvertor.topContainer]}>
             <Animated.View style={[currencyConvertor.currencyInputView, animatedStyle1]}>
               <AnimatedTextInput
-                onChangeText={value => { onChangeHandler(value, 'GBP', 'INR') }}
+                onChangeText={handleInputChange}
                 value={amount}
                 placeholder={'Sending Amount'}
               />
@@ -187,13 +231,13 @@ const HomeScreen = () => {
               <TouchableOpacity style={currencyConvertor.coveterButton}>
                 <Rotate width={20} height={18} />
               </TouchableOpacity>
-            </View> 
+            </View>
 
-           <Animated.View style={[currencyConvertor.currencyInputView, animatedStyle2]}>
+            <Animated.View style={[currencyConvertor.currencyInputView, animatedStyle2]}>
               <AnimatedTextInput
-                onChangeText={value => { onChangeHandler(value, 'INR', 'GBP') }}
+                onChangeText={value => { setTotalAmount(totalAmount); onChangeHandler(value, 'INR', 'GBP') }}
                 value={totalAmount}
-                editable={false} 
+                editable={false}
                 placeholder={'Receiving Amount'}
               />
 
@@ -208,13 +252,13 @@ const HomeScreen = () => {
           <DashedBorder height={2} style={styles.dashedBorder} />
           {!loading ?
             <View style={styles.feesTotalPaymentContainer}>
-              <Text style={styles.text01}>Fee : ₹{fee}</Text>
+              <Text style={styles.text01}>Fee : £{fee}</Text>
 
-              <Text style={styles.text01}>Total Pay: ₹{totalAmount} </Text>
+              <Text style={styles.text01}>Total Pay: £{amount - fee} </Text>
             </View>
             :
             <View style={styles.feesTotalPaymentContainer}>
-              <Text style={{justifyContent:'center',alignItems:'center'}}>loading...</Text>
+              <Text style={{ justifyContent: 'center', alignItems: 'center' }}>loading...</Text>
             </View>
           }
 
