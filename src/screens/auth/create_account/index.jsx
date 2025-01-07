@@ -57,9 +57,13 @@ const CreateAccount = ({ navigation }) => {
       ErrorFlash(Constants.ENTER_FIRST_NAME);
     } else if (formData.lastname == '') {
       ErrorFlash(Constants.ENTER_LAST_NAME);
-    } else if (formData.email == '') {
+    } else if (formData.phoneNumber == '') {
+      ErrorFlash(Constants.ENTER_PHONE_NUM);
+    }
+    else if (formData.email == '') {
       ErrorFlash(Constants.ENTER_EMAIL);
-    } else if (!validateEmail(formData.email)) {
+    }
+    else if (!validateEmail(formData.email)) {
       ErrorFlash(Constants.VALID_EMAIL);
     } else if (formData.digitCode.length == '') {
       ErrorFlash(Constants.ENTER_DIGIT_CODE);
@@ -68,7 +72,7 @@ const CreateAccount = ({ navigation }) => {
     } else if (formData.confirmDigitCode.length == '') {
       ErrorFlash(Constants.ENTER_DIGIT_CODE);
     } else if (formData.digitCode != formData.confirmDigitCode) {
-      ErrorFlash(Constants.DIGIT_CODE_NOT_MATCH);
+      ErrorFlash(Constants.CONFIRM_PIN_MISMATCH);
     } else {
       setLoading(true)
       var resp = await postRequest(DefaultConstants.BASE_URL + 'user/signup', { first_name: formData.firstname, last_name: formData.lastname, email: formData.email, password: formData.digitCode, mobile: formData.phoneNumber, country_code: "+44", source: DefaultConstants.SOURCE_NAME, user_type: displayVisibleWindow,contact_address:"NANANANA",device_id:DeviceInfo.getDeviceId(),device_token:"NANANANANANA" }, {
@@ -197,7 +201,10 @@ const CreateAccount = ({ navigation }) => {
             placeholder={Constants.FIRST_NAME}
             keyboardTyp={'default'}
             value={formData.firstname}
-            onChangeText={(text) => setFormData({ ...formData, firstname: text })}
+            onChangeText={(text) => {
+              text = text.replace(/[^A-Za-z]/ig, '')
+              setFormData({ ...formData, firstname: text });
+            }}
             textError={formData.firstnameError}
             onBlur={() => {
               if (formData.firstname === '') {
@@ -215,7 +222,10 @@ const CreateAccount = ({ navigation }) => {
             placeholder={Constants.LAST_NAME}
             keyboardTyp={'default'}
             value={formData.lastname}
-            onChangeText={(text) => setFormData({ ...formData, lastname: text })}
+            onChangeText={(text) => {
+              
+              setFormData({ ...formData, lastname: text })
+            }}
             textError={formData.lastnameError}
             onBlur={() => {
               if (formData.lastname === '') {

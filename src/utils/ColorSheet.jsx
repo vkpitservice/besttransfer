@@ -45,5 +45,8 @@ export const ColorSheet = {
   TransactionSuccess:'#D1E697',
   TransactionFailed:'#F8DDDF',
   TransactionReview:'#F5F9CF',
-  TransactionInprocess:'#E1DED7'
+  TransactionInprocess:'#E1DED7',
+  TransactionSuccessText:'#465a0b',
+  TransactionFailedText:'#bb1414',
+  TransactionReviewText:'#f39223',
 };

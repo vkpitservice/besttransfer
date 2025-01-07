@@ -65,7 +65,7 @@ const BeneficiaryOtpVerification = ({ navigation, route }) => {
                         ifsc: ifsc,
                         account_number: accountnumber,
                         account_type: "saving",
-                        benificiary_type: "account",
+                        benificiary_type: "account", /// individual or corporate
                         address:address
                     }, {
                         headers: {

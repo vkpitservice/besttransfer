@@ -16,30 +16,33 @@ const TransactionListShowData = (props) => {
     <TouchableOpacity onPress={onPress} style={styles.root}>
       {/* 1st row */}
       <View style={styles.imageTextContainer}>
-        {type == 'success' ?
-          <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5,backgroundColor:ColorSheet.TransactionSuccess }}>
-            <MaterialIcons name='assistant-navigation' size={30} />
-            <Text style={{ marginLeft: 10, fontSize: 20 }}>{type}</Text>
+        {type.toLowerCase() == 'success' ?
+          <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5, backgroundColor: ColorSheet.TransactionSuccess, borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
+            <MaterialIcons name='assistant-navigation' size={30} style={{ color: ColorSheet.TransactionSuccessText }} />
+            <Text style={{ marginLeft: 10, fontSize: 20, color: ColorSheet.TransactionSuccessText,fontWeight:'bold' }}>{type}</Text>
           </View>
           :
-          type == "failed" ?
-            <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5,backgroundColor:ColorSheet.TransactionFailed }}>
-              <MaterialCommunityIcons name='close-circle' size={30} />
-              <Text style={{ marginLeft: 10, fontSize: 20 }}>{type}</Text>
+          type.toLowerCase() == "failed" ?
+            <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5, backgroundColor: ColorSheet.TransactionFailed, borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
+              <MaterialCommunityIcons name='close-circle' size={30} style={{ color: ColorSheet.TransactionFailedText }} />
+              <Text style={{ marginLeft: 10, fontSize: 20, color: ColorSheet.TransactionFailedText,fontWeight:'bold' }}>{type}</Text>
             </View>
             :
-            type == "review" ?
-              <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5,backgroundColor:ColorSheet.TransactionReview }}>
-                <MaterialIcons name='timer' size={30} />
-                <Text style={{ marginLeft: 10, fontSize: 20 }}>{type}</Text>
+            type.toLowerCase() == "review" ?
+              <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5, backgroundColor: ColorSheet.TransactionReview, borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
+                <MaterialIcons name='timer' size={30} style={{ color: ColorSheet.TransactionReviewText }} />
+                <Text style={{ marginLeft: 10, fontSize: 20, color: ColorSheet.TransactionReviewText,fontWeight:'bold' }}>{type}</Text>
               </View>
               :
-              <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5,backgroundColor:ColorSheet.TransactionInprocess }}>
+              <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5, backgroundColor: ColorSheet.TransactionInprocess, borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
                 <FontAwesome5 name='exclamation-circle' size={30} />
-                <Text style={{ marginLeft: 10, fontSize: 20 }}>{type}</Text>
+                <Text style={{ marginLeft: 10, fontSize: 20,fontWeight:'bold' }}>{type}</Text>
               </View>
         }
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 5 }}>
+        <View style={{
+          flexDirection: 'row', justifyContent: 'space-between', padding: 5, 
+          borderBottomColor:ColorSheet.Text8,borderBottomWidth:2,borderBottomLeftRadius:10,borderBottomRightRadius:10,borderLeftWidth:0.1,borderRightWidth:0.1
+        }}>
           <View style={styles.nameDateContainer}>
             <Text style={styles.nameTxt}> {name} </Text>
             <Text style={styles.dateTxt}> {account_number} </Text>
@@ -48,7 +51,7 @@ const TransactionListShowData = (props) => {
           </View>
           <View style={styles.nameDateContainer}>
             {/* <Text style={[styles.nameTxt, { fontSize: 15 }]}> GBP {amount_base} </Text> */}
-            <Text style={[styles.nameTxt, { fontSize: 20 }]}> INR {amount} </Text>
+            <Text style={[styles.nameTxt, { fontSize: 20,textDecorationLine: 'underline',fontWeight:'bold' }]}> INR {amount} </Text>
           </View>
         </View>
       </View>

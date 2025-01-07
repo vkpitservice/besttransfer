@@ -19,16 +19,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: hp(2),
     padding:0,
-    borderRadius:8,
-    shadowColor: '#00000040',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity:  0.1,
-    shadowRadius: 3,
-    elevation: 5,
+    borderRadius:5,
   },
   imageTextContainer: {
     width:'100%',
-    borderRadius:10
   },
   imageStyle: {
     width: wp(12),
@@ -55,7 +49,7 @@ export const styles = StyleSheet.create({
   nameTxt: {
     fontSize: RFValue(13),
     fontWeight: '600',
-    color: ColorSheet.Text7,
+    color: ColorSheet.Primary,
   },
   dateTxt: {
     paddingTop: hp(0.5),

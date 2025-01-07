@@ -84,7 +84,10 @@ const HomeScreen = () => {
     console.log(from);
     console.log(to);
     setLoading(true)
+    if(from=='GBP')
     setAmount(val);
+    else
+    setTotalAmount(val);
     setFromCurrency(from);
     setToCurrency(to);
     const token = await AsyncStorage.getItem('login_token');
@@ -102,7 +105,10 @@ const HomeScreen = () => {
     if (resp[0] != '400') {
       // resp[1].data.amount
       setExchangeRate(resp[1].data.conversion_rate)
+      if(from=='GBP')
       setTotalAmount(resp[1].data.final_amount)
+      else
+      setAmount(resp[1].data.final_amount)
       setFees(resp[1].data.fees)
       setLoading(false)
     }
@@ -116,11 +122,18 @@ const HomeScreen = () => {
     setLoading(true)
     clearTimeout(timeout.current);
     timeout.current = setTimeout(() => {
+      if(value!="" && value!=null)
       getConversionData(value, from, to)
     }, 2000);
   }
 
   const navigateToScreen = async () => {
+    if(amount=="" || amount==null)
+    {
+      ErrorFlash(Constants.SENDING_AMOUNt_ERROR)
+    }
+    else
+    {
     await setAsyncdata('fees', JSON.stringify(fee))
     await setAsyncdata('totalAmount', JSON.stringify(totalAmount))
     await setAsyncdata('amount', JSON.stringify(amount))
@@ -128,6 +141,7 @@ const HomeScreen = () => {
     await setAsyncdata('toCurrency', toCurrency)
     await setAsyncdata('exchangeRate', JSON.stringify(exchangeRate))
     navigation.navigate('NotificationStack')
+    }
   }
   const setAsyncdata = async (key, value) => {
     await AsyncStorage.setItem(key, value);
@@ -137,9 +151,21 @@ const HomeScreen = () => {
     const validated = value.match(/^\d*\.?\d{0,2}$/);
     if (validated) {
       setAmount(value);
+      setTotalAmount("");
       onChangeHandler(value, 'GBP', 'INR')
     }
   }
+
+  const handleReceivingInputChange = async (value) => {
+
+    const validated = value.match(/^\d*\.?\d{0,2}$/);
+    if (validated) {
+      setAmount("");
+      setTotalAmount(value);
+      onChangeHandler(value, 'INR', 'GBP')
+    }
+  }
+
   const handleKyc = async () => {
     setoverlay(true)
     const login_mobile = await AsyncStorage.getItem('login_mobile');
@@ -188,9 +214,9 @@ const HomeScreen = () => {
         onPress={logout}
       // onPressProfile={() => navigation.navigate('EditProfileScreen')}
       />
-      <Pressable onPress={handleKyc} style={{ width: '90%', marginTop: hp(2) }} ><Image source={require('@/assets/images/kyc.png')} resizeMode='contain' style={{ width: '100%', marginTop: hp(2) }} /></Pressable> 
       <ScrollView style={!kyc ? styles.scrollViewKyc : styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* mainContainer */}
+        <Pressable onPress={handleKyc} style={{ width: '100%',marginBottom:hp(3)}} ><Image source={require('@/assets/images/kyc.png')} resizeMode='stretch' style={{ width: '100%',height:150 }} /></Pressable> 
         <View style={styles.mainContainer}>
           {/* ExChange Rate */}
           {exchangeRate && exchangeRate != '0.00' &&
@@ -235,9 +261,8 @@ const HomeScreen = () => {
 
             <Animated.View style={[currencyConvertor.currencyInputView, animatedStyle2]}>
               <AnimatedTextInput
-                onChangeText={value => { setTotalAmount(totalAmount); onChangeHandler(value, 'INR', 'GBP') }}
+                onChangeText={handleReceivingInputChange}
                 value={totalAmount}
-                editable={false}
                 placeholder={'Receiving Amount'}
               />
 

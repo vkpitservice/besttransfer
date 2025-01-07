@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     marginBottom: hp(15),
   },
   scrollView: { marginTop: Platform.OS == 'android' ? hp(8) : hp(6) },
-  scrollViewKyc: { marginTop: Platform.OS == 'android' ? hp(0) : hp(0) },
+  scrollViewKyc: { marginTop: Platform.OS == 'android' ? hp(8) : hp(6) },
   exchangeContainer: {
     width: '100%',
     height: 40,
@@ -38,6 +38,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: ColorSheet.PrimaryButton,
     borderRadius: hp(1),
+    marginBottom:hp(1)
   },
   exchangeText: {
     fontSize: RFValue(14),

@@ -68,13 +68,13 @@ const TransactionList = ({ navigation }) => {
         amount: (item.amount_base * item.current_rate),
         amount_base: item.amount,
         type: (item.status).toUpperCase(), 
-        account_number: item.benificiary.benificiary_type=='upi' ? item.benificiary.upi_id : item.benificiary.account_number,
+        account_number: item.benificiary.account_number==null || item.benificiary.account_number=="" ? item.benificiary.upi_id : item.benificiary.account_number,
         ifsc: item.benificiary.ifsc,
         transaction_type:item.transaction_type,
         fees:item.fees,
         transaction_id: item.transaction_id
       }));
-      setData(transactionData.slice(0, 6))
+      setData(transactionData)
     }
     else {
       ErrorFlash(resp[1])

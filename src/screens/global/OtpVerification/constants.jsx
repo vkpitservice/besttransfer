@@ -12,4 +12,5 @@ export const Constants = {
   SUBMIT_BUTTON_TEXT: 'Submit',
   OTP_SUCCESS_TEXT: 'OTP Successfully Sent',
   ENTER_VALID_OTP: 'Enter valid OTP',
+  ENTER_VALID_MOBILE: 'Enter valid Mobile Number',
 };

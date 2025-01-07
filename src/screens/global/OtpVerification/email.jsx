@@ -159,7 +159,10 @@ const EmailOtpVerification = ({ navigation }) => {
               secureTextEntry={false}
               placeholder={"Enter Your Email Id"}
               keyboardType={'email-address'}
-              onChangeText={(text) => setNewEmail(text)}
+              onChangeText={(text) => {
+                let email = text.replace(/\s+/g, '');
+                setNewEmail(email)
+              }}
               value={newEmail}
             />
             <TouchableOpacity onPress={updateEmail} style={styles.changeButton}>

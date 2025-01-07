@@ -97,6 +97,12 @@ const OtpVerification = ({ navigation }) => {
     let token = await AsyncStorage.getItem('reg_access_token');
     let firstName = await AsyncStorage.getItem('reg_first_name');
     let lastName = await AsyncStorage.getItem('reg_last_name');
+    if(newMobileNumber.length<10)
+    {
+      ErrorFlash(Constants.ENTER_VALID_MOBILE)
+    }
+    else
+    {
     var changemobile = await patchRequest(DefaultConstants.BASE_URL + 'user/update-user', { mobile: newMobileNumber,first_name:firstName,last_name:lastName }, {
       headers: {
         'Content-Type': 'application/json',
@@ -114,6 +120,7 @@ const OtpVerification = ({ navigation }) => {
     else {
       ErrorFlash(changemobile[1])
     }
+  }
   }
   useEffect(() => {
     getData()
@@ -158,8 +165,12 @@ const OtpVerification = ({ navigation }) => {
               secureTextEntry={false}
               placeholder={"Enter Your Mobile Number"}
               keyboardType={'number-pad'}
-              onChangeText={(text) => setNewMobileNumber(text)}
+              onChangeText={(text) => {
+                let mobile = text.replace(/\s+/g, '');
+                setNewMobileNumber(mobile)
+              }}
               value={newMobileNumber}
+              maxLength={10}
             />
             <TouchableOpacity onPress={updateMobile} style={styles.changeButton}>
               <Text style={styles.changeText}>{Constants.UPDATE}</Text>
