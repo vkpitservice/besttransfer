@@ -18,30 +18,30 @@ const TransactionListShowData = (props) => {
       <View style={styles.imageTextContainer}>
         {type.toLowerCase() == 'success' ?
           <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5, backgroundColor: ColorSheet.TransactionSuccess, borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
-            <MaterialIcons name='assistant-navigation' size={30} style={{ color: ColorSheet.TransactionSuccessText }} />
-            <Text style={{ marginLeft: 10, fontSize: 20, color: ColorSheet.TransactionSuccessText,fontWeight:'bold' }}>{type}</Text>
+            <MaterialIcons name='assistant-navigation' size={28} style={{ color: ColorSheet.TransactionSuccessText }} />
+            <Text style={{ marginLeft: 10, fontSize: 18, color: ColorSheet.TransactionSuccessText, }}>{type}</Text>
           </View>
           :
           type.toLowerCase() == "failed" ?
             <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5, backgroundColor: ColorSheet.TransactionFailed, borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
-              <MaterialCommunityIcons name='close-circle' size={30} style={{ color: ColorSheet.TransactionFailedText }} />
-              <Text style={{ marginLeft: 10, fontSize: 20, color: ColorSheet.TransactionFailedText,fontWeight:'bold' }}>{type}</Text>
+              <MaterialCommunityIcons name='close-circle' size={28} style={{ color: ColorSheet.TransactionFailedText }} />
+              <Text style={{ marginLeft: 10, fontSize: 18, color: ColorSheet.TransactionFailedText, }}>{type}</Text>
             </View>
             :
             type.toLowerCase() == "review" ?
               <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5, backgroundColor: ColorSheet.TransactionReview, borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
-                <MaterialIcons name='timer' size={30} style={{ color: ColorSheet.TransactionReviewText }} />
-                <Text style={{ marginLeft: 10, fontSize: 20, color: ColorSheet.TransactionReviewText,fontWeight:'bold' }}>{type}</Text>
+                <MaterialIcons name='timer' size={28} style={{ color: ColorSheet.TransactionReviewText }} />
+                <Text style={{ marginLeft: 10, fontSize: 18, color: ColorSheet.TransactionReviewText, }}>{type}</Text>
               </View>
               :
               <View style={{ flexDirection: 'row', borderBottomWidth: 1, padding: 5, backgroundColor: ColorSheet.TransactionInprocess, borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
-                <FontAwesome5 name='exclamation-circle' size={30} />
-                <Text style={{ marginLeft: 10, fontSize: 20,fontWeight:'bold' }}>{type}</Text>
+                <FontAwesome5 name='exclamation-circle' size={28} />
+                <Text style={{ marginLeft: 10, fontSize: 18, }}>{type}</Text>
               </View>
         }
         <View style={{
           flexDirection: 'row', justifyContent: 'space-between', padding: 5, 
-          borderBottomColor:ColorSheet.Text8,borderBottomWidth:2,borderBottomLeftRadius:10,borderBottomRightRadius:10,borderLeftWidth:0.1,borderRightWidth:0.1
+          borderBottomColor:ColorSheet.TransactionInprocess,borderBottomWidth:6,borderBottomLeftRadius:10,borderBottomRightRadius:10,borderLeftWidth:0.1,borderRightWidth:0.1
         }}>
           <View style={styles.nameDateContainer}>
             <Text style={styles.nameTxt}> {name} </Text>

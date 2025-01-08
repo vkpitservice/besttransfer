@@ -16,7 +16,7 @@ import { DefaultConstants } from '@/utils/Constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AddUPIBeneficiary = ({ navigation }) => {
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [from, setFrom] = useState({
     firstName: '',
     lastName: '',
@@ -24,20 +24,22 @@ const AddUPIBeneficiary = ({ navigation }) => {
     ifsc: '',
     accountNumber: '',
     city: '',
+    address: '',
     firstNameError: '',
     lastNameError: '',
     accountNameError: '',
     ifscError: '',
     accountNumberError: '',
     cityError: '',
+    addressError: '',
   })
 
-  const [selectCountry, setSelectCountry] = useState({
-    label: '',
-    value: '',
-  })
+  const [selectReason, setSelectReason] = useState({
+        label: '',
+        value: '',
+      });
 
-  const handleContinue = async() => {
+  const handleContinue = async () => {
     if (!from.firstName) {
       ErrorFlash(Constants.FIRST_NAME_REQUIRED)
     } else if (!from.lastName) {
@@ -55,7 +57,7 @@ const AddUPIBeneficiary = ({ navigation }) => {
       });
       console.log(otpresp);
       setLoading(false)
-      navigation.navigate('BeneficiaryOtpVerification',{firstname:from.firstName,lastname:from.lastName,accountname:from.firstName+" "+from.lastName,ifsc:'',city:'',accountnumber:from.accountNumber,beneType:'upi',mobile:from.city});
+      navigation.navigate('BeneficiaryOtpVerification', { firstname: from.firstName, lastname: from.lastName, accountname: from.firstName + " " + from.lastName, ifsc: '', city: '', accountnumber: from.accountNumber, beneType: 'upi', mobile: from.city, address: from.address, type: selectReason.value });
     }
   }
 
@@ -157,7 +159,7 @@ const AddUPIBeneficiary = ({ navigation }) => {
               }}
             />
 
-            
+
             {/* Account Number */}
             <TextInputField
               containerStyle={styles.inputContainer}
@@ -206,6 +208,38 @@ const AddUPIBeneficiary = ({ navigation }) => {
               maxLength={10}
             />
 
+            {/* Address */}
+            <TextInputField
+              containerStyle={styles.inputContainer}
+              placeholder={Constants.ADDRESS}
+              value={from.address}
+              onChangeText={(text) => {
+                setFrom({
+                  ...from,
+                  address: text
+                })
+              }}
+              onFocus={() => setFrom({ ...from, addressError: '' })}
+              keyboardType={'default'}
+              textError={from.addressError}
+              onBlur={() => {
+                if (from.address === '') {
+                  setFrom({ ...from, addressError: Constants.ADDRESS })
+                } else {
+                  setFrom({ ...from, addressError: '' })
+                }
+              }}
+            />
+
+            {/* DropDown */}
+            <PrimaryDropDown
+              style={styles.inputContainer}
+              data={listReason}
+              placeholder={Constants.SELECT_TYPE_OF_BENEFICIARY}
+              value={selectReason.value}
+              onChange={setSelectReason}
+            />
+
             {/* Continue Button */}
             <PrimaryButton
               style={styles.btnContainer}
@@ -223,7 +257,16 @@ const AddUPIBeneficiary = ({ navigation }) => {
 }
 
 export default AddUPIBeneficiary;
-
+const listReason = [
+  {
+    label: 'Individual',
+    value: 'Individual',
+  },
+  {
+    label: 'Corporate',
+    value: 'Corporate',
+  },
+];
 const listCountry = [
   {
     name: 'India',

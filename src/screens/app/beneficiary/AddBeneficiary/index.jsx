@@ -16,7 +16,7 @@ import { DefaultConstants } from '@/utils/Constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AddBeneficiary = ({ navigation }) => {
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [from, setFrom] = useState({
     firstName: '',
     lastName: '',
@@ -34,12 +34,12 @@ const AddBeneficiary = ({ navigation }) => {
     addressError: '',
   })
 
-  const [selectCountry, setSelectCountry] = useState({
-    label: '',
-    value: '',
-  })
+  const [selectReason, setSelectReason] = useState({
+      label: '',
+      value: '',
+    });
 
-  const handleContinue = async() => {
+  const handleContinue = async () => {
     if (!from.firstName) {
       ErrorFlash(Constants.FIRST_NAME_REQUIRED)
     } else if (!from.lastName) {
@@ -63,7 +63,7 @@ const AddBeneficiary = ({ navigation }) => {
       });
       console.log(otpresp);
       setLoading(false)
-      navigation.navigate('BeneficiaryOtpVerification',{firstname:from.firstName,lastname:from.lastName,accountname:from.accountName,ifsc:from.ifsc,city:from.city,accountnumber:from.accountNumber,beneType:'account',mobile:'',address:from.address});
+      navigation.navigate('BeneficiaryOtpVerification', { firstname: from.firstName, lastname: from.lastName, accountname: from.accountName, ifsc: from.ifsc, city: from.city, accountnumber: from.accountNumber, beneType: 'account', mobile: '', address: from.address,type:selectReason.value });
     }
   }
 
@@ -280,6 +280,15 @@ const AddBeneficiary = ({ navigation }) => {
               }}
             />
 
+            {/* DropDown */}
+            <PrimaryDropDown
+              style={styles.inputContainer}
+              data={listReason}
+              placeholder={Constants.SELECT_TYPE_OF_BENEFICIARY}
+              value={selectReason.value}
+              onChange={setSelectReason}
+            />
+
             {/* Continue Button */}
             <PrimaryButton
               style={styles.btnContainer}
@@ -297,6 +306,16 @@ const AddBeneficiary = ({ navigation }) => {
 }
 
 export default AddBeneficiary;
+const listReason = [
+  {
+    label: 'Individual',
+    value: 'Individual',
+  },
+  {
+    label: 'Corporate',
+    value: 'Corporate',
+  },
+];
 
 const listCountry = [
   {
