@@ -9,13 +9,13 @@ const BeneficiarySearchListData = (props) => {
   return (
     <TouchableOpacity style={styles.container} onPress={()=>onClick(beneId, name,idNumber,sBinNumber)}>
       {/* Image */}
-      {imgSource ? (
+      {/* {imgSource ? (
         <Image style={styles.imageStyle} source={require('@/assets/images/user-profile.jpg')} />
-      ) : (
+      ) : ( */}
         <View style={styles.placeholderImageStyle}>
           <Text style={styles.placeholderText}>{name.charAt(0).toUpperCase()}</Text>
         </View>
-      )}
+      {/* )} */}
 
       <View style={styles.txtRowContainer}>
         {/* Name */}

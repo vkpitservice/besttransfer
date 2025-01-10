@@ -9,6 +9,19 @@ import {
 // const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
+  placeholderImageStyle: {
+    width: wp(12),
+    height: wp(12),
+    borderRadius: wp(6),
+    backgroundColor: '#D3D3D3', // Replace with your desired background color
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  placeholderText: {
+    fontSize: RFValue(18),
+    color: ColorSheet.Text0,
+    fontWeight: 'bold',
+  },
   root: {
     width: '93%',
     marginTop: Platform.OS == 'android' ? hp(8) : hp(9),

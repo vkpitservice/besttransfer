@@ -35,9 +35,9 @@ const AddUPIBeneficiary = ({ navigation }) => {
   })
 
   const [selectReason, setSelectReason] = useState({
-        label: '',
-        value: '',
-      });
+    label: '',
+    value: '',
+  });
 
   const handleContinue = async () => {
     if (!from.firstName) {
@@ -57,7 +57,19 @@ const AddUPIBeneficiary = ({ navigation }) => {
       });
       console.log(otpresp);
       setLoading(false)
-      navigation.navigate('BeneficiaryOtpVerification', { firstname: from.firstName, lastname: from.lastName, accountname: from.firstName + " " + from.lastName, ifsc: '', city: '', accountnumber: from.accountNumber, beneType: 'upi', mobile: from.city, address: from.address, type: selectReason.value });
+
+      var validatevpa = await postRequest(DefaultConstants.BASE_URL + 'benificiary/validate-vpa', {
+        upi_id: from.accountNumber
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        }
+      })
+
+      console.log(validatevpa);
+      
+      // navigation.navigate('BeneficiaryOtpVerification', { firstname: from.firstName, lastname: from.lastName, accountname: from.firstName + " " + from.lastName, ifsc: '', city: '', accountnumber: from.accountNumber, beneType: 'upi', mobile: from.city, address: from.address, type: selectReason.value });
     }
   }
 

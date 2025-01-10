@@ -11,9 +11,13 @@ const TransferWelcomeDashboardComponent = (props) => {
     <View style={[styles.root, style]}>
       {/* Image */}
       <View style={styles.imageNameContainer}>
-        <TouchableOpacity onPress={onPressProfile}>
+        {/* <TouchableOpacity onPress={onPressProfile}>
           <Image source={imageSource} style={styles.image} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+
+        <View style={styles.placeholderImageStyle}>
+          <Text style={styles.placeholderText}>{name.charAt(0).toUpperCase()}</Text>
+        </View>
 
         <View style={styles.NameContainer}>
           {/* Welcome Title */}

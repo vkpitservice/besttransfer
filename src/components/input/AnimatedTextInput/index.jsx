@@ -6,7 +6,7 @@ import styles from './styles';
 import PropTypes from 'prop-types';
 
 const AnimatedTextInput = (props) => {
-  const { onChangeText, value, placeholder, style, placeholderStyle,editable } = props;
+  const { onChangeText, value, placeholder, style, placeholderStyle,editable,maxLength } = props;
   const [isFocused, setIsFocused] = useState(false);
   const placeholderPosition = useSharedValue(0);
   const fontSize = useSharedValue(RFValue(13));
@@ -64,6 +64,7 @@ const AnimatedTextInput = (props) => {
         value={value}
         editable={editable}
         defaultValue={`${value}`}
+        maxLength={maxLength}
         onChangeText={handleChangedText}
       />
     </View>
@@ -76,6 +77,7 @@ AnimatedTextInput.propTypes = {
   placeholder: PropTypes.string,
   style: PropTypes.object,
   placeholderStyle: PropTypes.object,
+  maxLength:PropTypes.number
 };
 
 export default AnimatedTextInput;

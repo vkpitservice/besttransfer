@@ -49,7 +49,8 @@ const HomeScreen = () => {
   }
   const getData = async () => {
     setName(await AsyncStorage.getItem('login_first_name') + ' ' + await AsyncStorage.getItem('login_last_name'));
-    setKyc(await AsyncStorage.getItem('login_kyc'))
+    if(await AsyncStorage.getItem('login_kyc')==0)
+      setKyc(false)
   }
   useEffect(() => {
     getData()
@@ -66,6 +67,8 @@ const HomeScreen = () => {
   const [fromCurrency, setFromCurrency] = useState();
   const [toCurrency, setToCurrency] = useState();
   const [overlay, setoverlay] = useState(false);
+  const [receiveMaxlength, setReceiveMaxlength] = useState(10);
+  const [sendMaxlength, setSendMaxlength] = useState(10);
 
   const animatedStyle1 = useAnimatedStyle(() => {
     return {
@@ -152,6 +155,8 @@ const HomeScreen = () => {
     if (validated) {
       setAmount(value);
       setTotalAmount("");
+      setReceiveMaxlength(25)
+      setSendMaxlength(10)
       onChangeHandler(value, 'GBP', 'INR')
     }
   }
@@ -162,6 +167,8 @@ const HomeScreen = () => {
     if (validated) {
       setAmount("");
       setTotalAmount(value);
+      setReceiveMaxlength(10)
+      setSendMaxlength(25)
       onChangeHandler(value, 'INR', 'GBP')
     }
   }
@@ -216,7 +223,7 @@ const HomeScreen = () => {
       />
       <ScrollView style={!kyc ? styles.scrollViewKyc : styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* mainContainer */}
-        <Pressable onPress={handleKyc} style={{ width: '100%',marginBottom:hp(3)}} ><Image source={require('@/assets/images/kyc.png')} resizeMode='stretch' style={{ width: '100%',height:150 }} /></Pressable> 
+        {!kyc && <Pressable onPress={handleKyc} style={{ width: '100%',marginBottom:hp(3)}} ><Image source={require('@/assets/images/kyc.png')} resizeMode='stretch' style={{ width: '100%',height:150 }} /></Pressable> }
         <View style={styles.mainContainer}>
           {/* ExChange Rate */}
           {exchangeRate && exchangeRate != '0.00' &&
@@ -244,6 +251,7 @@ const HomeScreen = () => {
               <AnimatedTextInput
                 onChangeText={handleInputChange}
                 value={amount}
+                maxLength={sendMaxlength}
                 placeholder={'Sending Amount'}
               />
 
@@ -263,6 +271,7 @@ const HomeScreen = () => {
               <AnimatedTextInput
                 onChangeText={handleReceivingInputChange}
                 value={totalAmount}
+                maxLength={receiveMaxlength}
                 placeholder={'Receiving Amount'}
               />
 
@@ -279,7 +288,7 @@ const HomeScreen = () => {
             <View style={styles.feesTotalPaymentContainer}>
               <Text style={styles.text01}>Fee : £{fee}</Text>
 
-              <Text style={styles.text01}>Total Pay: £{amount - fee} </Text>
+              <Text style={styles.text01}>Total to Pay: £{amount - fee} </Text>
             </View>
             :
             <View style={styles.feesTotalPaymentContainer}>

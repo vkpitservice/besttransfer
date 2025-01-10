@@ -7,6 +7,7 @@ import { Constants } from './constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DefaultConstants } from '@/utils/Constants';
 import postRequest from '@/components/NetworkRequest/postRequest';
+import { OneSignal } from 'react-native-onesignal';
 
 const Success = ({ navigation }) => {
   const [loading, setloading] = useState(false);
@@ -29,6 +30,11 @@ const Success = ({ navigation }) => {
         setAsyncData('login_mobile', loginresp[1].data.user.mobile);
         setAsyncData('login_email', loginresp[1].data.user.email);
         setAsyncData('reg_id', JSON.stringify(loginresp[1].data.user.id));
+        setAsyncData('login_kyc', loginresp[1].data.user.kyc_verified==true ? '1' : '0');
+        setAsyncData('login_external_id', loginresp[1].data.user.external_id);
+        setAsyncData('user_reference_id', loginresp[1].data.user.user_reference_id);
+        setAsyncData('reg_id', JSON.stringify(loginresp[1].data.user.id));
+        OneSignal.login(loginresp[1].data.user.external_id);
         await AsyncStorage.removeItem('reg_pass');
         navigation.navigate('AppBottomTab');
       }

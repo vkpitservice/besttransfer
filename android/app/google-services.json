@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "293865410942",
+    "project_id": "best-transfer",
+    "storage_bucket": "best-transfer.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293865410942:android:01342107ca2c5aa4a7232f",
+        "android_client_info": {
+          "package_name": "com.besttransfer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARhCluJ5SlplPK3OIR9pgNMz2kPdQ4xZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
