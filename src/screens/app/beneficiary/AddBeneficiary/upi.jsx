@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AddUPIBeneficiary = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
+  const [vpaVerified, setvpaVerified] = useState(false);
   const [from, setFrom] = useState({
     firstName: '',
     lastName: '',
@@ -33,6 +34,7 @@ const AddUPIBeneficiary = ({ navigation }) => {
     cityError: '',
     addressError: '',
   })
+  const [firstname, setFirstName] = useState("");
 
   const [selectReason, setSelectReason] = useState({
     label: '',
@@ -40,7 +42,7 @@ const AddUPIBeneficiary = ({ navigation }) => {
   });
 
   const handleContinue = async () => {
-    if (!from.firstName) {
+    if (!firstname) {
       ErrorFlash(Constants.FIRST_NAME_REQUIRED)
     } else if (!from.lastName) {
       ErrorFlash(Constants.LAST_NAME_REQUIRED)
@@ -58,18 +60,46 @@ const AddUPIBeneficiary = ({ navigation }) => {
       console.log(otpresp);
       setLoading(false)
 
-      var validatevpa = await postRequest(DefaultConstants.BASE_URL + 'benificiary/validate-vpa', {
-        upi_id: from.accountNumber
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
-        }
-      })
+      navigation.navigate('BeneficiaryOtpVerification', { firstname: firstname, lastname: from.lastName, accountname: firstname + " " + from.lastName, ifsc: '', city: '', accountnumber: from.accountNumber, beneType: 'upi', mobile: from.city, address: from.address, type: selectReason.value });
+    }
+  }
 
-      console.log(validatevpa);
-      
-      // navigation.navigate('BeneficiaryOtpVerification', { firstname: from.firstName, lastname: from.lastName, accountname: from.firstName + " " + from.lastName, ifsc: '', city: '', accountnumber: from.accountNumber, beneType: 'upi', mobile: from.city, address: from.address, type: selectReason.value });
+  const validateVpa = async() =>{
+    setLoading(true)
+    let token = await AsyncStorage.getItem('login_token');
+    var validatevpa = await postRequest(DefaultConstants.BASE_URL + 'benificiary/validate-vpa', {
+      upi_id: from.accountNumber
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    })
+
+    if(validatevpa[0]==400)
+    {
+      setvpaVerified(false)
+      ErrorFlash('Invalid VPA address')
+      setLoading(false)
+    }
+    else
+    {
+      let name = (validatevpa[1].data.account_name).split(" ");
+      let firstname = name[0];
+      name.shift()
+      let lastname = name.join(" ");
+      console.log(firstname);
+      setFirstName(firstname)
+      setFrom({
+        ...from,
+        firstName: firstname
+      })
+      setFrom({
+        ...from,
+        lastName: lastname
+      })
+      setLoading(false)
+      setvpaVerified(true)
     }
   }
 
@@ -125,52 +155,6 @@ const AddUPIBeneficiary = ({ navigation }) => {
             /> */}
 
             {/* Input Field */}
-            {/* First Name */}
-            <TextInputField
-              containerStyle={styles.inputContainer}
-              placeholder={Constants.FIRST_NAME}
-              value={from.firstName}
-              onChangeText={(text) => {
-                setFrom({
-                  ...from,
-                  firstName: text
-                })
-              }}
-              onFocus={() => setFrom({ ...from, firstNameError: '' })}
-              keyboardType={'default'}
-              textError={from.firstNameError}
-              onBlur={() => {
-                if (from.firstName === '') {
-                  setFrom({ ...from, firstNameError: Constants.FIRST_NAME_REQUIRED })
-                } else {
-                  setFrom({ ...from, firstNameError: '' })
-                }
-              }}
-            />
-
-            {/* Last Name */}
-            <TextInputField
-              containerStyle={styles.inputContainer}
-              placeholder={Constants.LAST_NAME}
-              value={from.lastName}
-              onChangeText={(text) => {
-                setFrom({
-                  ...from,
-                  lastName: text
-                })
-              }}
-              onFocus={() => setFrom({ ...from, lastNameError: '' })}
-              keyboardType={'default'}
-              textError={from.lastNameError}
-              onBlur={() => {
-                if (from.lastName === '') {
-                  setFrom({ ...from, lastNameError: Constants.LAST_REQUIRED })
-                } else {
-                  setFrom({ ...from, lastNameError: '' })
-                }
-              }}
-            />
-
 
             {/* Account Number */}
             <TextInputField
@@ -183,6 +167,7 @@ const AddUPIBeneficiary = ({ navigation }) => {
                   accountNumber: text
                 })
               }}
+              editable={firstname ? false : true}
               onFocus={() => setFrom({ ...from, accountNumberError: '' })}
               keyboardType={'default'}
               textError={from.accountNumberError}
@@ -196,69 +181,103 @@ const AddUPIBeneficiary = ({ navigation }) => {
             />
 
 
+            {/* First Name */}
+            {firstname &&
+              <TextInputField
+                containerStyle={styles.inputContainer}
+                placeholder={Constants.FIRST_NAME}
+                value={firstname}
+                editable={false}
+              />
+            }
+
+            {/* Last Name */}
+            {from.lastName &&
+              <TextInputField
+                containerStyle={styles.inputContainer}
+                placeholder={Constants.LAST_NAME}
+                value={from.lastName}
+                editable={false}
+              />
+            }
+
+
+
             {/* MobileNumber */}
-            <TextInputField
-              containerStyle={styles.inputContainer}
-              placeholder={Constants.MOBILE_NUMBER}
-              value={from.city}
-              onChangeText={(text) => {
-                setFrom({
-                  ...from,
-                  city: text
-                })
-              }}
-              onFocus={() => setFrom({ ...from, cityError: '' })}
-              keyboardType={'default'}
-              textError={from.cityError}
-              onBlur={() => {
-                if (from.city === '') {
-                  setFrom({ ...from, cityError: Constants.CITY_REQUIRED })
-                } else {
-                  setFrom({ ...from, cityError: '' })
-                }
-              }}
-              maxLength={10}
-            />
+            {firstname &&
+              <>
+                <TextInputField
+                  containerStyle={styles.inputContainer}
+                  placeholder={Constants.MOBILE_NUMBER}
+                  value={from.city}
+                  onChangeText={(text) => {
+                    setFrom({
+                      ...from,
+                      city: text
+                    })
+                  }}
+                  onFocus={() => setFrom({ ...from, cityError: '' })}
+                  keyboardType={'default'}
+                  textError={from.cityError}
+                  // onBlur={() => {
+                  //   if (from.city === '') {
+                  //     setFrom({ ...from, cityError: Constants.CITY_REQUIRED })
+                  //   } else {
+                  //     setFrom({ ...from, cityError: '' })
+                  //   }
+                  // }}
+                  maxLength={10}
+                />
 
-            {/* Address */}
-            <TextInputField
-              containerStyle={styles.inputContainer}
-              placeholder={Constants.ADDRESS}
-              value={from.address}
-              onChangeText={(text) => {
-                setFrom({
-                  ...from,
-                  address: text
-                })
-              }}
-              onFocus={() => setFrom({ ...from, addressError: '' })}
-              keyboardType={'default'}
-              textError={from.addressError}
-              onBlur={() => {
-                if (from.address === '') {
-                  setFrom({ ...from, addressError: Constants.ADDRESS })
-                } else {
-                  setFrom({ ...from, addressError: '' })
-                }
-              }}
-            />
+                {/* Address */}
+                <TextInputField
+                  containerStyle={styles.inputContainer}
+                  placeholder={Constants.ADDRESS}
+                  value={from.address}
+                  onChangeText={(text) => {
+                    setFrom({
+                      ...from,
+                      address: text
+                    })
+                  }}
+                  onFocus={() => setFrom({ ...from, addressError: '' })}
+                  keyboardType={'default'}
+                  textError={from.addressError}
+                  onBlur={() => {
+                    if (from.address === '') {
+                      setFrom({ ...from, addressError: Constants.ADDRESS })
+                    } else {
+                      setFrom({ ...from, addressError: '' })
+                    }
+                  }}
+                />
 
-            {/* DropDown */}
-            <PrimaryDropDown
-              style={styles.inputContainer}
-              data={listReason}
-              placeholder={Constants.SELECT_TYPE_OF_BENEFICIARY}
-              value={selectReason.value}
-              onChange={setSelectReason}
-            />
-
+                {/* DropDown */}
+                <PrimaryDropDown
+                  style={styles.inputContainer}
+                  data={listReason}
+                  placeholder={Constants.SELECT_TYPE_OF_BENEFICIARY}
+                  value={selectReason.value}
+                  onChange={setSelectReason}
+                />
+              </>
+            }
             {/* Continue Button */}
-            <PrimaryButton
-              style={styles.btnContainer}
-              title={Constants.BTN_NAME}
-              onPress={handleContinue}
-              loading={loading}
-            />
+            {vpaVerified ?
+              <PrimaryButton
+                style={styles.btnContainer}
+                title={Constants.BTN_NAME}
+                onPress={handleContinue}
+                loading={loading}
+              />
+              :
+              <PrimaryButton
+                style={styles.btnContainer}
+                title={Constants.VALIDATE_BTN_NAME}
+                onPress={validateVpa}
+                loading={loading}
+              />
+            }
           </View>
 
         </ScrollView>

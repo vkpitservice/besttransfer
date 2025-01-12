@@ -24,5 +24,6 @@ export const Constants = {
     CITY_REQUIRED: 'City is required',
 
     BTN_NAME: 'Continue',
+    VALIDATE_BTN_NAME: 'Validate',
     SELECT_TYPE_OF_BENEFICIARY: 'Beneficiary Type'
 }
