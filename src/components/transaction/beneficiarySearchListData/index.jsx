@@ -4,10 +4,10 @@ import { styles } from './styles';
 import PropTypes from 'prop-types';
 
 const BeneficiarySearchListData = (props) => {
-  const { imgSource, name, idNumber, sBinNumber,beneId, onClick } = props;
+  const { imgSource, name, idNumber, sBinNumber,beneId, onClick, benificiary_type } = props;
 
   return (
-    <TouchableOpacity style={styles.container} onPress={()=>onClick(beneId, name,idNumber,sBinNumber)}>
+    <TouchableOpacity style={styles.container} onPress={()=>onClick(beneId, name,idNumber,sBinNumber,benificiary_type)}>
       {/* Image */}
       {/* {imgSource ? (
         <Image style={styles.imageStyle} source={require('@/assets/images/user-profile.jpg')} />

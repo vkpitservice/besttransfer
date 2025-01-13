@@ -34,6 +34,7 @@ const SearchBeneficiary = ({ navigation }) => {
           name: item.name,
           idNumber: item.idNumber,
           sBinNumber: item.sBinNumber,
+          benificiary_type: item.benificiary_type
         })),
       );
       // Log the entire beneficiaryList for debugging
@@ -93,6 +94,7 @@ const SearchBeneficiary = ({ navigation }) => {
           name: beneresp[1].data[i].account_name != null ? beneresp[1].data[i].account_name : beneresp[1].data[i].first_name + " " + beneresp[1].data[i].nickname,
           idNumber: beneresp[1].data[i].account_number != null ? beneresp[1].data[i].account_number : beneresp[1].data[i].upi_id,
           sBinNumber: beneresp[1].data[i].ifsc,
+          benificiary_type: beneresp[1].data[i].benificiary_type
         }]
       })
     }
@@ -102,7 +104,7 @@ const SearchBeneficiary = ({ navigation }) => {
   useEffect(() => {
     getBeneficiaries()
   }, [])
-  const navigateTo = async (beneId, name, accno, ifsc) => {
+  const navigateTo = async (beneId, name, accno, ifsc,benificiary_type) => {
     console.log(beneId);
     console.log(name);
     console.log(accno);
@@ -115,10 +117,10 @@ const SearchBeneficiary = ({ navigation }) => {
     const exchangeRate = await AsyncStorage.getItem('exchangeRate');
     if(totalAmount=='0.00' || enteredamount=='0.00' || fromCurrency==null || toCurrency==null)
     {
-      navigation.navigate('PreviewScreen',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,exchangeRate:exchangeRate});
+      navigation.navigate('PreviewScreen',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,exchangeRate:exchangeRate,benificiary_type:benificiary_type});
     }
     else{
-      navigation.navigate('PreviewScreen',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,exchangeRate:exchangeRate});
+      navigation.navigate('PreviewScreen',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,exchangeRate:exchangeRate,benificiary_type:benificiary_type});
     }
   }
   return (
@@ -179,6 +181,7 @@ const SearchBeneficiary = ({ navigation }) => {
                   idNumber={item.idNumber}
                   sBinNumber={item.sBinNumber}
                   beneId={item.id}
+                  benificiary_type={item.benificiary_type}
                   onClick={navigateTo}
                 />
               );

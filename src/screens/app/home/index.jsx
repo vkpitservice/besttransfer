@@ -288,7 +288,7 @@ const HomeScreen = () => {
             <View style={styles.feesTotalPaymentContainer}>
               <Text style={styles.text01}>Fee : £{fee}</Text>
 
-              <Text style={styles.text01}>Total to Pay: £{amount - fee} </Text>
+              <Text style={styles.text01}>Total to Pay: £{parseFloat(amount - fee).toFixed(2)} </Text>
             </View>
             :
             <View style={styles.feesTotalPaymentContainer}>

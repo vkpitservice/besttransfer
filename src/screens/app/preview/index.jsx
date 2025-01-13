@@ -17,10 +17,13 @@ import PrimaryDropDown from '@/components/dropdowns/primary_dropdown';
 import PrimaryButton from '@/components/buttons/primaryButton';
 import { ErrorFlash } from '@/utils/flashMessage';
 import RecipientDetails from '@/components/preview/recipientDetails';
-import { StackActions } from '@react-navigation/native';
+import { StackActions, useFocusEffect } from '@react-navigation/native';
+import getRequest from '@/components/NetworkRequest/getRequest';
+import { DefaultConstants } from '@/utils/Constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Preview = ({ navigation,route }) => {
-  const {beneId,name,accno,ifsc,totalAmount,enteredamount,fromCurrency,toCurrency,fees,exchangeRate} = route.params;
+  const {beneId,name,accno,ifsc,totalAmount,enteredamount,fromCurrency,toCurrency,fees,exchangeRate,benificiary_type} = route.params;
   const [from, setForm] = useState({
     reference: '',
     referenceError: '',
@@ -40,6 +43,26 @@ const Preview = ({ navigation,route }) => {
         navigation.navigate('PaymentTypes',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,reference:from.reference,reason:selectReason.value,exchangeRate:exchangeRate});
     }
   };
+
+  const getReasons = async() =>{
+    let token = await AsyncStorage.getItem('login_token'); 
+    const reasonsList = await getRequest(DefaultConstants.BASE_URL+'transaction/reasons?benificiary_type='+benificiary_type, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    });
+    (reasonsList[1].data).map((singleReason)=>{
+      console.log("single"+JSON.stringify(singleReason));
+      listReason.push({
+        'label':singleReason.name,
+        'value': singleReason.code
+      })
+    })
+  }
+  useEffect(()=>{
+    getReasons();
+  },[])
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -89,7 +112,7 @@ const Preview = ({ navigation,route }) => {
               theyRecieve={totalAmount}
               youSend={JSON.parse(enteredamount)}
               fee={fees}
-              totalPayment={parseInt(JSON.parse(enteredamount)) - parseInt(JSON.parse(fees))}
+              totalPayment={parseFloat(parseFloat(JSON.parse(enteredamount)) - parseFloat(JSON.parse(fees))).toFixed(2)}
             />
           </View>
 
@@ -146,20 +169,7 @@ const Preview = ({ navigation,route }) => {
 
 export default Preview;
 
-const listReason = [
-  {
-    label: 'Transfer',
-    value: 'Transfer',
-  },
-  {
-    label: 'Fees',
-    value: 'Fees',
-  },
-  {
-    label: 'Other',
-    value: 'Other',
-  },
-];
+const listReason = [];
 
 const previewData = [
   {

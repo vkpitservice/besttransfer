@@ -65,7 +65,7 @@ const TransactionList = ({ navigation }) => {
         id: index,
         name: (item.benificiary.first_name + " " + item.benificiary.last_name).toUpperCase(),
         date: item.created,
-        amount: (item.amount_base * item.current_rate),
+        amount: parseFloat(item.amount_base * item.current_rate).toFixed(2),
         amount_base: item.amount,
         type: (item.status).toUpperCase(), 
         account_number: item.benificiary.account_number==null || item.benificiary.account_number=="" ? item.benificiary.upi_id : item.benificiary.account_number,

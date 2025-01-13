@@ -22,7 +22,7 @@ const SumSub = ({ navigation, route }) => {
     const { sumsuburl } = route.params;
     const [interval, setinterval] = useState(false);
     const getUserDetails = async () => {
-        const login_mobile = await AsyncStorage.getItem('login_mobile');
+        const login_mobile = await AsyncStorage.getItem('login_external_id');
         const response = await postRequest(DefaultConstants.FX_BASE_URL + 'API-FX-188-SUMSUB-DETAILS', {
             "user_id": login_mobile
         }, {
