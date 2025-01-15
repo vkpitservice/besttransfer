@@ -40,7 +40,7 @@ const Preview = ({ navigation,route }) => {
     } else if (selectReason.value == '') {
       ErrorFlash(Constants.REASON_REQUIRE);
     } else {
-        navigation.navigate('PaymentTypes',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,reference:from.reference,reason:selectReason.value,exchangeRate:exchangeRate});
+        navigation.navigate('PaymentTypes',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,reference:from.reference,reason:selectReason.value,reasonLabel:selectReason.label,exchangeRate:exchangeRate});
     }
   };
 

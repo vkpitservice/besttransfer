@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ColorSheet } from '@/utils/ColorSheet';
@@ -15,6 +15,7 @@ import HomeScreen from '@/screens/app/home';
 import Swap90 from '@/assets/icons/bottom_tab/Swap90.svg';
 import BeneficiaryStack from '../stacks/beneficiary_stack';
 import HomeStack from '../stacks/profile_stack';
+import QrStack from '../stacks/qr_stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +26,7 @@ const AppBottomTab = () => {
         // When open the Keyboard that time Avoid the TabBar
         tabBarHideOnKeyboard: true,
         headerShown: false,
-        tabBarActiveTintColor: ColorSheet.ActiveIcon,
+        tabBarActiveTintColor: ColorSheet.SecondaryText,
         tabBarInactiveTintColor: ColorSheet.InactiveIcon,
         tabBarStyle: {
           height: hp(13),
@@ -49,7 +50,7 @@ const AppBottomTab = () => {
               style={[
                 styles.iconView,
                 focused && {
-                  backgroundColor: ColorSheet.PrimaryButton,
+                  backgroundColor: ColorSheet.StatusBarBg,
                 },
               ]}
             >
@@ -79,7 +80,7 @@ const AppBottomTab = () => {
               style={[
                 styles.iconView,
                 focused && {
-                  backgroundColor: ColorSheet.PrimaryButton,
+                  backgroundColor: ColorSheet.StatusBarBg,
                 },
               ]}
             >
@@ -98,13 +99,51 @@ const AppBottomTab = () => {
                     },
                   ]}
                 >
-                  Transactions
+                  Transaction
                 </Text>
               )}
             </View>
           ),
         })}
       />
+
+      <Tab.Screen
+        name='QRScan'
+        component={QrStack}
+        options={() => ({
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={[
+                styles.iconView,
+                focused && {
+                  backgroundColor: ColorSheet.StatusBarBg,
+                },
+              ]}
+            >
+              {focused ? (
+                <Image style={[styles.transactionsIcon,{width:hp(3),height:hp(3),resizeMode:'contain'}]} source={require('../../assets/icons/bottom_tab/qr_scan_selected.png')} />
+              ) : (
+                <Image style={[styles.transactionsIcon,{width:hp(3),height:hp(3),resizeMode:'contain'}]} source={require('../../assets/icons/bottom_tab/qr_scan.png')} />
+              )}
+
+              {focused && (
+                <Text
+                  style={[
+                    styles.labelText,
+                    {
+                      color: color,
+                    },
+                  ]}
+                >
+                  Scan & Pay
+                </Text>
+              )}
+            </View>
+          ),
+        })}
+      />
+
+
       <Tab.Screen
         name='NotificationStack'
         component={BeneficiaryStack}
@@ -114,7 +153,7 @@ const AppBottomTab = () => {
               style={[
                 styles.iconView,
                 focused && {
-                  backgroundColor: ColorSheet.PrimaryButton,
+                  backgroundColor: ColorSheet.StatusBarBg,
                 },
               ]}
             >
@@ -150,7 +189,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   labelText: {
-    fontSize: RFValue(12),
+    fontSize: RFValue(10),
     fontWeight: '400',
     marginLeft: hp(1),
   },

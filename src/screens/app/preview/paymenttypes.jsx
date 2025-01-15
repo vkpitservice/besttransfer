@@ -25,7 +25,7 @@ import DeviceInfo from 'react-native-device-info';
 import { StackActions } from '@react-navigation/native';
 
 const PaymentTypes = ({ navigation, route }) => {
-    const { beneId, name, accno, ifsc, totalAmount, enteredamount, fromCurrency, toCurrency, fees, reference, reason, exchangeRate } = route.params;
+    const { beneId, name, accno, ifsc, totalAmount, enteredamount, fromCurrency, toCurrency, fees, reference, reason,reasonLabel, exchangeRate } = route.params;
     const [selectedOption, setSelectedOption] = useState('manual_transfer')
     const [loading, setLoading] = useState(false)
     const proceedToPay = async () => {
@@ -65,7 +65,7 @@ const PaymentTypes = ({ navigation, route }) => {
             if(voltlink[0]!='400')
             {
                 setLoading(false)
-                navigation.navigate('VoltHtmlWebsiteView',{volturl:JSON.parse(voltlink[1].data.volt).checkoutUrl,voltid:JSON.parse(voltlink[1].data.volt).id, beneId: beneId, name: name, accno: accno, ifsc: ifsc, totalAmount: totalAmount, enteredamount: enteredamount, fromCurrency: fromCurrency, toCurrency: toCurrency, fees: fees, reference: reference, reason: reason, exchangeRate: exchangeRate});
+                navigation.navigate('VoltHtmlWebsiteView',{volturl:JSON.parse(voltlink[1].data.volt).checkoutUrl,voltid:JSON.parse(voltlink[1].data.volt).id, beneId: beneId, name: name, accno: accno, ifsc: ifsc, totalAmount: totalAmount, enteredamount: enteredamount, fromCurrency: fromCurrency, toCurrency: toCurrency, fees: fees, reference: reference, reason: reason,reasonLabel:reasonLabel, exchangeRate: exchangeRate});
             }
             else{
                 ErrorFlash(voltlink[1])
@@ -74,7 +74,7 @@ const PaymentTypes = ({ navigation, route }) => {
         }
         else
             if (selectedOption == 'manual_transfer') {
-                navigation.navigate('BankDetails', { beneId: beneId, name: name, accno: accno, ifsc: ifsc, totalAmount: totalAmount, enteredamount: enteredamount, fromCurrency: fromCurrency, toCurrency: toCurrency, fees: fees, reference: reference, reason: reason, exchangeRate: exchangeRate })
+                navigation.navigate('BankDetails', { beneId: beneId, name: name, accno: accno, ifsc: ifsc, totalAmount: totalAmount, enteredamount: enteredamount, fromCurrency: fromCurrency, toCurrency: toCurrency, fees: fees, reference: reference, reason: reason,reasonLabel:reasonLabel, exchangeRate: exchangeRate })
             }
     }
     return (

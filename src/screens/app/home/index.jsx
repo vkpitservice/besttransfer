@@ -109,9 +109,9 @@ const HomeScreen = () => {
       // resp[1].data.amount
       setExchangeRate(resp[1].data.conversion_rate)
       if(from=='GBP')
-      setTotalAmount(resp[1].data.final_amount)
+      setTotalAmount(parseFloat(resp[1].data.final_amount).toFixed(2))
       else
-      setAmount(resp[1].data.final_amount)
+      setAmount(parseFloat(resp[1].data.final_amount).toFixed(2))
       setFees(resp[1].data.fees)
       setLoading(false)
     }

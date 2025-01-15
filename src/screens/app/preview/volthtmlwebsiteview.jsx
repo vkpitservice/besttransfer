@@ -18,7 +18,7 @@ import { DefaultConstants } from '@/utils/Constants';
 import { StackActions } from '@react-navigation/native';
 
 const VoltHtmlWebsiteView = ({ navigation, route }) => {
-    const { volturl, voltid, beneId, name, accno, ifsc, totalAmount, enteredamount, fromCurrency, toCurrency, fees, reference, reason, exchangeRate } = route.params;
+    const { volturl, voltid, beneId, name, accno, ifsc, totalAmount, enteredamount, fromCurrency, toCurrency, fees, reference, reason,reasonLabel, exchangeRate } = route.params;
     
     return (
         <View
@@ -66,11 +66,11 @@ const VoltHtmlWebsiteView = ({ navigation, route }) => {
                                 if (resp.url.includes("voltsuccess") ) {
                                     if(totalAmount>200000)
                                     {
-                                        navigation.dispatch(StackActions.replace('SuccessTransaction',{url:DefaultConstants.BASE_URL + 'transaction/imps/' + beneId,enteredamount:enteredamount,reason:reason,fees:fees,exchangeRate:exchangeRate,fromCurrency:fromCurrency,toCurrency:toCurrency}))
+                                        navigation.dispatch(StackActions.replace('SuccessTransaction',{url:DefaultConstants.BASE_URL + 'transaction/imps/' + beneId,enteredamount:enteredamount,reason:reason,reasonLabel:reasonLabel,fees:fees,exchangeRate:exchangeRate,fromCurrency:fromCurrency,toCurrency:toCurrency}))
                                     }
                                     else
                                     {
-                                        navigation.dispatch(StackActions.replace('SuccessTransaction',{url:DefaultConstants.BASE_URL + 'transaction/rtgs/' + beneId,enteredamount:enteredamount,reason:reason,fees:fees,exchangeRate:exchangeRate,fromCurrency:fromCurrency,toCurrency:toCurrency}))
+                                        navigation.dispatch(StackActions.replace('SuccessTransaction',{url:DefaultConstants.BASE_URL + 'transaction/rtgs/' + beneId,enteredamount:enteredamount,reason:reason,reasonLabel:reasonLabel,fees:fees,exchangeRate:exchangeRate,fromCurrency:fromCurrency,toCurrency:toCurrency}))
                                     }
                                 }
                                 if(resp.url.includes("voltfailure")){

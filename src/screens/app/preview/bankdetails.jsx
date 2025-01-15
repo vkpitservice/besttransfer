@@ -23,7 +23,7 @@ import { StackActions } from '@react-navigation/native';
 
 
 const BankDetails = ({ navigation, route }) => {
-    const { beneId, name, accno, ifsc, totalAmount, enteredamount, fromCurrency, toCurrency, fees, reference, reason, exchangeRate } = route.params;
+    const { beneId, name, accno, ifsc, totalAmount, enteredamount, fromCurrency, toCurrency, fees, reference, reason,reasonLabel, exchangeRate } = route.params;
     const [loading, setLoading] = useState(false)
     const [accountName, setaccountName] = useState("")
     const [sortCode, setsortCode] = useState("")
@@ -31,11 +31,11 @@ const BankDetails = ({ navigation, route }) => {
     const [refno, setRefno] = useState("")
     const proceedToPay = async () => {
         if (ifsc == '' || ifsc == null) {
-            navigation.navigate('SuccessTransaction', { url: DefaultConstants.BASE_URL + 'transaction/upi/' + beneId, enteredamount: enteredamount, reason: reason, fees: fees, exchangeRate: exchangeRate, fromCurrency: fromCurrency, toCurrency: toCurrency })
+            navigation.navigate('SuccessTransaction', { url: DefaultConstants.BASE_URL + 'transaction/upi/' + beneId, enteredamount: enteredamount, reason: reason,reasonLabel:reasonLabel, fees: fees, exchangeRate: exchangeRate, fromCurrency: fromCurrency, toCurrency: toCurrency })
 
         }
         else {
-            navigation.navigate('SuccessTransaction', { url: DefaultConstants.BASE_URL + 'transaction/manual/' + beneId, enteredamount: enteredamount, reason: reason, fees: fees, exchangeRate: exchangeRate, fromCurrency: fromCurrency, toCurrency: toCurrency })
+            navigation.navigate('SuccessTransaction', { url: DefaultConstants.BASE_URL + 'transaction/manual/' + beneId, enteredamount: enteredamount, reason: reason,reasonLabel:reasonLabel, fees: fees, exchangeRate: exchangeRate, fromCurrency: fromCurrency, toCurrency: toCurrency })
         }
 
     }

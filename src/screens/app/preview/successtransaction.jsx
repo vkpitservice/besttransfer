@@ -19,7 +19,7 @@ import postRequest from '@/components/NetworkRequest/postRequest';
 import { StackActions } from '@react-navigation/native';
 
 const SuccessTransaction = ({ navigation, route }) => {
-    const { url, enteredamount, reason, fees, exchangeRate, fromCurrency, toCurrency } = route.params;
+    const { url, enteredamount, reason,reasonLabel, fees, exchangeRate, fromCurrency, toCurrency } = route.params;
     const [loading, setLoading] = useState(true);
     const [payment, setPayment] = useState(false);
     const ProcessTransaction = async () => {
@@ -46,11 +46,12 @@ const SuccessTransaction = ({ navigation, route }) => {
 
         const resp = await postRequest(url, {
             amount: JSON.parse(enteredamount),
-            message: reason,
+            message: reasonLabel,
+            code: reason,
             fees: JSON.parse(fees),
             current_rate: JSON.parse(exchangeRate),
             from_currency: fromCurrency,
-            to_currency: toCurrency
+            to_currency: toCurrency,
         }, {
             headers: {
                 'Content-Type': 'application/json',
