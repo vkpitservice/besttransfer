@@ -117,7 +117,7 @@ const SearchBeneficiary = ({ navigation }) => {
     const exchangeRate = await AsyncStorage.getItem('exchangeRate');
     if(totalAmount=='0.00' || enteredamount=='0.00' || fromCurrency==null || toCurrency==null)
     {
-      navigation.navigate('PreviewScreen',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,exchangeRate:exchangeRate,benificiary_type:benificiary_type});
+      navigation.navigate('HomeStack');
     }
     else{
       navigation.navigate('PreviewScreen',{beneId:beneId,name:name,accno:accno,ifsc:ifsc,totalAmount:totalAmount,enteredamount:enteredamount,fromCurrency:fromCurrency,toCurrency:toCurrency,fees:fees,exchangeRate:exchangeRate,benificiary_type:benificiary_type});

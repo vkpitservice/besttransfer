@@ -1,42 +1,33 @@
 import {
-    ActivityIndicator,
-    FlatList,
     Image,
     KeyboardAvoidingView,
     Platform,
     StatusBar,
-    Text,
-    TouchableOpacity,
     View,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { styles } from './styles';
 import BackTitleAddComponent from '@/components/BackTitleAdd';
 import { Constants } from './constants';
-import TransactionListShowData from '@/components/transaction/transactionListShowData';
-import getRequest from '@/components/NetworkRequest/getRequest';
-import { DefaultConstants } from '@/utils/Constants';
-import { ErrorFlash } from '@/utils/flashMessage';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import { RNCamera } from 'react-native-camera';
+import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
 
 
 const QRScan = ({ navigation }) => {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [page, setPage] = useState(1);
-    const [hasMore, setHasMore] = useState(true); // Check if there are more items to load
-
-
+    const [upi, setUpi] = useState();
     useEffect(() => {
-
-    }, [])
+        navigateToPage()
+    }, [upi])
 
     const onSuccess = e => {
-        console.log(e.data);
+        setUpi(e.data);
       };
-    
+    const navigateToPage = async() =>{
+        if(upi!="" && upi!=null)
+        {
+            navigation.navigate('QRAmount',{upi:upi})
+        }
+    }
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -63,19 +54,9 @@ const QRScan = ({ navigation }) => {
             <View style={styles.mainContainer}>
                 <QRCodeScanner
                     onRead={onSuccess}
-                    flashMode={RNCamera.Constants.FlashMode.torch}
-                    topContent={
-                        <Text style={styles.centerText}>
-                            Go to{' '}
-                            <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on
-                            your computer and scan the QR code.
-                        </Text>
-                    }
-                    bottomContent={
-                        <TouchableOpacity style={styles.buttonTouchable}>
-                            <Text style={styles.buttonText}>OK. Got it!</Text>
-                        </TouchableOpacity>
-                    }
+                    // flashMode={RNCamera.Constants.FlashMode.torch}
+                    reactivate={true}
+                    cameraStyle={{width:widthPercentageToDP(100),height:heightPercentageToDP(80)}}
                 />
             </View>
         </KeyboardAvoidingView>

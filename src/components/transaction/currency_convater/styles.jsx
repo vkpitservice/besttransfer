@@ -20,6 +20,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     // backgroundColor: 'yellow'
   },
+  topContainerSingle:{
+    padding: wp(5),
+    borderRadius: 20,
+    marginBottom: hp(10),
+    width:wp(90),
+    top: Platform.OS == 'ios' ? 40 : 40,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    borderWidth:1,
+    borderColor:ColorSheet.Text0
+  },
   topContainerKyc: {
     padding: wp(5),
     borderRadius: 20,

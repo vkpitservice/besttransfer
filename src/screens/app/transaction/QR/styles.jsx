@@ -19,29 +19,19 @@ export const styles = StyleSheet.create({
   },
   mainContainer: {
     width: wp(90),
-    marginTop: hp(8),
+    marginTop: hp(5),
     alignSelf: 'center',
+    justifyContent:'center',
+    alignItems: 'center'
     // backgroundColor: 'pink',
   },
   flatListContainer: {
     paddingBottom: hp(26),
   },
-
-  centerText: {
-    flex: 1,
-    fontSize: 18,
-    padding: 32,
-    color: '#777'
-  },
-  textBold: {
-    fontWeight: '500',
-    color: '#000'
-  },
-  buttonText: {
-    fontSize: 21,
-    color: 'rgb(0,122,255)'
-  },
-  buttonTouchable: {
-    padding: 16
+  btnContainer:{
+    width: '100%',
+    height: Platform.OS == 'ios' ? hp(5.5) : hp(6),
+    marginTop: hp(2),
+    borderRadius: 15
   }
 });

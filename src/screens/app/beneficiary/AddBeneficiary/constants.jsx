@@ -20,6 +20,7 @@ export const Constants = {
     LAST_NAME_REQUIRED: 'Last Name is required',
     ACC_NAME_REQUIRED: 'Account Name is required',
     IFSC_REQUIRED: 'IFSC Code is required',
+    IFSC_INVALID: 'IFSC Code is invalid',
     ACCOUNT_NUMBER_REQUIRED: 'Account Number is required',
     CITY_REQUIRED: 'City is required',
 

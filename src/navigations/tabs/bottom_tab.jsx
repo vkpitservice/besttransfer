@@ -121,9 +121,9 @@ const AppBottomTab = () => {
               ]}
             >
               {focused ? (
-                <Image style={[styles.transactionsIcon,{width:hp(3),height:hp(3),resizeMode:'contain'}]} source={require('../../assets/icons/bottom_tab/qr_scan_selected.png')} />
+                <Image style={[styles.transactionsIcon,{width:hp(2),height:hp(2),resizeMode:'contain'}]} source={require('../../assets/icons/bottom_tab/qr_scan_selected.png')} />
               ) : (
-                <Image style={[styles.transactionsIcon,{width:hp(3),height:hp(3),resizeMode:'contain'}]} source={require('../../assets/icons/bottom_tab/qr_scan.png')} />
+                <Image style={[styles.transactionsIcon,{width:hp(2),height:hp(2),resizeMode:'contain'}]} source={require('../../assets/icons/bottom_tab/qr_scan.png')} />
               )}
 
               {focused && (
@@ -189,9 +189,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   labelText: {
-    fontSize: RFValue(10),
+    fontSize: RFValue(11),
     fontWeight: '400',
-    marginLeft: hp(1),
+    marginLeft: hp(0.5),
   },
   profileImage: {
     width: hp(6),

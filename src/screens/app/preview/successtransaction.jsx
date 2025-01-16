@@ -62,6 +62,12 @@ const SuccessTransaction = ({ navigation, route }) => {
         if (resp[0] != '400') {
             setLoading(false);
             setPayment(true);
+            await AsyncStorage.removeItem('totalAmount');
+            await AsyncStorage.removeItem('amount');
+            await AsyncStorage.removeItem('fromCurrency');
+            await AsyncStorage.removeItem('toCurrency');
+            await AsyncStorage.removeItem('fees');
+            await AsyncStorage.removeItem('exchangeRate');
         }
         else {
             setLoading(false);

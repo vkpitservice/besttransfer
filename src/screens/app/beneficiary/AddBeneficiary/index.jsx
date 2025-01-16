@@ -48,7 +48,9 @@ const AddBeneficiary = ({ navigation }) => {
       ErrorFlash(Constants.ACC_NAME_REQUIRED)
     } else if (!from.ifsc) {
       ErrorFlash(Constants.IFSC_REQUIRED)
-    } else if (!from.accountNumber) {
+    } else if ( (from.ifsc).length<11){
+      ErrorFlash(Constants.IFSC_INVALID)
+    }else if (!from.accountNumber) {
       ErrorFlash(Constants.ACCOUNT_NUMBER_REQUIRED)
     } else if (!from.city) {
       ErrorFlash(Constants.CITY_REQUIRED)
@@ -125,14 +127,16 @@ const AddBeneficiary = ({ navigation }) => {
               placeholder={Constants.FIRST_NAME}
               value={from.firstName}
               onChangeText={(text) => {
+                const validInput = text.replace(/[^a-zA-Z\s]/g, '');
                 setFrom({
                   ...from,
-                  firstName: text
+                  firstName: validInput
                 })
               }}
               onFocus={() => setFrom({ ...from, firstNameError: '' })}
               keyboardType={'default'}
               textError={from.firstNameError}
+              maxLength={40}
               onBlur={() => {
                 if (from.firstName === '') {
                   setFrom({ ...from, firstNameError: Constants.FIRST_NAME_REQUIRED })
@@ -148,14 +152,16 @@ const AddBeneficiary = ({ navigation }) => {
               placeholder={Constants.LAST_NAME}
               value={from.lastName}
               onChangeText={(text) => {
+                const validInput = text.replace(/[^a-zA-Z\s]/g, '');
                 setFrom({
                   ...from,
-                  lastName: text
+                  lastName: validInput
                 })
               }}
               onFocus={() => setFrom({ ...from, lastNameError: '' })}
               keyboardType={'default'}
               textError={from.lastNameError}
+              maxLength={40}
               onBlur={() => {
                 if (from.lastName === '') {
                   setFrom({ ...from, lastNameError: Constants.LAST_REQUIRED })
@@ -171,13 +177,15 @@ const AddBeneficiary = ({ navigation }) => {
               placeholder={Constants.ACC_NAME}
               value={from.accountName}
               onChangeText={(text) => {
+                const validInput = text.replace(/[^a-zA-Z\s]/g, '');
                 setFrom({
                   ...from,
-                  accountName: text
+                  accountName: validInput
                 })
               }}
               onFocus={() => setFrom({ ...from, accountNameError: '' })}
               keyboardType={'default'}
+              maxLength={80}
               textError={from.accountNameError}
               onBlur={() => {
                 if (from.accountName === '') {
@@ -201,6 +209,7 @@ const AddBeneficiary = ({ navigation }) => {
               }}
               onFocus={() => setFrom({ ...from, ifscError: '' })}
               keyboardType={'default'}
+              maxLength={11}
               textError={from.ifscError}
               onBlur={() => {
                 if (from.ifsc === '') {
@@ -217,13 +226,15 @@ const AddBeneficiary = ({ navigation }) => {
               placeholder={Constants.ACCOUNT_NUMBER}
               value={from.accountNumber}
               onChangeText={(text) => {
+                const validInput = text.replace(/[^0-9]/g, '');
                 setFrom({
                   ...from,
-                  accountNumber: text
+                  accountNumber: validInput
                 })
               }}
               onFocus={() => setFrom({ ...from, accountNumberError: '' })}
               keyboardType={'numeric'}
+              maxLength={18}
               textError={from.accountNumberError}
               onBlur={() => {
                 if (from.accountNumber === '') {
