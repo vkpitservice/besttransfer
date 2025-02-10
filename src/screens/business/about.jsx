@@ -46,6 +46,20 @@ const AboutBusiness = ({ navigation, route }) => {
         }
         else
         {
+            let token = await AsyncStorage.getItem('reg_access_token');
+            let reg_email = await AsyncStorage.getItem('reg_email');
+            var dropscreen = await postRequest(DefaultConstants.BASE_URL + 'user/screen-data', {
+                identifier: reg_email,
+                screen_name: "about_business",
+                screen_data: {companyType:companyType, companyName:companyName, companyTitle:companyTitle, activity:activity, expectedTurnover:expectedTurnover, companyAddress:companyAddress, companyNumber:companyNumber, website:formData.website,companyEmail:formData.companyEmail,companyPhone:formData.companyPhone,about:formData.about,next_screen:"BusinessAddress"},
+                device_token: "NANANANANANA",
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+
             navigation.navigate('BusinessAddress',{companyType:companyType, companyName:companyName, companyTitle:companyTitle, activity:activity, expectedTurnover:expectedTurnover, companyAddress:companyAddress, companyNumber:companyNumber, website:formData.website,companyEmail:formData.companyEmail,companyPhone:formData.companyPhone,about:formData.about})
         }
     }

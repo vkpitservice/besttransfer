@@ -31,11 +31,11 @@ const BankDetails = ({ navigation, route }) => {
     const [refno, setRefno] = useState("")
     const proceedToPay = async () => {
         if (ifsc == '' || ifsc == null) {
-            navigation.navigate('SuccessTransaction', { url: DefaultConstants.BASE_URL + 'transaction/upi/' + beneId, enteredamount: enteredamount, reason: reason,reasonLabel:reasonLabel, fees: fees, exchangeRate: exchangeRate, fromCurrency: fromCurrency, toCurrency: toCurrency })
+            navigation.navigate('SuccessTransaction', { url: DefaultConstants.BASE_URL + 'transaction/upi/' + beneId, enteredamount: enteredamount, reason: reason,reasonLabel:reasonLabel, fees: fees, exchangeRate: exchangeRate, fromCurrency: fromCurrency, toCurrency: toCurrency,reference:reference })
 
         }
         else {
-            navigation.navigate('SuccessTransaction', { url: DefaultConstants.BASE_URL + 'transaction/manual/' + beneId, enteredamount: enteredamount, reason: reason,reasonLabel:reasonLabel, fees: fees, exchangeRate: exchangeRate, fromCurrency: fromCurrency, toCurrency: toCurrency })
+            navigation.navigate('SuccessTransaction', { url: DefaultConstants.BASE_URL + 'transaction/manual/' + beneId, enteredamount: enteredamount, reason: reason,reasonLabel:reasonLabel, fees: fees, exchangeRate: exchangeRate, fromCurrency: fromCurrency, toCurrency: toCurrency,reference:reference })
         }
 
     }

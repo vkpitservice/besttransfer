@@ -56,20 +56,20 @@ const SelectOfficer = ({ navigation, route }) => {
                 "email": "test@fxamster.com",
                 // "dob": "10-"+formData.dob,
                 // "date_of_joining":formData.doj,
-                "dob":"2024-07-10",
-                "date_of_joining":"2024-07-10",
+                "dob": "2024-07-10",
+                "date_of_joining": "2024-07-10",
                 "role": formData.role,
                 "company_sharing": '1',
                 "country_code": "+44"
             });
-            
+
             const resp = await postRequest(DefaultConstants.BASE_URL + 'business/add-owner', {
                 "first_name": formData.first_name,
                 "last_name": formData.last_name,
                 "mobile": "7777778777",
                 "email": "test1@fxamster.com",
-                "dob":"2020-07-10",
-                "date_of_joining":"2020-07-10",
+                "dob": "2020-07-10",
+                "date_of_joining": "2020-07-10",
                 "role": formData.role,
                 "company_sharing": '1',
                 "country_code": "+44"
@@ -80,14 +80,35 @@ const SelectOfficer = ({ navigation, route }) => {
                 }
             });
 
-            console.log("helooooooooooooooooo"+JSON.stringify(resp));
-            if(resp[0]!=400)
-            {
+            console.log("helooooooooooooooooo" + JSON.stringify(resp));
+            if (resp[0] != 400) {
                 setButtonloading(false)
+                let reg_email = await AsyncStorage.getItem('reg_email');
+                var dropscreen = await postRequest(DefaultConstants.BASE_URL + 'user/screen-data', {
+                    identifier: reg_email,
+                    screen_name: "select_officer",
+                    screen_data: {
+                        "first_name": formData.first_name,
+                        "last_name": formData.last_name,
+                        "mobile": "7777778777",
+                        "email": "test1@fxamster.com",
+                        "dob": "2020-07-10",
+                        "date_of_joining": "2020-07-10",
+                        "role": formData.role,
+                        "company_sharing": '1',
+                        "country_code": "+44",
+                        "next_screen":"RegisterSuccessFullScreen"
+                    },
+                    device_token: "NANANANANANA",
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    }
+                });
                 navigation.dispatch(StackActions.replace('RegisterSuccessFullScreen'));
             }
-            else
-            {
+            else {
                 setButtonloading(false)
                 ErrorFlash(resp[1]);
             }
@@ -170,12 +191,12 @@ const SelectOfficer = ({ navigation, route }) => {
                                         <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'space-between' }}>
                                             <View style={styles.leftblock}>
                                                 <Text style={styles.selectedOfficerHeading}>Appointed On</Text>
-                                                <Text style={[styles.selectedOfficerText,{fontSize:15}]}>{item.appointed_on}</Text>
+                                                <Text style={[styles.selectedOfficerText, { fontSize: 15 }]}>{item.appointed_on}</Text>
                                             </View>
                                             <View style={styles.rightblock}>
                                                 <Text style={styles.selectedOfficerHeading}>Nationality</Text>
 
-                                                <Text style={[styles.selectedOfficerText,{fontSize:15}]}>{item.nationality}</Text>
+                                                <Text style={[styles.selectedOfficerText, { fontSize: 15 }]}>{item.nationality}</Text>
                                             </View>
                                         </View>
 
@@ -183,12 +204,12 @@ const SelectOfficer = ({ navigation, route }) => {
                                             <View style={styles.leftblock}>
                                                 <Text style={styles.selectedOfficerHeading}>Residence Country</Text>
 
-                                                <Text style={[styles.selectedOfficerText,{fontSize:15}]}>{item.country_of_residence ? item.country_of_residence : "-"}</Text>
+                                                <Text style={[styles.selectedOfficerText, { fontSize: 15 }]}>{item.country_of_residence ? item.country_of_residence : "-"}</Text>
                                             </View>
                                             <View style={styles.rightblock}>
                                                 <Text style={styles.selectedOfficerHeading}>Occupation</Text>
 
-                                                <Text style={[styles.selectedOfficerText,{fontSize:15}]}>{item.occupation}</Text>
+                                                <Text style={[styles.selectedOfficerText, { fontSize: 15 }]}>{item.occupation}</Text>
                                             </View>
                                         </View>
                                     </TouchableOpacity>

@@ -56,10 +56,25 @@ const BusinessDetails = ({ navigation }) => {
         else if (formData.companyNumber == '') {
             ErrorFlash(Constants.COMPANYNUMBER_REQUIRED);
         }
-         else {
+        else {
             setloading(true)
             console.log(JSON.stringify(formData));
-            navigation.navigate('AboutBusiness',{companyType:formData.companyType,companyName:formData.companyName,companyTitle:formData.companyTitle,activity:formData.activity,expectedTurnover:formData.expectedTurnover,companyAddress:formData.companyAddress,companyNumber:formData.companyNumber})
+            let token = await AsyncStorage.getItem('reg_access_token');
+            let reg_email = await AsyncStorage.getItem('reg_email');
+            var dropscreen = await postRequest(DefaultConstants.BASE_URL + 'user/screen-data', {
+                identifier: reg_email,
+                screen_name: "business_details",
+                screen_data: { companyType: formData.companyType, companyName: formData.companyName, companyTitle: formData.companyTitle, activity: formData.activity, expectedTurnover: formData.expectedTurnover, companyAddress: formData.companyAddress, companyNumber: formData.companyNumber, next_screen:"AboutBusiness" },
+                device_token: "NANANANANANA",
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+
+
+            navigation.navigate('AboutBusiness', { companyType: formData.companyType, companyName: formData.companyName, companyTitle: formData.companyTitle, activity: formData.activity, expectedTurnover: formData.expectedTurnover, companyAddress: formData.companyAddress, companyNumber: formData.companyNumber })
             setloading(false)
         }
     };
@@ -94,7 +109,7 @@ const BusinessDetails = ({ navigation }) => {
             }
         });
         console.log(formData.companyName);
-        
+
         const resp = await getRequest(DefaultConstants.FX_BASE_URL + "API-FX-168-COMPANY-SEARCH?name=" + formData.companyName, {
             headers: {
                 fx_key: DefaultConstants.FX_SUBSCRIPTION_KEY,
@@ -199,7 +214,7 @@ const BusinessDetails = ({ navigation }) => {
                             onSelect={(selectedItem, index) => {
                                 console.log(selectedItem.title);
                                 console.log(selectedItem.company_number);
-                                setFormData({...formData, companyName: selectedItem.company_number,companyTitle: selectedItem.title,companyNumber: selectedItem.company_number,companyAddress: selectedItem.address_snippet})
+                                setFormData({ ...formData, companyName: selectedItem.company_number, companyTitle: selectedItem.title, companyNumber: selectedItem.company_number, companyAddress: selectedItem.address_snippet })
                             }}
                             renderButton={(selectedItem, isOpened) => {
                                 return (
@@ -213,7 +228,7 @@ const BusinessDetails = ({ navigation }) => {
                             renderItem={(item, index, isSelected) => {
                                 return (
                                     <View style={{ ...styles.dropdownItemStyle, ...(isSelected && { backgroundColor: '#D2D9DF' }) }}>
-                                        <Text style={styles.dropdownItemTxtStyle}>{item.title +'-'+ item.company_status}</Text>
+                                        <Text style={styles.dropdownItemTxtStyle}>{item.title + '-' + item.company_status}</Text>
                                     </View>
                                 );
                             }}

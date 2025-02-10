@@ -6,15 +6,26 @@ import { ColorSheet } from '@/utils/ColorSheet';
 import { styles } from './styles';
 
 const SecondaryButton = (props) => {
-  const { title, onPress, style } = props;
+  const { title, onPress, style, loading } = props;
 
   return (
-    <TouchableOpacity style={[styles.button_root, style]} onPress={onPress} activeOpacity={0.5}>
-      {/* Icon */}
-      <FontAwesome name='send' size={20} color={ColorSheet.PrimaryButtonTxt} />
+    <>
+      {loading ?
+        <TouchableOpacity style={[styles.button_root, style]} activeOpacity={0.5}>
+          {/* Icon */}
+          <FontAwesome name='send' size={20} color={ColorSheet.PrimaryButtonTxt} />
 
-      <Text style={styles.title_txt}> {title} </Text>
-    </TouchableOpacity>
+          <Text style={styles.title_txt}> Loading... </Text>
+        </TouchableOpacity>
+        :
+        <TouchableOpacity style={[styles.button_root, style]} onPress={onPress} activeOpacity={0.5}>
+          {/* Icon */}
+          <FontAwesome name='send' size={20} color={ColorSheet.PrimaryButtonTxt} />
+
+          <Text style={styles.title_txt}> {title} </Text>
+        </TouchableOpacity>
+      }
+    </>
   );
 };
 
@@ -23,6 +34,7 @@ SecondaryButton.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func,
   style: PropTypes.object,
+  loading: PropTypes.bool
 };
 
 export default SecondaryButton;

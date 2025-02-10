@@ -12,6 +12,6 @@ export default async function postRequest(url,body,headers){
       }).catch(err=>{
         console.log("error response"+JSON.stringify(err.response));
         
-            return ["400",err.response.data.detail[0].msg];
+            return ["400",err.response.data.detail.msg];
       });
 }

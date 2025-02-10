@@ -9,5 +9,6 @@ export const Constants = {
   TOTAL_PAYMENT: 'Total Payment',
 
   SEND: 'Send',
+  ADD: 'Add',
   SENDING_AMOUNt_ERROR: 'Enter Sending Amount'
 };

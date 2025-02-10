@@ -98,8 +98,19 @@ const CreateAccount = ({ navigation }) => {
             'Authorization': 'Bearer ' + resp[1].data.access_token
           }
         });
-        
-        
+        var dropscreen = await postRequest(DefaultConstants.BASE_URL + 'user/screen-data', { 
+          identifier: formData.email,
+          screen_name: "create_account",
+          screen_data: { first_name: formData.firstname, last_name: formData.lastname, email: formData.email, password: formData.digitCode, mobile: formData.phoneNumber, country_code: "+44", source: DefaultConstants.SOURCE_NAME, user_type: displayVisibleWindow,contact_address:"NANANANA",device_id:DeviceInfo.getDeviceId(),device_token:"NANANANANANA",next_screen: 'OtpVerificationScreen' },
+          device_token: "NANANANANANA",
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + resp[1].data.access_token
+          }
+        });
+
+        ////triggering of otp to mobile
         var otpresp = await postRequest(DefaultConstants.BASE_URL + 'otp/validate-mobile', { source: DefaultConstants.SOURCE_NAME }, {
           headers: {
             'Content-Type': 'application/json',

@@ -294,8 +294,8 @@ const listReason = [
     value: 'Individual',
   },
   {
-    label: 'Corporate',
-    value: 'Corporate',
+    label: 'Business',
+    value: 'Business',
   },
 ];
 const listCountry = [

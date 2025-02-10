@@ -17,41 +17,52 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import postRequest from '@/components/NetworkRequest/postRequest';
 import { StackActions } from '@react-navigation/native';
+import GetLocation from 'react-native-get-location'
 
 const SuccessTransaction = ({ navigation, route }) => {
-    const { url, enteredamount, reason,reasonLabel, fees, exchangeRate, fromCurrency, toCurrency } = route.params;
+    const { url, enteredamount, reason,reasonLabel, fees, exchangeRate, fromCurrency, toCurrency,reference } = route.params;
     const [loading, setLoading] = useState(true);
     const [payment, setPayment] = useState(false);
     const ProcessTransaction = async () => {
         console.log(route.params);
         setLoading(true)
+        await GetLocation.getCurrentPosition({
+            enableHighAccuracy: true,
+            timeout: 60000,
+        })
+        .then(location => {
+            console.log(location);
+            createTransaction(location.latitude,location.longitude)
+        })
+        .catch(error => {
+            const { code, message } = error;
+            console.warn(code, message);
+            setLoading(false)
+        })
+    }
+    const createTransaction = async(latitude,longitude) =>{
         let token = await AsyncStorage.getItem('login_token');
-        console.log(url);
         console.log({
-            transaction_id: "123456",
-            amount: 5,
-            message: reason,
-            fees: 3,
-            current_rate: 3,
-            from_currency: fromCurrency,
-            to_currency: toCurrency
-        });
-        console.log({
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            }
-        });
-
-
-        const resp = await postRequest(url, {
             amount: JSON.parse(enteredamount),
-            message: reasonLabel,
+            message: reference,
             code: reason,
             fees: JSON.parse(fees),
             current_rate: JSON.parse(exchangeRate),
             from_currency: fromCurrency,
             to_currency: toCurrency,
+            latitude: latitude,
+            longitude: longitude,
+        });
+        const resp = await postRequest(url, {
+            amount: JSON.parse(enteredamount),
+            message: reference,
+            code: reason,
+            fees: JSON.parse(fees),
+            current_rate: JSON.parse(exchangeRate),
+            from_currency: fromCurrency,
+            to_currency: toCurrency,
+            latitude: latitude,
+	        longitude: longitude,
         }, {
             headers: {
                 'Content-Type': 'application/json',

@@ -1,13 +1,13 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { Ionicons, Feather } from '@expo/vector-icons';
+import { Ionicons, Feather, MaterialIcons } from '@expo/vector-icons';
 import { ColorSheet } from '@/utils/ColorSheet';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const BackTitleHomeComponent = (props) => {
-  const { style, title, onPressBack, onPressHome } = props;
+  const { style, title, onPressBack, onPressHome, otherIconName } = props;
 
   return (
     <View style={[styles.root, style]}>
@@ -25,7 +25,11 @@ const BackTitleHomeComponent = (props) => {
       {onPressHome && (
         <TouchableOpacity style={styles.addIcon} onPress={onPressHome} activeOpacity={0.8}>
           <View style={styles.roundContainer}>
-            <Feather name='home' size={22} color={ColorSheet.PrimaryButton} />
+            {otherIconName != "" && otherIconName != null ?
+              <MaterialIcons name={otherIconName}  size={22} color={ColorSheet.PrimaryButton} />
+              :
+              <Feather name='home' size={22} color={ColorSheet.PrimaryButton} />
+            }
           </View>
         </TouchableOpacity>
       )}
@@ -39,6 +43,7 @@ BackTitleHomeComponent.propTypes = {
   onPressBack: PropTypes.func,
   title: PropTypes.string,
   onPressHome: PropTypes.func,
+  otherIconName: PropTypes.any
 };
 
 // Define default props

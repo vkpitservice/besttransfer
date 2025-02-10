@@ -68,17 +68,17 @@ const BusinessAddress = ({ navigation, route }) => {
                     'Authorization': 'Bearer ' + token
                 }
             });
-            
+
             const resp = await postRequest(DefaultConstants.BASE_URL + 'business/add', {
                 "company_type": companyType,
                 "company_number": companyNumber,
                 "name": companyTitle,
-                "description": activity+activity+activity+activity+activity,
+                "description": activity + activity + activity + activity + activity,
                 "turnover": expectedTurnover,
                 "website": website,
                 "email": companyEmail,
                 "company_phone": companyPhone,
-                "about_business": about+about+about+about+about+about
+                "about_business": about + about + about + about + about + about
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -86,8 +86,7 @@ const BusinessAddress = ({ navigation, route }) => {
                 }
             });
             console.log(JSON.stringify(resp));
-            if(resp[0]!=400)
-            {
+            if (resp[0] != 400) {
                 await patchRequest(DefaultConstants.BASE_URL + 'business/update-business', {
                     "contact_address": companyAddress,
                 }, {
@@ -133,10 +132,38 @@ const BusinessAddress = ({ navigation, route }) => {
                     }
                 });
 
-                navigation.navigate('SelectOfficer',{companyNumber:companyNumber})
+                let reg_email = await AsyncStorage.getItem('reg_email');
+                var dropscreen = await postRequest(DefaultConstants.BASE_URL + 'user/screen-data', {
+                    identifier: reg_email,
+                    screen_name: "business_address",
+                    screen_data: {
+                        "company_type": companyType,
+                        "company_number": companyNumber,
+                        "name": companyTitle,
+                        "description": activity + activity + activity + activity + activity,
+                        "turnover": expectedTurnover,
+                        "website": website,
+                        "email": companyEmail,
+                        "company_phone": companyPhone,
+                        "about_business": about + about + about + about + about + about,
+                        "contact_address": companyAddress,
+                        "private_address": formData.privateAddress,
+                        "shipping_address": formData.shippingAddress,
+                        "invoice_address": formData.invoiceAddress,
+                        "correspondance_address": formData.correspondenceAddress,
+                        "next_screen": "SelectOfficer"
+                    },
+                    device_token: "NANANANANANA",
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    }
+                });
+
+                navigation.navigate('SelectOfficer', { companyNumber: companyNumber })
             }
-            else
-            {
+            else {
                 ErrorFlash(resp[1])
                 // navigation.navigate('SelectOfficer',{companyNumber:companyNumber})
             }
@@ -185,9 +212,9 @@ const BusinessAddress = ({ navigation, route }) => {
                             placeholder={Constants.ENTER_PRIVATE_ADDRESS}
                         />
                         {formData.privateAddress == '' ?
-                            <Pressable onPress={() => { setFormData({...formData,privateAddress:companyAddress }) }}><Text><Fontisto name='radio-btn-passive' size={20} /> Same as contact address</Text></Pressable>
+                            <Pressable onPress={() => { setFormData({ ...formData, privateAddress: companyAddress }) }}><Text><Fontisto name='radio-btn-passive' size={20} /> Same as contact address</Text></Pressable>
                             :
-                            <Pressable onPress={() => { setFormData({...formData,privateAddress:"" })}}><Text><Fontisto name='radio-btn-active' size={20} /> Same as contact address</Text></Pressable>
+                            <Pressable onPress={() => { setFormData({ ...formData, privateAddress: "" }) }}><Text><Fontisto name='radio-btn-active' size={20} /> Same as contact address</Text></Pressable>
                         }
                     </View>
 
@@ -200,9 +227,9 @@ const BusinessAddress = ({ navigation, route }) => {
                             placeholder={Constants.ENTER_SHIPPING_ADDRESS}
                         />
                         {formData.shippingAddress == '' ?
-                            <Pressable onPress={() => { setFormData({...formData,shippingAddress:companyAddress }) }}><Text><Fontisto name='radio-btn-passive' size={20} /> Same as contact address</Text></Pressable>
+                            <Pressable onPress={() => { setFormData({ ...formData, shippingAddress: companyAddress }) }}><Text><Fontisto name='radio-btn-passive' size={20} /> Same as contact address</Text></Pressable>
                             :
-                            <Pressable onPress={() => { setFormData({...formData,shippingAddress:"" })}}><Text><Fontisto name='radio-btn-active' size={20} /> Same as contact address</Text></Pressable>
+                            <Pressable onPress={() => { setFormData({ ...formData, shippingAddress: "" }) }}><Text><Fontisto name='radio-btn-active' size={20} /> Same as contact address</Text></Pressable>
                         }
                     </View>
 
@@ -215,9 +242,9 @@ const BusinessAddress = ({ navigation, route }) => {
                             placeholder={Constants.ENTER_INVOICE_ADDRESS}
                         />
                         {formData.invoiceAddress == '' ?
-                            <Pressable onPress={() => { setFormData({...formData,invoiceAddress:companyAddress }) }}><Text><Fontisto name='radio-btn-passive' size={20} /> Same as contact address</Text></Pressable>
+                            <Pressable onPress={() => { setFormData({ ...formData, invoiceAddress: companyAddress }) }}><Text><Fontisto name='radio-btn-passive' size={20} /> Same as contact address</Text></Pressable>
                             :
-                            <Pressable onPress={() => { setFormData({...formData,invoiceAddress:"" })}}><Text><Fontisto name='radio-btn-active' size={20} /> Same as contact address</Text></Pressable>
+                            <Pressable onPress={() => { setFormData({ ...formData, invoiceAddress: "" }) }}><Text><Fontisto name='radio-btn-active' size={20} /> Same as contact address</Text></Pressable>
                         }
                     </View>
 
@@ -231,9 +258,9 @@ const BusinessAddress = ({ navigation, route }) => {
                             placeholder={Constants.ENTER_CORRESPONDENCE_ADDRESS}
                         />
                         {formData.correspondenceAddress == '' ?
-                            <Pressable onPress={() => { setFormData({...formData,correspondenceAddress:companyAddress }) }}><Text><Fontisto name='radio-btn-passive' size={20} /> Same as contact address</Text></Pressable>
+                            <Pressable onPress={() => { setFormData({ ...formData, correspondenceAddress: companyAddress }) }}><Text><Fontisto name='radio-btn-passive' size={20} /> Same as contact address</Text></Pressable>
                             :
-                            <Pressable onPress={() => { setFormData({...formData,correspondenceAddress:"" })}}><Text><Fontisto name='radio-btn-active' size={20} /> Same as contact address</Text></Pressable>
+                            <Pressable onPress={() => { setFormData({ ...formData, correspondenceAddress: "" }) }}><Text><Fontisto name='radio-btn-active' size={20} /> Same as contact address</Text></Pressable>
                         }
                     </View>
 

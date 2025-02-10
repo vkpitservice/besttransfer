@@ -7,5 +7,6 @@ export const Constants = {
     FEE: 'Fee', 
     TOTAL_PAYMENT: 'Total Payment',
     SEND: 'Send', 
-    SENDING_AMOUNt_ERROR: 'Enter Sending Amount'
+    SENDING_AMOUNt_ERROR: 'Enter Sending Amount',
+    BACK_TO_DASHBOARD: 'Back to Dashboard'
 };

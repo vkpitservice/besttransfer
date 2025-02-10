@@ -33,12 +33,11 @@ const SumSub = ({ navigation, route }) => {
         if (response[0] == 200) {
             console.log("succccccc");
             setinterval(true);
-            (response[1].data).hasOwnProperty('firstName') ? 
-                Alert.alert("Success",'KYC Submitted Successfully. Please wait while we review your details.')
-             :
+            (response[1].data).hasOwnProperty('firstName') && Alert.alert("Success",'KYC Submitted Successfully. Please wait while we review your details.')
+            //  :
             
-                Alert.alert("Error",(response[1].data.msg).toUpperCase())
-            navigation.dispatch(StackActions.replace('AppBottomTab'));
+            //     Alert.alert("Error",(response[1].data.msg).toUpperCase())
+            (response[1].data).hasOwnProperty('firstName') && navigation.dispatch(StackActions.replace('AppBottomTab'));
         }
         else {
             setinterval(true);

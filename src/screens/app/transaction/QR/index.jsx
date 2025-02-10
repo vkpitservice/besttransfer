@@ -1,4 +1,5 @@
 import {
+    Alert,
     Image,
     KeyboardAvoidingView,
     Platform,
@@ -11,21 +12,49 @@ import BackTitleAddComponent from '@/components/BackTitleAdd';
 import { Constants } from './constants';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
+import BackTitleHomeComponent from '@/components/BackTitleHome';
+import { MaterialIcons } from '@expo/vector-icons';
+import { ColorSheet } from '@/utils/ColorSheet';
+import Spinner from 'react-native-loading-spinner-overlay';
+import postRequest from '@/components/NetworkRequest/postRequest';
+import { DefaultConstants } from '@/utils/Constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ErrorFlash } from '@/utils/flashMessage';
 
 
 const QRScan = ({ navigation }) => {
     const [upi, setUpi] = useState();
+    const [overlay, setOverlay] = useState(false);
     useEffect(() => {
         navigateToPage()
     }, [upi])
 
     const onSuccess = e => {
         setUpi(e.data);
-      };
-    const navigateToPage = async() =>{
-        if(upi!="" && upi!=null)
+    };
+    const navigateToPage = async () => {
+        if (upi != "" && upi != null) {
+            navigation.navigate('QRAmount', { upi: upi })
+        }
+    }
+    const getWalletBalance = async () => {
+        setOverlay(true)
+        let token = await AsyncStorage.getItem('login_token');
+        const response = await postRequest(DefaultConstants.BASE_URL + "auth/refresh-token", {}, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        if(response[0]==200)
         {
-            navigation.navigate('QRAmount',{upi:upi})
+            Alert.alert("Balance","Your Wallet Balance is INR "+response[1].data.user.wallet.amount);
+            setOverlay(false)
+        }
+        else
+        {
+            ErrorFlash(response[1])
+            setOverlay(false)
         }
     }
     return (
@@ -33,6 +62,11 @@ const QRScan = ({ navigation }) => {
             style={styles.container}
             behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         >
+            <Spinner
+                visible={overlay}
+                textContent={'Loading...'}
+                textStyle={{ color: '#FFF' }}
+            />
             {/* Status Bar */}
             <StatusBar barStyle='light-content' backgroundColor={'transparent'} translucent={true} />
 
@@ -43,11 +77,22 @@ const QRScan = ({ navigation }) => {
             />
 
             {/* Back Header Title Add */}
-            <BackTitleAddComponent
+            <BackTitleHomeComponent
+                style={styles.titleHeaderContainer}
                 title={Constants.HEADER_TITLE}
                 onPressBack={() => {
-                    navigation.goBack();
+                    navigation.goBack()
                 }}
+                onPressHome={() => {
+                    getWalletBalance()
+                }}
+                otherIconName='account-balance-wallet'
+            />
+
+            {/* Image */}
+            <Image
+                style={styles.imageBackground}
+                source={require('@/assets/images/beneficiary/SelectBeneficiary.png')}
             />
 
             {/* List Of Data */}
@@ -56,7 +101,7 @@ const QRScan = ({ navigation }) => {
                     onRead={onSuccess}
                     // flashMode={RNCamera.Constants.FlashMode.torch}
                     reactivate={true}
-                    cameraStyle={{width:widthPercentageToDP(100),height:heightPercentageToDP(80)}}
+                    cameraStyle={{ width: widthPercentageToDP(100), height: heightPercentageToDP(80) }}
                 />
             </View>
         </KeyboardAvoidingView>

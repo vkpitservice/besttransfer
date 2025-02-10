@@ -49,31 +49,55 @@ const EmailOtpVerification = ({ navigation }) => {
       setLoading(true)
       let token = await AsyncStorage.getItem('reg_access_token');
       let reg_user_type = await AsyncStorage.getItem('reg_user_type');
-      console.log(DefaultConstants.BASE_URL + 'otp/validate-otp/'+otp);
+      console.log(DefaultConstants.BASE_URL + 'otp/validate-otp/' + otp);
       console.log({
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token
         }
       });
-      
-      var otpvalidateresp = await getRequest(DefaultConstants.BASE_URL + 'otp/validate-otp/'+otp, {
+
+      var otpvalidateresp = await getRequest(DefaultConstants.BASE_URL + 'otp/validate-otp/' + otp, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token
         }
       });
-      if(otpvalidateresp[0]==200)
-      {
+      if (otpvalidateresp[0] == 200) {
         console.log(reg_user_type);
-        
-        if(reg_user_type=='individual')
+        if (reg_user_type == 'individual')
+        {
+          var dropscreen = await postRequest(DefaultConstants.BASE_URL + 'user/screen-data', {
+            identifier: "RegisterSuccessFullScreen",
+            screen_name: "email_otp_validation",
+            screen_data: { otp: otp },
+            device_token: "NANANANANANA",
+          }, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token
+            }
+          });
           navigation.dispatch(StackActions.replace('RegisterSuccessFullScreen'));
+        }
         else
-          navigation.dispatch(StackActions.replace('BusinessDetails'));
+          {
+            let reg_email = await AsyncStorage.getItem('reg_email');
+            var dropscreen = await postRequest(DefaultConstants.BASE_URL + 'user/screen-data', {
+              identifier: reg_email,
+              screen_name: "email_otp_validation",
+              screen_data: { otp: otp,next_screen:"BusinessDetails" },
+              device_token: "NANANANANANA",
+            }, {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+              }
+            });
+            navigation.dispatch(StackActions.replace('BusinessDetails'));
+          }
       }
-      else
-      {
+      else {
         ErrorFlash(otpvalidateresp[1])
       }
       setLoading(false)
@@ -82,7 +106,7 @@ const EmailOtpVerification = ({ navigation }) => {
   const getData = async () => {
     setEmail(await AsyncStorage.getItem('reg_email'));
   }
-  const resendOtp = async() =>{
+  const resendOtp = async () => {
     let token = await AsyncStorage.getItem('reg_access_token');
     var otpresp = await postRequest(DefaultConstants.BASE_URL + 'otp/validate-email', { source: DefaultConstants.SOURCE_NAME }, {
       headers: {
@@ -90,7 +114,7 @@ const EmailOtpVerification = ({ navigation }) => {
         'Authorization': 'Bearer ' + token
       }
     });
-    if(otpresp[0]==200)
+    if (otpresp[0] == 200)
       setResendSuccessVisible(true);
     else
       ErrorFlash("Error in triggering OTP");
@@ -99,17 +123,17 @@ const EmailOtpVerification = ({ navigation }) => {
     let token = await AsyncStorage.getItem('reg_access_token');
     let firstName = await AsyncStorage.getItem('reg_first_name');
     let lastName = await AsyncStorage.getItem('reg_last_name');
-    var changeEmail = await patchRequest(DefaultConstants.BASE_URL + 'user/update-user', { email: newEmail,first_name:firstName,last_name:lastName }, {
+    var changeEmail = await patchRequest(DefaultConstants.BASE_URL + 'user/update-user', { email: newEmail, first_name: firstName, last_name: lastName }, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       }
     });
-    console.log("return resp"+JSON.stringify(changeEmail));
-    
+    console.log("return resp" + JSON.stringify(changeEmail));
+
     if (changeEmail[0] == 200) {
       setEmail(newEmail)
-      setAsyncData('reg_email',newEmail);
+      setAsyncData('reg_email', newEmail);
       resendOtp();
       setChange(false);
     }
@@ -119,8 +143,8 @@ const EmailOtpVerification = ({ navigation }) => {
   }
   useEffect(() => {
     getData()
-  },[])
-  const setAsyncData= async(key,val)=>{
+  }, [])
+  const setAsyncData = async (key, val) => {
     await AsyncStorage.setItem(key, val);
   }
   return (
@@ -198,7 +222,7 @@ const EmailOtpVerification = ({ navigation }) => {
           )}
         </View>
 
-        <PrimaryButton title='Submit' onPress={onPressSubmit} style={styles.button} loading={loading}/>
+        <PrimaryButton title='Submit' onPress={onPressSubmit} style={styles.button} loading={loading} />
       </ScrollView>
     </KeyboardAvoidingView>
   );

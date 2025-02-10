@@ -16,6 +16,8 @@ import Swap90 from '@/assets/icons/bottom_tab/Swap90.svg';
 import BeneficiaryStack from '../stacks/beneficiary_stack';
 import HomeStack from '../stacks/profile_stack';
 import QrStack from '../stacks/qr_stack';
+import WalletStack from '../stacks/wallet_stack';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -99,7 +101,7 @@ const AppBottomTab = () => {
                     },
                   ]}
                 >
-                  Transaction
+                  Transfers
                 </Text>
               )}
             </View>
@@ -121,9 +123,9 @@ const AppBottomTab = () => {
               ]}
             >
               {focused ? (
-                <Image style={[styles.transactionsIcon,{width:hp(2),height:hp(2),resizeMode:'contain'}]} source={require('../../assets/icons/bottom_tab/qr_scan_selected.png')} />
+                <Image style={[styles.transactionsIcon, { width: hp(2), height: hp(2), resizeMode: 'contain' }]} source={require('../../assets/icons/bottom_tab/qr_scan_selected.png')} />
               ) : (
-                <Image style={[styles.transactionsIcon,{width:hp(2),height:hp(2),resizeMode:'contain'}]} source={require('../../assets/icons/bottom_tab/qr_scan.png')} />
+                <Image style={[styles.transactionsIcon, { width: hp(2), height: hp(2), resizeMode: 'contain' }]} source={require('../../assets/icons/bottom_tab/qr_scan.png')} />
               )}
 
               {focused && (
@@ -135,7 +137,44 @@ const AppBottomTab = () => {
                     },
                   ]}
                 >
-                  Scan & Pay
+                  Scan QR
+                </Text>
+              )}
+            </View>
+          ),
+        })}
+      />
+
+
+      <Tab.Screen
+        name='Wallet'
+        component={WalletStack}
+        options={() => ({
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={[
+                styles.iconView,
+                focused && {
+                  backgroundColor: ColorSheet.StatusBarBg,
+                },
+              ]}
+            >
+              {focused ? (
+                <MaterialCommunityIcons name='wallet-plus' size={25} />
+              ) : (
+                <MaterialCommunityIcons name='wallet-plus-outline' size={25} />
+              )}
+
+              {focused && (
+                <Text
+                  style={[
+                    styles.labelText,
+                    {
+                      color: color,
+                    },
+                  ]}
+                >
+                  Wallet
                 </Text>
               )}
             </View>
@@ -191,7 +230,7 @@ const styles = StyleSheet.create({
   labelText: {
     fontSize: RFValue(11),
     fontWeight: '400',
-    marginLeft: hp(0.5),
+    marginLeft: hp(0.2),
   },
   profileImage: {
     width: hp(6),
@@ -201,7 +240,7 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
   },
   transactionsIcon: {
-    marginLeft: wp(2),
+    marginLeft: wp(0.5),
   },
 });
 

@@ -62,6 +62,20 @@ const OtpVerification = ({ navigation }) => {
       });
       if(otpvalidateresp[0]==200)
       {
+        let reg_email = await AsyncStorage.getItem('reg_email');
+        var dropscreen = await postRequest(DefaultConstants.BASE_URL + 'user/screen-data', { 
+          identifier: reg_email,
+          screen_name: "mobile_otp_validation",
+          screen_data: {otp:otp,next_screen:"EmailOtpVerificationScreen"},
+          device_token: "NANANANANANA",
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          }
+        });
+
+          //// triggering otp to email
           var otpresp = await postRequest(DefaultConstants.BASE_URL + 'otp/validate-email', { source: DefaultConstants.SOURCE_NAME }, {
             headers: {
               'Content-Type': 'application/json',
